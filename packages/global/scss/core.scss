@@ -1,0 +1,164 @@
+// import local variables
+@import "variables";
+
+// import theme css
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/core";
+
+// skin components
+@import "./components/content-meter";
+@import "./components/user";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  // set a default letter spacing of .25px, since most fonts have some form of spacing
+  letter-spacing: .25px;
+}
+
+label {
+  @include skin-typography($style: "input-label");
+}
+
+.col-spacer {
+  margin-bottom: 30px;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 0;
+  }
+}
+
+.form-control,
+.custom-select {
+  letter-spacing: $skin-input-letter-spacing;
+  border-radius: $input-border-radius; // must force this value since radius is disabled
+  &:hover:not(:focus) {
+    border-color: $skin-input-hover-border-color;
+  }
+
+  &--bg-white {
+    background-color: #fff;
+    &:focus {
+      background-color: #fff;
+    }
+  }
+}
+
+.custom-control-label {
+  &::before {
+    border-radius: $input-border-radius; // must force this value since radius is disabled
+  }
+  &--bg-white {
+    &::before {
+      background-color: #fff;
+    }
+  }
+}
+
+.btn-primary {
+  @include skin-button($style: "primary");
+}
+
+.btn-secondary {
+  @include skin-button($style: "secondary");
+}
+
+.btn-light {
+  @include skin-button($style: "light");
+}
+
+.document-container {
+  padding-top: 0;
+  background-color: $white;
+}
+
+.node {
+  $self: &;
+  $image-border: 1px solid rgba(239, 239, 239, .9);
+
+  &__header {
+    margin-bottom: 6px;
+  }
+
+  &__content-published {
+    @include skin-typography($style: "date");
+  }
+
+  &__image {
+    border: $image-border;
+  }
+
+  &__image-inner-wrapper--fluid-3by2 {
+    #{ $self } {
+      &__image {
+        border: $image-border;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &--video-content-type {
+    #{ $self } {
+      &__image-inner-wrapper {
+        &::after {
+          $size: 70px;
+          width: 70px;
+          height: 70px;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.node-list {
+  &__header {
+    padding-bottom: 0;
+  }
+}
+
+.card-deck-flow {
+  $self: &;
+
+  &--3-cols {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(md) {
+          @include make-col(4);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(4);
+        }
+      }
+    }
+  }
+
+  &--4-cols {
+    #{ $self } {
+      &__node {
+        // account for smaller container max-width and break earlier than normal
+        @include media-breakpoint-up(sm) {
+          @include make-col(12);
+        }
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(3);
+        }
+
+        // @include media-breakpoint-down(sm) {
+        //   margin-bottom: 16px;
+        // }
+        // &:last-child {
+        //   @include media-breakpoint-down(sm) {
+        //     margin-bottom: 0;
+        //   }
+        // }
+      }
+    }
+  }
+}
+
+// ensure all anvato embeds are treated like videos
+[data-oembed-provider="Anvato"] {
+  @extend .embed-responsive;
+  @extend .embed-responsive-16by9;
+}
