@@ -1,0 +1,92 @@
+version: '3.7'
+
+x-node-defaults: &node
+  tty: true
+  init: true
+  image: node:10.24
+  entrypoint: ["node"]
+  working_dir: /root
+  restart: always
+  volumes:
+    - ./:/root:cached
+    - ./node_modules:/root/node_modules:delegated
+    - yarn-cache:/.yarn-cache
+
+x-env-defaults: &env
+  NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
+  NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
+  NODE_ENV: development
+  OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
+  OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
+  RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY-(unset)}
+  RECAPTCHA_SECRET_KEY: ${RECAPTCHA_SECRET_KEY-(unset)}
+  SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
+  SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
+  YARN_CACHE_FOLDER: /.yarn-cache
+  IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN-(unset)}
+  IDENTITYX_GRAPHQL_URI: ${IDENTITYX_GRAPHQL_URI-https://identity-x.parameter1.com/graphql}
+  BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.virgon.base.parameter1.com/graphql}
+  EQUIPMENT_EXPERTS_GRAPHQL_URI: ${EQUIPMENT_EXPERTS_GRAPHQL_URI-https://equipment-experts.virgon.base.parameter1.com/graphql}
+  ENABLE_CONTENT_METER: ${ENABLE_CONTENT_METER-false}
+  IDX_NAV_ENABLE: ${IDX_NAV_ENABLE-false}
+
+  RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-(unset)}
+  RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-(unset)}
+
+x-env-virgon-dev: &env-virgon-dev
+  GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
+  OEMBED_URI: ${OEMBED_URI-https://host.docker.internal:10402}
+  RSS_URI: ${RSS_URI-http://host.docker.internal:10203}
+  SITEMAPS_URI: ${SITEMAPS_URI-http://host.docker.internal:10303}
+
+x-env-leonis: &env-leonis
+  GRAPHQL_URI: ${GRAPHQL_URI-https://graphql.leonis.base.parameter1.com}
+  OEMBED_URI: ${OEMBED_URI-https://oembed.leonis.base.parameter1.com}
+  RSS_URI: ${RSS_URI-https://rss.leonis.base.parameter1.com}
+  SITEMAPS_URI: ${SITEMAPS_URI-https://sitemaps.leonis.base.parameter1.com}
+
+x-env-virgon: &env-virgon
+  GRAPHQL_URI: ${GRAPHQL_URI-https://graphql.virgon.base.parameter1.com}
+  OEMBED_URI: ${OEMBED_URI-https://oembed.virgon.base.parameter1.com}
+  RSS_URI: ${RSS_URI-https://rss.virgon.base.parameter1.com}
+  SITEMAPS_URI: ${SITEMAPS_URI-https://sitemaps.virgon.base.parameter1.com}
+
+x-site-command: &site-cmd
+  entrypoint: ["node_modules/.bin/basecms-website"]
+  command: ["dev", "index.js"]
+
+volumes:
+  yarn-cache: {}
+
+services:
+  terminal:
+    <<: *node
+    working_dir: /root
+    entrypoint: ["/bin/bash"]
+    environment:
+      <<: *env
+
+  yarn:
+    <<: *node
+    working_dir: /root
+    entrypoint: ["yarn"]
+    environment:
+      <<: *env
+
+  sb:
+    <<: *node
+    <<: *site-cmd
+    working_dir: /root/sites/scienceboard.net
+    environment:
+      <<: *env
+      <<: *env-virgon
+      HOST: www-smg-sb.dev.parameter1.com
+      PORT: 80
+      EXPOSED_PORT: 9951
+      LIVERELOAD_PORT: 19951
+      TENANT_KEY: smg_all
+      SITE_ID: 627944bfd28860bc33ca074a
+    hostname: www-smg-sb.dev.parameter1.com
+    ports:
+      - "9951:80"
+      - "19951:19951"
