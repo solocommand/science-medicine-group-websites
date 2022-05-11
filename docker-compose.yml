@@ -73,20 +73,20 @@ services:
     environment:
       <<: *env
 
-  sb:
+  sab:
     <<: *node
     <<: *site-cmd
     working_dir: /root/sites/scienceboard.net
     environment:
       <<: *env
       <<: *env-virgon
-      HOST: www-smg-sb.dev.parameter1.com
+      HOST: www-smg-sab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
       TENANT_KEY: smg_all
       SITE_ID: 627944bfd28860bc33ca074a
-    hostname: www-smg-sb.dev.parameter1.com
+    hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
       - "19951:19951"
