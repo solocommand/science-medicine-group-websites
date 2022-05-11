@@ -1,7 +1,7 @@
 const GAMConfiguration = require('@parameter1/base-cms-marko-web-gam/config');
 
 module.exports = ({
-  accountId = '1',
+  accountId = '6407152',
   basePath,
 } = {}) => {
   const config = new GAMConfiguration(accountId, { basePath });
@@ -10,19 +10,15 @@ module.exports = ({
     .setTemplate('LEADERBOARD', {
       size: [
         [970, 90],
-        [728, 90],
-        [320, 100],
+        [300, 100],
         [300, 250],
         [320, 50],
         [265, 149], // Featured Pushdown / Fluid Banner
-        [1060, 596],
-        [736, 414],
-        [428, 241],
       ],
       sizeMapping: [
-        { viewport: [1070, 0], size: [[970, 90], [728, 90], [265, 149], [1060, 596]] },
-        { viewport: [980, 0], size: [[970, 90], [728, 90], [265, 149], [736, 414]] },
-        { viewport: [750, 0], size: [[728, 90], [265, 149], [736, 414]] },
+        { viewport: [1070, 0], size: [[970, 90], [265, 149]] },
+        { viewport: [980, 0], size: [[970, 90], [265, 149], [736, 414]] },
+        { viewport: [750, 0], size: [[265, 149], [736, 414]] },
         { viewport: [300, 0], size: [[320, 100], [300, 250], [320, 50], [265, 149], [428, 241]] },
       ],
     })
