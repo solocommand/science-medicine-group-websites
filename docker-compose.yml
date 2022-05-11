@@ -79,7 +79,7 @@ services:
     working_dir: /root/sites/scienceboard.net
     environment:
       <<: *env
-      <<: *env-virgon
+      <<: *env-leonis
       HOST: www-smg-sab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9951
