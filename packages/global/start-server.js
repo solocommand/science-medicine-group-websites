@@ -11,7 +11,6 @@ const components = require('./components');
 const fragments = require('./fragments');
 const sharedRoutes = require('./routes');
 const paginated = require('./middleware/paginated');
-const redirectHandler = require('./redirect-handler');
 const oembedHandler = require('./oembed-handler');
 const omedaConfig = require('./config/omeda');
 const idxRouteTemplates = require('./templates/user');
@@ -88,8 +87,6 @@ module.exports = (options = {}) => {
       }));
     },
     onAsyncBlockError: e => newrelic.noticeError(e),
-
-    redirectHandler,
 
     embeddedMediaHandlers: {
       oembed: oembedHandler,
