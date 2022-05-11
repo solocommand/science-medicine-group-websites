@@ -1,3 +1,14 @@
-@import url("https://use.typekit.net/eae7fel.css");
-$skin-font-family-primary: solitaire-mvb-pro, sans-serif;
-$skin-font-family-secondary: informapro, sans-serif;
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap");
+$skin-font-family-primary: "Open Sans", sans-serif !default;
+$skin-font-family-secondary: "Open Sans", sans-serif !default;
+
+// Navbar
+$navbarStyle: "navbar2" !default;
+$theme-site-navbar-logo-height: 60px !default;
+$theme-site-navbar-secondary-font-size: 16px !default;
+
+// Ads
+$leaderboard-min-height-mobile: 100px !default;
+$leaderboard-min-height-desktop: 250px !default;
+$rail-ad-bg-color: white !default;
