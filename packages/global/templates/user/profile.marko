@@ -1,0 +1,25 @@
+$ const { config } = out.global;
+
+$ const type = "profile";
+$ const title = "Step 2 of 2";
+$ const confirmation = "Email Confirmed!";
+$ const description = `Complete your ${config.siteName()} user profile`;
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section modifiers=["user-form"]>
+        <div class="page-wrapper__confirmation">
+          ${confirmation}
+        </div>
+        <h1 class="page-wrapper__title">${title}</h1>
+        <marko-web-identity-x-form-profile call-to-action="" button-label="Create Account"/>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

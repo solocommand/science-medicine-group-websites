@@ -1,0 +1,108 @@
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+
+$ const { id, type, pageNode } = data;
+
+$ const { pagination: p, req } = out.global;
+$ const perPage = 10;
+
+<global-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+>
+  <@section|{ aliases }| modifiers=["first-sm"]>
+    <theme-gam-define-display-ad
+      name="leaderboard"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section|{ content }|>
+    $ const { primaryImage } = content;
+    $ const blockName = "contact-page";
+    <marko-web-block name=blockName>
+      <marko-web-content-name tag="h1" block-name=blockName obj=content />
+      <marko-web-element block-name=blockName name="wrapper">
+        <if(primaryImage && primaryImage.src)>
+          $ const src = buildImgixUrl(primaryImage.src, {
+            w: 160,
+            h: 160,
+            crop: "faces",
+            fit: "crop",
+          });
+          $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+          <marko-web-img
+            src=src
+            srcset=srcset
+            alt=primaryImage.alt
+            class=`${blockName}__image`
+          />
+        </if>
+
+        <default-theme-page-contents|{ blockName }| modifiers=["contact"]>
+          <marko-web-content-body block-name=blockName obj=content />
+        </default-theme-page-contents>
+
+      </marko-web-element>
+    </marko-web-block>
+  </@section>
+
+  <@section>
+    $ const queryParams = {
+      contactId: id,
+      limit: 10,
+      skip: p.skip({ perPage }),
+      queryFragment,
+    };
+    <marko-web-query|{ nodes }| name="all-author-content" params=queryParams>
+      <marko-web-node-list
+        inner-justified=true
+        flush-x=true
+        flush-y=false
+        modifiers=["section-feed"]
+      >
+        <@nodes nodes=nodes>
+          <@slot|{ node }|>
+            <theme-section-feed-content-node node=node />
+          </@slot>
+        </@nodes>
+      </marko-web-node-list>
+    </marko-web-query>
+    <theme-query-total-count|{ totalCount }| name="all-author-content" params={ contactId: id }>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=req.path
+      />
+    </theme-query-total-count>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-top-stories-block />
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-client-side-most-popular-block />
+  </@section>
+</global-content-wrapper-layout>
