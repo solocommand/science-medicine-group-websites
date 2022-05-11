@@ -1,0 +1,91 @@
+import { get, getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
+
+$ const { config, site } = out.global;
+
+$ const blockName = input.blockName || "site-header";
+
+$ const navigation = {
+  primary: site.getAsArray("navigation.primary.items"),
+  secondary: site.getAsArray("navigation.secondary.items"),
+  tertiary: site.getAsArray("navigation.tertiary.items"),
+};
+$ const promos = site.getAsArray("navigation.promos");
+$ const headerColClass = promos ? `col-lg-${4 - promos.slice(1).length}` : "col-lg-6";
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "header")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <${input.aboveNav} />
+
+  <default-theme-site-navbar modifiers=["top"]>
+    <if(promos.length)>
+      <div class=`${headerColClass} site-navbar__left`>
+        <div class="row">
+          <for|promo| of=promos>
+            <div class="col">
+              $ const promoSrc = get(promo, "image.src");
+              $ const promoSrcSet = getAsArray(promo, "image.srcset");
+              <marko-web-block class="subscribe-box">
+                <if(promoSrc)>
+                  <a href=promo.link title=promo.title class="subscribe-box--cover-image">
+                    <marko-web-img
+                      alt=promo.title
+                      src=promoSrc
+                      srcset=promoSrcSet
+                      lazyload=true
+                      class="magazine-cover"
+                    />
+                  </a>
+                </if>
+                <if(promo.callToAction)>
+                  <marko-web-block class="subscribe-box--call-to-action">
+                    <a href=promo.link title=promo.title class="btn btn-primary">
+                      ${promo.callToAction}
+                    </a>
+                  </marko-web-block>
+                </if>
+              </marko-web-block>
+            </div>
+          </for>
+        </div>
+      </div>
+    </if>
+    <div class=`${headerColClass} site-navbar__center`>
+      <default-theme-site-navbar-brand title=`${config.website("name")} Homepage`>
+        <default-theme-site-navbar-logo
+          alt=config.website("name")
+          src=site.get("logos.navbar.src")
+          srcset=site.getAsArray("logos.navbar.srcset").join(",")
+        />
+      </default-theme-site-navbar-brand>
+    </div>
+    <div class=`${headerColClass} site-navbar__right`>
+      <marko-web-link href="/search">
+        <button class="btn btn-lg" type="submit" aria-label="Search">
+          <marko-web-icon name="search" modifiers=["dark"] />
+        </button>
+      </marko-web-link>
+      <theme-menu-toggle-button
+        class="site-navbar__toggler"
+        targets=[".site-menu", "body"]
+        toggle-class="site-menu--open"
+        icon-modifiers=["lg"]
+        icon-name="three-bars"
+      />
+    </div>
+  </default-theme-site-navbar>
+
+  <default-theme-site-navbar modifiers=["primary"]>
+    <default-theme-site-navbar-items
+      items=navigation.primary
+      modifiers=["primary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
+  </default-theme-site-navbar>
+  <${input.belowNav} />
+</marko-web-block>
