@@ -1,0 +1,19 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+
+$ const { id, alias, name, pageNode } = input;
+
+<global-website-section-home-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+>
+
+  <!-- <@section modifiers=["break-container"]>
+    <theme-opinion-block alias="perspectives" />
+  </@section> -->
+
+  <@section>
+    <theme-section-list-deck-block aliases=["bioprocessing", "cancer-research", "omics"] />
+  </@section>
+</global-website-section-home-layout>
