@@ -1,0 +1,29 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { getAsObject } from "@parameter1/base-cms-object-path";
+
+$ const { site } = out.global;
+$ const sponsoredLabelLogos = site.getAsObject("sponsoredLabelLogos");
+$ const sponsorLogo = getAsObject(sponsoredLabelLogos, input.logoLabel);
+$ const blockName = defaultValue(input.blockName, "sponsor-logo");
+$ const prefix = defaultValue(input.prefix, "Presented By");
+
+$ const { src, width, height } = sponsorLogo;
+$ const style = {
+  ...(width && { width }),
+  ...(height && { height }),
+};
+
+<if(src)>
+  <marko-web-block name=blockName modifiers=input.modifiers class=input.class>
+    <marko-web-element block-name=blockName name="label">
+      ${prefix}
+    </marko-web-element>
+    <marko-web-img
+      class=`${blockName}__logo`
+      src=src
+      srcset=[`${src}&dpr=2 2x`]
+      alt="Sponsor Logo"
+      attrs={ style }
+    />
+  </marko-web-block>
+</if>

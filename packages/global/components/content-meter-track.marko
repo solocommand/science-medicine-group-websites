@@ -1,0 +1,14 @@
+$ const { contentMeterState } = out.global;
+$ const {
+  displayGate,
+  displayOverlay,
+  viewLimit,
+  views,
+} = contentMeterState;
+
+<marko-web-browser-component name="ContentMeterTrack" props={
+  views: views,
+  viewLimit: viewLimit,
+  displayOverlay: displayOverlay,
+  displayGate: displayGate,
+} />

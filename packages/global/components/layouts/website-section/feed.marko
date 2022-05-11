@@ -1,0 +1,160 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+$ const { id, alias, name, pageNode } = input;
+$ const sections = getAsArray(input, "sections");
+
+$ const { pagination: p } = out.global;
+$ const perPage = 18;
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+>
+  <@head>
+    <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=alias
+        as-rels=true
+      />
+    </theme-section-feed-block>
+  </@head>
+
+  <@section|{ aliases }| modifiers=["first"]>
+    <theme-gam-define-display-ad
+      name="leaderboard"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+    <theme-gam-wallpaper-ad aliases=aliases position="section_page" />
+  </@section>
+
+  <@section|{ blockName, section, aliases }|>
+    <if(input.beforeName)>
+      <${input.beforeName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+      <if(p.page > 1)>${value}: Page ${p.page}</if>
+      <else>${value}</else>
+    </marko-web-website-section-name>
+
+    <if(input.afterName)>
+      <${input.afterName}
+        aliases=aliases
+        block-name=blockName
+        section=section
+      />
+    </if>
+
+    <if(['distributor-of-the-year-archive', 'successful-dealer-award-archive'].includes(alias))>
+      <global-sponsors-block alias=alias.replace('-archive', '') />
+    </if>
+
+    <theme-section-feed-block alias=alias lazyload=false>
+      <@query-params limit=3 skip=p.skip({ perPage }) />
+    </theme-section-feed-block>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-section-feed-block alias=alias>
+      <@query-params limit=2 skip=p.skip({ perPage, skip: 3 }) />
+    </theme-section-feed-block>
+  </@section>
+
+  <@section>
+    <theme-newsletter-signup-banner-large-block />
+  </@section>
+
+  <@section>
+    <theme-section-feed-block alias=alias>
+      <@query-params limit=3 skip=p.skip({ perPage, skip: 5 }) />
+    </theme-section-feed-block>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-section-feed-block alias=alias>
+      <@query-params limit=5 skip=p.skip({ perPage, skip: 8 }) />
+    </theme-section-feed-block>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-section-feed-block alias=alias>
+      <@query-params limit=5 skip=p.skip({ perPage, skip: 13 }) />
+    </theme-section-feed-block>
+    <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=alias
+      />
+    </theme-section-feed-block>
+  </@section>
+
+  <@section>
+    <theme-top-stories-block />
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        section=section
+        aliases=aliases
+      />
+    </@section>
+  </for>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+</global-website-section-default-layout>

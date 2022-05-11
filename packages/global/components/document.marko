@@ -1,0 +1,112 @@
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import omedaConfig from "../config/omeda";
+
+$ const {
+  site,
+  req,
+  nativeX,
+  GAM,
+  contentMeterState,
+} = out.global;
+
+$ const { gamDefer, gtmDefer } = req.query;
+
+<marko-web-document ...input>
+  <@head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <marko-web-deferred-script-loader-init />
+
+    <!-- init p1 website events -->
+    <marko-web-p1-events-init
+      on="load"
+      request-frame=true
+      target-tag="body"
+      identity-query-builder=`var id = query.oly_enc_id; if (id) { return 'omeda.${omedaConfig.brandKey}.customer*' + id + '~encoded'; };`;
+    />
+
+    <!-- init gam -->
+    <marko-web-gam-init
+      request-frame=true
+      target-tag="body"
+      on=gamDefer
+    />
+
+    <!-- init gtm -->
+    <marko-web-gtm-init
+      container-id=site.get("gtm.containerId")
+      request-frame=true
+      target-tag="body"
+      on=gtmDefer
+    />
+
+    <!-- init native-x -->
+    <marko-web-native-x-init
+      uri=nativeX.getUri()
+      enabled=nativeX.isEnabled()
+      on="load"
+      request-frame=true
+      target-tag="body"
+    />
+
+    <!-- init omeda olytics -->
+    <marko-web-omeda-olytics-init
+      oid="NOT_SET"
+      on="load"
+      request-frame=true
+      target-tag="body"
+    />
+
+    <${input.head} />
+
+    <!-- start gtm -->
+    <marko-web-gtm-start />
+
+    <!-- start gam -->
+    <marko-web-gam-enable>
+      <@lazy-load ...site.getAsObject("gam.lazyLoad") />
+    </marko-web-gam-enable>
+    <marko-web-gam-targeting key-values={ uri: req.path } />
+  </@head>
+  <@above-wrapper>
+    <marko-web-gtm-noscript container-id=site.get("gtm.containerId") />
+    <${input.aboveWrapper} />
+  </@above-wrapper>
+  <@above-container>
+    <marko-web-browser-component name="OmedaIdentityXRapidIdentify" />
+
+    <marko-web-gtm-track-bus-event
+      on="newsletter-form-action"
+      clear-data=true
+    />
+    <marko-web-gtm-track-bus-event
+      on="newsletter-form-subscription"
+      clear-data=true
+    />
+    <marko-web-identity-x-context|{ hasUser, isEnabled }|>
+      <global-site-header has-user=hasUser reg-enabled=isEnabled />
+      <theme-site-menu has-user=hasUser reg-enabled=isEnabled />
+    </marko-web-identity-x-context>
+    <theme-site-newsletter-menu />
+    <if(contentMeterState && !contentMeterState.isLoggedIn)>
+      <global-content-meter-block
+        views=contentMeterState.views
+        view-limit=contentMeterState.viewLimit
+        display-overlay=contentMeterState.displayOverlay
+        display-gate=contentMeterState.displayGate
+      />
+    </if>
+    <${input.aboveContainer} />
+  </@above-container>
+  <@below-container>
+    <${input.belowContainer} />
+    <theme-site-footer />
+  </@below-container>
+  <@below-wrapper>
+    <marko-web-deferred-script-loader-load />
+    <theme-recaptcha />
+  </@below-wrapper>
+</marko-web-document>

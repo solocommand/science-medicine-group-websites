@@ -1,0 +1,122 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+$ const { id, alias, name, pageNode } = input;
+$ const sections = getAsArray(input, "sections");
+
+$ const { pagination: p } = out.global;
+$ const perPage = 10;
+
+<global-website-section-default-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+>
+  <@head>
+    <theme-latest-products-feed-block|{ totalCount }| alias=alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=alias
+        as-rels=true
+      />
+    </theme-latest-products-feed-block>
+  </@head>
+
+  <@section|{ aliases }| modifiers=["first"]>
+    <theme-gam-define-display-ad
+      name="leaderboard"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+    <theme-gam-wallpaper-ad aliases=aliases position="section_page" />
+  </@section>
+
+  <@section|{ blockName, section, aliases }|>
+    <div class="row">
+      <div class="col-lg-8">
+        <if(alias === 'gear')>
+          <div class="row">
+            <global-sponsored-section-name-logo section=section modifiers=["section-page"] class="col-lg-5" />
+            <global-sponsored-label-logo logo-label="Sponsored by RoadPro" prefix="Presented By" modifiers=["section-page"] class="col-lg-7" />
+          </div>
+        </if>
+        <else>
+          <marko-web-website-section-name tag="h1" block-name=blockName obj=section />
+        </else>
+
+        <theme-latest-products-feed-block alias=alias>
+          <@query-params limit=perPage skip=p.skip({ perPage }) />
+        </theme-latest-products-feed-block>
+        <theme-latest-products-feed-block|{ totalCount }| alias=alias count-only=true>
+          <theme-pagination-controls
+            per-page=perPage
+            total-count=totalCount
+            path=alias
+          />
+        </theme-latest-products-feed-block>
+      </div>
+      <div class="col-lg-4 pt-block">
+        <theme-gam-define-display-ad
+          name="rotation-1"
+          position="section_page"
+          aliases=aliases
+          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+        />
+
+        <${input.railSlotA}
+          block-name=blockName
+          section=section
+          aliases=aliases
+        />
+
+        <theme-gam-define-display-ad
+          name="rotation-2"
+          position="section_page"
+          aliases=aliases
+          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+        />
+
+        <theme-gam-define-display-ad
+          name="rotation-3"
+          position="section_page"
+          aliases=aliases
+          modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+        />
+      </div>
+    </div>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="leaderboard-2"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section modifiers=["my-block-lg"]>
+    <theme-top-stories-block />
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        section=section
+        aliases=aliases
+      />
+    </@section>
+  </for>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="leaderboard-2"
+      position="section_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+</global-website-section-default-layout>

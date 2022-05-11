@@ -1,0 +1,50 @@
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+
+$ const { alias } = input;
+
+$ const sponsorImages = {
+  "distributor-of-the-year": [
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/distributor-of-the-year-award/interstate-billing.png", alt: "Distributor Of The Year Award Sponsor: Interstate Billing" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/distributor-of-the-year-award/cvsn.png", alt: "Distributor Of The Year Award Sponsor: CVSN" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/distributor-of-the-year-award/karmak.png", alt: "Distributor Of The Year Award Sponsor: Karmak" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/distributor-of-the-year-award/meritor.png", alt: "Distributor Of The Year Award Sponsor: Meritor" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/distributor-of-the-year-award/minimizer-premier-manufacturing.png", alt: "Distributor Of The Year Award Sponsor: Minimizier Premier Manufacturing"},
+  ],
+  "successful-dealer-award": [
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/successfull-dealer-award/interstate-billing.png", alt: "Successful Dealer Award Sponsor: Interstate Billing" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/successfull-dealer-award/ntp-horizontal.png", alt: "Successful Dealer Award Sponsor: National Truck Protection" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/successfull-dealer-award/premium2000.png", alt: "Successful Dealer Award Sponsor: Premium2000+" },
+    { src: "https://img.truckpartsandservice.com/files/base/randallreilly/all/image/static/tps/successfull-dealer-award/automann.png", alt: "Successful Dealer Award Sponsor: Automann USA"},
+  ],
+}
+
+$ const imgixSponsors = [];
+$ if (sponsorImages[alias]) {
+    sponsorImages[alias].forEach((image, index) => {
+    imgixSponsors.push({ src: buildImgixUrl(image.src, { h: 100, auto: 'format,compress' }), alt: image.alt });
+  });
+}
+
+<div class="awards">
+  <div class="content-page-body">
+    <div class="page-contents">
+      <div class="page-contents__content-body">
+        <p class="text-center">
+          <strong>Sponsored by</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row sponsor-logos">
+    <for|image, index| of=imgixSponsors>
+      <div class="col logo logo__sda">
+        <marko-web-img
+          class="img-fluid"
+          alt=`${imgixSponsors[index].alt}`
+          src=`${imgixSponsors[index].src}`
+          srcset=[`${imgixSponsors[index].src}&dpr=2 2x`]
+        />
+      </div>
+    </for>
+  </div>
+</div>

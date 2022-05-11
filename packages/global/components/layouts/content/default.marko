@@ -1,0 +1,244 @@
+import { getAsArray, get } from "@parameter1/base-cms-object-path";
+import contentIframe from "@science-medicine-group/package-global/utils/content-iframe";
+import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
+
+import { cmShowOverlay, cmRestrictContentByReg, cmTruncateBody } from "../../../utils/content-meter-helpers";
+
+$ const { site, contentMeterState } = out.global;
+$ const showOverlay = cmShowOverlay(contentMeterState);
+$ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
+$ const sections = getAsArray(input, "sections");
+
+$ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
+$ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(type) ? false : true;
+$ const displayReadNext = showReadNextBlock && ["article"].includes(type);
+$ const displaySocialShare = ["contact"].includes(type) ? false : true;
+$ const displayComments = ["contact"].includes(type) ? false : true;
+$ const displayNewsletterSignup = ["contact"].includes(type) || showOverlay ? false : true;
+$ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
+
+<global-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+>
+  <@section|{ aliases }| modifiers=["first-sm"]>
+    <if(!showOverlay)>
+      <theme-gam-define-display-ad
+        name="leaderboard"
+        position="content_page"
+        aliases=aliases
+        modifiers=["inter-block"]
+      />
+      <theme-gam-wallpaper-ad aliases=aliases position="content_page" />
+    </if>
+  </@section>
+
+  <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
+    $ const { primarySection } = content;
+    <div class="content-page-header">
+      <theme-content-page-breadcrumbs section=primarySection />
+      <marko-web-content-name tag="h1" block-name=blockName obj=content />
+      <if(type !== "contact")>
+        <if(authors.length === 1)>
+          <theme-author-published-node author=authors[0] content=content lazyload=false />
+        </if>
+        <else-if(authors.length > 1)>
+          <default-theme-content-attribution obj=content elements=["authors"] />
+        </else-if>
+      </if>
+      <if(displayPublishedDate && authors.length !== 1)>
+        <default-theme-page-dates|{ blockName }|>
+          <theme-content-published-node block-name=blockName obj=content />
+        </default-theme-page-dates>
+      </if>
+      <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
+    </div>
+  </@section>
+
+  <@section|{ aliases, content, authors }| modifiers=["content-body"]>
+    $ const { primarySection } = content;
+    <div class="content-page-body">
+      <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+        <if(!showOverlay)>
+          <if(content.embedCode)>
+            $ const iframeContent = contentIframe(content);
+            <marko-web-content-embed-code block-name=blockName obj=iframeContent />
+          </if>
+          <else-if(type === "media-gallery")>
+            <!-- <marko-web-image-slider images=images /> -->
+          </else-if>
+          <else-if(displayPrimaryImage)>
+            $ let forceDisplay;
+            $ if (type === "contact") forceDisplay = "left";
+            $ if (type === "video") forceDisplay = "none";
+            <theme-primary-image-block
+              obj=content.primaryImage
+              force-display=forceDisplay
+            />
+          </else-if>
+        </if>
+        $ const requiresRegistration = cmRestrictContentByReg(contentMeterState, content);
+        $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
+        <marko-web-identity-x-access|context|
+          enabled=requiresRegistration
+          required-access-level-ids=accessLevels
+        >
+          <if(cmTruncateBody(contentMeterState))>
+            $ const body = showOverlay ? getContentPreview({ body: content.body, selector: "p:lt(7)" }) : getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
+            <marko-web-content-body block-name=blockName obj={ body } />
+
+            <div class="content-page-preview-overlay" />
+            <if(!showOverlay)>
+              <theme-content-page-gate
+                can-access=context.canAccess
+                is-logged-in=context.isLoggedIn
+                has-required-access-level=context.hasRequiredAccessLevel
+                requires-access-level=context.requiresAccessLevel
+                requires-user-input=context.requiresUserInput
+                messages=context.messages
+                user-input-title="Step 2 of 2"
+                profile-call-to-action=""
+                profile-button-label="Create Account"
+                profile-event-name="content_meter_profile"
+              />
+            </if>
+          </if>
+          <else-if(!context.canAccess || context.requiresUserInput)>
+            $ const body = getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
+            <marko-web-content-body block-name=blockName obj={ body } />
+
+            <div class="content-page-preview-overlay" />
+            <theme-content-page-gate
+              can-access=context.canAccess
+              is-logged-in=context.isLoggedIn
+              has-required-access-level=context.hasRequiredAccessLevel
+              requires-access-level=context.requiresAccessLevel
+              requires-user-input=context.requiresUserInput
+              messages=context.messages
+            />
+          </else-if>
+          <else>
+
+            $ const bodyId = `content-body-${content.id}`;
+
+            <if(shouldInjectAds)>
+
+              $ const desktopCounts = [1000, 2750, 4500, 6250, 8000, 9750, 11500, 13250, 15000, 16750, 18500];
+              $ const mobileCounts = [350, 1650, 2950, 4250, 5550, 6850, 8150, 9450, 10750, 12050, 13350, 14650, 15950, 17250];
+              <theme-gam-inject-ads selector=`#${bodyId}` detect-embeds=true>
+                <for|char| of=desktopCounts>
+                  <!-- desktop/tablet only -->
+                  <@inject
+                    at=char
+                    name="inline-content-desktop"
+                    aliases=aliases
+                    modifiers=["max-width-970", "margin-auto-x", "inline-content"]
+                  />
+                </for>
+
+                <for|char| of=mobileCounts>
+                  <!-- mobile only -->
+                  <@inject
+                    at=char
+                    name="inline-content-mobile"
+                    aliases=aliases
+                    modifiers=["max-width-970", "margin-auto-x", "inline-content"]
+                  />
+                </for>
+              </theme-gam-inject-ads>
+            </if>
+
+            <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+
+            <!-- needs input -->
+            <if(input.afterBody)>
+              <${input.afterBody}
+                aliases=aliases
+                block-name=blockName
+                content=content
+              />
+            </if>
+
+            $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
+            <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
+          </else>
+        </marko-web-identity-x-access>
+
+        <if(type === "document" || type === "whitepaper")>
+          <default-theme-content-download obj=content>
+            <@wufoo user-name=site.get("wufoo.userName") />
+            <@link class="btn btn-primary" />
+          </default-theme-content-download>
+        </if>
+        <if(type !== "contact")>
+          <for|author| of=authors>
+            <if(getAsArray(author, "labels").includes("Contributor"))>
+              <marko-web-content-body obj=author block-name="inline-author-bio" />
+            </if>
+          </for>
+        </if>
+
+        <if(displayReadNext)>
+          <theme-read-next-block
+            content-id=id
+            section-id=primarySection.id
+            published=content.published
+          />
+        </if>
+
+        <if(displayNewsletterSignup)>
+          <theme-newsletter-signup-banner-block />
+        </if>
+
+        <if(displaySocialShare)>
+          <marko-web-social-sharing
+            path=content.siteContext.path
+            providers=["print", "facebook", "linkedin", "twitter", "pinterest"]
+            print-path=`/print/content/${content.id}`
+          />
+        </if>
+
+        <if(displayComments)>
+          <theme-identity-x-comment-stream content=content />
+        </if>
+      </default-theme-page-contents>
+    </div>
+  </@section>
+
+  <@section|{ content }|>
+    <theme-related-stories-block
+      content-id=content.id
+      section-id=content.primarySection.id
+      published=content.published
+    />
+  </@section>
+
+  <if(showBottomAdBlock && !showOverlay)>
+    <@section|{ aliases }|>
+      <theme-gam-define-display-ad
+        name="rotation"
+        position="content_page"
+        aliases=aliases
+        modifiers=["inter-block"]
+      />
+    </@section>
+  </if>
+
+  <if(showTopStoryBlock)>
+    <@section>
+      <theme-top-stories-block />
+    </@section>
+  </if>
+
+  <for|s| of=sections>
+    <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        content=content
+        aliases=aliases
+      />
+    </@section>
+  </for>
+</global-content-wrapper-layout>

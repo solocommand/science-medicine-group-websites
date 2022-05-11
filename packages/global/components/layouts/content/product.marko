@@ -1,0 +1,100 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+$ const { id, type, pageNode, ...rest } = input;
+$ const sections = getAsArray(input, "sections");
+
+<global-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+>
+  <@section|{ aliases }| modifiers=["first-sm"]>
+    <theme-gam-define-display-ad
+      name="leaderboard"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section|{ aliases, blockName, content }| modifiers=["content-header"]>
+    <theme-gam-wallpaper-ad aliases=aliases position="content_page" />
+    $ const { primarySection } = content;
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="content-page-header">
+          <theme-content-page-breadcrumbs section=primarySection />
+
+          <div class="row">
+            <global-sponsored-section-name-logo section=primarySection modifiers=["section-page"] class="col-lg-5" sectionPage=false />
+            $ const labels = getAsArray(content, "labels");
+            <for|label| of=labels>
+              <global-sponsored-label-logo logo-label=label prefix="Presented By" modifiers=["content-page"] />
+            </for>
+          </div>
+
+          <marko-web-content-name tag="h1" block-name=blockName obj=content />
+
+          <default-theme-page-dates|{ blockName }|>
+            <theme-content-published-node block-name=blockName obj=content />
+          </default-theme-page-dates>
+        </div>
+
+        <div class="content-page-body">
+          <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+            $ const bodyId = `content-body-${content.id}`;
+            <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+          </default-theme-page-contents>
+        </div>
+        <${input.afterBody}
+          aliases=aliases
+          block-name=blockName
+          content=content
+        />
+      </div>
+
+      <div class="col-lg-4 pt-block">
+        <if(input.rightRail)>
+          <${input.rightRail}
+            aliases=aliases
+            block-name=blockName
+            content=content
+          />
+        </if>
+        <else>
+          <theme-gam-define-display-ad
+            name="rail-1"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-block"
+          />
+        </else>
+      </div>
+    </div>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-top-stories-block />
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        content=content
+        aliases=aliases
+      />
+    </@section>
+  </for>
+</global-content-wrapper-layout>

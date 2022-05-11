@@ -1,0 +1,39 @@
+{
+  "<global-website-section-default-layout>": {
+    "template": "./default.marko",
+    "<head>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object"
+  },
+  "<global-website-section-feed-layout>": {
+    "template": "./feed.marko",
+    "@sections <section>[]": {},
+    "<before-name>": {},
+    "<after-name>": {},
+    "@id": "number",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object"
+  },
+  "<global-website-section-home-layout>": {
+    "template": "./home.marko",
+    "<head>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object"
+  },
+  "<global-website-section-products-layout>": {
+    "template": "./products.marko",
+    "<rail-slot-a>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object"
+  }
+}

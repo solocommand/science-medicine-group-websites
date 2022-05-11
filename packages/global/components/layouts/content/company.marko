@@ -1,0 +1,122 @@
+import { getAsArray } from "@parameter1/base-cms-object-path";
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+import imageHeight from "@parameter1/base-cms-marko-web/components/node/utils/image-height";
+
+$ const { id, type, pageNode, ...rest } = input;
+$ const sections = getAsArray(input, "sections");
+
+<global-content-wrapper-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+>
+  <@section|{ aliases }| modifiers=["first-sm"]>
+    <theme-gam-define-display-ad
+      name="leaderboard"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section|{ aliases, blockName, content }| modifiers=["content-header"]>
+    <theme-gam-wallpaper-ad aliases=aliases position="content_page" />
+    $ const { primarySection } = content;
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="content-page-header">
+          <theme-content-page-breadcrumbs section=primarySection />
+
+          <marko-web-content-name tag="h1" block-name=blockName obj=content />
+          $ const { primaryImage } = content;
+          $ const detailsBlock = "details";
+          <marko-web-block name=detailsBlock>
+            <if(primaryImage && primaryImage.src)>
+              $ const imgWidth = 320;
+              $ const imgHeight = imageHeight(imgWidth, "16:9");
+              $ const src = buildImgixUrl(primaryImage.src, {
+                w: imgWidth,
+                h: imgHeight,
+                fit: "crop"
+              });
+              $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+              <marko-web-img
+                src=src
+                srcset=srcset
+                alt=primaryImage.alt
+                class=`${detailsBlock}__image`
+              />
+            </if>
+            <global-content-company-details obj=content />
+          </marko-web-block>
+        </div>
+
+        <div class="content-page-body">
+          <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
+            $ const bodyId = `content-body-${content.id}`;
+            <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+          </default-theme-page-contents>
+        </div>
+        <${input.afterBody}
+          aliases=aliases
+          block-name=blockName
+          content=content
+        />
+      </div>
+
+      <div class="col-lg-4 pt-block">
+        $ const { site } = out.global;
+        $ const inquiry = site.getAsObject('inquiry');
+        <if(inquiry.enabled && content.enableRmi)>
+          <marko-web-node-list collapsible=false>
+            <@header>Request More Information</@header>
+            <@body>
+              <marko-web-inquiry-form content=content with-header=false modifiers=["node-list"] />
+            </@body>
+          </marko-web-node-list>
+        </if>
+
+        <if(input.rightRail)>
+          <${input.rightRail}
+            aliases=aliases
+            block-name=blockName
+            content=content
+          />
+        </if>
+        <else>
+          <theme-gam-define-display-ad
+            name="rotation-1"
+            position="content_page"
+            aliases=aliases
+            modifiers=["max-width-300", "center", "margin-auto-x", "rail"]
+            class="mb-block"
+          />
+        </else>
+      </div>
+    </div>
+  </@section>
+
+  <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="rotation"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section>
+
+  <@section>
+    <theme-top-stories-block />
+  </@section>
+
+  <for|s| of=sections>
+    <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
+      <${s.renderBody}
+        block-name=blockName
+        content=content
+        aliases=aliases
+      />
+    </@section>
+  </for>
+</global-content-wrapper-layout>

@@ -1,0 +1,68 @@
+{
+  "<global-content-default-layout>": {
+    "template": "./default.marko",
+    "<after-body>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object",
+    "@show-read-next-block": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@show-bottom-ad-block": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@show-top-story-block": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
+  "<global-content-company-layout>": {
+    "template": "./company.marko",
+    "<after-body>": {},
+    "<right-rail>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object"
+  },
+  "<global-content-company-details>": {
+    "template": "./company-details.marko",
+    "@obj": "object",
+    "@show-email": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<global-content-product-layout>": {
+    "template": "./product.marko",
+    "<after-body>": {},
+    "<right-rail>": {},
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object"
+  },
+  "<global-content-whitepaper-layout>": {
+    "template": "./whitepaper.marko",
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object"
+  },
+  "<global-content-wrapper-layout>": {
+    "template": "./wrapper.marko",
+    "@sections <section>[]": {},
+    "@id": "number",
+    "@type": "string",
+    "@page-node": "object"
+  }
+}

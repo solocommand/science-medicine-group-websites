@@ -1,0 +1,45 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsArray, get } from "@parameter1/base-cms-object-path";
+
+$ const { id, type, pageNode } = input;
+$ const { GAM } = out.global;
+$ const sections = getAsArray(input, "sections");
+$ const alias = get(input, "primarySection.alias");
+
+<theme-content-page id=id type=type>
+  <@head>
+    <marko-web-gtm-content-context|{ context }| id=id>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-content-context>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      <marko-web-p1-events-track-content node=content />
+    </marko-web-resolve-page>
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      $ const authors = getAsArray(content, "authors.edges").map((edge) => edge.node);
+      <marko-web-page-wrapper>
+        <for|s| of=sections>
+          <@section|{ blockName }| modifiers=s.modifiers>
+            <${s.renderBody}
+              block-name=blockName
+              content=content
+              aliases=aliases
+              authors=authors
+            />
+          </@section>
+        </for>
+
+        <@section>
+          <theme-gam-define-display-ad
+            name="rotation"
+            position="content_page"
+            aliases=aliases
+            modifiers=["inter-block"]
+          />
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+</theme-content-page>

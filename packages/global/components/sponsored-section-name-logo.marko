@@ -1,0 +1,28 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { site } = out.global;
+$ const { section } = input;
+$ const sponsorLogo = site.getAsObject(`sponsoredSectionNameLogos.${section.alias}`);
+$ const blockName = defaultValue(input.blockName, "sponsor-logo");
+$ const sectionPage = defaultValue(input.sectionPage, true);
+
+$ const { src, width, height } = sponsorLogo;
+$ const style = {
+  ...(width && { width }),
+  ...(height && { height }),
+};
+
+<if(src)>
+  <marko-web-block name=blockName modifiers=input.modifiers class=input.class>
+    <marko-web-img
+      class=`${blockName}__logo`
+      src=src
+      srcset=[`${src}&dpr=2 2x`]
+      alt="Sponsor Logo"
+      attrs={ style }
+    />
+  </marko-web-block>
+</if>
+<else-if(sectionPage)>
+  <marko-web-website-section-name tag="h1" block-name=blockName obj=section />
+</else-if>

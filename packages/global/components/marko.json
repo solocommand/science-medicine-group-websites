@@ -1,0 +1,33 @@
+{
+  "taglib-imports": [
+    "./blocks/marko.json",
+    "./layouts/marko.json"
+  ],
+  "<global-sponsored-label-logo>": {
+    "template": "./sponsored-label-logo.marko"
+  },
+  "<global-sponsored-section-logo>": {
+    "template": "./sponsored-section-logo.marko"
+  },
+  "<global-sponsored-section-name-logo>": {
+    "template": "./sponsored-section-name-logo.marko"
+  },
+  "<global-document>": {
+    "template": "./document.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<container>": {
+      "<above-page>": {},
+      "<page>": {},
+      "<below-page>": {}
+    },
+    "<below-container>": {},
+    "<foot>": {}
+  },
+  "<global-site-header>": {
+    "template": "./site-header.marko"
+  },
+  "<global-content-meter-track>": {
+    "template": "./content-meter-track.marko"
+  }
+}
