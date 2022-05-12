@@ -10,15 +10,6 @@ $ const sections = getAsArray(input, "sections");
   page-node=pageNode
   head=input.head
 >
-  <@section|{ aliases }| modifiers=["first"]>
-    <theme-gam-define-display-ad
-      name="leaderboard"
-      position="home_page"
-      aliases=aliases
-      modifiers=["max-width-970", "center", "margin-auto-x", "inline"]
-    />
-  </@section>
-
   <@section|{ aliases }|>
     <theme-top-stories-block with-header=false lazyload=false />
   </@section>
