@@ -5,10 +5,7 @@ module.exports = configureIdentityX({
   requiredServerFields: [
     'givenName',
     'familyName',
-    'organization',
-    'organizationTitle',
     'countryCode',
-    'regionCode',
     'postalCode',
   ],
 });

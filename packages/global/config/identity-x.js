@@ -4,8 +4,6 @@ const newrelic = require('newrelic');
 module.exports = ({
   appId,
   hiddenFields = [
-    'givenName',
-    'familyName',
     'organizationTitle',
     'phoneNumber',
     'street',
