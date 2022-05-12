@@ -13,7 +13,7 @@ $ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
 $ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(type) ? false : true;
 $ const displayReadNext = showReadNextBlock && ["article"].includes(type);
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
-$ const displayComments = ["contact"].includes(type) ? false : true;
+$ const displayComments = ["contact"].includes(type) ? false : false;
 $ const displayNewsletterSignup = ["contact"].includes(type) || showOverlay ? false : true;
 $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
 
