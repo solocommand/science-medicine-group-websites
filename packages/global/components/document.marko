@@ -88,10 +88,10 @@ $ const { gamDefer, gtmDefer } = req.query;
     />
     <marko-web-identity-x-context|{ hasUser, isEnabled }|>
       <if("navbar2" === site.get("navigation.type"))>
-        <global-site-header-2 has-user=false reg-enabled=false />
+        <global-site-header-2 has-user=hasUser reg-enabled=isEnabled />
       </if>
       <else>
-        <global-site-header has-user=false reg-enabled=false />
+        <global-site-header has-user=hasUser reg-enabled=isEnabled />
       </else>
       <theme-site-menu has-user=hasUser reg-enabled=isEnabled />
     </marko-web-identity-x-context>
