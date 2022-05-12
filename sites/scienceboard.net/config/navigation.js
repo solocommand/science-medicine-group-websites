@@ -23,6 +23,7 @@ const utilities = [
 ];
 
 const mobileMenu = {
+  user: [],
   primary: [
     ...topics,
   ],
@@ -35,6 +36,7 @@ const mobileMenu = {
 
 const desktopMenu = {
   about: [...utilities],
+  user: [],
   sections: [
     ...topics,
   ],
