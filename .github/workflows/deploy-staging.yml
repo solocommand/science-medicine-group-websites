@@ -34,8 +34,9 @@ jobs:
     strategy:
       matrix:
         namespace:
-          - staging-websites-virgon
+          - staging-websites-leonis
         site:
+          - labpulse.com
           - scienceboard.net
     steps:
       - uses: actions/checkout@v2

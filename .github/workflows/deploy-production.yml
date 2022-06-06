@@ -36,6 +36,7 @@ jobs:
         namespace:
           - virgon-websites
         site:
+          - labpulse.com
           - scienceboard.net
     steps:
       - uses: actions/checkout@v2
