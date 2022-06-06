@@ -18,8 +18,6 @@ x-env-defaults: &env
   NODE_ENV: development
   OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
   OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
-  RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY-(unset)}
-  RECAPTCHA_SECRET_KEY: ${RECAPTCHA_SECRET_KEY-(unset)}
   SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
   SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
   YARN_CACHE_FOLDER: /.yarn-cache
@@ -30,8 +28,8 @@ x-env-defaults: &env
   ENABLE_CONTENT_METER: ${ENABLE_CONTENT_METER-false}
   IDX_NAV_ENABLE: ${IDX_NAV_ENABLE-false}
 
-  RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-(unset)}
-  RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-(unset)}
+  RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-}
+  RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-}
 
 x-env-virgon-dev: &env-virgon-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
@@ -52,6 +50,7 @@ x-env-virgon: &env-virgon
   SITEMAPS_URI: ${SITEMAPS_URI-https://sitemaps.virgon.base.parameter1.com}
 
 x-site-command: &site-cmd
+  <<: *node
   entrypoint: ["node_modules/.bin/basecms-website"]
   command: ["dev", "index.js"]
 
