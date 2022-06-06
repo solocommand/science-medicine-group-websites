@@ -1,0 +1,35 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+
+$ const { id, alias, name, pageNode } = input;
+
+<global-website-section-home-layout
+  id=id
+  alias=alias
+  name=name
+  page-node=pageNode
+>
+  <@section|{ aliases }| modifiers=["first"]>
+    <theme-gam-define-display-ad
+      name="leaderboard"
+      position="home_page"
+      aliases=aliases
+      modifiers=["max-width-970", "center", "margin-auto-x", "inline"]
+    />
+  </@section>
+
+  <!-- <@section modifiers=["break-container"]>
+    <theme-opinion-block alias="perspectives" />
+  </@section> -->
+
+  <@section>
+    <theme-section-list-deck-block aliases=["ivd", "lab-analyzers", "microbiology"] />
+  </@section>
+
+  <@section>
+    <theme-section-list-deck-block aliases=["next-gen-sequencing", "molecular-diagnostics", "point-of-care"] />
+  </@section>
+
+  <!-- <@section>
+    <theme-hero-card-block query-params={ includeContentTypes: ["Video"] } alias="videos" />
+  </@section> -->
+</global-website-section-home-layout>

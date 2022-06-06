@@ -90,3 +90,21 @@ services:
     ports:
       - "9951:80"
       - "19951:19951"
+
+  lab:
+    <<: *node
+    <<: *site-cmd
+    working_dir: /root/sites/labpulse.com
+    environment:
+      <<: *env
+      <<: *env-leonis
+      HOST: www-smg-lab.dev.parameter1.com
+      PORT: 80
+      EXPOSED_PORT: 9952
+      LIVERELOAD_PORT: 19952
+      TENANT_KEY: smg_all
+      SITE_ID: 627944a5d28860bc33ca0071
+    hostname: www-smg-lab.dev.parameter1.com
+    ports:
+      - "9952:80"
+      - "19952:19952"
