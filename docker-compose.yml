@@ -16,6 +16,7 @@ x-env-defaults: &env
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
   NODE_ENV: development
+  TENANT_KEY: smg_all
   OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
   OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
   RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY-(unset)}
@@ -52,6 +53,7 @@ x-env-virgon: &env-virgon
   SITEMAPS_URI: ${SITEMAPS_URI-https://sitemaps.virgon.base.parameter1.com}
 
 x-site-command: &site-cmd
+  <<: *node
   entrypoint: ["node_modules/.bin/basecms-website"]
   command: ["dev", "index.js"]
 
@@ -74,17 +76,14 @@ services:
       <<: *env
 
   sab:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/scienceboard.net
     environment:
-      <<: *env
-      <<: *env-leonis
+      <<: [*env, *env-leonis]
       HOST: www-smg-sab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
-      TENANT_KEY: smg_all
       SITE_ID: 627944bfd28860bc33ca074a
     hostname: www-smg-sab.dev.parameter1.com
     ports:
@@ -92,17 +91,14 @@ services:
       - "19951:19951"
 
   lab:
-    <<: *node
     <<: *site-cmd
     working_dir: /root/sites/labpulse.com
     environment:
-      <<: *env
-      <<: *env-leonis
+      <<: [*env, *env-leonis]
       HOST: www-smg-lab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
-      TENANT_KEY: smg_all
       SITE_ID: 627944a5d28860bc33ca0071
     hostname: www-smg-lab.dev.parameter1.com
     ports:
