@@ -3,7 +3,7 @@ const configureGAM = require('@science-medicine-group/package-global/config/gam'
 const config = configureGAM({ basePath: 'p1' });
 
 config.lazyLoad = {
-  enabled: false, // set to true to enable lazy loading
+  enabled: true, // set to true to enable lazy loading
   fetchMarginPercent: 100, // fetch ad when one viewport away
   renderMarginPercent: 50, // render ad when half viewport away
   mobileScaling: 2, // double these on mobile
