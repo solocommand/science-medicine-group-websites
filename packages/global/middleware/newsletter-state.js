@@ -6,7 +6,8 @@ module.exports = () => (req, res, next) => {
   const hasCookie = Boolean(get(req, `cookies.${cookieName}`));
   const utmMedium = get(req, 'query.utm_medium');
   const olyEncId = get(req, 'query.oly_enc_id');
-  const disabled = get(req, 'query.newsletterDisabled');
+  // const disabled = get(req, 'query.newsletterDisabled');
+  const disabled = true;
   const fromEmail = utmMedium === 'email' || olyEncId || false;
   const initiallyExpanded = !(hasCookie || fromEmail || disabled);
 
