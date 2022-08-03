@@ -58,6 +58,8 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
 
   <@section|{ aliases, content, authors }| modifiers=["content-body"]>
     $ const { primarySection } = content;
+    <div class="row">
+      <div class="col-lg-8">
         <div class="content-page-body">
           <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
             <if(!showOverlay)>
@@ -204,6 +206,18 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
             </if>
           </default-theme-page-contents>
         </div>
+      </div>
+      <div class="col-lg-4 page-rail">
+        $ const excludeContentTypes = ["Contact", "Company", "Document", "TextAd", "Promotion"];
+        <theme-latest-content-list-block
+          title=`Latest in ${primarySection.name}`
+          alias=primarySection.alias
+          query-params={ excludeContentTypes }
+        >
+          <@native-x indexes=[0] name="default" aliases=aliases />
+        </theme-latest-content-list-block>
+      </div>
+    </div>
   </@section>
 
   <@section|{ content }|>
