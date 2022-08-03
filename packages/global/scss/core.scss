@@ -228,6 +228,12 @@ label {
   }
 }
 
+.site-footer {
+  &__corporate-logo {
+    filter: brightness(0) invert(1);
+  }
+}
+
 // Begin right rail content layout CSS
 .content-page-body {
   .primary-image {
