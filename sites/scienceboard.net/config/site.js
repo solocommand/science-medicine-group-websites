@@ -25,15 +25,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=45&auto=format,compress',
+      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=45&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=90&auto=format,compress 2x',
+        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=60&auto=format,compress',
+      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=60&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=120&auto=format,compress 2x',
+        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=120&auto=format,compress 2x',
       ],
     },
     corporate: {
@@ -65,7 +65,7 @@ module.exports = {
     directSend: false,
     sendTo: 'support@parameter1.com',
     sendFrom: 'ScienceBoard.net <noreply@parameter1.com>',
-    logo: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
+    logo: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
   setSearchSortFieldToScore: true,
