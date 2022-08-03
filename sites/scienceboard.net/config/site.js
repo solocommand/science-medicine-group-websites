@@ -25,23 +25,23 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.png?h=45&auto=format,compress',
+      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=45&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.png?h=90&auto=format,compress 2x',
+        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.png?h=60&auto=format,compress',
+      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=60&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.png?h=120&auto=format,compress 2x',
+        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=120&auto=format,compress 2x',
       ],
     },
     corporate: {
       alt: 'Science and Medicine Group Logo',
       href: 'https://scienceandmedicinegroup.com',
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress',
+      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.svg?w=200&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress&dpr=2 2x',
+        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.svg?w=200&auto=format,compress&dpr=2 2x',
       ],
     },
   },
@@ -65,7 +65,7 @@ module.exports = {
     directSend: false,
     sendTo: 'support@parameter1.com',
     sendFrom: 'ScienceBoard.net <noreply@parameter1.com>',
-    logo: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.png?h=45&auto=format,compress&bg=000000&pad=5',
+    logo: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sb/sb-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
   setSearchSortFieldToScore: true,
