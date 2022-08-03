@@ -296,3 +296,12 @@ label {
   }
 }
 // End right rail content layout CSS
+
+// Prevent Reveal Ad from causing CLS
+// @TODO determin if this should be moved to @parameter1/base-cms-marko-web
+#marko-web-reveal-ad-handler {
+  display: none;
+}
+.reveal-ad {
+  height: 298px;
+}
