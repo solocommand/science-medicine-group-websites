@@ -1,4 +1,7 @@
 {
+  "taglib-imports": [
+    "./load-more/marko.json"
+  ],
   "<global-content-meter-block>": {
     "template": "./content-meter.marko"
   },

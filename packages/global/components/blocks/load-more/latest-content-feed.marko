@@ -1,0 +1,22 @@
+import { getAsObject } from "@parameter1/base-cms-object-path";
+
+$ const query = getAsObject(input, "query");
+$ const page = getAsObject(input, "page");
+
+<marko-web-load-more
+  append-to=".infinite-scroll-target"
+  expand=500
+  component-name="global-content-card-deck-feed-flow"
+  component-input={
+    withHeader: true,
+    header: input.header,
+    modifiers: ["infinite-scroll"],
+    adunit: input.adunit,
+    nativeX: input.nativeX,
+  }
+  fragment-name="global-content-list"
+  max-pages=input.maxPages
+  query-name=query.name
+  query-params=query.params
+  page-input=page
+/>

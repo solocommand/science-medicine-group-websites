@@ -1,0 +1,83 @@
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { GAM } = out.global;
+
+$ const { aliases } = input;
+
+$ const content = getAsObject(input, "content");
+$ const section = getAsObject(input, "section");
+
+$ const limit = defaultValue(input.limit, 15);
+$ const skip = defaultValue(input.skip, 0);
+$ const now = Date.now();
+
+$ const createAttrs = () => {
+  if (content.type === "company") {
+    return {
+      header: `More from ${content.name}`,
+      queryName: "all-company-content",
+      queryParams: { companyId: content.id, limit, skip },
+    };
+  }
+  if (content.type === "contact") {
+    return {
+      header: `More from ${content.name}`,
+      queryName: "all-author-content",
+      queryParams: { contactId: content.id, limit, skip },
+    };
+  }
+  if (content.type === "webinar") {
+    return {
+      header: "More Webinars",
+      queryName: "all-published-content",
+      queryParams: {
+        contentTypes: ["Webinar"],
+        excludeContentIds: [content.id],
+        sortField: "startDate",
+        sortOrder: "desc",
+        limit,
+        skip,
+      },
+    };
+  }
+  if (content.type === "event") {
+    return {
+      header: "More Events",
+      queryName: "all-published-content",
+      queryParams: {
+        contentTypes: ["Event"],
+        endingAfter: now,
+        sortField: "startDate",
+        sortOrder: "asc",
+        limit,
+        skip,
+      },
+    };
+  }
+  return {
+    header: section.name === "Home" ? "More" : `More in ${section.name}`,
+    queryName: "website-scheduled-content",
+    queryParams: {
+      sectionId: section.id,
+      optionName: ["Standard", "Featured Content"],
+      excludeContentIds: [content.id],
+      limit,
+      skip,
+    },
+  };
+};
+$ const attrs = createAttrs();
+
+<global-latest-content-feed-load-more-block header=attrs.header max-pages=4>
+  <@query
+    name=attrs.queryName
+    params=attrs.queryParams
+  />
+  <@page for="website-section" id=section.id />
+  <@adunit
+    ...GAM.getAdUnit({ name: "infinite-interstitial", aliases })
+    modifiers=["max-width-300", "margin-auto-x"]
+  />
+  <@native-x indexes=[0] name="default" aliases=aliases />
+</global-latest-content-feed-load-more-block>

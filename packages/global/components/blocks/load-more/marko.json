@@ -1,0 +1,35 @@
+{
+  "<global-latest-content-feed-load-more-block>": {
+    "template": "./latest-content-feed.marko",
+    "<query>": {},
+    "<page>": {},
+    "<adunit>": {},
+    "<native-x>": {
+      "@indexes": "array",
+      "@name": "string",
+      "@aliases": "array"
+    },
+    "@header": "string",
+    "@max-pages": "number"
+  },
+  "<global-content-page-load-more-block>": {
+    "template":  "./content-page.marko",
+    "<section>": {
+      "@id": "number",
+      "@name": "string"
+    },
+    "<content>": {
+      "@id": "number",
+      "@type": "string",
+      "@name": "string"
+    },
+    "<native-x>": {
+      "@indexes": "array",
+      "@name": "string",
+      "@aliases": "array"
+    },
+    "@aliases": "array",
+    "@limit": "number",
+    "@skip": "number"
+  }
+}
