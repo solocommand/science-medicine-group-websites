@@ -24,11 +24,8 @@
     "<below-container>": {},
     "<foot>": {}
   },
-  "<global-site-header>": {
-    "template": "./site-header.marko"
-  },
-  "<global-site-header-2>": {
-    "template": "./site-header-2.marko"
+  "<global-site-header-c>": {
+    "template": "./site-header-c.marko"
   },
   "<global-content-meter-track>": {
     "template": "./content-meter-track.marko"
