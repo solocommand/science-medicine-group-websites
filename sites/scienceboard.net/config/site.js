@@ -39,9 +39,9 @@ module.exports = {
     corporate: {
       alt: 'Science and Medicine Group Logo',
       href: 'https://scienceandmedicinegroup.com',
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.svg?w=200&auto=format,compress',
+      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.svg?w=200&auto=format,compress&dpr=2 2x',
+        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress&dpr=2 2x',
       ],
     },
   },
