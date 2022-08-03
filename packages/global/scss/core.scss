@@ -297,6 +297,67 @@ label {
 }
 // End right rail content layout CSS
 
+// page & block title
+.page--load-more .node-list,
+.top-stories,
+.related-stories,
+.section-cards {
+  &__header {
+    position: relative;
+    @include skin-typography($style: "header-2");
+    margin-bottom: 16px;
+    padding-top: 24px;
+    padding-left: 0;
+    &:before {
+      background: $primary;
+      content: "";
+      height: 4px;
+      left: 0;
+      position: absolute;
+      top: 12px;
+      width: 40px;
+    }
+  }
+}
+.node-list {
+  $self: &;
+  &--latest-content-list {
+    #{ $self }__header {
+      @include skin-typography($style: "header-2");
+      margin-bottom: 16px;
+      padding-top: 24px;
+      padding-left: 0;
+      &:before {
+        background: $primary;
+        content: "";
+        height: 4px;
+        left: 0;
+        position: absolute;
+        top: 12px;
+        width: 40px;
+      }
+    }
+    .node {
+      &__website-section-name {
+        color: $gray-700;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+.page--content {
+  .node-list--latest-content-list {
+    .node-list__header {
+      padding-top: map-get($spacers, 2);
+      &:before {
+        top: 0;
+      }
+    }
+  }
+}
+
 // Prevent Reveal Ad from causing CLS
 // @TODO determin if this should be moved to @parameter1/base-cms-marko-web
 #marko-web-reveal-ad-handler {
