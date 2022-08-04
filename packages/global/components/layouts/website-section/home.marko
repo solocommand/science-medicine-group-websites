@@ -11,7 +11,7 @@ $ const sections = getAsArray(input, "sections");
 $ const excludedSectionIds = [];
 $ const { GAM, apollo, i18n } = out.global;
 
-$ const rightRailHeader = defaultValue(input.rightRailHeader, "Top Headlines");
+$ const rightRailHeader = defaultValue(input.rightRailHeader, "Latest News");
 
 $ const promise = websiteSectionContentLoader(apollo, {
   sectionId: id,
