@@ -3,8 +3,8 @@ const defaultFragment = require('@parameter1/base-cms-marko-web-theme-monorail/g
 
 const loadFeaturedContent = async (apolloClient, params = {}) => {
   const defaults = {
-    limit: 6,
-    optionName: 'Featured Content',
+    limit: 3,
+    optionName: 'Pinned',
     queryFragment: defaultFragment,
   };
 
@@ -17,7 +17,7 @@ const loadFeaturedContent = async (apolloClient, params = {}) => {
 const loadStandardContent = async (apolloClient, params = {}) => {
   const defaults = {
     limit: 4,
-    optionName: ['Featured Content', 'Standard'],
+    optionName: ['Pinned', 'Standard'],
     queryFragment: defaultFragment,
   };
 
