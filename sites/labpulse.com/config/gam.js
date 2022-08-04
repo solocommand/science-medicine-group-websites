@@ -10,10 +10,12 @@ config.lazyLoad = {
 };
 
 config.setAliasAdUnits('default', [
+  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: 'leaderboard' },
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: 'leaderboard' },
   { name: 'rotation', templateName: 'ROTATION', path: 'rotation' },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: 'rotation' },
+  { name: 'reskin', path: 'reskin' },
 ]);
 
 const aliases = [];
