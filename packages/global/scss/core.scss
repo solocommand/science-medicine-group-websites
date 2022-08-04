@@ -322,7 +322,7 @@ label {
 }
 .node-list {
   $self: &;
-  &--latest-content-list {
+  &--latest-content-list, &--section-feed {
     #{ $self }__header {
       @include skin-typography($style: "header-2");
       margin-bottom: 16px;
@@ -364,6 +364,25 @@ label {
   }
 }
 
+.node-list {
+  $self: &;
+  &--section-feed {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(md) {
+          @include marko-web-node-list-border(border-bottom);
+          padding-bottom: 20px;
+          padding-top: 20px;
+        }
+      }
+    }
+  }
+}
+.section-feed-content-node {
+  &__content-teaser {
+    font-size: 1rem;
+  }
+}
 
 // Prevent Reveal Ad from causing CLS
 // @TODO determin if this should be moved to @parameter1/base-cms-marko-web
