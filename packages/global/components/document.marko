@@ -18,6 +18,12 @@ $ const { gamDefer, gtmDefer } = req.query;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <link rel="preconnect" href="https://fonts.google.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" media="print" onload='this.onload=null,this.removeAttribute("media")'>
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    </noscript>
+
     <marko-web-deferred-script-loader-init />
 
     <!-- init p1 website events -->
@@ -87,12 +93,7 @@ $ const { gamDefer, gtmDefer } = req.query;
       clear-data=true
     />
     <marko-web-identity-x-context|{ hasUser, isEnabled }|>
-      <if("navbar2" === site.get("navigation.type"))>
-        <global-site-header-2 has-user=hasUser reg-enabled=isEnabled />
-      </if>
-      <else>
-        <global-site-header has-user=hasUser reg-enabled=isEnabled />
-      </else>
+      <global-site-header-c has-user=hasUser reg-enabled=isEnabled />
       <theme-site-menu has-user=hasUser reg-enabled=isEnabled />
     </marko-web-identity-x-context>
     <theme-site-newsletter-menu />

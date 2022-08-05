@@ -9,8 +9,6 @@ $ const navigation = {
   secondary: site.getAsArray("navigation.secondary.items"),
   tertiary: site.getAsArray("navigation.tertiary.items"),
 };
-$ const promos = site.getAsArray("navigation.promos");
-$ const headerColClass = promos ? `col-lg-${4 - promos.slice(1).length}` : "col-lg-6";
 
 <marko-web-block
   name=blockName
@@ -21,40 +19,8 @@ $ const headerColClass = promos ? `col-lg-${4 - promos.slice(1).length}` : "col-
 >
   <${input.aboveNav} />
 
-  <default-theme-site-navbar modifiers=["top"]>
-    <if(promos.length)>
-      <div class=`${headerColClass} site-navbar__left`>
-        <div class="row">
-          <for|promo| of=promos>
-            <div class="col">
-              $ const promoSrc = get(promo, "image.src");
-              $ const promoSrcSet = getAsArray(promo, "image.srcset");
-              <marko-web-block class="subscribe-box">
-                <if(promoSrc)>
-                  <a href=promo.link title=promo.title class="subscribe-box--cover-image">
-                    <marko-web-img
-                      alt=promo.title
-                      src=promoSrc
-                      srcset=promoSrcSet
-                      lazyload=true
-                      class="magazine-cover"
-                    />
-                  </a>
-                </if>
-                <if(promo.callToAction)>
-                  <marko-web-block class="subscribe-box--call-to-action">
-                    <a href=promo.link title=promo.title class="btn btn-primary">
-                      ${promo.callToAction}
-                    </a>
-                  </marko-web-block>
-                </if>
-              </marko-web-block>
-            </div>
-          </for>
-        </div>
-      </div>
-    </if>
-    <div class=`${headerColClass} site-navbar__center`>
+  <default-theme-site-navbar modifiers=["top"] attrs={ "aria-label": "Top Navigation" }>
+    <div class='site-navbar__left'>
       <default-theme-site-navbar-brand title=`${config.website("name")} Homepage`>
         <default-theme-site-navbar-logo
           alt=config.website("name")
@@ -63,7 +29,28 @@ $ const headerColClass = promos ? `col-lg-${4 - promos.slice(1).length}` : "col-
         />
       </default-theme-site-navbar-brand>
     </div>
-    <div class=`${headerColClass} site-navbar__right`>
+    <div class='site-navbar__center'>
+      <default-theme-site-navbar modifiers=["secondary"]>
+        <default-theme-site-navbar-items
+          items=navigation.secondary
+          modifiers=["secondary"]
+          reg-enabled=input.regEnabled
+          has-user=input.hasUser
+        />
+      </default-theme-site-navbar>
+    </div>
+    <div class='site-navbar__right'>
+      <if(site.getAsObject("newsletter.pushdown") && !site.getAsObject("newsletter.pushdown.disabled"))>
+        <theme-menu-toggle-button
+          class="site-navbar__newsletter-toggler btn btn-primary btn-subscribe"
+          targets=[".site-newsletter-menu"]
+          toggle-class="site-newsletter-menu--open"
+          icon-modifiers=["lg"]
+          icon-name="mail"
+          expanded-icon-name="mail"
+          before="Subscribe"
+        />
+      </if>
       <marko-web-link href="/search">
         <button class="btn btn-lg" type="submit" aria-label="Search">
           <marko-web-icon name="search" modifiers=["dark"] />
@@ -79,7 +66,7 @@ $ const headerColClass = promos ? `col-lg-${4 - promos.slice(1).length}` : "col-
     </div>
   </default-theme-site-navbar>
 
-  <default-theme-site-navbar modifiers=["primary"]>
+  <default-theme-site-navbar modifiers=["primary"] attrs={ "aria-label": "Primary Navigation" }>
     <default-theme-site-navbar-items
       items=navigation.primary
       modifiers=["primary"]

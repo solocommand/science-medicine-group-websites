@@ -24,13 +24,28 @@
     "<below-container>": {},
     "<foot>": {}
   },
-  "<global-site-header>": {
-    "template": "./site-header.marko"
-  },
-  "<global-site-header-2>": {
-    "template": "./site-header-2.marko"
+  "<global-site-header-c>": {
+    "template": "./site-header-c.marko"
   },
   "<global-content-meter-track>": {
     "template": "./content-meter-track.marko"
+  },
+  "<theme-fixed-ad-bottom>": {
+    "template": "./fixed-ad-bottom.marko",
+    "@aliases": "array"
+  },
+  "<theme-reveal-ad-handler>": {
+    "template": "./reveal-ad-handler.marko",
+    "@target": "string",
+    "@defaults": "object",
+    "@select-all-targets": "boolean",
+    "@id": {
+      "type": "string",
+      "required": true
+    },
+    "@path": {
+      "type": "string",
+      "required": true
+    }
   }
 }

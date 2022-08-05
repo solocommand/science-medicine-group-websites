@@ -6,6 +6,7 @@
 
 // skin components
 @import "./components/content-meter";
+@import "./components/site-navbar-c";
 @import "./components/user";
 
 body {
@@ -225,4 +226,177 @@ label {
       }
     }
   }
+}
+
+.site-footer {
+  &__corporate-logo {
+    filter: brightness(0) invert(1);
+  }
+}
+
+// Begin right rail content layout CSS
+.content-page-body {
+  .primary-image {
+    &--aligned-center {
+      @media (min-width: 900px) {
+        margin-left: 0;
+        width: 700px;
+      }
+    }
+  }
+}
+.content-page-header {
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.ad-container {
+  &--inline-content#{&}--template-inline-content-desktop,
+  &--inline-content#{&}--template-inline-content-mobile {
+    min-height: 0;
+    margin-bottom: 0;
+    > *:first-child {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  }
+  &--inline-content#{&}--template-inline-content-desktop {
+    display: none;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    > *:first-child {
+      border-top: 3px solid $skin-ad-bg-color;
+      border-bottom: 3px solid $skin-ad-bg-color;
+    }
+    @media (min-width: 780px) {
+      display: block;
+    }
+  }
+  &--with-label {
+    > *:first-child {
+      &::before {
+        padding-bottom: 1rem;
+        font-size: 12px;
+        color: $gray-500;
+        text-transform: none;
+        content: "Advertisement";
+      }
+    }
+  }
+}
+.node-list {
+  &--latest-content-list {
+    .node-list {
+      &__header {
+        padding-top: 0;
+      }
+    }
+  }
+}
+// End right rail content layout CSS
+
+// page & block title
+.page--load-more .node-list,
+.top-stories,
+.related-stories,
+.content-card-deck,
+.section-cards {
+  &__header {
+    position: relative;
+    @include skin-typography($style: "header-2");
+    margin-bottom: 16px;
+    padding-top: 24px;
+    padding-left: 0;
+    &:before {
+      background: $primary;
+      content: "";
+      height: 4px;
+      left: 0;
+      position: absolute;
+      top: 12px;
+      width: 40px;
+    }
+  }
+}
+.node-list {
+  $self: &;
+  &--latest-content-list, &--section-feed {
+    #{ $self }__header {
+      @include skin-typography($style: "header-2");
+      margin-bottom: 16px;
+      padding-top: 24px;
+      padding-left: 0;
+      &:before {
+        background: $primary;
+        content: "";
+        height: 4px;
+        left: 0;
+        position: absolute;
+        top: 12px;
+        width: 40px;
+      }
+    }
+    .node {
+      &__website-section-name {
+        color: $gray-700;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+.page--content {
+  .node-list--latest-content-list {
+    .node-list__header {
+      padding-top: map-get($spacers, 2);
+      &:before {
+        top: 0;
+      }
+    }
+  }
+}
+.top-story {
+  &__row {
+    margin-bottom: 1rem;
+    .node {
+      &__body {
+        margin-top: 14px;
+      }
+      &__title {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.node-list {
+  $self: &;
+  &--section-feed {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(md) {
+          @include marko-web-node-list-border(border-bottom);
+          padding-bottom: 20px;
+          padding-top: 20px;
+        }
+      }
+    }
+  }
+}
+.section-feed-content-node {
+  &__content-teaser {
+    font-size: 1rem;
+  }
+}
+
+// Prevent Reveal Ad from causing CLS
+// @TODO determin if this should be moved to @parameter1/base-cms-marko-web
+#marko-web-reveal-ad-handler {
+  display: none;
+}
+.reveal-ad {
+  height: 298px;
 }

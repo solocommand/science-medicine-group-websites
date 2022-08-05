@@ -1,19 +1,18 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400&display=swap");
 $skin-font-family-primary: "Fira Sans", sans-serif !default;
 $skin-font-family-secondary: "Fira Sans", sans-serif !default;
 
 // Navbar
-$navbarStyle: "navbar-b" !default;
+$navbarStyle: "navbar-c" !default;
 $theme-site-navbar-primary-type: dark !default;
 $theme-site-navbar-primary-link-color: #fff !default;
 $theme-site-navbar-primary-link-active-color: #fff !default;
 $theme-site-navbar-primary-link-hover-color: #fff !default;
 $theme-site-navbar-primary-bg-color: $primary !default;
-$theme-site-navbar-logo-height: 60px !default;
+$theme-site-navbar-logo-height: 45px !default;
 $theme-site-navbar-secondary-font-size: 16px !default;
+$theme-card-header-text-transform: uppercase !default;
 
 // Ads
 $leaderboard-min-height-mobile: 100px !default;
 $leaderboard-min-height-desktop: 90px !default;
-$skin-ad-bg-color: white !default;

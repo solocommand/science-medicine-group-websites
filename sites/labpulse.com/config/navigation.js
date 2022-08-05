@@ -11,8 +11,8 @@ const topics = [
 ];
 
 const resources = [
-  { href: '/vendor-connect', label: 'Vendor Connect' },
-  { href: '/conferences', label: 'Conferences' },
+  { href: '#', label: 'Conferences' },
+  { href: '#', label: 'Vendor Connect' },
 ];
 
 const utilities = [
@@ -42,7 +42,7 @@ const desktopMenu = {
 };
 
 module.exports = {
-  type: 'navbar2',
+  type: 'navbar-c',
   promos: [
     {
       title: subscribe.label,
@@ -57,7 +57,9 @@ module.exports = {
     items: topics,
   },
   secondary: {
-    items: [],
+    items: [
+      ...resources,
+    ],
   },
   tertiary: {
     items: [],

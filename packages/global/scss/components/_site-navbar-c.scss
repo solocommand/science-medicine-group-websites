@@ -1,0 +1,130 @@
+@if $navbarStyle == "navbar-c" {
+  .site-navbar {
+    $self: &;
+    &__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: $marko-web-document-container-max-width;
+      @include media-breakpoint-up(xl, $grid-breakpoints) {
+        max-width: $marko-web-document-container-max-width;
+      }
+    }
+    &__center {
+      flex-grow: 1;
+    }
+    &__logo {
+      filter: none;
+    }
+    &__brand {
+      margin: 0;
+    }
+    &--top {
+      width: 100%;
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        height: 58px;
+      }
+      background-color: $theme-site-navbar-secondary-bg-color;
+      #{ $self } {
+        &__container {
+          height: $theme-site-navbar-logo-height + 30px;
+          @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+            height: $theme-site-navbar-logo-height-sm + 20px;
+          }
+        }
+        &__left {
+          padding-left: 0;
+          @media (min-width: map-get($theme-site-header-breakpoints, small-logo)) {
+            justify-content: center;
+          }
+        }
+        &__center {
+          display: flex;
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-secondary)) {
+            display: none;
+          }
+        }
+        &__right {
+          display: flex;
+          justify-content: flex-end;
+          @media (min-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+            padding-right: 0;
+          }
+          .btn,
+          #{ $self }__toggler {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            margin: 0 0 0 12px;
+            font-size: 1rem;
+            background-color: $gray-100;
+            border-radius: 4px;
+          }
+          .btn-subscribe {
+            font-size: 12px;
+            @media (min-width: map-get($theme-site-header-breakpoints, small-logo)) {
+              display: flex;
+              align-items: center;
+              padding-right: 12px;
+              padding-left: 12px;
+              width: auto;
+              span ~ .marko-web-icon {
+                padding-left: .25rem;
+              }
+            }
+            @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+              > span:not(.marko-web-icon) {
+                display: none;
+              }
+            }
+            &.btn-primary {
+              color: $white;
+              .marko-web-icon svg {
+                fill: $white;
+              }
+              background-color: $primary;
+            }
+          }
+        }
+      }
+    }
+    &--primary {
+      background-color: $theme-site-navbar-primary-bg-color;
+      border-top: 1px solid $gray-400;
+      #{ $self } {
+        &__link {
+          color: $theme-site-navbar-primary-link-color;
+          text-transform: initial;
+          &--active {
+            color: $theme-site-navbar-primary-link-active-color;
+            font-weight: 700;
+            text-decoration: none;
+            text-shadow: none;
+          }
+        }
+        &__items {
+          justify-content: space-between;
+        }
+      }
+      .site-navbar {
+        &__item {
+          flex-grow: unset;
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+    }
+    &--secondary {
+      padding: 0 1rem;
+      #{ $self } {
+        &__items {
+          margin-top: initial;
+          font-size: 12px;
+        }
+        &__link {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+}
