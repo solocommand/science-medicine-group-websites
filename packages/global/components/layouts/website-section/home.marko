@@ -5,6 +5,8 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 import websiteSectionContentLoader from "../../../loaders/website-section-content";
 
+$ const { config } = out.global;
+
 $ const loader = getAsObject(input, "loader");
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
@@ -84,37 +86,25 @@ $ const promise = websiteSectionContentLoader(apollo, {
                     </marko-web-element>
                   </marko-web-element>
                   <if(cardNodes.length)>
-                    <marko-web-element block-name="top-stories" name="header">
-                      ${i18n("Featured")}
-                    </marko-web-element>
-                    <default-theme-card-deck-flow
-                        modifiers=["top-story"]
+                    <!-- @todo Modify content-card-deck-block to allow nodes to be passed in -->
+                    <marko-web-block name="content-card-deck">
+                      <marko-web-element block-name="content-card-deck" name="header">
+                        <marko-web-element block-name="content-card-deck" name="header-left">
+                          <marko-web-element block-name="content-card-deck" name="title">
+                            ${i18n("Featured")}
+                          </marko-web-element>
+                        </marko-web-element>
+                        <marko-web-element block-name="content-card-deck" name="header-right" />
+                      </marko-web-element>
+
+                      <theme-content-card-deck-col-flow
                         cols=2
                         nodes=cardNodes
+                        modifiers=["content-card-deck"]
                       >
-                        <@slot|{ node, index }|>
-                          <theme-content-node
-                            ...input.node
-                            node=node
-                            image-position="top"
-                            card=true
-                            flush=true
-                            modifiers=["top-stories"]
-                            attrs=getAsObject(node, "attributes.container")
-                            link-attrs=getAsObject(node, "attributes.link")
-                          >
-                            <@image fluid=true width=330 ar="3:2" />
-                          </theme-content-node>
-                        </@slot>
-                        <@slot position="after" index=1>
-                          <theme-gam-define-display-ad
-                            name="load-more"
-                            position="section_page"
-                            aliases=aliases
-                            modifiers=["top-stories", "in-card"]
-                          />
-                        </@slot>
-                      </default-theme-card-deck-flow>
+                        <@node modifiers=["content-card-deck"] />
+                      </theme-content-card-deck-col-flow>
+                    </marko-web-block>
                   </if>
                 </div>
                 <div class="col-lg-4 page-rail">
@@ -123,62 +113,28 @@ $ const promise = websiteSectionContentLoader(apollo, {
                 </div>
               </div>
             </@section>
+            <@section>
+              <div class="row">
+                <div class="col-lg-8">
+                  <theme-section-feed-block>
+                    <@header>${i18n("More from")} ${config.siteName()}</@header>
+                    <@query-params
+                      alias=section.alias
+                      limit=12
+                      optionName=["Pinned", "Standard"]
+                      excludeContentIds=sectionContent.ids
+                      requires-image=true
+                    />
+                  </theme-section-feed-block>
+                </div>
+                <div class="col-lg-4">
+                  <!-- <div style="height: 300px;width:100%;background-color: #e3e4e5;padding:1rem;text-align:center;"><h3>Rail Blocks TBD</h3></div> -->
+                </div>
+              </div>
+            </@section>
           </marko-web-page-wrapper>
         </marko-web-resolve-page>
       </@page>
-      <@below-page>
-        <if(input.belowPage)>
-          <${input.belowPage} section-content=sectionContent />
-        </if>
-        <else>
-          <marko-web-page-container for="website-section" tag="div" id=id modifiers=["below"]>
-            <!-- Refresh sticky, right-rail infinite scroll ad -->
-            <!-- <marko-web-gam-refresh-ad on="load-more-in-view" slot-id="gpt-ad-rail-infinite" /> -->
-
-            <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
-              $ const aliases = hierarchyAliases(section);
-              <!-- $ const slots = adSlots({ aliases }); -->
-              <marko-web-page-wrapper>
-                <@section|{ aliases }| modifiers=["first-sm"]>
-                  <theme-gam-define-display-ad
-                    name="billboard"
-                    position="content_page"
-                    aliases=aliases
-                    modifiers=["inter-block"]
-                  />
-                </@section>
-                <@section>
-                  <div class="row">
-                    <div class="col-lg-12 infinite-scroll-target">
-                      $ const loadMoreParams = {
-                        sectionId: id,
-                        optionName: ["Featured Content", "Standard"],
-                        excludeContentIds: sectionContent.ids,
-                        limit: 15,
-                      };
-                      $ if (alias === "home") delete loadMoreParams.sectionId;
-                      <global-latest-content-feed-load-more-block max-pages=4>
-                        <@query
-                          name="website-scheduled-content"
-                          params=loadMoreParams
-                        />
-                        <@page for="website-section" id=id />
-                        <@adunit
-                          ...GAM.getAdUnit({ name: "infinite-interstitial", aliases })
-                          modifiers=["max-width-300", "margin-auto-x"]
-                        />
-                        <@native-x indexes=[0] name="default" aliases=aliases />
-                      </global-latest-content-feed-load-more-block>
-                    </div>
-                  </div>
-                </@section>
-              </marko-web-page-wrapper>
-            </marko-web-resolve-page>
-
-          </marko-web-page-container>
-        </else>
-      </@below-page>
-      <@foot>
       <!-- <@foot>
         <marko-web-resolve-page|{ data: section }| node=pageNode>
           <theme-fixed-ad-bottom aliases=hierarchyAliases(section) />
