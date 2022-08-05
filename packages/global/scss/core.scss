@@ -361,6 +361,14 @@ label {
 .top-story {
   &__row {
     margin-bottom: 1rem;
+    .node {
+      &__body {
+        margin-top: 14px;
+      }
+      &__title {
+        font-size: 24px;
+      }
+    }
   }
 }
 
