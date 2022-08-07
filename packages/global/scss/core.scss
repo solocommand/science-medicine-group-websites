@@ -178,6 +178,34 @@ label {
 // }
 // End right rail content layout CSS
 
+.page-wrapper {
+  // $marko-web-document-container-gutter: 20px; couldn't get to work
+  padding: 20px;
+
+  .breadcrumbs {
+    &--website-section {
+      @include skin-typography($style: "slug-medium", $link-style: "primary");
+      .breadcrumb {
+        padding-bottom: 8px;
+      }
+    }
+  }
+  &__website-section-description {
+    font-size: 18px;
+  }
+  &__section {
+    .breadcrumbs {
+      margin-bottom: .5rem;
+    }
+    &--break-container {
+      @include media-breakpoint-down(md) {
+        margin-right: -16px;
+        margin-left: -16px;
+      }
+    }
+  }
+}
+
 .site-header {
   margin-bottom: 1rem;
   @media (min-width: 980px) {
@@ -242,6 +270,14 @@ label {
       @media (min-width: 900px) {
         margin-left: 0;
         width: 700px;
+      }
+    }
+  }
+  @media (min-width: 900px) {
+    .primary-image {
+      &--aligned-center {
+        margin-left: 0;
+        width: initial;
       }
     }
   }
