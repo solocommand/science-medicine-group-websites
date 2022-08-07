@@ -114,6 +114,11 @@
         }
       }
     }
+    &__items {
+      &--primary {
+        font-size: 15px;
+      }
+    }
     &--secondary {
       padding: 0 1rem;
       #{ $self } {
@@ -125,6 +130,10 @@
           padding-top: 0;
         }
       }
+    }
+    @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 }
