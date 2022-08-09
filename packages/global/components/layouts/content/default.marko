@@ -228,23 +228,6 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
     />
   </@section>
 
-  <!-- <if(showBottomAdBlock && !showOverlay)>
-    <@section|{ aliases }|>
-      <theme-gam-define-display-ad
-        name="rotation"
-        position="content_page"
-        aliases=aliases
-        modifiers=["inter-block"]
-      />
-    </@section>
-  </if> -->
-
-  <!-- <if(showTopStoryBlock)>
-    <@section>
-      <theme-top-stories-block />
-    </@section>
-  </if> -->
-
   <for|s| of=sections>
     <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
       <${s.renderBody}
