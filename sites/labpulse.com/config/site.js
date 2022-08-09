@@ -19,7 +19,7 @@ module.exports = {
   search,
   company: 'Science and Medicine Group',
   p1events: {
-    tenant: 'sciencemedicinegroup',
+    tenant: 'smg',
     enabled: true,
     cookieDomain: process.env.NODE_ENV === 'production' ? 'labpulse.com' : '',
   },
