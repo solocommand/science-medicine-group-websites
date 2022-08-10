@@ -97,7 +97,7 @@ services:
       PORT: 80
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
-      SITE_ID: 627944a5d28860bc33ca0071
+      SITE_ID: 62f40a3cf5a3c9a91b4199a6
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"
