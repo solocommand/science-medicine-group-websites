@@ -1,48 +1,85 @@
-const privacyPolicy = require('./privacy-policy');
+const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
+
 const subscribe = require('./subscribe');
+const privacyPolicy = require('./privacy-policy');
 
 const topics = [
-  { href: '/ivd', label: 'IVD' },
-  { href: '/lab-analyzers', label: 'Lab Analyzers' },
-  { href: '/microbiology', label: 'Microbiology' },
-  { href: '/next-gen-sequencing', label: 'Next-Gen Sequencing' },
-  { href: '/molecular-diagnostics', label: 'Molecular Diagnostics' },
-  { href: '/point-of-care', label: 'Point of Care' },
+  { href: '/business-insights', label: 'Business Insights' },
+  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
+  { href: '/diseases', label: 'Deseases' },
+  { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
+  { href: '/Resources', label: 'Resources' },
+];
+
+const secondary = [];
+
+const businessInsights = [
+  { href: '/business-insights/business-financial-trends', label: 'Business and Financial Trends' },
+  { href: '/business-insights/regulatory-news', label: 'Regulatory News' },
+  { href: '/business-insights/reimbursement-legislation', label: 'Reimbursement and Legislation' },
+  { href: '/business-insights/research', label: 'Research' },
+];
+
+const diagnosticTechnologies = [
+  { href: '/diagnostic-technologies/artificial-intelligence', label: 'Artificial Intelligence' },
+  { href: '/diagnostic-technologies/automation-liquid-handling', label: 'Automation/Liquid Handling' },
+  { href: '/diagnostic-technologies/biomarker-discovery-validation', label: 'Biomarker Discovery & Validation' },
+  { href: '/diagnostic-technologies/clinical-chemistry', label: 'Clinical Chemistry' },
+  { href: '/diagnostic-technologies/business-financial-trends', label: 'Business and Financial Trends' },
+  { href: '/diagnostic-technologies/clinical-proteomics', label: 'Clinical Proteomics' },
+  { href: '/diagnostic-technologies/clinical-sequencing', label: 'Clinical Sequencing' },
+  { href: '/diagnostic-technologies/drug-discovery-development', label: 'Drug Discovery and Development' },
+  { href: '/diagnostic-technologies/emerging-technologies', label: 'Emerging Technologies' },
+  { href: '/diagnostic-technologies/hematology', label: 'Hematology' },
+  { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
+  { href: '/diagnostic-technologies/lab-software', label: 'Lab Software' },
+  { href: '/diagnostic-technologies/liquid-biopsy', label: 'Liquid Biopsy' },
+  { href: '/diagnostic-technologies/mass-spec', label: 'Mass Spec' },
+  { href: '/diagnostic-technologies/medical-imaging', label: 'Medical Imaging' },
+  { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
+  { href: '/diagnostic-technologies/pathology-histology', label: 'Pathology and Histology' },
+  { href: '/diagnostic-technologies/proteomics', label: 'Proteomics' },
+  { href: '/diagnostic-technologies/urinalysis', label: 'Urinalysis' },
+  { href: '/diagnostic-technologies/veterinary-diagnostics', label: 'Veterinary Diagnostics' },
+];
+
+const diseases = [
+  { href: '/diseases/autoimmune-diseases', label: 'Autoimmune Diseases' },
+  { href: '/diseases/cancers', label: 'Cancers' },
+  { href: '/diseases/cardiovascular-diseases', label: 'Cardiovascular Diseases' },
+  { href: '/diseases/diabetes', label: 'Diabetes' },
+  { href: '/diseases/drugs-abuse-toxicology', label: 'Drugs Abuse/Toxicology' },
+  { href: '/diseases/hematology', label: 'Hematology' },
+  { href: '/diseases/infectious-diseases', label: 'Infectious Diseases' },
+  { href: '/diseases/inherited-diseases', label: 'Inherited Diseases' },
+  { href: '/diseases/neurological-psychological-disorders', label: 'Neurological & Psychological Disorders' },
+  { href: '/diseases/reproductive-health', label: 'Reproductive Health' },
+  { href: '/diseases/respiratory-diseases', label: 'Respiratory Diseases' },
+];
+
+const pointOfCareTesting = [
+  { href: '/point-of-care-testing/home', label: 'Home' },
+  { href: '/point-of-care-testing/hospital', label: 'Hospital' },
+  { href: '/point-of-care-testing/urgent-care-doctors-office', label: 'Urgent Care / Doctor\'s Office' },
 ];
 
 const resources = [
-  { href: '#', label: 'Conferences' },
-  { href: '#', label: 'Vendor Connect' },
-];
-
-const utilities = [
-  { href: '/page/media-kit', label: 'Media Kit' },
-  { href: '/page/about-us', label: 'About Us' },
-  { href: '/page/contact-us', label: 'Contact Us' },
+  { href: '/resources/people-in-the-news', label: 'People in the News' },
+  { href: '/resources/cases', label: 'Cases' },
 ];
 
 const mobileMenu = {
-  user: [],
-  primary: [
+  primary: sortNavItems([
     ...topics,
-  ],
-  secondary: [
-    ...resources,
+  ]),
+  secondary: sortNavItems([
+    ...secondary,
     subscribe,
-    { href: '/', label: 'Advertise', target: '_blank' },
-  ],
-};
-
-const desktopMenu = {
-  about: [...utilities],
-  user: [],
-  sections: [
-    ...topics,
-  ],
+  ]),
 };
 
 module.exports = {
-  type: 'navbar-c',
+  type: 'navbar-custom',
   promos: [
     {
       title: subscribe.label,
@@ -50,19 +87,53 @@ module.exports = {
       link: subscribe.href,
     },
   ],
-  desktopMenu,
+  user: {
+    items: [],
+  },
   mobileMenu,
   topics,
   primary: {
-    items: topics,
+    items: sortNavItems([
+      ...topics,
+    ]),
   },
   secondary: {
     items: [
-      ...resources,
+      ...secondary,
     ],
   },
   tertiary: {
     items: [],
+  },
+  toggleMenu: {
+    col1: {
+      label: 'Business Insights',
+      items: [
+        ...sortNavItems(businessInsights),
+        { href: '/business-insites', label: 'View all &raquo;' },
+      ],
+    },
+    col2: {
+      label: 'Diagnostic Tech',
+      items: [
+        ...sortNavItems(diagnosticTechnologies).slice(0, 10),
+        { href: '/diagnostic-technologies', label: 'View all &raquo;' },
+      ],
+    },
+    col3: {
+      label: 'Diseases',
+      items: [
+        ...sortNavItems(diseases).slice(0, 10),
+        { href: '/diseases', label: 'View all &raquo;' },
+      ],
+    },
+    col4: {
+      label: 'Resources',
+      items: [
+        ...resources,
+        ...pointOfCareTesting,
+      ],
+    },
   },
   footer: {
     items: [
@@ -70,10 +141,6 @@ module.exports = {
       { href: '/page/copyright-information', label: 'Copyright Information' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
-    ],
-    topics: topics.primary,
-    more: [
-      ...utilities,
     ],
   },
 };
