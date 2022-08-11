@@ -57,14 +57,14 @@ $ const buildContentQuery = () => {
       $ const map = nodes.reduce((m, r) => m.set(`${r.id}`, r), new Map());
       $ const ordered = ids.map(id => map.get(`${id}`)).filter(id => id);
       <if(ordered.length)>
-        <theme-latest-content-list-block nodes=ordered title="Most Popular">
+        <theme-latest-content-list-block nodes=ordered title="Most Popular" class=input.class>
           <@node display-image=false />
         </theme-latest-content-list-block>
       </if>
     </marko-web-resolve>
   </if>
   <else>
-    <theme-latest-content-list-block alias="home" title="Most Popular" modifiers=["sticky-top"]>
+    <theme-latest-content-list-block alias="home" title="Most Popular" class=input.class>
       <@node display-image=false />
     </theme-latest-content-list-block>
   </else>
