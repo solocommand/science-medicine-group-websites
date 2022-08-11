@@ -79,7 +79,7 @@ const mobileMenu = {
 };
 
 module.exports = {
-  type: 'navbar-custom',
+  type: 'navbar-c',
   promos: [
     {
       title: subscribe.label,
