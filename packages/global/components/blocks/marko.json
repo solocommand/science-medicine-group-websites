@@ -5,6 +5,9 @@
   "<global-content-meter-block>": {
     "template": "./content-meter.marko"
   },
+  "<global-most-popular-list-block>": {
+    "template": "./most-popular-list.marko"
+  },
   "<global-sponsors-block>": {
     "template": "./sponsors.marko",
     "@alias": "string"
