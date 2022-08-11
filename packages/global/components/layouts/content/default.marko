@@ -212,7 +212,8 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
         <theme-latest-content-list-block
           title=`Latest in ${primarySection.name}`
           alias=primarySection.alias
-          query-params={ excludeContentTypes }
+          query-params={ excludeContentTypes, excludeContentIds: [content.id] }
+          class="sticky-top"
         >
           <@native-x indexes=[0] name="default" aliases=aliases />
         </theme-latest-content-list-block>
@@ -227,23 +228,6 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
       published=content.published
     />
   </@section>
-
-  <!-- <if(showBottomAdBlock && !showOverlay)>
-    <@section|{ aliases }|>
-      <theme-gam-define-display-ad
-        name="rotation"
-        position="content_page"
-        aliases=aliases
-        modifiers=["inter-block"]
-      />
-    </@section>
-  </if> -->
-
-  <!-- <if(showTopStoryBlock)>
-    <@section>
-      <theme-top-stories-block />
-    </@section>
-  </if> -->
 
   <for|s| of=sections>
     <@section|{ blockName, content, aliases }| modifiers=s.modifiers>

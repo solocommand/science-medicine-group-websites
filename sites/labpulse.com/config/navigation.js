@@ -6,7 +6,7 @@ const privacyPolicy = require('./privacy-policy');
 const topics = [
   { href: '/business-insights', label: 'Business Insights' },
   { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
-  { href: '/diseases', label: 'Deseases' },
+  { href: '/diseases', label: 'Diseases' },
   { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
   { href: '/resources', label: 'Resources' },
 ];
@@ -79,7 +79,7 @@ const mobileMenu = {
 };
 
 module.exports = {
-  type: 'navbar-custom',
+  type: 'navbar-c',
   promos: [
     {
       title: subscribe.label,

@@ -1,0 +1,68 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { pagination: p } = out.global;
+$ const perPage = 12;
+$ const withPagination = defaultValue(input.withPagination, true);
+$ const queryParams = {
+  requiresImage: false,
+  ...input.queryParams,
+};
+
+<div class="row">
+  <div class="col-lg-8">
+    <theme-section-feed-block alias=input.alias header=input.header>
+      <@query-params limit=3 query-params=queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <theme-gam-define-display-ad
+      name="inline-content-desktop"
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+    <theme-section-feed-block alias=input.alias>
+      <@query-params limit=3 skip=p.skip({ perPage, skip: 3 }) query-params=queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <theme-gam-define-display-ad
+      name="inline-content-desktop"
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+  </div>
+  <div class="col-lg-4">
+    <global-most-popular-list-block class="sticky-top" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8">
+    <theme-section-feed-block alias=input.alias>
+      <@query-params limit=3 skip=p.skip({ perPage, skip: 6 }) query-params=queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <!--   -->
+    <theme-gam-define-display-ad
+      name="inline-content-desktop"
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+    <theme-section-feed-block alias=input.alias>
+      <@query-params limit=3 skip=p.skip({ perPage, skip: 9 }) query-params=queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <if(withPagination)>
+      <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
+        <theme-pagination-controls
+          per-page=perPage
+          total-count=totalCount
+          path=input.alias
+        />
+      </theme-section-feed-block>
+    </if>
+  </div>
+  <div class="col-lg-4">
+    <!-- <global-most-popular-list-block class="sticky-top" /> -->
+  </div>
+</div>

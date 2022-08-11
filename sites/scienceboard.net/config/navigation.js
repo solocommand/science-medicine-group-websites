@@ -43,7 +43,7 @@ const desktopMenu = {
 };
 
 module.exports = {
-  type: 'navbar2',
+  type: 'navbar-c',
   promos: [
     {
       title: subscribe.label,

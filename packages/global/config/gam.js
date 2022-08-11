@@ -35,23 +35,23 @@ module.exports = ({
       ],
     })
     .setTemplate('ROTATION', {
-      size: [[970, 250], [300, 250]],
+      size: [300, 250],
       sizeMapping: [
-        { viewport: [980, 0], size: [970, 250] },
-        { viewport: [750, 0], size: [300, 250] },
         { viewport: [300, 0], size: [300, 250] },
       ],
     })
     .setTemplate('INLINE-CONTENT-MOBILE', {
       size: [300, 250],
       sizeMapping: [
-        { viewport: [300, 0], size: [300, 250] },
+        { viewport: [980, 0], size: [] },
+        { viewport: [320, 0], size: [300, 250] },
       ],
     })
     .setTemplate('INLINE-CONTENT-DESKTOP', {
       size: [300, 250],
       sizeMapping: [
-        { viewport: [300, 0], size: [300, 250] },
+        { viewport: [980, 0], size: [300, 250] },
+        { viewport: [0, 0], size: [] },
       ],
     });
 

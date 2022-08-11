@@ -19,29 +19,29 @@ module.exports = {
   search,
   company: 'Science and Medicine Group',
   p1events: {
-    tenant: 'sciencemedicinegroup',
+    tenant: 'smg',
     enabled: true,
     cookieDomain: process.env.NODE_ENV === 'production' ? 'scienceboard.net' : '',
   },
   logos: {
     navbar: {
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=45&auto=format,compress',
+      src: 'https://img.scienceboard.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=45&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=90&auto=format,compress 2x',
+        'https://img.scienceboard.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=90&auto=format,compress 2x',
       ],
     },
     footer: {
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=60&auto=format,compress',
+      src: 'https://img.scienceboard.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=60&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=120&auto=format,compress 2x',
+        'https://img.scienceboard.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=120&auto=format,compress 2x',
       ],
     },
     corporate: {
       alt: 'Science and Medicine Group Logo',
       href: 'https://scienceandmedicinegroup.com',
-      src: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress',
+      src: 'https://img.scienceboard.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress',
       srcset: [
-        'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress&dpr=2 2x',
+        'https://img.scienceboard.net/files/base/smg/all/image/static/smg-logo.png?w=200&auto=format,compress&dpr=2 2x',
       ],
     },
   },
@@ -65,7 +65,7 @@ module.exports = {
     directSend: false,
     sendTo: 'support@parameter1.com',
     sendFrom: 'ScienceBoard.net <noreply@parameter1.com>',
-    logo: 'https://p1-cms-assets.imgix.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
+    logo: 'https://img.scienceboard.net/files/base/smg/all/image/static/sab/sab-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
   setSearchSortFieldToScore: true,

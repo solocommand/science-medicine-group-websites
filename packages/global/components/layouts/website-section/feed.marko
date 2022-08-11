@@ -53,70 +53,8 @@ $ const perPage = 12;
       />
     </if>
 
-    <theme-section-feed-block alias=alias lazyload=false>
-      <@query-params limit=3 skip=p.skip({ perPage }) />
-    </theme-section-feed-block>
+    <global-section-feed-wrapper aliases=aliases alias=alias />
   </@section>
-
-  <@section|{ aliases }|>
-    <theme-gam-define-display-ad
-      name="rotation"
-      position="section_page"
-      aliases=aliases
-      modifiers=["inter-block"]
-    />
-  </@section>
-
-  <@section>
-    <theme-section-feed-block alias=alias>
-      <@query-params limit=3 skip=p.skip({ perPage, skip: 3 }) />
-    </theme-section-feed-block>
-  </@section>
-
-  <!-- <@section>
-    <theme-newsletter-signup-banner-large-block />
-  </@section> -->
-
-  <@section>
-    <theme-section-feed-block alias=alias>
-      <@query-params limit=3 skip=p.skip({ perPage, skip: 6 }) />
-    </theme-section-feed-block>
-  </@section>
-
-  <@section|{ aliases }|>
-    <theme-gam-define-display-ad
-      name="rotation"
-      position="section_page"
-      aliases=aliases
-      modifiers=["inter-block"]
-    />
-  </@section>
-
-  <@section>
-    <theme-section-feed-block alias=alias>
-      <@query-params limit=3 skip=p.skip({ perPage, skip: 9 }) />
-    </theme-section-feed-block>
-    <theme-section-feed-block|{ totalCount }| alias=alias count-only=true>
-      <theme-pagination-controls
-        per-page=perPage
-        total-count=totalCount
-        path=alias
-      />
-    </theme-section-feed-block>
-  </@section>
-
-  <@section>
-    <theme-top-stories-block query-params={ optionName: "Pinned" } />
-  </@section>
-
-  <!-- <@section|{ aliases }|>
-    <theme-gam-define-display-ad
-      name="rotation"
-      position="section_page"
-      aliases=aliases
-      modifiers=["inter-block"]
-    />
-  </@section> -->
 
   <for|s| of=sections>
     <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
@@ -127,13 +65,4 @@ $ const perPage = 12;
       />
     </@section>
   </for>
-
-  <!-- <@section|{ aliases }|>
-    <theme-gam-define-display-ad
-      name="rotation"
-      position="section_page"
-      aliases=aliases
-      modifiers=["inter-block"]
-    />
-  </@section> -->
 </global-website-section-default-layout>

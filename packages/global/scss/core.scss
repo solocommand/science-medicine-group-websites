@@ -178,6 +178,34 @@ label {
 // }
 // End right rail content layout CSS
 
+.page-wrapper {
+  // $marko-web-document-container-gutter: 20px; couldn't get to work
+  padding: 20px;
+
+  .breadcrumbs {
+    &--website-section {
+      @include skin-typography($style: "slug-medium", $link-style: "primary");
+      .breadcrumb {
+        padding-bottom: 8px;
+      }
+    }
+  }
+  &__website-section-description {
+    font-size: 18px;
+  }
+  &__section {
+    .breadcrumbs {
+      margin-bottom: .5rem;
+    }
+    &--break-container {
+      @include media-breakpoint-down(md) {
+        margin-right: -16px;
+        margin-left: -16px;
+      }
+    }
+  }
+}
+
 .site-header {
   margin-bottom: 1rem;
   @media (min-width: 980px) {
@@ -245,6 +273,14 @@ label {
       }
     }
   }
+  @media (min-width: 900px) {
+    .primary-image {
+      &--aligned-center {
+        margin-left: 0;
+        width: initial;
+      }
+    }
+  }
 }
 .content-page-header {
   max-width: none;
@@ -286,6 +322,19 @@ label {
       }
     }
   }
+  &--inline-section-feed {
+    min-height: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    > *:first-child {
+      padding-bottom: 30px;
+      // margin-bottom: 30px;
+      // border-top: 3px solid $skin-ad-bg-color;
+      border-bottom: 1px solid $skin-ad-bg-color;
+    }
+  }
 }
 .node-list {
   &--latest-content-list {
@@ -323,7 +372,7 @@ label {
 }
 .node-list {
   $self: &;
-  &--latest-content-list, &--section-feed {
+  &--latest-content-list, &--section-feed, &--section-list {
     #{ $self }__header {
       @include skin-typography($style: "header-2");
       margin-bottom: 16px;
@@ -339,18 +388,18 @@ label {
         width: 40px;
       }
     }
-    .node {
-      &__website-section-name {
-        color: $gray-700;
-        font-size: 12px;
-        font-weight: normal;
-        text-transform: uppercase;
-      }
-    }
+    // .node {
+    //   &__website-section-name {
+    //     color: $gray-700;
+    //     font-size: 12px;
+    //     font-weight: normal;
+    //     text-transform: uppercase;
+    //   }
+    // }
   }
 }
 .page--content {
-  .node-list--latest-content-list {
+  .node-list--latest-content-list, .node-list--section-feed {
     .node-list__header {
       padding-top: map-get($spacers, 2);
       &:before {
@@ -368,6 +417,9 @@ label {
       }
       &__title {
         font-size: 24px;
+      }
+      &__website-section-name {
+        text-transform: uppercase;
       }
     }
   }
