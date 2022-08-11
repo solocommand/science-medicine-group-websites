@@ -322,6 +322,19 @@ label {
       }
     }
   }
+  &--inline-section-feed {
+    min-height: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    > *:first-child {
+      padding-bottom: 30px;
+      // margin-bottom: 30px;
+      // border-top: 3px solid $skin-ad-bg-color;
+      border-bottom: 1px solid $skin-ad-bg-color;
+    }
+  }
 }
 .node-list {
   &--latest-content-list {
@@ -386,7 +399,7 @@ label {
   }
 }
 .page--content {
-  .node-list--latest-content-list {
+  .node-list--latest-content-list, .node-list--section-feed {
     .node-list__header {
       padding-top: map-get($spacers, 2);
       &:before {
