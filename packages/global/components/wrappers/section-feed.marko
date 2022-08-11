@@ -1,0 +1,52 @@
+$ const { pagination: p } = out.global;
+$ const perPage = 12;
+
+<div class="row">
+  <div class="col-lg-8">
+    <theme-section-feed-block alias=input.alias header=input.header>
+      <@query-params limit=3 ...input.queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <theme-gam-define-display-ad
+      name="inline-content-desktop"
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+    <theme-section-feed-block alias=input.alias>
+      <@query-params limit=3 skip=0 ...input.queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <theme-gam-define-display-ad
+      name="inline-content-desktop"
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+    <theme-section-feed-block alias=input.alias>
+      <@query-params limit=3 skip=0 ...input.queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <!-- skip=p.skip({ perPage, skip: 9 })  -->
+    <theme-gam-define-display-ad
+      name="inline-content-desktop"
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+    <theme-section-feed-block alias=input.alias>
+      <@query-params limit=3 skip=0 ...input.queryParams />
+      <@node-list innerJustified=false ...input.nodeList />
+    </theme-section-feed-block>
+    <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
+      <theme-pagination-controls
+        per-page=perPage
+        total-count=totalCount
+        path=input.alias
+      />
+    </theme-section-feed-block>
+  </div>
+  <div class="col-lg-4">
+    <global-most-popular-list-block />
+  </div>
+</div>

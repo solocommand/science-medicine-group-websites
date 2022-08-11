@@ -1,0 +1,6 @@
+{
+  "taglib-imports": [],
+  "<global-section-feed-wrapper>": {
+    "template": "./section-feed.marko"
+  }
+}
