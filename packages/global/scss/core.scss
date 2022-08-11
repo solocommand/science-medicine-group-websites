@@ -453,3 +453,18 @@ label {
 .reveal-ad {
   height: 298px;
 }
+
+.site-menu {
+  $self: &;
+  &__section {
+    &--primary {
+      #{ $self } {
+        &__item {
+          @media (min-width: $skin-desktop-menu-breakpoint) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
