@@ -213,6 +213,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
           title=`Latest in ${primarySection.name}`
           alias=primarySection.alias
           query-params={ excludeContentTypes }
+          class="sticky-top"
         >
           <@native-x indexes=[0] name="default" aliases=aliases />
         </theme-latest-content-list-block>
