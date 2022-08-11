@@ -94,7 +94,8 @@ $ const { gamDefer, gtmDefer } = req.query;
     />
     <marko-web-identity-x-context|{ hasUser, isEnabled }|>
       <global-site-header-c has-user=hasUser reg-enabled=isEnabled />
-      <theme-site-menu has-user=hasUser reg-enabled=isEnabled />
+      <global-site-menu has-user=hasUser reg-enabled=isEnabled />
+      <!-- <theme-site-menu has-user=hasUser reg-enabled=isEnabled /> -->
     </marko-web-identity-x-context>
     <theme-site-newsletter-menu />
     <if(contentMeterState && !contentMeterState.isLoggedIn)>
