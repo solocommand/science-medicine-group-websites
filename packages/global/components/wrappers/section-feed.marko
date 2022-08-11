@@ -2,7 +2,7 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { pagination: p } = out.global;
 $ const perPage = 12;
-$ const withPagination = defaultValue(input.pagination, true);
+$ const withPagination = defaultValue(input.withPagination, true);
 $ const queryParams = {
   requiresImage: true,
   ...input.queryParams,
