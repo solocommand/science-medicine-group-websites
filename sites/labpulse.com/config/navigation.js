@@ -8,7 +8,7 @@ const topics = [
   { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
   { href: '/diseases', label: 'Deseases' },
   { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
-  { href: '/Resources', label: 'Resources' },
+  { href: '/resources', label: 'Resources' },
 ];
 
 const secondary = [];
