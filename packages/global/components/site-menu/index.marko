@@ -1,0 +1,126 @@
+import { asObject } from "@parameter1/base-cms-utils";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const blockName = input.blockName || "site-menu";
+
+$ const { site, config } = out.global;
+
+$ const regEnabled = defaultValue(input.regEnabled, false);
+$ const hasUser = defaultValue(input.hasUser, false);
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "aside")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <!-- desktop -->
+  <marko-web-element block-name=blockName name="contents-desktop">
+    <div class="row">
+      <div class="col-6 col-md-3">
+        <!-- sections -->
+        <default-theme-site-menu-section
+          tag="nav"
+          block-name=blockName
+          label=site.get("navigation.toggleMenu.col1.label")
+          items=site.getAsArray("navigation.toggleMenu.col1.items")
+          modifiers=["primary"]
+          reg-enabled=regEnabled
+          has-user=hasUser
+        />
+      </div>
+      <div class="d-none d-md-flex col-md-3">
+        <!-- sections -->
+        <default-theme-site-menu-section
+          tag="nav"
+          block-name=blockName
+          label=site.get("navigation.toggleMenu.col2.label")
+          items=site.getAsArray("navigation.toggleMenu.col2.items")
+          modifiers=["primary"]
+          reg-enabled=regEnabled
+          has-user=hasUser
+        />
+      </div>
+      <div class="d-none d-md-flex col-md-3">
+        <!-- sections -->
+        <default-theme-site-menu-section
+          tag="nav"
+          block-name=blockName
+          label=site.get("navigation.toggleMenu.col3.label")
+          items=site.getAsArray("navigation.toggleMenu.col3.items")
+          modifiers=["primary"]
+          reg-enabled=regEnabled
+          has-user=hasUser
+        />
+      </div>
+      <div class="d-none d-md-flex col-md-3">
+        <marko-web-element
+          block-name=blockName
+          name="section"
+          tag="nav"
+          modifiers=["primary"]
+        >
+          <!-- Right Column Header -->
+          <default-theme-site-menu-header block-name=blockName>
+            ${ site.get("navigation.toggleMenu.col4.label")}
+          </default-theme-site-menu-header>
+          <default-theme-site-navbar-items
+            block-name=blockName
+            items=site.getAsArray("navigation.toggleMenu.col4.items")
+            reg-enabled=regEnabled
+            has-user=hasUser
+          />
+          <div class="mt-block"/>
+          <default-theme-site-menu-header block-name=blockName>
+            User Tools
+          </default-theme-site-menu-header>
+          <default-theme-site-menu-section
+            tag="nav"
+            block-name=blockName
+            items=site.getAsArray("navigation.user.items")
+            modifiers=["user"]
+            reg-enabled=regEnabled
+            has-user=hasUser
+          />
+          <!-- Social Follow Label & items -->
+          <social-icons block-name=blockName title="Follow Us" />
+          <!-- Toggle Menu Right Column Items -->
+        </marko-web-element>
+      </div>
+    </div>
+  </marko-web-element>
+  <!-- mobile -->
+  <marko-web-element block-name=blockName name="contents-mobile">
+    <!-- primary section -->
+    <!-- Identity X navigation Items -->
+    <default-theme-site-menu-section
+      tag="nav"
+      block-name=blockName
+      items=site.getAsArray("navigation.user.items")
+      modifiers=["user"]
+      reg-enabled=regEnabled
+      has-user=hasUser
+    />
+    <!-- social -->
+    <social-icons block-name=blockName />
+    <!-- primary section -->
+    <default-theme-site-menu-section
+      tag="nav"
+      block-name=blockName
+      items=site.getAsArray("navigation.mobileMenu.primary")
+      modifiers=["primary"]
+      reg-enabled=regEnabled
+      has-user=hasUser
+    />
+    <!-- secondary section -->
+    <default-theme-site-menu-section
+      tag="nav"
+      block-name=blockName
+      items=site.getAsArray("navigation.mobileMenu.secondary")
+      modifiers=["secondary"]
+      reg-enabled=regEnabled
+      has-user=hasUser
+    />
+  </marko-web-element>
+</marko-web-block>
