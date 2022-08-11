@@ -113,6 +113,15 @@ $ const promise = websiteSectionContentLoader(apollo, {
                 </div>
               </div>
             </@section>
+            <for|s| of=sections>
+              <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
+                <${s.renderBody}
+                  block-name=blockName
+                  section=section
+                  aliases=aliases
+                />
+              </@section>
+            </for>
             <@section>
               <div class="row">
                 <div class="col-lg-8">
