@@ -1,12 +1,10 @@
 import { getAsObject } from "@parameter1/base-cms-object-path";
-import omedaConfig from "../config/omeda";
 
 $ const {
   site,
   req,
   nativeX,
   GAM,
-  contentMeterState,
 } = out.global;
 
 $ const { gamDefer, gtmDefer } = req.query;
@@ -31,7 +29,6 @@ $ const { gamDefer, gtmDefer } = req.query;
       on="load"
       request-frame=true
       target-tag="body"
-      identity-query-builder=`var id = query.oly_enc_id; if (id) { return 'omeda.${omedaConfig.brandKey}.customer*' + id + '~encoded'; };`;
     />
 
     <!-- init gam -->
@@ -58,14 +55,6 @@ $ const { gamDefer, gtmDefer } = req.query;
       target-tag="body"
     />
 
-    <!-- init omeda olytics -->
-    <!-- <marko-web-omeda-olytics-init
-      oid="NOT_SET"
-      on="load"
-      request-frame=true
-      target-tag="body"
-    /> -->
-
     <${input.head} />
 
     <!-- start gtm -->
@@ -82,30 +71,11 @@ $ const { gamDefer, gtmDefer } = req.query;
     <${input.aboveWrapper} />
   </@above-wrapper>
   <@above-container>
-    <marko-web-browser-component name="OmedaIdentityXRapidIdentify" />
-
-    <marko-web-gtm-track-bus-event
-      on="newsletter-form-action"
-      clear-data=true
-    />
-    <marko-web-gtm-track-bus-event
-      on="newsletter-form-subscription"
-      clear-data=true
-    />
     <marko-web-identity-x-context|{ hasUser, isEnabled }|>
       <global-site-header-c has-user=hasUser reg-enabled=isEnabled />
       <global-site-menu has-user=hasUser reg-enabled=isEnabled />
       <!-- <theme-site-menu has-user=hasUser reg-enabled=isEnabled /> -->
     </marko-web-identity-x-context>
-    <theme-site-newsletter-menu />
-    <if(contentMeterState && !contentMeterState.isLoggedIn)>
-      <global-content-meter-block
-        views=contentMeterState.views
-        view-limit=contentMeterState.viewLimit
-        display-overlay=contentMeterState.displayOverlay
-        display-gate=contentMeterState.displayGate
-      />
-    </if>
     <${input.aboveContainer} />
   </@above-container>
   <@below-container>

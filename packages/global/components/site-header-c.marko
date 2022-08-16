@@ -40,7 +40,7 @@ $ const navigation = {
       </default-theme-site-navbar>
     </div>
     <div class='site-navbar__right'>
-      <if(site.getAsObject("newsletter.pushdown") && !site.getAsObject("newsletter.pushdown.disabled"))>
+      <!-- <if(site.getAsObject("newsletter.pushdown") && !site.getAsObject("newsletter.pushdown.disabled"))>
         <theme-menu-toggle-button
           class="site-navbar__newsletter-toggler btn btn-primary btn-subscribe"
           targets=[".site-newsletter-menu"]
@@ -50,7 +50,7 @@ $ const navigation = {
           expanded-icon-name="mail"
           before="Subscribe"
         />
-      </if>
+      </if> -->
       <marko-web-link href="/search">
         <button class="btn btn-lg" type="submit" aria-label="Search">
           <marko-web-icon name="search" modifiers=["dark"] />
