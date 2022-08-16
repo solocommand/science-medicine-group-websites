@@ -15,12 +15,15 @@ $ const alias = get(input, "primarySection.alias");
       <marko-web-p1-events-track-content node=content />
     </marko-web-resolve-page>
   </@head>
-  <@above-container>
-    <marko-web-resolve-page|{ data: content }| node=pageNode>
-      $ const aliases = hierarchyAliases(content.primarySection);
-      <theme-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
-    </marko-web-resolve-page>
-  </@above-container>
+  <if(GAM.enableRevealAd)>
+    <@above-container>
+      <marko-web-resolve-page|{ data: content }| node=pageNode>
+        $ const aliases = hierarchyAliases(content.primarySection);
+        $ console.log('GAM: ', GAM)
+        <theme-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
+      </marko-web-resolve-page>
+    </@above-container>
+  </if>
   <@page>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const aliases = hierarchyAliases(content.primarySection);
