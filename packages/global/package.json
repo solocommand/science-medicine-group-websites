@@ -25,6 +25,7 @@
     "@parameter1/base-cms-marko-web-omeda": "^3.0.0",
     "@parameter1/base-cms-marko-web-omeda-identity-x": "^3.0.0",
     "@parameter1/base-cms-marko-web-p1-events": "^3.0.0",
+    "@parameter1/base-cms-marko-web-reveal-ad": "^3.0.0",
     "@parameter1/base-cms-marko-web-search": "^3.0.0",
     "@parameter1/base-cms-marko-web-social-sharing": "^3.0.0",
     "@parameter1/base-cms-marko-web-theme-default": "^3.0.0",
