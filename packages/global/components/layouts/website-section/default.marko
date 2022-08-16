@@ -15,6 +15,12 @@ $ const { GAM } = out.global;
     </marko-web-resolve-page>
     <${input.head} />
   </@head>
+  <@above-container>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <theme-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
+    </marko-web-resolve-page>
+  </@above-container>
   <@page>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
