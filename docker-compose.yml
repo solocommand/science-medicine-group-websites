@@ -82,7 +82,7 @@ services:
       PORT: 80
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
-      SITE_ID: 62f40c02f5a3c9a91b438a34
+      SITE_ID: 62f56637f5a3c9a91ba16f77
     hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
@@ -97,7 +97,7 @@ services:
       PORT: 80
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
-      SITE_ID: 62f40a3cf5a3c9a91b4199a6
+      SITE_ID: 62f5642ff5a3c9a91b9f34b5
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"
