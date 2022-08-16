@@ -3,7 +3,12 @@ const newrelic = require('newrelic');
 
 module.exports = ({
   appId,
-  hiddenFields = [],
+  hiddenFields = [
+    'street',
+    'addressExtra',
+    'city',
+    'regionCode',
+  ],
   defaultCountryCode = '',
   requiredServerFields = [
     'givenName',
