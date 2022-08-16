@@ -1,30 +1,3 @@
-.page-wrapper {
-  $self: &;
-  &__section--user-form {
-    &:only-child  {
-      margin: 30px auto;
-      max-width: 400px;
-      background-color: $gray-100;
-      padding: 30px;
-
-      @media (max-width: $content-meter-mobile-breakpoint) {
-        padding: 15px;
-        margin: 0 -15px;
-      }
-    }
-    #{ $self }__title {
-      @include skin-typography($style: "content-meter-cta");
-      color: $theme-page-title-color;
-      font-weight: $font-weight-bold;
-    }
-  }
-  #{ $self }__confirmation {
-    background-color: $gray-200;
-    font-weight: $font-weight-bold;
-    padding: map-get($spacers, 2);
-    margin-bottom: map-get($spacers, block);
-  }
-}
 .content-page-gate {
   $self: &;
 
