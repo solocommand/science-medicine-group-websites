@@ -2384,6 +2384,14 @@
     "@parameter1/base-cms-object-path" "^2.75.1"
     "@parameter1/base-cms-utils" "^2.75.1"
 
+"@parameter1/base-cms-marko-web-reveal-ad@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-reveal-ad/-/base-cms-marko-web-reveal-ad-3.0.0.tgz#4806b0652f0f2fb7a76d0d04bab89e5c04b0a2ce"
+  integrity sha512-nT6MAv92K05JeqLj1zuAUUgeiyfvwfn9/LKd9prKaxIfr8R7SCaDhCOsrJv8wFOrCskfJA+0km/iMY+nH+yn/A==
+  dependencies:
+    "@parameter1/base-cms-object-path" "^3.0.0"
+    "@parameter1/base-cms-utils" "^3.0.0"
+
 "@parameter1/base-cms-marko-web-search@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-search/-/base-cms-marko-web-search-3.0.0.tgz#57553729f70620148d0aee2ef197dfbbac9cb23c"
