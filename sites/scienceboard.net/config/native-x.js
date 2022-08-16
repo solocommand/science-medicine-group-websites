@@ -6,7 +6,7 @@ config.enabled = false;
 
 config
   .setAliasPlacements('default', [
-    { name: 'default', id: 'NOT_SET' },
+    { name: 'default', id: '62fbf200d7b5c2000172a1e4' },
   ]);
 
 module.exports = config;
