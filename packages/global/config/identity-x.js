@@ -5,8 +5,18 @@ module.exports = ({
   appId,
   hiddenFields = [],
   defaultCountryCode = '',
-  requiredServerFields = [],
-  requiredClientFields = [],
+  requiredServerFields = [
+    'givenName',
+    'familyName',
+    'countryCode',
+    'postalCode',
+  ],
+  requiredClientFields = [
+    'givenName',
+    'familyName',
+    'countryCode',
+    'postalCode',
+  ],
   ...rest
 } = {}) => {
   const config = new IdentityXConfiguration({
