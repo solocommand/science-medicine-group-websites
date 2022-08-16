@@ -3,6 +3,9 @@
 
 // import theme css
 @import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/core";
+// Bottom Sticky Leader Board
+@import "../../node_modules/@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
+
 
 // skin components
 @import "./components/content-meter";
