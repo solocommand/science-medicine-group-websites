@@ -11,7 +11,13 @@ const topics = [
   { href: '/resources', label: 'Resources' },
 ];
 
-const secondary = [];
+const secondary = [
+  { href: '/resources/cases', label: 'Cases' },
+  { href: '/resources/webinars', label: 'Webinars' },
+  { href: '/resources/video', label: 'Video' },
+  { href: '#', label: 'Conferences' },
+  { href: '#', label: 'Vendor Connect' },
+];
 
 const businessInsights = [
   { href: '/business-insights/business-financial-trends', label: 'Business and Financial Trends' },
