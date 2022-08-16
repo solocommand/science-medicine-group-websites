@@ -1,0 +1,189 @@
+import getNavItems from "@parameter1/base-cms-marko-web-theme-default/components/site-navbar/utils/get-nav-items";
+import { asObject } from "@parameter1/base-cms-utils";
+import { getAsObject, getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { config, site } = out.global;
+
+$ const brandLogos = site.getAsArray("logos.footer.brandLogos");
+$ const newsletterConfig = site.getAsObject('newsletter.signupFooter');
+$ const blockName = input.blockName || "site-footer";
+$ const tagline = site.get("tagline");
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "footer")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <default-theme-site-footer-container block-name=blockName modifiers=["brand-logos"]>
+    <marko-web-element block-name=blockName name="inner-container">
+      <if(brandLogos.length)>
+        <div class="row brand-logos">
+          <for|logo| of=brandLogos>
+            <div class="col-3 col-sm site-footer-logo">
+                <marko-web-img
+                  class="img-fluid"
+                  alt=logo.alt
+                  src=logo.src
+                  srcset=logo.srcset
+                  link= {
+                    href: logo.href,
+                    title: logo.alt,
+                    target: "_blank",
+                  }
+                />
+            </div>
+          </for>
+        </div>
+      </if>
+      <else>
+        <default-theme-site-navbar-brand block-name=blockName title=`${config.website("name")} Homepage`>
+          <default-theme-site-navbar-logo
+            block-name=blockName
+            alt=config.website("name")
+            src=site.get("logos.footer.src")
+            srcset=site.getAsArray("logos.footer.srcset").join(",")
+            lazyload=true
+          />
+        </default-theme-site-navbar-brand>
+      </else>
+    </marko-web-element>
+  </default-theme-site-footer-container>
+  <default-theme-site-footer-container block-name=blockName modifiers=["secondary"] attrs={ "aria-label": "Secondary Footer" }>
+    <marko-web-element block-name=blockName name="inner-container">
+      <if(tagline)>
+        <marko-web-element block-name=blockName name="tagline" modifiers="tagline">${tagline}</marko-web-element>
+      </if>
+
+      <div class="row">
+        <marko-web-element block-name=blockName name="section">
+          $ const newsletterBlock = "site-footer-newsletter";
+          <if(newsletterConfig.action)>
+            <marko-web-block name=newsletterBlock>
+              <marko-web-element block-name=newsletterBlock name="header">
+                $!{newsletterConfig.name}
+              </marko-web-element>
+              <if(newsletterConfig.description)>
+                <marko-web-element block-name=newsletterBlock name="description">
+                  $!{newsletterConfig.description}
+                </marko-web-element>
+              </if>
+              <form action=newsletterConfig.action method="GET">
+                <div class="form-group">
+                  <label for="footer-newsletter-signup-email">Email</label>
+                  <input
+                    id="footer-newsletter-signup-email"
+                    class="form-control"
+                    type="email"
+                    placeholder="example@gmail.com"
+                    name="em"
+                    required
+                  />
+                  <for|item| of=newsletterConfig.hiddenInputs>
+                    <input type="hidden" name=item.name value=item.value />
+                  </for>
+                </div>
+                <button class="btn btn-primary" type="submit">Sign Up</button>
+              </form>
+            </marko-web-block>
+          </if>
+        </marko-web-element>
+
+        $ const navBlockName = "site-footer-nav";
+        <marko-web-element block-name=blockName name="section">
+          <div class="row">
+            <marko-web-block name=navBlockName class="col-6">
+              $ const col1 = site.getAsObject("navigation.footer.col1");
+              $ const col1Items = getAsArray(col1, "items");
+              $ const col1Label = defaultValue(col1.label, "Topics");
+              <if(col1Items.length)>
+                <default-theme-site-menu-section
+                  tag="nav"
+                  block-name=navBlockName
+                  label=col1Label
+                  items=col1Items
+                  reg-enabled=false
+                  has-user=false
+                />
+              </if>
+            </marko-web-block>
+            <marko-web-block name=navBlockName class="col-6">
+              $ const col2Column = site.getAsObject("navigation.footer.col2");
+              $ const col2Items = getAsArray(col2Column, "items");
+              $ const col2Label = defaultValue(col2Column.label, "Resources");
+              <if(col2Items.length)>
+                <default-theme-site-menu-section
+                  tag="nav"
+                  block-name=navBlockName
+                  label=col2Label
+                  items=col2Items
+                  reg-enabled=false
+                  has-user=false
+                />
+              </if>
+            </marko-web-block>
+          </div>
+        </marko-web-element>
+        <marko-web-element block-name=blockName name="section">
+          <div class="row">
+            <marko-web-block name=navBlockName class="col-6">
+              $ const col3Column = site.getAsObject("navigation.footer.col3");
+              $ const col3Items = getAsArray(col3Column, "items");
+              $ const col3Label = defaultValue(col3Column.label, "More");
+              <if(col3Items.length)>
+                <default-theme-site-menu-section
+                  tag="nav"
+                  block-name=navBlockName
+                  label=col3Label
+                  items=col3Items
+                  reg-enabled=false
+                  has-user=false
+                />
+              </if>
+            </marko-web-block>
+            <marko-web-block name=navBlockName class="col-6">
+              $ const col4Column = site.getAsObject("navigation.footer.col4");
+              $ const col4Items = getAsArray(col4Column, "items");
+              $ const col4Label = defaultValue(col4Column.label, "About");
+              <if(col4Items.length)>
+                <default-theme-site-menu-section
+                  tag="nav"
+                  block-name=navBlockName
+                  label=col4Label
+                  items=col4Items
+                  reg-enabled=false
+                  has-user=false
+                />
+              </if>
+            </marko-web-block>
+          </div>
+        </marko-web-element>
+      </div>
+
+    </marko-web-element>
+  </default-theme-site-footer-container>
+  <default-theme-site-footer-container block-name=blockName modifiers=["primary"] attrs={ "aria-label": "Primary Footer" }>
+    <marko-web-element block-name=blockName name="inner-container">
+      <theme-social-follow dark=false modifiers=["site-footer"] />
+
+      $ const footerItems = site.getAsArray("navigation.footer.items");
+      <theme-breadcrumbs modifiers=["site-footer"]>
+        <for|item| of=getNavItems({ items: footerItems, hasUser: input.hasUser, regEnabled: input.regEnabled })>
+          <@item>
+            $ const obj = asObject(item);
+            <marko-web-link href=obj.href title=obj.title target=obj.target>
+              $!{obj.label}
+            </marko-web-link>
+          </@item>
+        </for>
+      </theme-breadcrumbs>
+
+      <default-theme-site-footer-copyright
+        company=site.get("company")
+        notice=site.get("copyrightNotice")
+      />
+    </marko-web-element>
+  </default-theme-site-footer-container>
+</marko-web-block>

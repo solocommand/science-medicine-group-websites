@@ -136,6 +136,29 @@ module.exports = {
     },
   },
   footer: {
+    col1: {
+      label: 'Topics',
+      items: [
+        { href: '/business-insights', label: 'Business Insights' },
+        { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
+        { href: '/diseases', label: 'Diseases' },
+      ],
+    },
+    col2: {
+      label: 'Resources',
+      items: [
+        ...resources,
+        { href: '#', label: 'TBD' },
+        { href: '#', label: 'TBD' },
+      ],
+    },
+    col3: {
+      label: 'More',
+      items: [
+        { href: '#', label: 'TBD' },
+        { href: '#', label: 'TBD' },
+      ],
+    },
     items: [
       privacyPolicy,
       { href: '/page/copyright-information', label: 'Copyright Information' },

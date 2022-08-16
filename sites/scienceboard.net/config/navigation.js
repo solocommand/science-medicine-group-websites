@@ -64,6 +64,27 @@ module.exports = {
     items: [],
   },
   footer: {
+    col1: {
+      label: 'Topics',
+      items: [
+        ...topics,
+      ],
+    },
+    col2: {
+      label: 'Resources',
+      items: [
+        ...resources,
+        { href: '#', label: 'TBD' },
+        { href: '#', label: 'TBD' },
+      ],
+    },
+    col3: {
+      label: 'More',
+      items: [
+        { href: '#', label: 'TBD' },
+        { href: '#', label: 'TBD' },
+      ],
+    },
     items: [
       privacyPolicy,
       { href: '/page/contact-us', label: 'Contact Us' },
