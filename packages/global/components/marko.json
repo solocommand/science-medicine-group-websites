@@ -36,23 +36,5 @@
   },
   "<global-content-meter-track>": {
     "template": "./content-meter-track.marko"
-  },
-  "<theme-fixed-ad-bottom>": {
-    "template": "./fixed-ad-bottom.marko",
-    "@aliases": "array"
-  },
-  "<theme-reveal-ad-handler>": {
-    "template": "./reveal-ad-handler.marko",
-    "@target": "string",
-    "@defaults": "object",
-    "@select-all-targets": "boolean",
-    "@id": {
-      "type": "string",
-      "required": true
-    },
-    "@path": {
-      "type": "string",
-      "required": true
-    }
   }
 }

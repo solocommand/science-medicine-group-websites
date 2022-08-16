@@ -1,8 +1,9 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
-const { set, get } = require('@parameter1/base-cms-object-path');
+const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
+const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -10,7 +11,8 @@ const fragments = require('./fragments');
 const sharedRoutes = require('./routes');
 const paginated = require('./middleware/paginated');
 const oembedHandler = require('./oembed-handler');
-const recaptcha = require('./config/recaptcha');
+const idxRouteTemplates = require('./templates/user');
+const idxNavItems = require('./config/identity-x-nav');
 
 const routes = (siteRoutes, siteConfig) => (app) => {
   // Handle submissions on /__inquiry
@@ -47,6 +49,11 @@ module.exports = (options = {}) => {
       // Use paginated middleware
       app.use(htmlSitemapPagination());
 
+      // Setup IdentityX
+      idxNavItems({ site: app.locals.site });
+      const idxConfig = getAsObject(options, 'siteConfig.identityX');
+      identityX(app, idxConfig, { templates: idxRouteTemplates });
+
       // Setup GAM.
       const gamConfig = get(options, 'siteConfig.gam');
       set(app.locals, 'GAM', gamConfig);
@@ -58,9 +65,6 @@ module.exports = (options = {}) => {
       // i18n
       const i18n = v => v;
       set(app.locals, 'i18n', options.i18n || i18n);
-
-      // Recaptcha
-      set(app.locals, 'recaptcha', recaptcha);
     },
     onAsyncBlockError: e => newrelic.noticeError(e),
 

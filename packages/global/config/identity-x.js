@@ -4,16 +4,24 @@ const newrelic = require('newrelic');
 module.exports = ({
   appId,
   hiddenFields = [
-    'organizationTitle',
-    'phoneNumber',
     'street',
     'addressExtra',
     'city',
     'regionCode',
   ],
-  defaultCountryCode = 'US',
-  requiredServerFields = ['organization', 'countryCode', 'postalCode'],
-  requiredClientFields = ['organization', 'countryCode', 'postalCode'],
+  defaultCountryCode = '',
+  requiredServerFields = [
+    'givenName',
+    'familyName',
+    'countryCode',
+    'postalCode',
+  ],
+  requiredClientFields = [
+    'givenName',
+    'familyName',
+    'countryCode',
+    'postalCode',
+  ],
   ...rest
 } = {}) => {
   const config = new IdentityXConfiguration({
