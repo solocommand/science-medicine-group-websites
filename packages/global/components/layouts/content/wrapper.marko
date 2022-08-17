@@ -19,7 +19,6 @@ $ const alias = get(input, "primarySection.alias");
     <@above-container>
       <marko-web-resolve-page|{ data: content }| node=pageNode>
         $ const aliases = hierarchyAliases(content.primarySection);
-        $ console.log('GAM: ', GAM)
         <theme-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
       </marko-web-resolve-page>
     </@above-container>
