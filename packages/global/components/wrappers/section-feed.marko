@@ -11,7 +11,7 @@ $ const queryParams = {
 <div class="row">
   <div class="col-lg-8">
     <theme-section-feed-block alias=input.alias header=input.header>
-      <@query-params limit=3 query-params=queryParams />
+      <@query-params ...queryParams limit=3 skip=p.skip({ perPage })/>
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
     <theme-gam-define-display-ad
@@ -21,7 +21,7 @@ $ const queryParams = {
       modifiers=["inline-section-feed"]
     />
     <theme-section-feed-block alias=input.alias>
-      <@query-params limit=3 skip=p.skip({ perPage, skip: 3 }) query-params=queryParams />
+      <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 3 }) />
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
     <theme-gam-define-display-ad
@@ -38,7 +38,7 @@ $ const queryParams = {
 <div class="row">
   <div class="col-lg-8">
     <theme-section-feed-block alias=input.alias>
-      <@query-params limit=3 skip=p.skip({ perPage, skip: 6 }) query-params=queryParams />
+      <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 6 }) />
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
     <!--   -->
@@ -49,7 +49,7 @@ $ const queryParams = {
       modifiers=["inline-section-feed"]
     />
     <theme-section-feed-block alias=input.alias>
-      <@query-params limit=3 skip=p.skip({ perPage, skip: 9 }) query-params=queryParams />
+      <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 9 }) />
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
     <if(withPagination)>
