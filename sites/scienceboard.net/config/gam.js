@@ -1,6 +1,6 @@
 const configureGAM = require('@science-medicine-group/package-global/config/gam');
 
-const config = configureGAM({ basePath: 'p1' });
+const config = configureGAM({ basePath: 'sab' });
 
 config.lazyLoad = {
   enabled: true, // set to true to enable lazy loading
