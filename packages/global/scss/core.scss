@@ -271,6 +271,7 @@ label {
 
 // Begin right rail content layout CSS
 .content-page-body {
+  padding-top: 12px;
   .primary-image {
     &--aligned-center {
       @media (min-width: 900px) {
@@ -392,24 +393,6 @@ label {
         position: absolute;
         top: 12px;
         width: 40px;
-      }
-    }
-    // .node {
-    //   &__website-section-name {
-    //     color: $gray-700;
-    //     font-size: 12px;
-    //     font-weight: normal;
-    //     text-transform: uppercase;
-    //   }
-    // }
-  }
-}
-.page--content {
-  .node-list--latest-content-list, .node-list--section-feed {
-    .node-list__header {
-      padding-top: map-get($spacers, 2);
-      &:before {
-        top: 0;
       }
     }
   }
