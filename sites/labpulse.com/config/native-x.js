@@ -2,11 +2,11 @@ const configureNativeX = require('@science-medicine-group/package-global/config/
 
 const config = configureNativeX();
 
-config.enabled = false;
+config.enabled = true;
 
 config
   .setAliasPlacements('default', [
-    { name: 'default', id: 'NOT_SET' },
+    { name: 'default', id: '62fbe63cd7b5c2000172a0aa' },
   ]);
 
 module.exports = config;
