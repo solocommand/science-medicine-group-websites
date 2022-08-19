@@ -18,6 +18,16 @@
     "@name": "string",
     "@page-node": "object"
   },
+  "<global-website-section-upcoming-feed-layout>": {
+    "template": "./upcoming-feed.marko",
+    "@sections <section>[]": {},
+    "<before-name>": {},
+    "<after-name>": {},
+    "@id": "number",
+    "@alias": "string",
+    "@name": "string",
+    "@page-node": "object"
+  },
   "<global-website-section-home-layout>": {
     "template": "./home.marko",
     "<head>": {},
