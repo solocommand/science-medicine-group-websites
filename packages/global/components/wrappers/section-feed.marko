@@ -3,6 +3,7 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 $ const { pagination: p } = out.global;
 $ const perPage = 12;
 $ const withPagination = defaultValue(input.withPagination, true);
+$ const { modifiers } = input;
 $ const queryParams = {
   requiresImage: false,
   ...input.queryParams,
@@ -10,7 +11,11 @@ $ const queryParams = {
 
 <div class="row">
   <div class="col-lg-8">
-    <theme-section-feed-block alias=input.alias header=input.header>
+    <theme-section-feed-block
+      alias=input.alias
+      header=input.header
+      modifiers=modifiers
+    >
       <@query-params ...queryParams limit=3 skip=p.skip({ perPage })/>
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
@@ -20,7 +25,7 @@ $ const queryParams = {
       aliases=input.aliases
       modifiers=["inline-section-feed"]
     />
-    <theme-section-feed-block alias=input.alias>
+    <theme-section-feed-block alias=input.alias modifiers=modifiers>
       <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 3 }) />
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
@@ -37,7 +42,7 @@ $ const queryParams = {
 </div>
 <div class="row">
   <div class="col-lg-8">
-    <theme-section-feed-block alias=input.alias>
+    <theme-section-feed-block alias=input.alias modifiers=modifiers>
       <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 6 }) />
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
@@ -48,7 +53,7 @@ $ const queryParams = {
       aliases=input.aliases
       modifiers=["inline-section-feed"]
     />
-    <theme-section-feed-block alias=input.alias>
+    <theme-section-feed-block alias=input.alias modifiers=modifiers>
       <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 9 }) />
       <@node-list innerJustified=false ...input.nodeList />
     </theme-section-feed-block>
