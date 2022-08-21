@@ -1,0 +1,14 @@
+.node-list {
+  &--upcoming {
+    .section-feed-content-node {
+      flex-direction: row;
+      .section-feed-content-node__image-wrapper {
+        margin-left: 15px;
+        margin-right: 0;
+        &:empty {
+          display: none;
+        }
+      }
+    }
+  }
+}
