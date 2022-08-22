@@ -46,13 +46,27 @@ $ const currentPage = search.getCurrentPage();
           $ const facetAlias = section.children.edges.length ? alias : section.parent.alias;
           <global-directory-facet-block primary-alias=facetAlias search-query=search.input.searchQuery active-id=id />
         </marko-web-search-filter-container>
-        <div class="mt-block">
-          <div class="company-search__title"> Company Search:</div>
-          <global-company-search-block />
-        </div>
+        <if(section.parent)>
+          <div class="mt-block">
+            <div class="company-search__title"> Company Search:</div>
+            <global-company-search-block />
+          </div>
+        </if>
       </div>
 
       <div class="col-lg-9">
+        <if(!section.parent)>
+          <div class="row">
+            <div class="col-md-6 mb-block">
+              <div class="company-search__title"> Search Companies:</div>
+              <global-company-search-block />
+            </div>
+            <div class="col-md-6 mb-block">
+              <div class="section-search__title">Search Categories:</div>
+              <global-section-search-block section-ids=[id] include-self=false/>
+            </div>
+          </div>
+        </if>
         <marko-web-search-query|{ nodes, totalCount }|
           limit=search.getLimit()
           skip=search.getSkip()
@@ -74,7 +88,7 @@ $ const currentPage = search.getCurrentPage();
                 >
                   <@nodes nodes=nodes>
                     <@slot|{ node }|>
-                      <theme-directory-section-feed-content-node node=node with-teaser=false display-image=false with-dates=false />
+                      <theme-directory-section-feed-content-node node=node is-featured=true with-teaser=true display-image=true with-dates=true />
                     </@slot>
                   </@nodes>
                 </marko-web-node-list>

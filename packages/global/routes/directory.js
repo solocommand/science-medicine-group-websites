@@ -2,7 +2,6 @@ const { withWebsiteSection } = require('@parameter1/base-cms-marko-web/middlewar
 const MarkoWebSearchConfig = require('@parameter1/base-cms-marko-web-search/config');
 const MarkoWebSearch = require('@parameter1/base-cms-marko-web-search');
 const queryFragment = require('../graphql/fragments/website-directory-section-page');
-const directoryLanding = require('../templates/directory/landing');
 const directory = require('../templates/directory/index');
 
 module.exports = (app, rootAlias) => {
@@ -22,7 +21,7 @@ module.exports = (app, rootAlias) => {
   };
 
   app.get(`/:alias(${rootAlias})`, searchMiddleware, withWebsiteSection({
-    template: directoryLanding,
+    template: directory,
     queryFragment,
   }));
   app.get(`/:alias(${rootAlias}/[a-z0-9-/]+)`, searchMiddleware, withWebsiteSection({
