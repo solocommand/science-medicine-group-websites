@@ -11,11 +11,5 @@
   "<global-sponsors-block>": {
     "template": "./sponsors.marko",
     "@alias": "string"
-  },
-  "<global-company-search-block>": {
-    "template": "./company-search.marko"
-  },
-  "<global-section-search-block>": {
-    "template": "./section-search.marko"
   }
 }

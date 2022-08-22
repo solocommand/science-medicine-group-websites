@@ -4,7 +4,7 @@ const MarkoWebSearch = require('@parameter1/base-cms-marko-web-search');
 const queryFragment = require('../graphql/fragments/website-directory-section-page');
 const directory = require('../templates/directory/index');
 
-module.exports = (app, rootAlias) => {
+module.exports = (app, rootAlias = 'directory') => {
   const config = new MarkoWebSearchConfig({
     resultsPerPage: { default: 18 },
     contentTypes: ['Company'],

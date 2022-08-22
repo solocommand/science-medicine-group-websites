@@ -44,12 +44,12 @@ $ const currentPage = search.getCurrentPage();
         <marko-web-search-filter-container title="Subcategories">
           <@title value="Subcategories" />
           $ const facetAlias = section.children.edges.length ? alias : section.parent.alias;
-          <global-directory-facet-block primary-alias=facetAlias search-query=search.input.searchQuery active-id=id />
+          <theme-directory-facet-block primary-alias=facetAlias search-query=search.input.searchQuery active-id=id />
         </marko-web-search-filter-container>
         <if(section.parent)>
           <div class="mt-block">
             <div class="company-search__title"> Company Search:</div>
-            <global-company-search-block />
+            <theme-company-search-block />
           </div>
         </if>
       </div>
@@ -59,11 +59,11 @@ $ const currentPage = search.getCurrentPage();
           <div class="row">
             <div class="col-md-6 mb-block">
               <div class="company-search__title"> Search Companies:</div>
-              <global-company-search-block />
+              <theme-company-search-block />
             </div>
             <div class="col-md-6 mb-block">
               <div class="section-search__title">Search Categories:</div>
-              <global-section-search-block section-ids=[id] include-self=false/>
+              <theme-section-search-block section-ids=[id] include-self=false/>
             </div>
           </div>
         </if>
