@@ -1,0 +1,127 @@
+.node-list {
+  $self: &;
+  &--directory-section-feed {
+    #{ $self }__node {
+      @include marko-web-node-list-border(border-bottom);
+    }
+    .section-feed-content-node {
+      flex-direction: row;
+      @include media-breakpoint-down(md) {
+        flex-direction: column-reverse;
+      }
+      &__image-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        margin-right: 15px;
+        @include media-breakpoint-up(md) {
+          width: auto;
+          height: auto;
+        }
+        a {
+          align-self: center;
+        }
+        @include media-breakpoint-down(md) {
+          margin-top: 15px;
+          margin-bottom: 15px;
+        }
+      }
+      &__image {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        border: none;
+      }
+      &__content-teaser {
+        margin-bottom: 15px;
+      }
+      &--listing-details,
+      &--contact-info {
+        display: flex;
+        flex-direction: column;
+        @include skin-typography($style: "teaser-text-1", $link-style: "primary", $breakpoint: sm);
+        word-break: break-word;
+      }
+      &__content-city-state-zip {
+        @include skin-typography($style: "teaser-text-1", $link-style: "primary", $breakpoint: sm);
+      }
+      &--contact-info {
+        a {
+          font-weight: $font-weight-bold;
+          color: $primary;
+        }
+      }
+    }
+  }
+  &--featured-listings {
+    #{ $self }__node {
+      padding: 15px 0;
+      margin: 0 15px 15px;
+      background-color: $white;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+    #{ $self }__header {
+      padding: 15px;
+      color: $white;
+      background-color: $primary;
+    }
+    .section-feed-content-node {
+      &__body {
+        margin: 0 15px;
+      }
+    }
+  }
+}
+.page-wrapper {
+  &__section {
+    .node-list--featured-listings {
+      background-color: $gray-100;
+      &:empty {
+        display: none;
+      }
+    }
+  }
+}
+.node-list--directory-section-feed + .node-list--directory-section-feed {
+  .node-list {
+    &__nodes{
+      padding-top: 0;
+    }
+  }
+}
+.directory-featured-listing {
+  &__toggle {
+    @include theme-toggle-button();
+    position: absolute;
+    top: .5rem;
+    right: .75rem;
+    padding: 0;
+    margin-left: auto;
+    .marko-web-icon svg {
+      fill: $white;
+    }
+    & > .icon {
+      @include theme-navbar-link-color(( active: $white, hover: $white, default: $white ));
+    }
+  }
+  &__item--wrapper {
+    .node-list {
+      &__nodes {
+        display: none;
+      }
+    }
+    &.directory-featured-listing {
+      &__item--open {
+        .node-list {
+          &__nodes {
+            display: initial;
+          }
+        }
+      }
+    }
+  }
+}
