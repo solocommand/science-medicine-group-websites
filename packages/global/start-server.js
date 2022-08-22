@@ -4,6 +4,7 @@ const { set, get } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
 
+const companySearchHandler = require('./company-search');
 const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
@@ -16,6 +17,8 @@ const routes = (siteRoutes, siteConfig) => (app) => {
   loadInquiry(app);
   // Shared/global routes (all sites)
   sharedRoutes(app, siteConfig);
+  // Handle request on /__company-search?searchQuery=CompanyName
+  companySearchHandler(app);
   // Load site routes
   siteRoutes(app);
 };
