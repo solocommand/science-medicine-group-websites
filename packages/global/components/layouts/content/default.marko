@@ -62,12 +62,8 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 force-display=forceDisplay
               />
             </else-if>
-            $ const requiresRegistration = get(content, "userRegistration.isCurentlyRequired");
-            $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
-            <marko-web-auth0-access|context|
-              requires-registration=requiresRegistration
-              required-access-level-ids=accessLevels
-            >
+            $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired");
+            <marko-web-auth0-access|context| requires-registration=requiresRegistration>
               <if(!context.canAccess)>
                 $ const body = getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
                 <marko-web-content-body block-name=blockName obj={ body } />
