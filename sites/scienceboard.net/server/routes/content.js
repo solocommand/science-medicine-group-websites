@@ -1,5 +1,4 @@
 const withContent = require('@science-medicine-group/package-global/middleware/with-content');
-const contentMeter = require('@science-medicine-group/package-global/middleware/content-meter');
 const queryFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
 const contact = require('@science-medicine-group/package-global/templates/content/contact');
 const company = require('../templates/content/company');
@@ -28,7 +27,7 @@ module.exports = (app) => {
     queryFragment,
   }));
 
-  app.get('/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)', contentMeter(), withContent({
+  app.get('/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)', withContent({
     template: content,
     queryFragment,
   }));
