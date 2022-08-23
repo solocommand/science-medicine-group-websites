@@ -14,7 +14,6 @@ $ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(typ
 $ const displayReadNext = showReadNextBlock && ["article"].includes(type);
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
 $ const displayComments = ["contact"].includes(type) ? false : false;
-$ const displayNewsletterSignup = ["contact"].includes(type) || showOverlay ? false : false;
 $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
 
 <global-content-wrapper-layout
@@ -184,10 +183,6 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                     section-id=primarySection.id
                     published=content.published
                   />
-                </if>
-
-                <if(displayNewsletterSignup)>
-                  <theme-newsletter-signup-banner-block />
                 </if>
 
                 <if(displaySocialShare)>
