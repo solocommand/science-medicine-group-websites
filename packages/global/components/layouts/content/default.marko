@@ -10,7 +10,6 @@ $ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
 $ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(type) ? false : true;
 $ const displayReadNext = showReadNextBlock && ["article"].includes(type);
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
-$ const displayComments = ["contact"].includes(type) ? false : false;
 $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type);
 
 <global-content-wrapper-layout
@@ -158,10 +157,6 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
               </else>
 
             </marko-web-identity-x-access>
-
-            <if(displayComments)>
-              <theme-identity-x-comment-stream content=content />
-            </if>
           </default-theme-page-contents>
         </div>
       </div>

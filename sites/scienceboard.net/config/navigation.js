@@ -23,7 +23,6 @@ const utilities = [
 ];
 
 const mobileMenu = {
-  user: [],
   primary: [
     ...topics,
   ],
@@ -36,7 +35,6 @@ const mobileMenu = {
 
 const desktopMenu = {
   about: [...utilities],
-  user: [],
   sections: [
     ...topics,
   ],
@@ -51,6 +49,22 @@ module.exports = {
       link: subscribe.href,
     },
   ],
+  user: {
+    items: [
+      {
+        href: '/__user/login',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      {
+        href: '/__user/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
+  },
   desktopMenu,
   mobileMenu,
   topics,

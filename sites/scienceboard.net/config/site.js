@@ -1,7 +1,6 @@
 const navigation = require('./navigation');
 const gam = require('./gam');
 const nativeX = require('./native-x');
-const identityX = require('./identity-x');
 const newsletter = require('./newsletter');
 const search = require('./search');
 
@@ -9,10 +8,6 @@ module.exports = {
   navigation,
   gam,
   nativeX,
-  identityX,
-  idxNavItems: {
-    enable: process.env.IDX_NAV_ENABLE || false,
-  },
   newsletter,
   search,
   company: 'Science and Medicine Group',
