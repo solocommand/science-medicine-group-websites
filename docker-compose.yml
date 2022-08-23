@@ -17,20 +17,18 @@ x-env-defaults: &env
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
   NODE_ENV: development
   TENANT_KEY: smg_all
-  OMEDA_APP_ID: ${OMEDA_APP_ID-(unset)}
-  OMEDA_INPUT_ID: ${OMEDA_INPUT_ID-(unset)}
   SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
   SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
   YARN_CACHE_FOLDER: /.yarn-cache
   IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN-(unset)}
   IDENTITYX_GRAPHQL_URI: ${IDENTITYX_GRAPHQL_URI-https://identity-x.parameter1.com/graphql}
   BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.leonis.base.parameter1.com/graphql}
-  EQUIPMENT_EXPERTS_GRAPHQL_URI: ${EQUIPMENT_EXPERTS_GRAPHQL_URI-https://equipment-experts.virgon.base.parameter1.com/graphql}
-  ENABLE_CONTENT_METER: ${ENABLE_CONTENT_METER-false}
-  IDX_NAV_ENABLE: ${IDX_NAV_ENABLE-false}
 
   RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-}
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-}
+
+  AUTH0_SECRET: ${AUTH0_SECRET-this-isnt-very-secure}
+  AUTH0_ISSUER_URL: ${AUTH0_ISSUER_URL}
 
 x-env-virgon-dev: &env-virgon-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
@@ -83,6 +81,8 @@ services:
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
       SITE_ID: 63038dcdd15c7c4b2e8b4588
+      AUTH0_CLIENTID: ${AUTH0_CLIENTID_SAB}
+      AUTH0_BASEURL: http://www-smg-sab.dev.parameter1.com:9951
     hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
@@ -98,6 +98,8 @@ services:
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
       SITE_ID: 62fc0ab6475dbd28008b459b
+      AUTH0_CLIENTID: ${AUTH0_CLIENTID_LAB}
+      AUTH0_BASEURL: http://www-smg-lab.dev.parameter1.com:9952
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"

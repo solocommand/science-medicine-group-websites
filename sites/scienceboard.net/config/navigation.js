@@ -52,13 +52,13 @@ module.exports = {
   user: {
     items: [
       {
-        href: '/__user/login',
+        href: '/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
       },
       {
-        href: '/__user/logout',
+        href: '/logout',
         label: 'Sign Out',
         when: 'logged-in',
         modifiers: ['user'],

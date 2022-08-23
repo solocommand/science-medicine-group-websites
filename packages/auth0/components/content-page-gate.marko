@@ -1,11 +1,6 @@
-import { getAsObject } from "@parameter1/base-cms-object-path";
-import defaultValue  from "@parameter1/base-cms-marko-core/utils/default-value";
-
-$ const { req, site, config } = out.global;
-$ const isEnabled = site.get("auth0.clientID");
-$ const isLoggedIn = req.oidc ? req.oidc.isAuthenticated() : false;
-$ const blockName = "content-page-gate";
+$ const { config } = out.global;
 $ const { canAccess } = input;
+$ const blockName = "content-page-gate";
 
 <marko-web-block name=blockName>
   <if(!canAccess)>
@@ -19,7 +14,7 @@ $ const { canAccess } = input;
     <marko-web-element name="form-wrapper" block-name=blockName>
       <marko-web-link
         class=`btn btn-primary ${blockName}__login-btn`
-        href="/__user/login"
+        href="/login"
         title="Log In"
       >
         Log In
