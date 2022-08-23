@@ -1,15 +1,17 @@
-const navigation = require('./navigation');
 const gam = require('./gam');
 const nativeX = require('./native-x');
+const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
 
 module.exports = {
-  navigation,
+  // Module configs
   gam,
   nativeX,
+  navigation,
   newsletter,
   search,
+  // Site configs
   company: 'Science and Medicine Group',
   p1events: {
     tenant: 'smg',

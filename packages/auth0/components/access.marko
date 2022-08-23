@@ -1,0 +1,6 @@
+$ const { req, site } = out.global;
+$ const isEnabled = site.get("auth0.clientID");
+$ const hasUser = req.oidc ? req.oidc.isAuthenticated() : false;
+$ const canAccess = (input.requiresRegistration === false) || hasUser;
+
+<${input.renderBody} is-enabled=isEnabled can-access=canAccess />

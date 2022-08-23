@@ -3,6 +3,7 @@ const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
+const auth0 = require('@science-medicine-group/package-auth0');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -46,6 +47,9 @@ module.exports = (options = {}) => {
       // Use paginated middleware
       app.use(htmlSitemapPagination());
 
+      // Use Auth0 middleware
+      const auth0Config = getAsObject(options, 'siteConfig.auth0');
+      auth0(app, auth0Config);
 
       // Setup GAM.
       const gamConfig = get(options, 'siteConfig.gam');

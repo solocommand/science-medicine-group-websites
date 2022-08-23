@@ -62,9 +62,10 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 force-display=forceDisplay
               />
             </else-if>
+            $ const requiresRegistration = get(content, "userRegistration.isCurentlyRequired");
             $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
-            <marko-web-identity-x-access|context|
-              enabled=requiresRegistration
+            <marko-web-auth0-access|context|
+              requires-registration=requiresRegistration
               required-access-level-ids=accessLevels
             >
               <if(!context.canAccess)>
@@ -72,15 +73,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 <marko-web-content-body block-name=blockName obj={ body } />
 
                 <div class="content-page-preview-overlay" />
-                <theme-content-page-gate
-                  can-access=context.canAccess
-                  is-logged-in=context.isLoggedIn
-                  has-required-access-level=context.hasRequiredAccessLevel
-                  requires-access-level=context.requiresAccessLevel
-                  requires-user-input=context.requiresUserInput
-                  messages=context.messages
-                />
-              </else-if>
+                <marko-web-auth0-content-page-gate can-access=context.canAccess />
               </if>
               <else>
 
@@ -156,7 +149,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 </if>
               </else>
 
-            </marko-web-identity-x-access>
+            </marko-web-auth0-access>
           </default-theme-page-contents>
         </div>
       </div>

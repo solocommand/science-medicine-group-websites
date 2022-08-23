@@ -1,0 +1,29 @@
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import defaultValue  from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { req, site, config } = out.global;
+$ const isEnabled = site.get("auth0.clientID");
+$ const isLoggedIn = req.oidc ? req.oidc.isAuthenticated() : false;
+$ const blockName = "content-page-gate";
+$ const { canAccess } = input;
+
+<marko-web-block name=blockName>
+  <if(!canAccess)>
+    <marko-web-element tag="h5" name="title" block-name=blockName>
+      Log in to view the full article
+    </marko-web-element>
+    <marko-web-element name="body" block-name=blockName>
+      <p>Register on ${config.website("name")} and gain access to premium content, including this article and much more. To get started, click the button below.</p>
+    </marko-web-element>
+
+    <marko-web-element name="form-wrapper" block-name=blockName>
+      <marko-web-link
+        class=`btn btn-primary ${blockName}__login-btn`
+        href="/__user/login"
+        title="Log In"
+      >
+        Log In
+      </marko-web-link>
+    </marko-web-element>
+  </if>
+</marko-web-block>
