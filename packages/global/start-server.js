@@ -3,7 +3,6 @@ const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
-const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
 
 const document = require('./components/document');
