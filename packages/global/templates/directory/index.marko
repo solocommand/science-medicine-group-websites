@@ -1,9 +1,10 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import { getAsArray } from "@parameter1/base-cms-object-path";
 
 import queryFragment from "../../graphql/fragments/directory-section-featured-feed-block";
 
 $ const { id, alias, name, pageNode } = input;
-$ const { $markoWebSearch: search } = out.global;
+$ const { $markoWebSearch: search, GAM } = out.global;
 $ const sortField = (search.input.searchQuery) ? undefined : "NAME";
 $ const sortOrder = (search.input.searchQuery) ? undefined : "ASC";
 $ const currentPage = search.getCurrentPage();
@@ -38,7 +39,7 @@ $ const currentPage = search.getCurrentPage();
             modifiers=["inline-section-feed"]
           />
         </@section>
-        <@section|{ blockName, section }|>
+        <@section|{ blockName }|>
           <theme-breadcrumbs modifiers=["directory", "content-page"]>
             $ const children = getAsArray(section, "hierarchy");
             <for|child| of=children>
@@ -54,7 +55,7 @@ $ const currentPage = search.getCurrentPage();
           </marko-web-website-section-name>
           <marko-web-website-section-description block-name=blockName obj=section />
         </@section>
-        <@section|{ blockName, section }|>
+        <@section|{ blockName }|>
           <div class="row">
             <div class="col-lg-3">
               <marko-web-search-filter-container title="Subcategories">
