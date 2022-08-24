@@ -15,8 +15,5 @@
   },
   "devDependencies": {
     "express": "^4.17.1"
-  },
-  "resolutions": {
-    "compress-brotli": "1.2.2"
   }
 }
