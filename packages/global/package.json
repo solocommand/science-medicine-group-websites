@@ -43,7 +43,7 @@
     "html-entities": "^2.1.0",
     "http-errors": "^1.7.3",
     "moment": "^2.29.1",
-    "newrelic": "^6.4.1",
+    "newrelic": "^6.14.0",
     "node-fetch": "^2.6.1",
     "object-path": "^0.11.5",
     "slug": "^4.0.2"
