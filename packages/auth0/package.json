@@ -1,0 +1,22 @@
+{
+  "name": "@science-medicine-group/package-auth0",
+  "version": "0.3.3",
+  "author": "Josh Worden <josh@parameter1.com>",
+  "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/auth0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "express-openid-connect": "^2.8.0",
+    "@parameter1/base-cms-marko-web": "^3.0.0"
+  },
+  "devDependencies": {
+    "express": "^4.17.1"
+  },
+  "resolutions": {
+    "compress-brotli": "1.2.2"
+  }
+}

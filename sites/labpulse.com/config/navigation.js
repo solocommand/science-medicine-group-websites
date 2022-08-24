@@ -94,7 +94,20 @@ module.exports = {
     },
   ],
   user: {
-    items: [],
+    items: [
+      {
+        href: '/login',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      {
+        href: '/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
   },
   mobileMenu,
   topics,
