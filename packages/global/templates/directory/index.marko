@@ -31,14 +31,6 @@ $ const currentPage = search.getCurrentPage();
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper>
-        <@section|{ aliases }| modifiers=["first"]>
-          <theme-gam-define-display-ad
-            name="inline-content-desktop"
-            position="section_page"
-            aliases=input.aliases
-            modifiers=["inline-section-feed"]
-          />
-        </@section>
         <@section|{ blockName }|>
           <theme-breadcrumbs modifiers=["directory", "content-page"]>
             $ const children = getAsArray(section, "hierarchy");
@@ -84,6 +76,50 @@ $ const currentPage = search.getCurrentPage();
                   </div>
                 </div>
               </if>
+              <if(currentPage === 1)>
+                $ const featuredQueryParams = {
+                  sectionAlias: alias,
+                  limit: 25,
+                  optionName: 'Pinned' ,
+                  queryFragment,
+                }
+                <marko-web-query|{ nodes: featuredNodes }| name='website-scheduled-content' params=featuredQueryParams>
+                  <if(featuredNodes.length)>
+                    <div class="directory-featured-listing__item--wrapper directory-featured-listing__item--open">
+                      <marko-web-node-list
+                        inner-justified=false
+                        flush-x=false
+                        flush-y=false
+                        modifiers=["directory-section-feed", "featured-listings"]
+                      >
+                        <@header>
+                          Featured
+                          <theme-menu-toggle-button
+                            class='directory-featured-listing__toggle'
+                            targets=['.directory-featured-listing__item--wrapper']
+                            toggle-class='directory-featured-listing__item--open'
+                            initially-expanded=true
+                            icon-modifiers=["sm"]
+                            icon-name="chevron-up"
+                            expanded-icon-name="chevron-down"
+                          />
+                        </@header>
+                        <@nodes nodes=featuredNodes>
+                          <@slot|{ node }|>
+                            <theme-directory-section-feed-content-node
+                              node=node
+                              with-dates=false
+                              is-featured=true
+                              with-teaser=true
+                            />
+                          </@slot>
+                        </@nodes>
+                      </marko-web-node-list>
+                    </div>
+                  </if>
+                </marko-web-query>
+              </if>
+
               <marko-web-search-query|{ nodes, totalCount }|
                 limit=search.getLimit()
                 skip=search.getSkip()
@@ -105,7 +141,7 @@ $ const currentPage = search.getCurrentPage();
                       >
                         <@nodes nodes=nodes>
                           <@slot|{ node }|>
-                            <theme-directory-section-feed-content-node node=node is-featured=true with-teaser=true display-image=true with-dates=true />
+                            <theme-directory-section-feed-content-node node=node is-featured=false with-teaser=true display-image=false with-dates=false />
                           </@slot>
                         </@nodes>
                       </marko-web-node-list>
