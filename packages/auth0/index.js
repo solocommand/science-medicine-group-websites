@@ -15,6 +15,7 @@ const config = {
   clientID: AUTH0_CLIENTID,
   issuerBaseURL: AUTH0_ISSUER_URL,
   secret: AUTH0_SECRET,
+  routes: { login: false },
 };
 
 module.exports = (app) => {
@@ -24,6 +25,12 @@ module.exports = (app) => {
       next();
     });
     app.use(auth(config));
+
+    // Redirect after login if `returnTo` URL parameter is present.
+    app.get('/login', (req, res) => {
+      const returnTo = req.query.returnTo || config.baseURL;
+      res.oidc.login({ returnTo });
+    });
   } else {
     log('Unable to configure Auth0!', config);
   }
