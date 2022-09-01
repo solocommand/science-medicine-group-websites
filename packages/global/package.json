@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/package-global",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "author": "Brandon Krigbaum <brandon@parameter1.com>",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/global",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "@parameter1/base-cms-web-cli": "^3.0.0",
     "@parameter1/base-cms-web-common": "^3.0.0",
     "@parameter1/omeda-graphql-client-express": "^0.4.2",
-    "@science-medicine-group/package-auth0": "^0.4.0",
+    "@science-medicine-group/package-auth0": "^0.4.2",
     "@trevoreyre/autocomplete-vue": "^2.2.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.10",
@@ -44,7 +44,7 @@
     "html-entities": "^2.1.0",
     "http-errors": "^1.7.3",
     "moment": "^2.29.1",
-    "newrelic": "^6.4.1",
+    "newrelic": "^6.14.0",
     "node-fetch": "^2.6.1",
     "object-path": "^0.11.5",
     "slug": "^4.0.2"

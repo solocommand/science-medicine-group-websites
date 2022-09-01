@@ -1,6 +1,7 @@
-$ const { config } = out.global;
+$ const { config, req } = out.global;
 $ const { canAccess } = input;
 $ const blockName = "content-page-gate";
+$ const loginUrl = `/login?returnTo=${encodeURIComponent(req.originalUrl)}`;
 
 <marko-web-block name=blockName>
   <if(!canAccess)>
@@ -14,7 +15,7 @@ $ const blockName = "content-page-gate";
     <marko-web-element name="form-wrapper" block-name=blockName>
       <marko-web-link
         class=`btn btn-primary ${blockName}__login-btn`
-        href="/login"
+        href=loginUrl
         title="Log In"
       >
         Log In
