@@ -9,10 +9,15 @@
 // @import "../../node_modules/@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
 // @import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
 
+// package component css inclusions
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
 
 // skin components
 @import "./components/section-feed-upcoming";
 @import "./components/content-meter";
+@import "./components/directory-section-feed";
 @import "./components/site-footer";
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
@@ -211,6 +216,10 @@ label {
         margin-left: -16px;
       }
     }
+  }
+  .details__image {
+    clear: both;
+    float: right;
   }
 }
 

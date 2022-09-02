@@ -56,7 +56,7 @@ module.exports = {
   //   userName: 'randallreilly',
   // },
   inquiry: {
-    enabled: false,
+    enabled: true,
     directSend: false,
     sendTo: 'support@parameter1.com',
     sendFrom: 'LabPulse.com <noreply@parameter1.com>',
