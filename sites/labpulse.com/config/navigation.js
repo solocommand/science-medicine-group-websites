@@ -22,8 +22,8 @@ const secondary = [
 
 const businessInsights = [
   { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
-  { href: '/business-insights/trends-and-finance', label: 'Trends and Finance' },
-  { href: '/business-insights/policy-and-regulation', label: 'Policy and Regulation' },
+  { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
+  { href: '/business-insights/policy-and-regulation', label: 'Policy & Regulation' },
 ];
 
 const researchDevelopment = [
@@ -38,7 +38,7 @@ const diagnosticTechnologies = [
   { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
   { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
   { href: '/diagnostic-technologies/emerging-technology', label: 'Emerging Technology' },
-  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology and AI' },
+  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology & AI' },
 ];
 
 const diseases = [
