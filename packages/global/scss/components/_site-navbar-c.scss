@@ -97,26 +97,25 @@
           text-transform: initial;
           &--active {
             color: $theme-site-navbar-primary-link-active-color;
-            font-weight: 700;
             text-decoration: none;
             text-shadow: none;
           }
         }
         &__items {
-          justify-content: space-between;
+          justify-content: center;
         }
       }
       .site-navbar {
         &__item {
           flex-grow: unset;
-          padding-right: 0;
-          padding-left: 0;
+          padding-right: 12px;
+          padding-left: 12px;
         }
       }
     }
     &__items {
       &--primary {
-        font-size: 15px;
+        font-size: 13px;
       }
     }
     &--secondary {
@@ -124,7 +123,9 @@
       #{ $self } {
         &__items {
           margin-top: initial;
-          font-size: 12px;
+          font-size: 13px;
+          font-weight: 500;
+          text-transform: none;
         }
         &__link {
           padding: 0 12px;
