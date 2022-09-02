@@ -15,7 +15,7 @@ module.exports = (app) => {
   content(app);
 
   // Directory Pages have to happen after content or they wont match
-  directory(app, 'vendor-connect');
+  directory(app, 'resources/vendors');
 
   // Website Sections
   websiteSections(app);
