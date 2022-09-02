@@ -5,7 +5,7 @@ const privacyPolicy = require('./privacy-policy');
 
 const topics = [
   { href: '/business-insights', label: 'Business Insights' },
-  { href: '/research-and-development', label: 'Research and Development' },
+  { href: '/research-and-development', label: 'Research & Development' },
   { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
   { href: '/diseases', label: 'Diseases' },
   // { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },

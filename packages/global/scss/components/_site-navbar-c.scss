@@ -97,7 +97,7 @@
           text-transform: initial;
           &--active {
             color: $theme-site-navbar-primary-link-active-color;
-            font-weight: 700;
+            font-weight: 500;
             text-decoration: none;
             text-shadow: none;
           }
@@ -116,7 +116,7 @@
     }
     &__items {
       &--primary {
-        font-size: 15px;
+        font-size: 13px;
       }
     }
     &--secondary {
@@ -124,7 +124,9 @@
       #{ $self } {
         &__items {
           margin-top: initial;
-          font-size: 12px;
+          font-size: 13px;
+          font-weight: 500;
+          text-transform: none;
         }
         &__link {
           padding: 0 12px;
