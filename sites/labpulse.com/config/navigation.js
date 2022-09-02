@@ -36,7 +36,6 @@ const diagnosticTechnologies = [
   { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
   { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
   { href: '/diagnostic-technologies/emerging-technology', label: 'Emerging Technology' },
-  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology & AI' },
 ];
 
 const diseases = [
@@ -48,15 +47,10 @@ const diseases = [
   { href: '/diseases/infectious', label: 'Infectious' },
 ];
 
-const pointOfCareTesting = [
-  { href: '/point-of-care-testing/home', label: 'Home' },
-  { href: '/point-of-care-testing/hospital', label: 'Hospital' },
-  { href: '/point-of-care-testing/urgent-care-doctors-office', label: 'Urgent Care / Doctor\'s Office' },
-];
-
 const resources = [
   { href: '/resources/people-in-the-news', label: 'People in the News' },
   { href: '/resources/cases', label: 'Cases' },
+  { href: '/point-of-care-testing', label: 'Point of Care Testing' },
 ];
 
 const mobileMenu = {
@@ -150,16 +144,6 @@ module.exports = {
         ],
       },
     },
-    {
-      when: ['/point-of-care-testing'],
-      secondary: { items: [...topics] },
-      tertiary: { items: [] },
-      primary: {
-        items: [
-          ...pointOfCareTesting,
-        ],
-      },
-    },
   ],
   toggleMenu: {
     col1: {
@@ -187,7 +171,6 @@ module.exports = {
       label: 'Resources',
       items: [
         ...resources,
-        ...pointOfCareTesting,
       ],
     },
   },
