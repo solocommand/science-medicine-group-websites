@@ -8,14 +8,8 @@ const topics = [
   { href: '/research-and-development', label: 'Research & Development' },
   { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
   { href: '/diseases', label: 'Diseases' },
+  { href: '/resources', label: 'Resources' },
   // { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
-  // { href: '/resources', label: 'Resources' },
-];
-
-const secondary = [
-  { href: '/resources/webinars', label: 'Webinars' },
-  { href: '/resources/video', label: 'Video' },
-  { href: '/resources/conferences', label: 'Conferences' },
 ];
 
 const businessInsights = [
@@ -48,9 +42,13 @@ const diseases = [
 ];
 
 const resources = [
-  { href: '/resources/people-in-the-news', label: 'People in the News' },
+  { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/cases', label: 'Cases' },
-  { href: '/point-of-care-testing', label: 'Point of Care Testing' },
+  { href: '/resources/conferences', label: 'Conferences' },
+  { href: '#', label: 'Showcasts' },
+  { href: '/resources/vendors', label: 'Vendors' },
+  { href: '/resources/video', label: 'Video' },
+  { href: '/resources/webinars', label: 'Webinars' },
 ];
 
 const mobileMenu = {
@@ -58,7 +56,7 @@ const mobileMenu = {
     ...topics,
   ]),
   secondary: sortNavItems([
-    ...secondary,
+    ...resources,
     subscribe,
   ]),
 };
@@ -92,7 +90,7 @@ module.exports = {
   topics,
   primary: {
     items: sortNavItems([
-      ...secondary,
+      ...resources,
     ]),
   },
   secondary: {
@@ -141,6 +139,16 @@ module.exports = {
       primary: {
         items: [
           ...researchDevelopment,
+        ],
+      },
+    },
+    {
+      when: ['/resources'],
+      secondary: { items: [...topics] },
+      tertiary: { items: [] },
+      primary: {
+        items: [
+          ...resources,
         ],
       },
     },
