@@ -3,14 +3,6 @@ const sortNavItems = require('@science-medicine-group/package-global/utils/sort-
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
-const topics = [
-  { href: '/business-insights', label: 'Business Insights' },
-  { href: '/research-and-development', label: 'Research & Development' },
-  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
-  { href: '/diseases', label: 'Diseases' },
-  // { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
-];
-
 const businessInsights = [
   { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
   { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
@@ -50,6 +42,14 @@ const resources = [
   { href: '/resources/vendors', label: 'Vendors' },
   { href: '/resources/video', label: 'Video' },
   { href: '/resources/webinars', label: 'Webinars' },
+];
+
+const topics = [
+  { href: '/business-insights', label: 'Business Insights', children: businessInsights },
+  { href: '/research-and-development', label: 'Research & Development', children: researchDevelopment },
+  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies', children: diagnosticTechnologies },
+  { href: '/diseases', label: 'Diseases', children: diseases },
+  // { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
 ];
 
 const mobileMenu = {
