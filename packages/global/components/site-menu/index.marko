@@ -131,9 +131,23 @@ $ const hasUser = defaultValue(input.hasUser, false);
   </marko-web-element>
   <!-- mobile -->
   <marko-web-element block-name=blockName name="contents-mobile">
-    <!-- primary section -->
-    <!-- Identity X navigation Items -->
-    <default-theme-site-menu-section
+    <theme-site-menu-section
+      tag="nav"
+      block-name=blockName
+      items=site.getAsArray("navigation.mobileMenu.primary")
+      modifiers=["primary"]
+      reg-enabled=regEnabled
+      has-user=hasUser
+    />
+    <theme-site-menu-section
+      tag="nav"
+      block-name=blockName
+      items=site.getAsArray("navigation.mobileMenu.secondary")
+      modifiers=["secondary"]
+      reg-enabled=regEnabled
+      has-user=hasUser
+    />
+    <theme-site-menu-section
       tag="nav"
       block-name=blockName
       items=site.getAsArray("navigation.user.items")
@@ -143,23 +157,5 @@ $ const hasUser = defaultValue(input.hasUser, false);
     />
     <!-- social -->
     <social-icons block-name=blockName />
-    <!-- primary section -->
-    <default-theme-site-menu-section
-      tag="nav"
-      block-name=blockName
-      items=site.getAsArray("navigation.mobileMenu.primary")
-      modifiers=["primary"]
-      reg-enabled=regEnabled
-      has-user=hasUser
-    />
-    <!-- secondary section -->
-    <default-theme-site-menu-section
-      tag="nav"
-      block-name=blockName
-      items=site.getAsArray("navigation.mobileMenu.secondary")
-      modifiers=["secondary"]
-      reg-enabled=regEnabled
-      has-user=hasUser
-    />
   </marko-web-element>
 </marko-web-block>
