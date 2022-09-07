@@ -20,7 +20,7 @@ $ const hasUser = defaultValue(input.hasUser, false);
     <div class="row">
       <div class="d-none d-md-flex col-md-2">
         <!-- sections -->
-        <default-theme-site-menu-section
+        <theme-site-menu-section
           tag="nav"
           block-name=blockName
           label=site.get("navigation.toggleMenu.col1.label")
@@ -32,7 +32,7 @@ $ const hasUser = defaultValue(input.hasUser, false);
       </div>
       <div class="d-none d-md-flex col-md-2">
         <!-- sections -->
-        <default-theme-site-menu-section
+        <theme-site-menu-section
           tag="nav"
           block-name=blockName
           label=site.get("navigation.toggleMenu.col2.label")
@@ -43,7 +43,7 @@ $ const hasUser = defaultValue(input.hasUser, false);
         />
       </div>
       <div class="d-none d-md-flex col-md-2">
-        <default-theme-site-menu-section
+        <theme-site-menu-section
           tag="nav"
           block-name=blockName
           label=site.get("navigation.toggleMenu.col3.label")
@@ -54,7 +54,7 @@ $ const hasUser = defaultValue(input.hasUser, false);
         />
       </div>
       <div class="d-none d-md-flex col-md-2">
-        <default-theme-site-menu-section
+        <theme-site-menu-section
           tag="nav"
           block-name=blockName
           label=site.get("navigation.toggleMenu.col4.label")
@@ -65,7 +65,7 @@ $ const hasUser = defaultValue(input.hasUser, false);
         />
       </div>
       <div class="d-none d-md-flex col-md-2">
-        <default-theme-site-menu-section
+        <theme-site-menu-section
           tag="nav"
           block-name=blockName
           label=site.get("navigation.toggleMenu.col5.label")
@@ -82,10 +82,10 @@ $ const hasUser = defaultValue(input.hasUser, false);
           tag="nav"
           modifiers=["primary"]
         >
-          <default-theme-site-menu-header block-name=blockName>
+          <theme-site-menu-header block-name=blockName>
             User Tools
-          </default-theme-site-menu-header>
-          <default-theme-site-menu-section
+          </theme-site-menu-header>
+          <theme-site-menu-section
             tag="nav"
             block-name=blockName
             items=site.getAsArray("navigation.user.items")
@@ -96,37 +96,6 @@ $ const hasUser = defaultValue(input.hasUser, false);
           <social-icons block-name=blockName title="Follow Us" />
         </marko-web-element>
       </div>
-      <!-- <div class="d-none d-md-flex col-md-2">
-        <marko-web-element
-          block-name=blockName
-          name="section"
-          tag="nav"
-          modifiers=["primary"]
-        >
-          <default-theme-site-menu-header block-name=blockName>
-            ${ site.get("navigation.toggleMenu.col4.label")}
-          </default-theme-site-menu-header>
-          <default-theme-site-navbar-items
-            block-name=blockName
-            items=site.getAsArray("navigation.toggleMenu.col4.items")
-            reg-enabled=regEnabled
-            has-user=hasUser
-          />
-          <div class="mt-block"/>
-          <default-theme-site-menu-header block-name=blockName>
-            User Tools
-          </default-theme-site-menu-header>
-          <default-theme-site-menu-section
-            tag="nav"
-            block-name=blockName
-            items=site.getAsArray("navigation.user.items")
-            modifiers=["user"]
-            reg-enabled=regEnabled
-            has-user=hasUser
-          />
-          <social-icons block-name=blockName title="Follow Us" />
-        </marko-web-element>
-      </div> -->
     </div>
   </marko-web-element>
   <!-- mobile -->
