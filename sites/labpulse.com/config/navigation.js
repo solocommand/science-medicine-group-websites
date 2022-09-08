@@ -3,21 +3,6 @@ const sortNavItems = require('@science-medicine-group/package-global/utils/sort-
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
-const topics = [
-  { href: '/business-insights', label: 'Business Insights' },
-  { href: '/research-and-development', label: 'Research & Development' },
-  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
-  { href: '/diseases', label: 'Diseases' },
-  // { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
-  // { href: '/resources', label: 'Resources' },
-];
-
-const secondary = [
-  { href: '/resources/webinars', label: 'Webinars' },
-  { href: '/resources/video', label: 'Video' },
-  { href: '/resources/conferences', label: 'Conferences' },
-];
-
 const businessInsights = [
   { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
   { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
@@ -36,21 +21,35 @@ const diagnosticTechnologies = [
   { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
   { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
   { href: '/diagnostic-technologies/emerging-technology', label: 'Emerging Technology' },
+  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology & AI' },
 ];
 
 const diseases = [
   { href: '/diseases/autoimmune', label: 'Autoimmune' },
-  { href: '/diseases/cancers', label: 'Cancers' },
+  { href: '/diseases/cancer', label: 'Cancer' },
   { href: '/diseases/cardiovascular', label: 'Cardiovascular' },
   { href: '/diseases/covid-19', label: 'Covid-19' },
-  { href: '/diseases/health-topics', label: 'Health Topics' },
   { href: '/diseases/infectious', label: 'Infectious' },
+  { href: '/diseases/health-topics', label: 'Health Topics' },
 ];
 
 const resources = [
-  { href: '/resources/people-in-the-news', label: 'People in the News' },
+  { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/cases', label: 'Cases' },
-  { href: '/point-of-care-testing', label: 'Point of Care Testing' },
+  { href: '/resources/conferences', label: 'Conferences' },
+  { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
+  { href: '#', label: 'Showcasts' },
+  { href: '/resources/vendors', label: 'Vendors' },
+  { href: '/resources/video', label: 'Video' },
+  { href: '/resources/webinars', label: 'Webinars' },
+];
+
+const topics = [
+  { href: '/business-insights', label: 'Business Insights', children: businessInsights },
+  { href: '/research-and-development', label: 'Research & Development', children: researchDevelopment },
+  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies', children: diagnosticTechnologies },
+  { href: '/diseases', label: 'Diseases', children: diseases },
+  // { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
 ];
 
 const mobileMenu = {
@@ -58,8 +57,8 @@ const mobileMenu = {
     ...topics,
   ]),
   secondary: sortNavItems([
-    ...secondary,
-    subscribe,
+    ...resources,
+    // subscribe,
   ]),
 };
 
@@ -92,12 +91,13 @@ module.exports = {
   topics,
   primary: {
     items: sortNavItems([
-      ...secondary,
+      ...resources,
     ]),
   },
   secondary: {
     items: [
       ...topics,
+      { href: '/resources', label: 'Resources' },
     ],
   },
   tertiary: {
@@ -144,30 +144,44 @@ module.exports = {
         ],
       },
     },
+    {
+      when: ['/resources'],
+      secondary: { items: [...topics] },
+      tertiary: { items: [] },
+      primary: {
+        items: [
+          ...resources,
+        ],
+      },
+    },
   ],
   toggleMenu: {
     col1: {
       label: 'Business Insights',
       items: [
         ...sortNavItems(businessInsights),
-        { href: '/business-insites', label: 'View all &raquo;' },
+
       ],
     },
     col2: {
-      label: 'Diagnostic Tech',
+      label: 'Research & Development',
       items: [
-        ...sortNavItems(diagnosticTechnologies).slice(0, 10),
-        { href: '/diagnostic-technologies', label: 'View all &raquo;' },
+        ...sortNavItems(researchDevelopment),
       ],
     },
     col3: {
-      label: 'Diseases',
+      label: 'Diagnostic Technologies',
       items: [
-        ...sortNavItems(diseases).slice(0, 10),
-        { href: '/diseases', label: 'View all &raquo;' },
+        ...sortNavItems(diagnosticTechnologies),
       ],
     },
     col4: {
+      label: 'Diseases',
+      items: [
+        ...sortNavItems(diseases),
+      ],
+    },
+    col5: {
       label: 'Resources',
       items: [
         ...resources,

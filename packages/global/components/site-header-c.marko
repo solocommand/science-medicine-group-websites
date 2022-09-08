@@ -18,6 +18,7 @@ $ const navigation = {
   primary: getNavItems("primary.items"),
   secondary: getNavItems("secondary.items"),
   tertiary: getNavItems("tertiary.items"),
+  user: getNavItems("user.items"),
 };
 
 <marko-web-block
@@ -61,6 +62,12 @@ $ const navigation = {
           before="Subscribe"
         />
       </if> -->
+      <default-theme-site-navbar-items
+        items=navigation.user
+        modifiers=["user"]
+        reg-enabled=input.regEnabled
+        has-user=input.hasUser
+      />
       <marko-web-link href="/search">
         <button class="btn btn-lg" type="submit" aria-label="Search">
           <marko-web-icon name="search" modifiers=["dark"] />

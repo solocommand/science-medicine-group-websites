@@ -467,4 +467,20 @@ label {
       }
     }
   }
+  &__contents-desktop {
+    .social-follow__header,
+    #{ $self }__header,
+    #{ $self }__link {
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .social-follow__header,
+    #{ $self }__header {
+      font-weight: 500;
+    }
+    .marko-web-icon--social-follow svg {
+      height: 24px;
+      width: 24px;
+    }
+  }
 }
