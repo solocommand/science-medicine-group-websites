@@ -139,5 +139,22 @@
       padding-left: 20px;
       padding-right: 20px;
     }
+    &__items--user {
+      font-size: 13px;
+      margin-top: initial;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-transform: initial;
+      a,
+      a:hover,
+      a:active,
+      a:visited {
+        color: $theme-site-navbar-primary-link-color;
+      }
+      @media (max-width: map-get($theme-site-header-breakpoints, hide-secondary)) {
+        display: none;
+      }
+    }
   }
 }
