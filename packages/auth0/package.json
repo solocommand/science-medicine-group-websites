@@ -10,7 +10,7 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-web": "^3.0.0",
+    "@parameter1/base-cms-marko-web": "^3.2.2",
     "express-openid-connect": "^2.8.0"
   },
   "devDependencies": {
