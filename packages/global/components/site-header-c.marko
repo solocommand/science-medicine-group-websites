@@ -18,7 +18,6 @@ $ const navigation = {
   primary: getNavItems("primary.items"),
   secondary: getNavItems("secondary.items"),
   tertiary: getNavItems("tertiary.items"),
-  user: getNavItems("user.items"),
 };
 
 <marko-web-block
@@ -63,7 +62,7 @@ $ const navigation = {
         />
       </if> -->
       <default-theme-site-navbar-items
-        items=navigation.user
+        items=site.getAsArray("navigation.user.items")
         modifiers=["user"]
         reg-enabled=input.regEnabled
         has-user=input.hasUser
