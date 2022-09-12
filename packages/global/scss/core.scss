@@ -300,10 +300,20 @@ label {
     }
   }
 }
-.content-page-header {
-  max-width: none;
-  margin-right: 0;
-  margin-left: 0;
+.page {
+  .content-page-header {
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  &--content-page {
+    .content-page-header {
+      max-width: 700px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
 }
 
 .ad-container {
