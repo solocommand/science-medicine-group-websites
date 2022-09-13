@@ -60,7 +60,7 @@ $ const tagline = site.get("tagline");
       </if>
 
       <div class="row">
-        <div class=`col-md-${site.get("navigation.footer.col1.colspan")}`>
+        <div class=`col-md-${site.get("navigation.footer.col1.colspan") || 2}`>
           <!-- sections -->
           <theme-site-menu-section
             tag="nav"
@@ -72,7 +72,7 @@ $ const tagline = site.get("tagline");
             has-user=hasUser
           />
         </div>
-        <div class=`col-md-${site.get("navigation.footer.col2.colspan")}`>
+        <div class=`col-md-${site.get("navigation.footer.col2.colspan") || 2}`>
           <!-- sections -->
           <theme-site-menu-section
             tag="nav"
@@ -84,7 +84,7 @@ $ const tagline = site.get("tagline");
             has-user=hasUser
           />
         </div>
-        <div class=`col-md-${site.get("navigation.footer.col3.colspan")}`>
+        <div class=`col-md-${site.get("navigation.footer.col3.colspan") || 2}`>
           <theme-site-menu-section
             tag="nav"
             block-name="site-footer-nav"
@@ -95,7 +95,7 @@ $ const tagline = site.get("tagline");
             has-user=hasUser
           />
         </div>
-        <div class=`col-md-${site.get("navigation.footer.col4.colspan")}`>
+        <div class=`col-md-${site.get("navigation.footer.col4.colspan") || 2}`>
           <theme-site-menu-section
             tag="nav"
             block-name="site-footer-nav"
@@ -106,7 +106,7 @@ $ const tagline = site.get("tagline");
             has-user=hasUser
           />
         </div>
-        <div class=`col-md-${site.get("navigation.footer.col5.colspan")}`>
+        <div class=`col-md-${site.get("navigation.footer.col5.colspan") || 2}`>
           <theme-site-menu-section
             tag="nav"
             block-name="site-footer-nav"

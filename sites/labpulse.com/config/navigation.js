@@ -190,7 +190,6 @@ module.exports = {
   footer: {
     col1: {
       label: 'Business Insights',
-      colspan: '2',
       items: [
         ...sortNavItems(businessInsights),
 
@@ -212,14 +211,12 @@ module.exports = {
     },
     col4: {
       label: 'Diseases',
-      colspan: '2',
       items: [
         ...sortNavItems(diseases),
       ],
     },
     col5: {
       label: 'Resources',
-      colspan: '2',
       items: [
         ...resources,
       ],
