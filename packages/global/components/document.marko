@@ -80,7 +80,9 @@ $ const { gamDefer, gtmDefer } = req.query;
   </@above-container>
   <@below-container>
     <${input.belowContainer} />
-    <global-site-footer />
+    <marko-web-auth0-context|{ hasUser, isEnabled }|>
+      <global-site-footer  has-user=hasUser reg-enabled=isEnabled />
+    </marko-web-auth0-context>
   </@below-container>
   <@below-wrapper>
     <marko-web-deferred-script-loader-load />
