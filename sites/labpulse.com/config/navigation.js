@@ -189,13 +189,37 @@ module.exports = {
   },
   footer: {
     col1: {
-      label: 'Topics',
+      label: 'Business Insights',
+      colspan: '2',
       items: [
-        ...topics,
+        ...sortNavItems(businessInsights),
+
       ],
     },
     col2: {
+      label: 'Research & Development',
+      colspan: '3',
+      items: [
+        ...sortNavItems(researchDevelopment),
+      ],
+    },
+    col3: {
+      label: 'Diagnostic Technologies',
+      colspan: '3',
+      items: [
+        ...sortNavItems(diagnosticTechnologies),
+      ],
+    },
+    col4: {
+      label: 'Diseases',
+      colspan: '2',
+      items: [
+        ...sortNavItems(diseases),
+      ],
+    },
+    col5: {
       label: 'Resources',
+      colspan: '2',
       items: [
         ...resources,
       ],
