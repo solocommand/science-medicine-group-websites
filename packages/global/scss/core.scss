@@ -466,6 +466,10 @@ label {
 
 .site-menu {
   $self: &;
+  @media (min-width: $skin-desktop-menu-breakpoint) {
+    top: $theme-site-navbar-logo-height-sm + 20px;
+    z-index: 15000;
+  }
   &__section {
     &--primary {
       #{ $self } {
