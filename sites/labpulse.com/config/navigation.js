@@ -96,7 +96,6 @@ module.exports = {
   secondary: {
     items: [
       ...topics,
-      { href: '/resources', label: 'Resources' },
     ],
   },
   tertiary: {
