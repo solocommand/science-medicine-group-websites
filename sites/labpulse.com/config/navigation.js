@@ -94,9 +94,9 @@ module.exports = {
     ]),
   },
   secondary: {
-    items: [
+    items: sortNavItems([
       ...topics,
-    ],
+    ]),
   },
   tertiary: {
     items: [],
