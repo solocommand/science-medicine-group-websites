@@ -1,0 +1,27 @@
+{
+  "<global-content-contact-details>": {
+    "template": "./index.marko",
+    "@obj": "object",
+    "@show-email": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object",
+    "@website-link-attrs": "object",
+    "@social-link-attrs": "object",
+    "@lang": "string"
+  },
+  "<global-content-contact-details-section>": {
+    "template": "./section.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}
