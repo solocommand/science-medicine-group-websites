@@ -19,19 +19,23 @@ const query = gql`
  */
 async function findPost(req) {
   const { apollo, query: params } = req;
-  const variables = { input: { customAttributes: { key: 'boItemId', value: params.ItemID }, withSite: true } };
-  const { data } = await apollo.query({ query, variables });
-  const { allPublishedContent } = data;
-  const edges = get(allPublishedContent, 'edges');
-  if (edges.length) {
-    return { from: `/?ItemID=${params.ItemID}`, to: `/${edges[0].node.id}`, code: 301 };
+  const filteredParams = Object.keys((params)).filter(key => key.match(/itemid/i));
+  if (filteredParams.length) {
+    const variables = { input: { customAttributes: { key: 'boItemId', value: params[filteredParams[0]] }, withSite: true } };
+    const { data } = await apollo.query({ query, variables });
+    const { allPublishedContent } = data;
+    const edges = get(allPublishedContent, 'edges');
+    if (edges.length) {
+      return { from: `/?ItemID=${params[filteredParams[0]]}`, to: `/${edges[0].node.id}`, code: 301 };
+    }
+    return null;
   }
   return null;
 }
 
 module.exports = () => asyncRoute(async (req, res, next) => {
-  const { p } = req.query;
-  if (!p) return next();
+  const { query: reqQuery } = req;
+  if (!reqQuery) return next();
   const redirect = await findPost(req);
   if (redirect) return res.redirect(redirect.code, redirect.to);
   return next();
