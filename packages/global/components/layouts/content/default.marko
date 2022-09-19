@@ -50,8 +50,8 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
     $ const { primarySection } = content;
     <div class="row">
       <div class="col-lg-8">
+        <global-content-contact-details obj=content />
         <div class="content-page-body">
-          <global-content-contact-details obj=content />
           <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
             <if(content.embedCode)>
               $ const iframeContent = contentIframe(content);
