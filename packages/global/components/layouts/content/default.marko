@@ -34,7 +34,9 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
       <if(type === "event")>
         <default-theme-page-dates|{ blockName }|>
           <marko-web-content-starts tag="span" block-name=blockName obj=content />
-          <marko-web-content-ends tag="span" block-name=blockName obj=content />
+          <if(content.starts !== content.ends)>
+            <marko-web-content-ends tag="span" block-name=blockName obj=content />
+          </if>
         </default-theme-page-dates>
       </if>
       <else-if(displayPublishedDate && authors.length !== 1)>
