@@ -2,6 +2,7 @@ const htmlSitemap = require('@parameter1/base-cms-marko-web-html-sitemap/routes'
 const renderBlock = require('@parameter1/base-cms-marko-web-theme-monorail/routes/render-block');
 const search = require('@parameter1/base-cms-marko-web-theme-monorail/routes/search');
 const taxonomy = require('@parameter1/base-cms-marko-web-theme-monorail/routes/taxonomy');
+const auth0 = require('./auth0');
 const feed = require('./feed');
 const nativeX = require('./native-x');
 const printContent = require('./print-content');
@@ -10,6 +11,9 @@ const redirects = require('./redirects');
 const staticPage = require('./static-page');
 
 module.exports = (app, siteConfig) => {
+  // Set up authentication routes
+  auth0(app, siteConfig);
+
   // Feed
   feed(app);
 

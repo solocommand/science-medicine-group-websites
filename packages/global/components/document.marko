@@ -17,9 +17,9 @@ $ const { gamDefer, gtmDefer } = req.query;
     <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preconnect" href="https://fonts.google.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" media="print" onload='this.onload=null,this.removeAttribute("media")'>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" media="print" onload='this.onload=null,this.removeAttribute("media")'>
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     </noscript>
 
     <marko-web-deferred-script-loader-init />
@@ -71,16 +71,18 @@ $ const { gamDefer, gtmDefer } = req.query;
     <${input.aboveWrapper} />
   </@above-wrapper>
   <@above-container>
-    <marko-web-identity-x-context|{ hasUser, isEnabled }|>
+    <marko-web-auth0-context|{ hasUser, isEnabled }|>
       <global-site-header-c has-user=hasUser reg-enabled=isEnabled />
       <global-site-menu has-user=hasUser reg-enabled=isEnabled />
       <!-- <theme-site-menu has-user=hasUser reg-enabled=isEnabled /> -->
-    </marko-web-identity-x-context>
+    </marko-web-auth0-context>
     <${input.aboveContainer} />
   </@above-container>
   <@below-container>
     <${input.belowContainer} />
-    <global-site-footer />
+    <marko-web-auth0-context|{ hasUser, isEnabled }|>
+      <global-site-footer  has-user=hasUser reg-enabled=isEnabled />
+    </marko-web-auth0-context>
   </@below-container>
   <@below-wrapper>
     <marko-web-deferred-script-loader-load />

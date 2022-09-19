@@ -1,13 +1,23 @@
 import { get, getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
+import { asArray } from "@parameter1/base-cms-utils";
 
-$ const { config, site } = out.global;
+$ const { config, site, req } = out.global;
 
+$ const isActiveLink = (requestPath, navItemPath) => requestPath.indexOf(navItemPath) === 0;
 $ const blockName = input.blockName || "site-header";
 
+$ const contexts = site.getAsArray("navigation.contexts");
+$ const contextualNav = contexts.find(({ when }) => asArray(when).some(path => isActiveLink(req.path, path)));
+
+$ const getNavItems = (key) => {
+  if (!contextualNav) return  site.getAsArray(`navigation.${key}`);
+  return getAsArray(contextualNav, key);
+};
+
 $ const navigation = {
-  primary: site.getAsArray("navigation.primary.items"),
-  secondary: site.getAsArray("navigation.secondary.items"),
-  tertiary: site.getAsArray("navigation.tertiary.items"),
+  primary: getNavItems("primary.items"),
+  secondary: getNavItems("secondary.items"),
+  tertiary: getNavItems("tertiary.items"),
 };
 
 <marko-web-block
@@ -51,6 +61,12 @@ $ const navigation = {
           before="Subscribe"
         />
       </if> -->
+      <default-theme-site-navbar-items
+        items=site.getAsArray("navigation.user.items")
+        modifiers=["user"]
+        reg-enabled=input.regEnabled
+        has-user=input.hasUser
+      />
       <marko-web-link href="/search">
         <button class="btn btn-lg" type="submit" aria-label="Search">
           <marko-web-icon name="search" modifiers=["dark"] />
