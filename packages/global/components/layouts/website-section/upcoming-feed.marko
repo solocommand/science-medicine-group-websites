@@ -1,9 +1,11 @@
 import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
 
 $ const { pagination: p } = out.global;
+$ const withAds = defaultValue(input.withAds, false);
 $ const now = Date.now();
 $ const queryParams = {
   includeContentTypes: ["Event"],
@@ -12,7 +14,7 @@ $ const queryParams = {
   endingAfter: now,
   sort: {
     field: "startDate",
-    order: "desc",
+    order: "asc",
   },
 };
 $ const perPage = 12;
@@ -65,8 +67,15 @@ $ const perPage = 12;
       />
     </if>
 
-    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"]>
+    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
       <@query-params ...queryParams />
+      <@rail>
+        <h3 class="sticky-top">Submit a Conference</h3>
+        <p>Coming soon</p>
+      </@rail>
+      <@rail>
+        <!-- <h3 class="sticky-top">Rail lower</h3> -->
+      </@rail>
     </global-section-feed-wrapper>
   </@section>
 
