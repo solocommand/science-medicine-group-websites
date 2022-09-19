@@ -16,7 +16,8 @@
     "@id": "number",
     "@alias": "string",
     "@name": "string",
-    "@page-node": "object"
+    "@page-node": "object",
+    "@with-ads": "boolean"
   },
   "<global-website-section-upcoming-feed-layout>": {
     "template": "./upcoming-feed.marko",
@@ -26,7 +27,8 @@
     "@id": "number",
     "@alias": "string",
     "@name": "string",
-    "@page-node": "object"
+    "@page-node": "object",
+    "@with-ads": "boolean"
   },
   "<global-website-section-home-layout>": {
     "template": "./home.marko",
