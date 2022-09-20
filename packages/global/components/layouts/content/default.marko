@@ -31,11 +31,19 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
           <default-theme-content-attribution obj=content elements=["authors"] />
         </else-if>
       </if>
-      <if(displayPublishedDate && authors.length !== 1)>
+      <if(type === "event")>
+        <default-theme-page-dates|{ blockName }|>
+          <marko-web-content-starts tag="span" block-name=blockName obj=content />
+          <if(content.starts !== content.ends)>
+            <marko-web-content-ends tag="span" block-name=blockName obj=content />
+          </if>
+        </default-theme-page-dates>
+      </if>
+      <else-if(displayPublishedDate && authors.length !== 1)>
         <default-theme-page-dates|{ blockName }|>
           <theme-content-published-node block-name=blockName obj=content display-updated-date=false />
         </default-theme-page-dates>
-      </if>
+      </else-if>
       <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
     </div>
   </@section>
@@ -44,6 +52,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
     $ const { primarySection } = content;
     <div class="row">
       <div class="col-lg-8">
+        <global-content-contact-details obj=content />
         <div class="content-page-body">
           <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
             <if(content.embedCode)>
