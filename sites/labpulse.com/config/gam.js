@@ -19,7 +19,13 @@ config.setAliasAdUnits('default', [
   // { name: 'reskin', path: 'reskin' },
 ]);
 
-const aliases = [];
+const aliases = [
+  'business-insights',
+  'diagnostic-technologies',
+  'diseases',
+  'point-of-care-testing',
+  'research-and-development',
+];
 
 aliases.forEach(alias => config.setAliasAdUnits(alias, [
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${alias}-leaderboard` },
