@@ -1,4 +1,6 @@
+const auth0 = require('./auth0');
 const gam = require('./gam');
+const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const newsletter = require('./newsletter');
@@ -6,7 +8,9 @@ const search = require('./search');
 
 module.exports = {
   // Module configs
+  auth0,
   gam,
+  identityX,
   nativeX,
   navigation,
   newsletter,
