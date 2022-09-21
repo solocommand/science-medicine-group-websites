@@ -71,18 +71,18 @@ $ const { gamDefer, gtmDefer } = req.query;
     <${input.aboveWrapper} />
   </@above-wrapper>
   <@above-container>
-    <marko-web-auth0-context|{ hasUser, isEnabled }|>
+    <auth0-context|{ hasUser, isEnabled }|>
       <global-site-header-c has-user=hasUser reg-enabled=isEnabled />
       <global-site-menu has-user=hasUser reg-enabled=isEnabled />
       <!-- <theme-site-menu has-user=hasUser reg-enabled=isEnabled /> -->
-    </marko-web-auth0-context>
+    </auth0-context>
     <${input.aboveContainer} />
   </@above-container>
   <@below-container>
     <${input.belowContainer} />
-    <marko-web-auth0-context|{ hasUser, isEnabled }|>
+    <auth0-context|{ hasUser, isEnabled }|>
       <global-site-footer  has-user=hasUser reg-enabled=isEnabled />
-    </marko-web-auth0-context>
+    </auth0-context>
   </@below-container>
   <@below-wrapper>
     <marko-web-deferred-script-loader-load />
