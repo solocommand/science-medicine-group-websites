@@ -4,10 +4,12 @@ const { set, get } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
+const auth0IdentityX = require('@parameter1/base-cms-marko-web-auth0-identity-x');
 
 const document = require('./components/document');
 const components = require('./components');
 const fragments = require('./fragments');
+const idxRouteTemplates = require('./templates/user');
 const sharedRoutes = require('./routes');
 const paginated = require('./middleware/paginated');
 const oembedHandler = require('./oembed-handler');
@@ -28,7 +30,7 @@ module.exports = (options = {}) => {
   const googleNewsInput = {
     days: 7,
     includeContentTypes: ['Article'],
-    excludeLabels: ['Sponsored', 'Sponsored by RoadPro'],
+    excludeLabels: ['Sponsored'],
   };
   return startServer({
     ...options,
@@ -56,6 +58,10 @@ module.exports = (options = {}) => {
       // Setup NativeX.
       const nativeXConfig = get(options, 'siteConfig.nativeX');
       set(app.locals, 'nativeX', nativeXConfig);
+
+      const idxConfig = get(options, 'siteConfig.identityX');
+      const auth0Config = get(options, 'siteConfig.auth0');
+      auth0IdentityX(app, { ...auth0Config, idxConfig, idxRouteTemplates });
 
       // i18n
       const i18n = v => v;
