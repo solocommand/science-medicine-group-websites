@@ -6,21 +6,24 @@ module.exports = ({
   hiddenFields = [
     'street',
     'addressExtra',
-    'city',
-    'regionCode',
     'organization',
     'organizationTitle',
     'phoneNumber',
-    'countryCode',
   ],
   defaultCountryCode = '',
   requiredServerFields = [
     'givenName',
     'familyName',
+    'city',
+    'regionCode',
+    'countryCode',
   ],
   requiredClientFields = [
     'givenName',
     'familyName',
+    'city',
+    'regionCode',
+    'countryCode',
   ],
   ...rest
 } = {}) => {
