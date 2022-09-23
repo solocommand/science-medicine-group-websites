@@ -32,7 +32,7 @@ const diseases = [
 ];
 
 const resources = [
-  // { href: '/page/about-us', label: 'About Us' },
+  { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/cases', label: 'Cases' },
   // { href: '/resources/conferences', label: 'Conferences' },
   // { href: '/showcasts', label: 'Showcasts' },
