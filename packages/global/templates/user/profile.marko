@@ -1,0 +1,28 @@
+$ const { config } = out.global;
+
+$ const type = "profile";
+$ const title = `${config.siteName()} Profile`;
+$ const description = `Complete your ${config.siteName()} Profile`;
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <h1 class="page-wrapper__title">${description}</h1>
+        <marko-web-identity-x-context|{ user }|>
+          <if(user)>
+            <marko-web-identity-x-form-profile />
+          </if>
+          <else>
+            <marko-web-identity-x-form-login />
+          </else>
+        </marko-web-identity-x-context>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

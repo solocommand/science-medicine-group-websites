@@ -511,3 +511,55 @@ label {
 .page-contact-details {
   @include skin-typography($style: "article-text", $link-style: "content-body");
 }
+
+// @todo cleanup and port this.
+.input-group .input-group-prepend + input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.csmulti-legend {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 500;
+  padding-top: 3px;
+}
+
+.csmulti-wrapper.border {
+  border-radius: $input-border-radius;
+  border-color: $input-border-color !important;
+}
+
+.csmulti-wrapper.border:hover {
+  border-color: $skin-input-hover-border-color !important;
+}
+
+.csmulti-inner {
+  label {
+    font-weight: inherit;
+  }
+}
+
+.input-group {
+  .input-group-text, .btn {
+    border-radius: $input-border-radius;
+  }
+
+  .input-group-prepend {
+    .input-group-text {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  input[id^=custom-select-write-in] {
+    border-radius: 0;
+  }
+
+  .input-group-append {
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
