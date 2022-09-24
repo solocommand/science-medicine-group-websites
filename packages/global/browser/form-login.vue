@@ -127,7 +127,6 @@ export default {
      *
      */
     loginUrl() {
-      console.log('loginUrl', this.endpoints);
       return `/login?returnTo=${this.redirectTo}`;
     },
 

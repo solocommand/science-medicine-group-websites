@@ -14,7 +14,14 @@ $ const description = `Complete your ${config.siteName()} Profile`;
     <marko-web-page-wrapper>
       <@section>
         <h1 class="page-wrapper__title">${description}</h1>
-        <marko-web-identity-x-form-profile />
+        <marko-web-identity-x-context|{ user }|>
+          <if(user)>
+            <marko-web-identity-x-form-profile />
+          </if>
+          <else>
+            <marko-web-identity-x-form-login />
+          </else>
+        </marko-web-identity-x-context>
       </@section>
     </marko-web-page-wrapper>
   </@page>
