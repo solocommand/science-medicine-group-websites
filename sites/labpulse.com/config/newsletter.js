@@ -11,6 +11,7 @@ module.exports = {
   },
   signupFooter: {
     ...baseConfig,
+    colspan: 5,
     enable: true,
     name: 'Stay Connected',
     description: 'Breaking clinical, business, and industry news about the clinical labcommunity',
