@@ -2,6 +2,9 @@
   "taglib-imports": [
     "./load-more/marko.json"
   ],
+  "<global-newsletter-signup-banner-large-block>": {
+    "template": "./newsletter-signup-banner-large.marko"
+  },
   "<global-content-meter-block>": {
     "template": "./content-meter.marko"
   },
