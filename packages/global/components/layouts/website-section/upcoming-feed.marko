@@ -3,8 +3,12 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
+$ const { pagination: p, site } = out.global;
 
-$ const { pagination: p } = out.global;
+$ const wufooUserName = site.get("wufoo.userName");
+$ const wufooFormTitle = site.get(`wufoo.${alias}.title`) || 'Drop us a line!';
+$ const wufooFormHash = site.get(`wufoo.${alias}.hash`);
+
 $ const withAds = defaultValue(input.withAds, false);
 $ const now = Date.now();
 $ const queryParams = {
@@ -70,8 +74,27 @@ $ const perPage = 12;
     <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
       <@query-params ...queryParams />
       <@rail>
-        <h3 class="sticky-top">Submit a Conference</h3>
-        <p>Coming soon</p>
+        <div class="sticky-top">
+          <if(wufooFormHash && wufooUserName)>
+            $ const props = {
+              userName: wufooUserName,
+              formHash: wufooFormHash,
+            };
+              <marko-web-element block-name=blockName name="wufoo-form">
+                <div class="contact-us-form contact-us-form__header">
+                  ${wufooFormTitle}
+                </div>
+                <marko-web-browser-component
+                  name="WufooForm"
+                  props=props
+                />
+              </marko-web-element>
+          </if>
+          <else>
+            <h3>Submit a Conference</h3>
+            <p>Coming soon ${alias}</p>
+          </else>
+        </div>
       </@rail>
       <@rail>
         <!-- <h3 class="sticky-top">Rail lower</h3> -->
