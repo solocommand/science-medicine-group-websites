@@ -2,9 +2,9 @@ const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
 const businessInsights = [
-  { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
-  { href: '/business-insights/policy-and-regulation', label: 'Policy & Regulation' },
   { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
+  { href: '/business-insights/policy-and-regulation', label: 'Policy & Regulation' },
+  { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
 ];
 
 const researchDevelopment = [
@@ -15,20 +15,20 @@ const researchDevelopment = [
 ];
 
 const diagnosticTechnologies = [
-  { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
-  { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
-  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology & AI' },
   { href: '/diagnostic-technologies/clinical-chemistry', label: 'Clinical Chemistry' },
   { href: '/diagnostic-technologies/emerging-technology', label: 'Emerging Technology' },
+  { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
+  { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
+  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology & AI' },
 ];
 
 const diseases = [
-  { href: '/diseases/cancer', label: 'Cancer' },
-  { href: '/diseases/infectious', label: 'Infectious' },
-  { href: '/diseases/covid-19', label: 'COVID-19' },
-  { href: '/diseases/cardiovascular', label: 'Cardiovascular' },
   { href: '/diseases/autoimmune', label: 'Autoimmune' },
+  { href: '/diseases/cancer', label: 'Cancer' },
+  { href: '/diseases/cardiovascular', label: 'Cardiovascular' },
+  { href: '/diseases/covid-19', label: 'COVID-19' },
   { href: '/diseases/health-topics', label: 'Health Topics' },
+  { href: '/diseases/infectious', label: 'Infectious' },
 ];
 
 const resources = [
