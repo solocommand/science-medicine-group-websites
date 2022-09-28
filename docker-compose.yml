@@ -27,6 +27,7 @@ x-env-defaults: &env
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-}
 
   AUTH0_SECRET: ${AUTH0_SECRET-this-isnt-very-secure}
+  BRAZE_API_KEY: ${BRAZE_API_KEY}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
