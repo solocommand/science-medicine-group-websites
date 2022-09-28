@@ -31,22 +31,21 @@ module.exports = (app) => {
     return response;
   };
 
-  const buildQuestions = async (email) => {
-    // Create a copy of the subscription groups before applying user preferences
+  app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
+    const { email } = req.query;
     const questions = app.locals.site.getAsArray('braze.subscriptionGroups')
       .map(obj => ({ ...obj }));
+    const optIns = questions.reduce((obj, q) => ({ ...obj, [q.groupId]: false }), {});
+
     if (email) {
       try {
         const r = await fetch(`${apiHost}/subscription/user/status?email=${encodeURIComponent(email)}`, { headers });
         const { users } = await r.json();
         if (users) {
-          // If the user includes a + in their email, Braze breaks and can't find them.
-          // aka /user/subscribe?email=jennifer.avolio%2Btest%40bioinfoinc.com
           users.forEach((entry) => {
             const groups = entry.subscription_groups || [];
             groups.forEach((group) => {
-              const question = questions.find(q => q.groupId === group.id);
-              if (question) question.checked = group.status === 'Subscribed';
+              optIns[group.id] = group.status === 'Subscribed';
             });
           });
         }
@@ -55,19 +54,10 @@ module.exports = (app) => {
         log('Unable to look up braze user state', email, e);
       }
     }
-    return questions;
-  };
-
-  app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
-    const { email } = req.query;
-    const questions = await buildQuestions(email);
-    res.json(questions);
+    res.json(optIns);
   }));
 
-  app.get('/user/subscribe', asyncRoute(async (req, res) => {
-    const questions = await buildQuestions(req.query.email);
-    res.marko(template, { questions });
-  }));
+  app.get('/user/subscribe', (_, res) => { res.marko(template); });
 
   app.post('/user/subscribe', json(), asyncRoute(async (req, res) => {
     try {
