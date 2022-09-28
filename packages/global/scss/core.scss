@@ -400,7 +400,7 @@ label {
 }
 .node-list {
   $self: &;
-  &--latest-content-list, &--section-feed, &--section-list {
+  &--latest-content-list, &--section-feed, &--section-list, &--wufoo {
     #{ $self }__header {
       @include skin-typography($style: "header-2");
       margin-bottom: 16px;
@@ -415,6 +415,11 @@ label {
         top: 12px;
         width: 40px;
       }
+    }
+  }
+  &--wufoo {
+    #{ $self }__body {
+      padding: 0;
     }
   }
 }

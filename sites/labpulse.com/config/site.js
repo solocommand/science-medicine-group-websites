@@ -58,9 +58,13 @@ module.exports = {
   gtm: {
     containerId: 'GTM-W5TZ4SS',
   },
-  // wufoo: {
-  //   userName: 'randallreilly',
-  // },
+  wufoo: {
+    userName: 'labpulse',
+    'resources/conferences': {
+      title: 'Submit A Conference!',
+      hash: 'z1op3s8517hgdmv',
+    },
+  },
   inquiry: {
     enabled: true,
     directSend: false,

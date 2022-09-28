@@ -3,8 +3,12 @@ import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
+$ const { pagination: p, site } = out.global;
 
-$ const { pagination: p } = out.global;
+$ const wufooUserName = site.get("wufoo.userName");
+$ const wufooFormTitle = site.get(`wufoo.${alias}.title`) || 'Drop us a line!';
+$ const wufooFormHash = site.get(`wufoo.${alias}.hash`);
+
 $ const withAds = defaultValue(input.withAds, false);
 $ const now = Date.now();
 $ const queryParams = {
@@ -70,11 +74,23 @@ $ const perPage = 12;
     <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
       <@query-params ...queryParams />
       <@rail>
-        <h3 class="sticky-top">Submit a Conference</h3>
-        <p>Coming soon</p>
-      </@rail>
-      <@rail>
-        <!-- <h3 class="sticky-top">Rail lower</h3> -->
+        <if(wufooFormHash && wufooUserName)>
+          $ const props = {
+            userName: wufooUserName,
+            formHash: wufooFormHash,
+          };
+          <marko-web-node-list class="wufoo-form" block-name="node-list" modifiers=["wufoo"] collapsible=false>
+            <@header>
+              ${wufooFormTitle}
+            </@header>
+            <@body>
+              <marko-web-browser-component
+                name="WufooForm"
+                props=props
+              />
+            </@body>
+          </marko-web-node-list>
+        </if>
       </@rail>
     </global-section-feed-wrapper>
   </@section>
