@@ -13,6 +13,7 @@ const idxRouteTemplates = require('./templates/user');
 const sharedRoutes = require('./routes');
 const paginated = require('./middleware/paginated');
 const oembedHandler = require('./oembed-handler');
+const redirectHandler = require('./redirect-handler');
 
 const routes = (siteRoutes, siteConfig) => (app) => {
   // Handle submissions on /__inquiry
@@ -68,7 +69,7 @@ module.exports = (options = {}) => {
       set(app.locals, 'i18n', options.i18n || i18n);
     },
     onAsyncBlockError: e => newrelic.noticeError(e),
-
+    redirectHandler,
     embeddedMediaHandlers: {
       oembed: oembedHandler,
     },
