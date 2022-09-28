@@ -1,0 +1,23 @@
+$ const { config, req, site } = out.global;
+$ const { questions } = input;
+
+$ const type = "profile";
+$ const title = `${config.siteName()} Preference Center`;
+$ const description = `Update your ${config.siteName()} subscriptions`;
+$ const email = req.query && req.query.email || '';
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <h1 class="page-wrapper__title">${description}</h1>
+        <marko-web-browser-component name="PreferenceCenter" props={ email, questions } />
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>
