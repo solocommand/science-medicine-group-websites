@@ -2,7 +2,7 @@ const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
 const businessInsights = [
-  { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
+  // { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
   { href: '/business-insights/policy-and-regulation', label: 'Policy & Regulation' },
   { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
 ];
