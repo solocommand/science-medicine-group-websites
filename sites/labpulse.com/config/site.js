@@ -60,6 +60,10 @@ module.exports = {
   },
   wufoo: {
     userName: 'labpulse',
+    'contact-us': {
+      title: 'Submit your request!',
+      hash: 'mbaniw419houf4',
+    },
     'resources/conferences': {
       title: 'Submit A Conference!',
       hash: 'z1op3s8517hgdmv',
