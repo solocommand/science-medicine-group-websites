@@ -20,7 +20,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage })
-        node-lost=input.nodeList
+        node-list=input.nodeList
         with-ads=withAds
       />
       <section-feed-block
@@ -29,7 +29,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage, skip: 3 })
-        node-lost=input.nodeList
+        node-list=input.nodeList
         with-ads=withAds
       />
       <section-feed-block
@@ -39,7 +39,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage, skip: 6 })
-        node-lost=input.nodeList
+        node-list=input.nodeList
         with-ads=withAds
       />
       <section-feed-block
@@ -48,7 +48,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage, skip: 9 })
-        node-lost=input.nodeList
+        node-list=input.nodeList
       />
       <if(withPagination)>
         <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
@@ -76,7 +76,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage })
-        node-lost=input.nodeList
+        node-list=input.nodeList
         with-ads=withAds
       />
       <section-feed-block
@@ -85,7 +85,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage, skip: 3 })
-        node-lost=input.nodeList
+        node-list=input.nodeList
         with-ads=withAds
       />
     </div>
@@ -107,7 +107,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage, skip: 6 })
-        node-lost=input.nodeList
+        node-list=input.nodeList
         with-ads=withAds
       />
       <section-feed-block
@@ -116,7 +116,7 @@ $ const queryParams = {
         query-params=queryParams
         limit=3
         skip=p.skip({ perPage, skip: 9 })
-        node-lost=input.nodeList
+        node-list=input.nodeList
       />
       <if(withPagination)>
         <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
