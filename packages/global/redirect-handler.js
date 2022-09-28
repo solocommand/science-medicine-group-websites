@@ -12,7 +12,6 @@ const patterns = [
   { pattern: /\/forum/i, to: '/' },
   { pattern: /\/index.aspx\?sec=abt&sub=frm&cfname=ratecard/i, to: '/page/media-kit' },
   { pattern: /\/index.aspx\?Sec=abt&sub=cnt/i, to: '/page/contact-us' },
-  { pattern: /\/index.aspx\?Sec=abt/i, to: '/page/about-us' },
 ];
 
 module.exports = siteHandler => ({ from, req, app }) => {
@@ -42,6 +41,18 @@ module.exports = siteHandler => ({ from, req, app }) => {
     }
     return { to: '/user/subscribe' };
   }
+
+  // Redirect reset password page
+  // https://www.labpulse.com/index.aspx?sec=log&sub=pas&muid=11296478&wf=374
+  if (req.query.sec === 'log' && req.query.sec === 'pas') return { to: '/page/account', code: 302 };
+
+  // Redirect old support form to contact
+  // https://www.labpulse.com/index.aspx?sec=abt&sub=frm&cfname=support
+  if (req.query.sec === 'abt' && req.query.sub === 'frm' && req.query.cfname === 'support') {
+    return { to: '/page/contact-us', code: 302 };
+  }
+
+  if (req.query.sec === 'abt') return { to: '/page/about-us' };
 
   return null;
 };
