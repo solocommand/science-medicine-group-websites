@@ -19,9 +19,20 @@ const query = gql`
  */
 async function findPost(req) {
   const { apollo, query: params } = req;
-  const filteredParams = Object.keys((params)).filter(key => key.match(/itemid/i));
+  const filteredParams = Object.keys((params)).filter(key => key.match(/itemid|rid|vendorid/i));
   if (filteredParams.length) {
-    const variables = { input: { customAttributes: { key: 'boItemId', value: params[filteredParams[0]] }, withSite: true } };
+    const input = {
+      customAttributes: { key: 'boItemId', value: params[filteredParams[0]] },
+      withSite: true,
+    };
+    if (filteredParams[0].match(/itemid/i)) {
+      input.includeContentTypes = ['Article'];
+    } else if (filteredParams[0].match(/rid/i)) {
+      input.includeContentTypes = ['Event'];
+    } else if (filteredParams[0].match(/vendorid/i)) {
+      input.includeContentTypes = ['Company'];
+    }
+    const variables = { input };
     const { data } = await apollo.query({ query, variables });
     const { allPublishedContent } = data;
     const edges = get(allPublishedContent, 'edges');
