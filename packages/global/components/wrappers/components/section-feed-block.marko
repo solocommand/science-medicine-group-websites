@@ -1,0 +1,16 @@
+<theme-section-feed-block
+  alias=input.alias
+  header=input.header
+  modifiers=input.modifiers
+>
+  <@query-params ...input.queryParams limit=input.limit skip=input.skip/>
+  <@node-list innerJustified=false ...input.nodeList />
+</theme-section-feed-block>
+<if(input.withAds)>
+  <theme-gam-define-display-ad
+    name="inline-content-desktop"
+    position="section_page"
+    aliases=input.aliases
+    modifiers=["inline-section-feed"]
+  />
+</if>
