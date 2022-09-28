@@ -27,10 +27,10 @@ async function findPost(req) {
     };
     if (filteredParams[0].match(/itemid/i)) {
       input.includeContentTypes = ['Article'];
-    } else if (filteredParams[0].match(/rid/i)) {
-      input.includeContentTypes = ['Event'];
     } else if (filteredParams[0].match(/vendorid/i)) {
       input.includeContentTypes = ['Company'];
+    } else if (filteredParams[0].match(/rid/i)) {
+      input.includeContentTypes = ['Event'];
     }
     const variables = { input };
     const { data } = await apollo.query({ query, variables });
