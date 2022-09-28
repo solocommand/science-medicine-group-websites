@@ -1,8 +1,9 @@
 $ const { config, req, site } = out.global;
 
+$ const siteName = config.siteName();
 $ const type = "profile";
-$ const title = `${config.siteName()} Preference Center`;
-$ const description = `Update your ${config.siteName()} subscriptions`;
+$ const title = `${siteName} Preference Center`;
+$ const description = `Update your ${siteName} subscriptions`;
 $ const email = req.query && req.query.email || '';
 $ const questions = site.getAsArray('braze.subscriptionGroups')
 
@@ -16,7 +17,7 @@ $ const questions = site.getAsArray('braze.subscriptionGroups')
     <marko-web-page-wrapper>
       <@section>
         <h1 class="page-wrapper__title">${description}</h1>
-        <marko-web-browser-component name="PreferenceCenter" props={ email, questions } />
+        <marko-web-browser-component name="PreferenceCenter" props={ siteName, email, questions } />
       </@section>
     </marko-web-page-wrapper>
   </@page>

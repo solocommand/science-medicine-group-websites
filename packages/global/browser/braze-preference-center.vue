@@ -2,7 +2,8 @@
   <div>
     <form @submit.prevent="handleSubmit">
       <p>
-        Form description/instructions can go here.
+        Use the form below to sign up to receive the latest news
+        from {{ siteName }} directly to your inbox.
       </p>
       <fieldset>
         <div class="row">
@@ -52,7 +53,9 @@
       <div class="row mt-3">
         <div class="col">
           <small class="text-muted">
-            Privacy policy boilerplate can go here.
+            By submitting your email, you agree to our
+            <a href="/page/privacy-policy" target="_blank">Privacy Notice</a>.
+            You can opt out at any time.
           </small>
         </div>
       </div>
@@ -77,6 +80,10 @@ export default {
     endpoint: {
       type: String,
       default: '/user/subscribe',
+    },
+    siteName: {
+      type: String,
+      required: true,
     },
     questions: {
       type: Array,
