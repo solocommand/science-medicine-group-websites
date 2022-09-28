@@ -74,23 +74,14 @@ $ const perPage = 12;
     <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
       <@query-params ...queryParams />
       <@rail>
-        <if(wufooFormHash && wufooUserName)>
-          $ const props = {
-            userName: wufooUserName,
-            formHash: wufooFormHash,
-          };
-          <marko-web-node-list class="wufoo-form" block-name="node-list" modifiers=["wufoo"] collapsible=false>
-            <@header>
-              ${wufooFormTitle}
-            </@header>
-            <@body>
-              <marko-web-browser-component
-                name="WufooForm"
-                props=props
-              />
-            </@body>
-          </marko-web-node-list>
-        </if>
+        <div class="text-center"><a href="/page/submit-a-conference" class="btn btn-primary">Submit a Conference</a></div>
+        <theme-gam-define-display-ad
+          name="rotation"
+          position="section_page"
+          aliases=aliases
+          modifiers=["max-width-300", "center", "margin-auto-x"]
+          class="mb-block mt-3"
+        />
       </@rail>
     </global-section-feed-wrapper>
   </@section>
