@@ -99,6 +99,14 @@ export default {
     timeout: null,
   }),
 
+  mounted() {
+    // Set submission state
+    this.questions.forEach((q) => {
+      this.optIns[q.groupId] = Boolean(q.checked);
+    });
+  },
+
+
   /**
    *
    */
@@ -130,6 +138,8 @@ export default {
       // Debounce/refresh state. will require computed props to re-render
       if (this.timeout) clearTimeout(this.timeout);
       this.timeout = setTimeout(async () => {
+        // Only try looking up something that resembles an email.
+        if (!/.+@.+\..+/.test(this.email)) return;
         this.loading = true;
         try {
           const r = await fetch(`${this.endpoint}/check?email=${encodeURIComponent(this.email)}`);
@@ -138,7 +148,10 @@ export default {
           questions.forEach((question) => {
             // eslint-disable-next-line no-prototype-builtins
             const found = this.questions.find(group => group.groupId === question.groupId);
-            if (found) found.checked = question.checked;
+            if (found) {
+              found.checked = question.checked;
+              this.optIns[question.groupId] = Boolean(question.checked);
+            }
           });
           if (!r.ok) {
             if (questions.error) throw new Error(questions.error);
