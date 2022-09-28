@@ -22,14 +22,13 @@ x-env-defaults: &env
   YARN_CACHE_FOLDER: /.yarn-cache
   IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN}
   IDENTITYX_GRAPHQL_URI: ${IDENTITYX_GRAPHQL_URI-https://identity-x.parameter1.com/graphql}
-  BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.leonis.base.parameter1.com/graphql}
 
   RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY-}
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY-}
 
   AUTH0_SECRET: ${AUTH0_SECRET-this-isnt-very-secure}
 
-x-env-virgon-dev: &env-virgon-dev
+x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
   OEMBED_URI: ${OEMBED_URI-https://host.docker.internal:10402}
   RSS_URI: ${RSS_URI-http://host.docker.internal:10203}
@@ -40,12 +39,14 @@ x-env-leonis: &env-leonis
   OEMBED_URI: ${OEMBED_URI-https://oembed.leonis.base.parameter1.com}
   RSS_URI: ${RSS_URI-https://rss.leonis.base.parameter1.com}
   SITEMAPS_URI: ${SITEMAPS_URI-https://sitemaps.leonis.base.parameter1.com}
+  BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.leonis.base.parameter1.com/graphql}
 
 x-env-virgon: &env-virgon
   GRAPHQL_URI: ${GRAPHQL_URI-https://graphql.virgon.base.parameter1.com}
   OEMBED_URI: ${OEMBED_URI-https://oembed.virgon.base.parameter1.com}
   RSS_URI: ${RSS_URI-https://rss.virgon.base.parameter1.com}
   SITEMAPS_URI: ${SITEMAPS_URI-https://sitemaps.virgon.base.parameter1.com}
+  BASE_BROWSE_GRAPHQL_URI: ${BASE_BROWSE_GRAPHQL_URI-https://base-browse.virgon.base.parameter1.com/graphql}
 
 x-site-command: &site-cmd
   <<: *node
@@ -90,7 +91,7 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/labpulse.com
     environment:
-      <<: [*env, *env-leonis]
+      <<: [*env, *env-virgon]
       HOST: www-smg-lab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9952
