@@ -417,6 +417,11 @@ label {
       }
     }
   }
+  &--wufoo {
+    #{ $self }__body {
+      padding: 0;
+    }
+  }
 }
 .top-story {
   &__row {
