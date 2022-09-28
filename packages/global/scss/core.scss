@@ -194,7 +194,10 @@ label {
 .page-wrapper {
   // $marko-web-document-container-gutter: 20px; couldn't get to work
   padding: 20px;
-
+  &--no-padding-x {
+    padding-right: 0;
+    padding-left: 0;
+  }
   .breadcrumbs {
     &--website-section {
       @include skin-typography($style: "slug-medium", $link-style: "primary");
