@@ -194,7 +194,10 @@ label {
 .page-wrapper {
   // $marko-web-document-container-gutter: 20px; couldn't get to work
   padding: 20px;
-
+  &--no-padding-x {
+    padding-right: 0;
+    padding-left: 0;
+  }
   .breadcrumbs {
     &--website-section {
       @include skin-typography($style: "slug-medium", $link-style: "primary");
@@ -283,6 +286,7 @@ label {
 // Begin right rail content layout CSS
 .content-page-body {
   padding-top: 12px;
+  min-height: 500px;
   .primary-image {
     &--aligned-center {
       @media (min-width: 900px) {
@@ -313,7 +317,14 @@ label {
       margin-left: auto;
     }
   }
-
+  &--search {
+    .ad-container {
+      &--template-leaderboard {
+        min-height: 0;
+        display: none;
+      }
+    }
+  }
 }
 
 .ad-container {

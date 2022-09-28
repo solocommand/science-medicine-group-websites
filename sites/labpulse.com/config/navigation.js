@@ -37,7 +37,7 @@ const resources = [
   { href: '/resources/conferences', label: 'Conferences' },
   // { href: '/showcasts', label: 'Showcasts' },
   // { href: '/resources/vendors', label: 'Vendors' },
-  { href: '/resources/video', label: 'Videos' },
+  { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
 ];
 
@@ -66,7 +66,7 @@ module.exports = {
   user: {
     items: [
       {
-        href: '/page/Account',
+        href: '/page/account',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
@@ -86,7 +86,7 @@ module.exports = {
     ],
     tools: [
       {
-        href: '/page/Account',
+        href: '/page/account',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
