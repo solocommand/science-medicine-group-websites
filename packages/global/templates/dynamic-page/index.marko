@@ -5,17 +5,12 @@ $ const { id, type, pageNode } = input;
   type=type
   page-node=pageNode
 >
-
   <@section|{ blockName, content }|>
     $ const { primarySection } = content;
     <div class="content-page-header">
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
     </div>
-  </@section>
-
-  <@section|{ blockName, content }|>
-    $ const { primarySection } = content;
     <div class="content-page-body">
       <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
 
