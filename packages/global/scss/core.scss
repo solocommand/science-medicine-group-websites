@@ -283,6 +283,7 @@ label {
 // Begin right rail content layout CSS
 .content-page-body {
   padding-top: 12px;
+  min-height: 500px;
   .primary-image {
     &--aligned-center {
       @media (min-width: 900px) {
