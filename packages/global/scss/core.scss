@@ -314,7 +314,14 @@ label {
       margin-left: auto;
     }
   }
-
+  &--search {
+    .ad-container {
+      &--template-leaderboard {
+        min-height: 0;
+        display: none;
+      }
+    }
+  }
 }
 
 .ad-container {
