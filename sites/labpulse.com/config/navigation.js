@@ -190,27 +190,45 @@ module.exports = {
   },
   footer: {
     col1: {
-      label: 'Business Insights',
-      items: businessInsights,
+      label: 'Topics',
+      colspan: 5,
+      items: [
+        { href: '/business-insights', label: 'Business Insights' },
+        { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
+        { href: '/diseases', label: 'Diseases' },
+        { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
+        { href: '/research-and-development', label: 'Research & Development' },
+      ],
     },
     col2: {
-      label: 'Research & Development',
-      colspan: '3',
-      items: researchDevelopment,
-    },
-    col3: {
-      label: 'Diagnostic Technologies',
-      colspan: '3',
-      items: diagnosticTechnologies,
-    },
-    col4: {
-      label: 'Diseases',
-      items: diseases,
-    },
-    col5: {
       label: 'Resources',
       items: resources,
     },
+    // Original Footer Navigation
+    // col1: {
+    //   label: 'Business Insights',
+    //   items: businessInsights,
+    // },
+    // col2: {
+    //   label: 'Research & Development',
+    //   colspan: '3',
+    //   items: researchDevelopment,
+    // },
+    // col3: {
+    //   label: 'Diagnostic Technologies',
+    //   colspan: '3',
+    //   items: diagnosticTechnologies,
+    // },
+    // col4: {
+    //   label: 'Diseases',
+    //   items: diseases,
+    // },
+    // col5: {
+    //   label: 'Resources',
+    //   items: resources,
+    // },
+
+
     // col3: {
     //   label: 'More',
     //   items: [
