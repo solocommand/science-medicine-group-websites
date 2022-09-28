@@ -18,7 +18,7 @@ module.exports = (app) => {
       .map(obj => ({ ...obj }));
     if (email) {
       try {
-        const r = await fetch(`${apiHost}/subscription/user/status?email=${email}`, { headers });
+        const r = await fetch(`${apiHost}/subscription/user/status?email=${encodeURIComponent(email)}`, { headers });
         const { users } = await r.json();
         if (users) {
           // If the user includes a + in their email, Braze breaks and can't find them.
