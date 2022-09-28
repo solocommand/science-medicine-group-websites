@@ -12,6 +12,25 @@ module.exports = (app) => {
     authorization: `Bearer ${apiKey}`,
   };
 
+  const createBrazeUser = async (email, externalId) => {
+    const r = await fetch(`${apiHost}/users/track`, {
+      method: 'post',
+      headers,
+      body: JSON.stringify({
+        attributes: [{
+          email,
+          external_id: externalId,
+        }],
+      }),
+    });
+    const response = await r.json();
+    if (!r.ok) {
+      if (response.message) throw new Error(response.message);
+      throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
+    }
+    return response;
+  };
+
   const buildQuestions = async (email) => {
     // Create a copy of the subscription groups before applying user preferences
     const questions = app.locals.site.getAsArray('braze.subscriptionGroups')
@@ -56,7 +75,7 @@ module.exports = (app) => {
       const { email, optIns } = body;
 
       const idxUser = await req.identityX.createAppUser({ email });
-      // @todo do we need to create a Braze user first?
+      await createBrazeUser(email, idxUser.id);
 
       const r = await fetch(`${apiHost}/v2/subscription/status/set`, {
         method: 'post',
