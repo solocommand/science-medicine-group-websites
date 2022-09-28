@@ -29,5 +29,19 @@ module.exports = siteHandler => ({ from, req, app }) => {
   }
   // Redirect all old vendor URLs
   if (req.query.sec && req.query.sec === 'vendor') return { to: '/resources/vendors' };
+
+  // Redirect unsubscribe links to preference center
+  // https://www.labpulse.com/index.aspx?sec=opt&sub=ins&ems=1&email=jennifer.avolio+test@bioinfoinc.com&wf=374
+  if (req.query.sec === 'opt' && req.query.sub === 'ins') {
+    const { email } = req.query;
+    if (email) {
+      return {
+        // Legacy URLs did not properly encode the plus character
+        to: `/user/subscribe?email=${encodeURIComponent(email.replace(' ', '+'))}`,
+      };
+    }
+    return { to: '/user/subscribe' };
+  }
+
   return null;
 };
