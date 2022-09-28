@@ -74,27 +74,23 @@ $ const perPage = 12;
     <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
       <@query-params ...queryParams />
       <@rail>
-        <div class="sticky-top">
-          <if(wufooFormHash && wufooUserName)>
-            $ const props = {
-              userName: wufooUserName,
-              formHash: wufooFormHash,
-            };
-              <marko-web-element block-name=blockName name="wufoo-form">
-                <h3 class="contact-us-form contact-us-form__header">
-                  ${wufooFormTitle}
-                </h3>
-                <marko-web-browser-component
-                  name="WufooForm"
-                  props=props
-                />
-              </marko-web-element>
-          </if>
-          <else>
-            <h3>Submit a Conference</h3>
-            <p>Coming soon ${alias}</p>
-          </else>
-        </div>
+        <if(wufooFormHash && wufooUserName)>
+          $ const props = {
+            userName: wufooUserName,
+            formHash: wufooFormHash,
+          };
+          <marko-web-node-list class="wufoo-form" block-name="node-list" modifiers=["wufoo"] collapsible=false>
+            <@header>
+              ${wufooFormTitle}
+            </@header>
+            <@body>
+              <marko-web-browser-component
+                name="WufooForm"
+                props=props
+              />
+            </@body>
+          </marko-web-node-list>
+        </if>
       </@rail>
     </global-section-feed-wrapper>
   </@section>
