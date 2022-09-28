@@ -40,8 +40,7 @@ module.exports = (app) => {
   };
 
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
-    const { body } = req;
-    const { email } = body;
+    const { email } = req.query;
     const questions = await buildQuestions(email);
     res.json(questions);
   }));

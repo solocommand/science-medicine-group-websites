@@ -14,12 +14,13 @@
               </label>
               <input
                 id="sign-on-email-address"
+                v-model="email"
                 type="email"
                 required="required"
                 placeholder="example@google.com"
                 autocomplete="email"
                 class="form-control"
-                :value="email"
+                :disabled="didSubmit"
                 @input="updateEmail"
               >
             </div>
@@ -34,6 +35,7 @@
             :description="question.description"
             :value="Boolean(question.checked)"
             :required="false"
+            :disabled="loading"
             @input="setSubscriptionGroup(question.groupId, $event)"
           />
         </div>
@@ -94,15 +96,8 @@ export default {
     loading: false,
     didSubmit: false,
     optIns: {},
+    timeout: null,
   }),
-
-  mounted() {
-    // Check Braze API for user state?
-    console.log('mounted, check braze');
-    this.questions.forEach((q) => {
-      this.optIns[q.groupId] = false;
-    });
-  },
 
   /**
    *
@@ -131,9 +126,30 @@ export default {
     setSubscriptionGroup(e, v) {
       this.optIns[e] = v;
     },
-    updateEmail(email) {
-      this.email = email;
+    updateEmail() {
       // Debounce/refresh state. will require computed props to re-render
+      if (this.timeout) clearTimeout(this.timeout);
+      this.timeout = setTimeout(async () => {
+        this.loading = true;
+        try {
+          const r = await fetch(`${this.endpoint}/check?email=${encodeURIComponent(this.email)}`);
+          const questions = await r.json();
+          // @todo write this to a computed property
+          questions.forEach((question) => {
+            // eslint-disable-next-line no-prototype-builtins
+            const found = this.questions.find(group => group.groupId === question.groupId);
+            if (found) found.checked = question.checked;
+          });
+          if (!r.ok) {
+            if (questions.error) throw new Error(questions.error);
+            throw new Error(`${r.status} ${r.statusText}`);
+          }
+        } catch (e) {
+          this.error = e.message;
+        } finally {
+          this.loading = false;
+        }
+      }, 300);
     },
   },
 };
