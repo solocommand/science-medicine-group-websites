@@ -67,17 +67,11 @@ module.exports = {
   user: {
     items: [
       {
-        href: '/page/account',
+        href: '/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
       },
-      // {
-      //   href: '/login',
-      //   label: 'Sign In',
-      //   when: 'logged-out',
-      //   modifiers: ['user'],
-      // },
       {
         href: '/logout',
         label: 'Sign Out',
@@ -87,17 +81,11 @@ module.exports = {
     ],
     tools: [
       {
-        href: '/page/account',
+        href: '/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
       },
-      // {
-      //   href: '/login',
-      //   label: 'Sign In',
-      //   when: 'logged-out',
-      //   modifiers: ['user'],
-      // },
       {
         href: '/user/profile',
         label: 'Modify profile',
