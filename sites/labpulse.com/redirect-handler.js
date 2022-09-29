@@ -12,6 +12,8 @@ const patterns = [
   { pattern: /\/index.aspx\?Sec=abt&sub=cnt/i, to: '/page/contact-us' },
   { pattern: /\/index.aspx\?sec=abt&sub=sitemap/i, to: '/site-map' },
   { pattern: /\/index.aspx\?sec=vendor/i, to: '/resources/vendors' },
+  { pattern: /\/IVD\//i, to: '/diagnostic-technologies' },
+
 ];
 
 module.exports = ({ req }) => {
