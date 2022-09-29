@@ -8,7 +8,7 @@ const defaults = {
 module.exports = {
   pushdown: {
     ...defaults,
-    // imagePath: 'files/base/randallreilly/all/image/static/newsletter-pushdown/ovd-half.png',
+    imagePath: 'files/base/smg/all/image/static/lab/newsletter-phone-half.png',
   },
   signupBannerLarge: {
     ...defaults,
