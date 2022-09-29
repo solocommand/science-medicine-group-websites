@@ -44,7 +44,10 @@ module.exports = siteHandler => ({ from, req, app }) => {
 
   // Redirect reset password page
   // https://www.labpulse.com/index.aspx?sec=log&sub=pas&muid=11296478&wf=374
-  if (req.query.sec === 'log' && req.query.sec === 'pas') return { to: '/page/account', code: 302 };
+  if (req.query.sec === 'log' && req.query.sub === 'pas') return { to: '/page/account', code: 302 };
+  if (req.query.sec === 'log' && req.query.sub === 'hard' && req.query.OriginalURL) {
+    return { to: req.query.OriginalURL, code: 302 };
+  }
 
   // Redirect old support form to contact
   // https://www.labpulse.com/index.aspx?sec=abt&sub=frm&cfname=support
