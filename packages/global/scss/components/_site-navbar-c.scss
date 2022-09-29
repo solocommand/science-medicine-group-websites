@@ -66,9 +66,6 @@
             border-color: #0000;
             outline-color: #0000;
           }
-          #{ $self }__newsletter-toggler:focus svg{
-            fill: $primary
-          }
           .btn-subscribe {
             font-size: 12px;
             @media (min-width: map-get($theme-site-header-breakpoints, small-logo)) {
