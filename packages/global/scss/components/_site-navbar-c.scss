@@ -51,7 +51,8 @@
             padding-right: 0;
           }
           .btn,
-          #{ $self }__toggler {
+          #{ $self }__toggler,
+          #{ $self }__newsletter-toggler {
             width: 40px;
             height: 40px;
             padding: 0;
@@ -59,6 +60,14 @@
             font-size: 1rem;
             background-color: $gray-100;
             border-radius: 4px;
+          }
+          #{ $self }__newsletter-toggler,
+          #{ $self }__newsletter-toggler:focus {
+            border-color: #0000;
+            outline-color: #0000;
+          }
+          #{ $self }__newsletter-toggler:focus svg{
+            fill: $primary
           }
           .btn-subscribe {
             font-size: 12px;
