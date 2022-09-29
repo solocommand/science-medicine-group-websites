@@ -3,6 +3,7 @@
   "<global-section-feed-wrapper>": {
     "template": "./section-feed.marko",
     "@rails <rail>[]": {},
+    "@after": {},
     "@with-pagination": "boolean",
     "@modifiers": "array",
     "@with-ads": "boolean",
