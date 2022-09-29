@@ -1,5 +1,5 @@
 $ const { req, site } = out.global;
-$ const isEnabled = false;
+$ const isEnabled = req.auth0Enabled || false;
 $ const hasUser = req.oidc ? req.oidc.isAuthenticated() : false;
 $ const canAccess = (input.requiresRegistration === false) || hasUser;
 
