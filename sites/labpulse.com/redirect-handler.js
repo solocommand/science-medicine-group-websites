@@ -10,6 +10,8 @@ const patterns = [
   { pattern: /\/index.aspx\?sec=rca&sub=slas_2022/i, to: '/showcasts/slas/2022' },
   { pattern: /\/index.aspx\?sec=abt&sub=faq&pag=dis&ItemId=800010/i, to: '/page/privacy-policy' },
   { pattern: /\/index.aspx\?Sec=abt&sub=cnt/i, to: '/page/contact-us' },
+  { pattern: /\/index.aspx\?sec=abt&sub=sitemap/i, to: '/site-map' },
+  { pattern: /\/index.aspx\?sec=vendor/i, to: '/resources/vendors' },
 ];
 
 module.exports = ({ req }) => {
