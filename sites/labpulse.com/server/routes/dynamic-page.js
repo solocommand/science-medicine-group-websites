@@ -8,7 +8,7 @@ module.exports = (app) => {
     template: contactUs,
     queryFragment,
   }));
-  app.get('/page/:alias(*)', withDynamicPage({
+  app.get('/page/:alias([\\w\\d-]{1,})', withDynamicPage({
     template: page,
     queryFragment,
   }));
