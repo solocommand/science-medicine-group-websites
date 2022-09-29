@@ -21,8 +21,12 @@ async function findPost(req) {
   const { apollo, query: params } = req;
   const filteredParams = Object.keys((params)).filter(key => key.match(/itemid|rid|vendorid/i));
   if (filteredParams.length) {
+    // Break up an unencoded query string if necessary.
+    const value = filteredParams[0].match(/(itemid|rid|vendorid)=[0-9]+/i)
+      ? filteredParams[0].match(/(itemid|rid|vendorid)=[0-9]+/i)[0].split('=').pop()
+      : params[filteredParams[0]];
     const input = {
-      customAttributes: { key: 'boItemId', value: params[filteredParams[0]] },
+      customAttributes: { key: 'boItemId', value },
       withSite: true,
     };
     if (filteredParams[0].match(/itemid/i)) {
