@@ -21,7 +21,7 @@
         <input
           id="newsletter-menu-email"
           v-model="email"
-          class="form-control"
+          class="form-control mb-block"
           :disabled="isLoading"
           placeholder="example@gmail.com"
           type="email"
