@@ -21,7 +21,7 @@
         <input
           id="newsletter-menu-email"
           v-model="email"
-          class="form-control mb-block"
+          class="form-control"
           :disabled="isLoading"
           placeholder="example@gmail.com"
           type="email"
@@ -29,6 +29,12 @@
           required
           @focus="didFocus = true"
         >
+        <div :class="`${blockName}__privacy-policy`">
+          By submitting your email, you agree to our
+          <a :href="privacyPolicyLink.href" :target="privacyPolicyLink.target" rel="noopener">
+            {{ privacyPolicyLink.label }}
+          </a>. You can opt out at any time.
+        </div>
         <sign-up-button
           :class="element('form-button')"
           :is-loading="isLoading"
@@ -80,6 +86,10 @@ export default {
     imageSrcset: {
       type: String,
       default: null,
+    },
+    privacyPolicyLink: {
+      type: Object,
+      required: true,
     },
   },
 
