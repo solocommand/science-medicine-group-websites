@@ -8,7 +8,6 @@ const newsletterState = ({ setCookie = true } = {}) => (req, res, next) => {
   const disabled = get(req, 'query.newsletterDisabled');
   const fromEmail = utmMedium === 'email' || olyEncId || false;
   const canBeInitiallyExpanded = !(hasCookie || fromEmail || disabled);
-  console.log(setCookie);
   const initiallyExpanded = (setCookie === true) && canBeInitiallyExpanded;
 
   // Expire in 14 days (2yr if already signed up)
