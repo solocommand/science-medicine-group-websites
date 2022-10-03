@@ -52,7 +52,7 @@
           }
           .btn,
           #{ $self }__toggler,
-          #{ $self }__newsletter-toggler {
+          #{ $self }__idx-newsletter-toggler {
             width: 40px;
             height: 40px;
             padding: 0;
@@ -61,8 +61,8 @@
             background-color: $gray-100;
             border-radius: 4px;
           }
-          #{ $self }__newsletter-toggler,
-          #{ $self }__newsletter-toggler:focus {
+          #{ $self }__idx-newsletter-toggler,
+          #{ $self }__idx-newsletter-toggler:focus {
             border-color: #0000;
             outline-color: #0000;
           }
