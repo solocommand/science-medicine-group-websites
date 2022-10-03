@@ -63,35 +63,9 @@ $ const tagline = site.get("tagline");
 
       <div class="row">
         $ const newsletterBlock = "site-footer-newsletter";
-        <if(newsletterConfig.enable && newsletterConfig.action)>
+        <if(newsletterConfig.enable)>
           <div class=`col-md-${newsletterConfig.colspan || 4} mb-block`>
-            <marko-web-block name=newsletterBlock>
-              <marko-web-element block-name=newsletterBlock name="header">
-                $!{newsletterConfig.name}
-              </marko-web-element>
-              <if(newsletterConfig.description)>
-                <marko-web-element block-name=newsletterBlock name="description">
-                  $!{newsletterConfig.description}
-                </marko-web-element>
-              </if>
-              <form action=newsletterConfig.action method="GET">
-                <div class="form-group">
-                  <label for="footer-newsletter-signup-email">Email</label>
-                  <input
-                    id="footer-newsletter-signup-email"
-                    class="form-control"
-                    type="email"
-                    placeholder="example@gmail.com"
-                    name="email"
-                    required
-                  />
-                  <for|item| of=newsletterConfig.hiddenInputs>
-                    <input type="hidden" name=item.name value=item.value />
-                  </for>
-                </div>
-                <button class="btn btn-primary" type="submit">Sign Up</button>
-              </form>
-            </marko-web-block>
+            <identity-x-newsletter-form-footer config-name="signupFooter" />
           </div>
         </if>
         <div class=`col-md-${site.get("navigation.footer.col1.colspan") || 2}`>
