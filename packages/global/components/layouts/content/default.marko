@@ -3,7 +3,7 @@ import contentIframe from "@science-medicine-group/package-global/utils/content-
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 
 $ const { site, contentMeterState } = out.global;
-$ const newsletterConfig = site.getAsObject('newsletter.signupBannerLarge');
+
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
 
@@ -164,9 +164,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 </if>
               </else>
             </marko-web-identity-x-access>
-            <if(newsletterConfig)>
-              <global-newsletter-signup-banner-large-block class="mb-block" />
-            </if>
+            <identity-x-newsletter-form-inline type="inlineContent" />
           </default-theme-page-contents>
         </div>
       </div>
