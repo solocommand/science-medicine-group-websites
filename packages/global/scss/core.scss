@@ -288,10 +288,7 @@ label {
     margin-bottom: 0;
     margin-right: 0;
     margin-left: 0;
-    background-color: $skin-ad-bg-color;
-    @media (min-width: 980px) {
-      background-color: #fff;
-    }
+    background-color: #fff;
     > *:first-child {
       padding-bottom: 30px;
       border-bottom: 1px solid $skin-ad-bg-color;
