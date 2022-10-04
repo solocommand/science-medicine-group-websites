@@ -253,12 +253,12 @@ label {
   }
   &--inline-content#{&}--template-inline-content-desktop {
     display: none;
-    background-color: white;
+    background-color: #fff;
     margin-left: 0;
     margin-right: 0;
     > *:first-child {
-      border-top: 3px solid $gray-200;
-      border-bottom: 3px solid $gray-200;
+      border-top: 3px solid $skin-ad-bg-color;
+      border-bottom: 3px solid $skin-ad-bg-color;
     }
     @media (min-width: 980px) {
       display: block;
@@ -281,6 +281,17 @@ label {
         content: "Advertisement";
         padding-bottom: 1rem;
       }
+    }
+  }
+  &--inline-section-feed {
+    min-height: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    > *:first-child {
+      padding-bottom: 30px;
+      border-bottom: 1px solid $skin-ad-bg-color;
     }
   }
 }
@@ -335,54 +346,6 @@ label {
   }
 }
 
-.ad-container {
-  &--inline-content#{&}--template-inline-content-desktop,
-  &--inline-content#{&}--template-inline-content-mobile {
-    min-height: 0;
-    margin-bottom: 0;
-    > *:first-child {
-      padding-bottom: 30px;
-      margin-bottom: 30px;
-    }
-  }
-  &--inline-content#{&}--template-inline-content-desktop {
-    display: none;
-    margin-right: 0;
-    margin-left: 0;
-    background-color: #fff;
-    > *:first-child {
-      border-top: 3px solid $skin-ad-bg-color;
-      border-bottom: 3px solid $skin-ad-bg-color;
-    }
-    @media (min-width: 780px) {
-      display: block;
-    }
-  }
-  &--with-label {
-    > *:first-child {
-      &::before {
-        padding-bottom: 1rem;
-        font-size: 12px;
-        color: $gray-500;
-        text-transform: none;
-        content: "Advertisement";
-      }
-    }
-  }
-  &--inline-section-feed {
-    min-height: 0;
-    margin-bottom: 0;
-    margin-right: 0;
-    margin-left: 0;
-    background-color: #fff;
-    > *:first-child {
-      padding-bottom: 30px;
-      // margin-bottom: 30px;
-      // border-top: 3px solid $skin-ad-bg-color;
-      border-bottom: 1px solid $skin-ad-bg-color;
-    }
-  }
-}
 .node-list {
   &--latest-content-list {
     .node-list {
