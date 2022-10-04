@@ -39,7 +39,7 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
       on="load"
       request-frame=true
       target-tag="body"
-      init-only=(initOnly === "p1Events" || initOnly === "all")
+      init-only=true
     />
 
     <!-- init gam -->
@@ -57,7 +57,7 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
       on="load"
       request-frame=true
       target-tag="body"
-      init-only=(initOnly === "nativeX" || initOnly === "all")
+      init-only=true
     />
 
     <${input.head} />
