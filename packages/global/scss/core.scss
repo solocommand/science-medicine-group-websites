@@ -260,8 +260,16 @@ label {
       border-top: 3px solid $gray-200;
       border-bottom: 3px solid $gray-200;
     }
+    @media (min-width: 980px) {
+      display: block;
+    }
+  }
+  &--inline-content#{&}--template-inline-content-mobile {
     @media (min-width: 780px) {
       display: block;
+    }
+    @media (min-width: 980px) {
+      display: none;
     }
   }
   &--with-label {
