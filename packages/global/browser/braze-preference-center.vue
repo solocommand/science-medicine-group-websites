@@ -41,7 +41,11 @@
           />
         </div>
       </fieldset>
-      <button type="submit" class="btn btn-primary" :disabled="loading">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        :disabled="loading || recaptcha.loading || recaptcha.error"
+      >
         Update preferences
       </button>
       <span v-if="didSubmit" class="ml-2">
@@ -49,6 +53,12 @@
       </span>
       <p v-if="error" class="mt-3 text-danger">
         An error occurred while processing your request: {{ error }}.
+      </p>
+      <p
+        v-if="recaptcha.error"
+        class="mt-3 text-danger"
+      >
+        A recaptcha error occurred {{ recaptcha.error.message }}
       </p>
       <div class="row mt-3">
         <div class="col">
@@ -64,6 +74,8 @@
 </template>
 
 <script>
+import recaptchaLoad from '@parameter1/base-cms-marko-web-recaptcha/browser/load';
+import recaptchaGetToken from '@parameter1/base-cms-marko-web-recaptcha/browser/get-token';
 import SubscriptionGroup from './braze-subscription-group.vue';
 
 export default {
@@ -80,6 +92,10 @@ export default {
     endpoint: {
       type: String,
       default: '/user/subscribe',
+    },
+    siteKey: {
+      type: String,
+      required: true,
     },
     siteName: {
       type: String,
@@ -104,12 +120,16 @@ export default {
     didSubmit: false,
     optIns: {},
     timeout: null,
+    recaptcha: { loading: false, error: null },
   }),
 
   computed: {
     checked() {
       return this.questions.map(q => ({ ...q, checked: this.optIns[q.groupId] }));
     },
+  },
+  created() {
+    this.loadRecaptcha();
   },
 
   mounted() {
@@ -141,21 +161,29 @@ export default {
     },
     async handleSubmit() {
       this.loading = true;
-      try {
-        const r = await fetch(this.endpoint, {
-          method: 'post',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ email: this.email, optIns: this.optIns }),
-        });
-        if (!r.ok) {
-          const { error } = await r.json();
-          if (error) throw new Error(error);
-          throw new Error(`${r.status} ${r.statusText}`);
+      this.error = null;
+      const token = await recaptchaGetToken({ siteKey: this.siteKey, action: 'brazerPreferenceCenter' });
+
+      if (token) {
+        try {
+          const r = await fetch(this.endpoint, {
+            method: 'post',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: this.email, optIns: this.optIns, token }),
+          });
+          if (!r.ok) {
+            const { error } = await r.json();
+            if (error) throw new Error(error);
+            throw new Error(`${r.status} ${r.statusText}`);
+          }
+          this.didSubmit = true;
+        } catch (e) {
+          this.error = e.message;
+        } finally {
+          this.loading = false;
         }
-        this.didSubmit = true;
-      } catch (e) {
-        this.error = e.message;
-      } finally {
+      } else {
+        this.error = 'Unable to submit your request. Please try again!';
         this.loading = false;
       }
     },
@@ -166,6 +194,17 @@ export default {
       // Debounce/refresh state. will require computed props to re-render
       if (this.timeout) clearTimeout(this.timeout);
       this.timeout = setTimeout(this.setOptIns, 300);
+    },
+    async loadRecaptcha() {
+      try {
+        this.recaptcha.loading = true;
+        this.recaptcha.error = null;
+        await recaptchaLoad({ siteKey: this.siteKey });
+      } catch (e) {
+        this.recaptcha.error = e;
+      } finally {
+        this.recaptcha.loading = false;
+      }
     },
   },
 };
