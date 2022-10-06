@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import recaptchaLoad from '@parameter1/base-cms-marko-web-recaptcha/browser/load';
+import recaptchaGetToken from '@parameter1/base-cms-marko-web-recaptcha/browser/get-token';
 import SubscriptionGroup from './braze-subscription-group.vue';
 
 export default {
@@ -80,6 +82,10 @@ export default {
     endpoint: {
       type: String,
       default: '/user/subscribe',
+    },
+    siteKey: {
+      type: String,
+      required: true,
     },
     siteName: {
       type: String,
@@ -111,6 +117,9 @@ export default {
       return this.questions.map(q => ({ ...q, checked: this.optIns[q.groupId] }));
     },
   },
+  created() {
+    this.loadRecaptcha();
+  },
 
   mounted() {
     // Set submission state
@@ -141,11 +150,16 @@ export default {
     },
     async handleSubmit() {
       this.loading = true;
+      this.error = null;
       try {
+        const token = await recaptchaGetToken({ siteKey: this.siteKey, action: 'brazePreferenceCenter' });
+        if (!token) {
+          throw new Error('Unable to submit your request. Please try again!');
+        }
         const r = await fetch(this.endpoint, {
           method: 'post',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ email: this.email, optIns: this.optIns }),
+          body: JSON.stringify({ email: this.email, optIns: this.optIns, token }),
         });
         if (!r.ok) {
           const { error } = await r.json();
@@ -166,6 +180,16 @@ export default {
       // Debounce/refresh state. will require computed props to re-render
       if (this.timeout) clearTimeout(this.timeout);
       this.timeout = setTimeout(this.setOptIns, 300);
+    },
+    async loadRecaptcha() {
+      try {
+        this.loading = true;
+        await recaptchaLoad({ siteKey: this.siteKey });
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };

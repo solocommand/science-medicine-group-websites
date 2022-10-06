@@ -1,6 +1,8 @@
 const { asyncRoute } = require('@parameter1/base-cms-utils');
+const { validateToken } = require('@parameter1/base-cms-marko-web-recaptcha');
 const fetch = require('node-fetch');
 const { json } = require('express');
+const { RECAPTCHA_V3_SECRET_KEY } = require('../env');
 const template = require('../templates/user/subscribe');
 
 const { log } = console;
@@ -62,8 +64,9 @@ module.exports = (app) => {
   app.post('/user/subscribe', json(), asyncRoute(async (req, res) => {
     try {
       const { body } = req;
-      const { email, optIns } = body;
+      const { email, optIns, token } = body;
 
+      await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
       const idxUser = await req.identityX.createAppUser({ email });
       await createBrazeUser(email, idxUser.id);
 
