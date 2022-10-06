@@ -66,7 +66,7 @@ module.exports = (app) => {
       const { body } = req;
       const { email, optIns, token } = body;
 
-      await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazerPreferenceCenter'] });
+      await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
       const idxUser = await req.identityX.createAppUser({ email });
       await createBrazeUser(email, idxUser.id);
 
