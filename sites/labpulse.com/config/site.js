@@ -30,12 +30,16 @@ module.exports = {
       srcset: [
         'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=90&auto=format,compress 2x',
       ],
+      width: '158',
+      height: '35',
     },
     footer: {
       src: 'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=60&auto=format,compress',
       srcset: [
         'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=120&auto=format,compress 2x',
       ],
+      width: '204',
+      height: '45',
     },
     corporate: {
       alt: 'Science and Medicine Group Logo',
