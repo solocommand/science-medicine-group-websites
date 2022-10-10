@@ -72,7 +72,7 @@ $ const promise = websiteSectionContentLoader(apollo, {
                         modifiers=["top-story-hero-image"]
                         node=heroImageNode
                       >
-                        <@image fluid=true width=600 ar="3:2" lazyload=false />
+                        <@image fluid=true width=685 ar="3:2" lazyload=false />
                       </theme-content-node>
                     </marko-web-element>
                     <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
@@ -104,7 +104,9 @@ $ const promise = websiteSectionContentLoader(apollo, {
                         nodes=cardNodes
                         modifiers=["content-card-deck"]
                       >
-                        <@node modifiers=["content-card-deck"] />
+                        <@node modifiers=["content-card-deck"]>
+                          <@image width=330 ar="3:2" />
+                        </@node>
                       </theme-content-card-deck-col-flow>
                     </marko-web-block>
                   </if>
