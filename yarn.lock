@@ -2466,10 +2466,10 @@
   dependencies:
     "@parameter1/base-cms-utils" "^3.0.0"
 
-"@parameter1/base-cms-marko-web-theme-default@^3.7.7":
-  version "3.7.7"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-default/-/base-cms-marko-web-theme-default-3.7.7.tgz#d6ba6d25e4d43100fe686e8d97789b58d01b96ae"
-  integrity sha512-zcocn+2mrHQsdEdD6ezB7EWh7zP0cpkQtv+4v9PiGrAjRDFESTR1v+/GkcGAdpKPpXGK+q4Sx/jc4pK5SE33Qw==
+"@parameter1/base-cms-marko-web-theme-default@^3.9.1":
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-default/-/base-cms-marko-web-theme-default-3.9.1.tgz#8672847622db35aee52770bdaaf204f738e0275a"
+  integrity sha512-ygWt9zUc5t2zWFABp9WJA+aXXO5mYBVSFwH/yRg0KLoKFgLXg6lM8xNC9f7Slj+yABSlSzkPtwHDXPhMzCTyog==
   dependencies:
     "@parameter1/base-cms-marko-web-icons" "^3.0.0"
     "@parameter1/base-cms-object-path" "^3.0.0"
@@ -2478,10 +2478,10 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.5"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^3.8.1":
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-3.8.1.tgz#8c5988db3c4b44f8bbd38109ee76872aa926f5fa"
-  integrity sha512-+55bwlPxTILFTr+eXP8qYcqosPx5uV/hjxEK8fTfljzwaCdxfjfWnD9gvwuL6PNvIuvo0zgDlICS5ZYn0tiLcA==
+"@parameter1/base-cms-marko-web-theme-monorail@^3.9.1":
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-3.9.1.tgz#51df1d3d9e53f18e5d18eb2fdc0ca27065c043f4"
+  integrity sha512-sB2Oiz/3KaeOLWpVIYcjEgPoOBvq3D3B96hIRhwkWyh3ydWUe6I/9zAJ5bFU/raEpKVDx1VbZbRksZJV60BuwA==
   dependencies:
     "@parameter1/base-cms-image" "^3.8.0"
     "@parameter1/base-cms-inflector" "^3.0.0"
@@ -2502,7 +2502,7 @@
     "@parameter1/base-cms-marko-web-reveal-ad" "^2.75.1"
     "@parameter1/base-cms-marko-web-search" "^3.3.1"
     "@parameter1/base-cms-marko-web-social-sharing" "^3.0.0"
-    "@parameter1/base-cms-marko-web-theme-default" "^3.7.7"
+    "@parameter1/base-cms-marko-web-theme-default" "^3.9.1"
     "@parameter1/base-cms-object-path" "^3.0.0"
     "@parameter1/base-cms-utils" "^3.0.0"
     "@parameter1/base-cms-web-common" "^3.3.1"
