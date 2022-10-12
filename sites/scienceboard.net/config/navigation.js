@@ -1,5 +1,7 @@
-const privacyPolicy = require('./privacy-policy');
+const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
+
 const subscribe = require('./subscribe');
+const privacyPolicy = require('./privacy-policy');
 
 const topics = [
   { href: '/bioprocessing', label: 'Bioprocessing' },
@@ -11,35 +13,21 @@ const topics = [
   { href: '/omics', label: 'OMICs' },
 ];
 
-const resources = [
-  { href: '/insights', label: 'Insights' },
-  { href: '/webinars', label: 'Webinars' },
-  { href: '/video', label: 'Video' },
-];
-
-const utilities = [
-  { href: '/page/advertise', label: 'Advertise' },
-  { href: '/page/contact-us', label: 'Contact Us' },
+const secondary = [
+  // { href: '/resources/cases', label: 'Cases' },
+  // { href: '/resources/webinars', label: 'Webinars' },
+  // { href: '/resources/video', label: 'Video' },
+  // { href: '/resources/conferences', label: 'Conferences' },
 ];
 
 const mobileMenu = {
-  user: [],
-  primary: [
+  primary: sortNavItems([
     ...topics,
-  ],
-  secondary: [
-    ...resources,
+  ]),
+  secondary: sortNavItems([
+    ...secondary,
     subscribe,
-    { href: '/', label: 'Advertise', target: '_blank' },
-  ],
-};
-
-const desktopMenu = {
-  about: [...utilities],
-  user: [],
-  sections: [
-    ...topics,
-  ],
+  ]),
 };
 
 module.exports = {
@@ -51,48 +39,85 @@ module.exports = {
       link: subscribe.href,
     },
   ],
-  desktopMenu,
+  user: {
+    items: [],
+  },
   mobileMenu,
   topics,
   primary: {
-    items: topics,
+    items: sortNavItems([
+      ...topics,
+    ]),
   },
   secondary: {
-    items: [],
+    items: [
+      ...secondary,
+    ],
   },
   tertiary: {
     items: [],
   },
+  toggleMenu: {
+    col1: {
+      label: 'Topic 1',
+      items: [
+        { href: '#', label: 'Subtopic 1' },
+        // ...sortNavItems(businessInsights),
+        // { href: '/business-insites', label: 'View all &raquo;' },
+      ],
+    },
+    col2: {
+      label: 'Topic 2',
+      items: [
+        { href: '#', label: 'Subtopic 1' },
+        // ...sortNavItems(diagnosticTechnologies).slice(0, 10),
+        // { href: '/diagnostic-technologies', label: 'View all &raquo;' },
+      ],
+    },
+    col3: {
+      label: 'Topic 3',
+      items: [
+        { href: '#', label: 'Subtopic 1' },
+        // ...sortNavItems(diseases).slice(0, 10),
+        // { href: '/diseases', label: 'View all &raquo;' },
+      ],
+    },
+    col4: {
+      label: 'Topic 4',
+      items: [
+        { href: '#', label: 'Subtopic 1' },
+        // ...resources,
+        // ...pointOfCareTesting,
+      ],
+    },
+  },
   footer: {
     col1: {
       label: 'Topics',
-      items: [
-        ...topics,
-      ],
+      items: topics,
     },
     col2: {
       label: 'Resources',
       items: [
-        ...resources,
-        { href: '#', label: 'TBD' },
-        { href: '#', label: 'TBD' },
+        { href: '#', label: 'Resource 1' },
+        // ...resources,
+        // { href: '#', label: 'TBD' },
+        // { href: '#', label: 'TBD' },
       ],
     },
     col3: {
       label: 'More',
       items: [
-        { href: '#', label: 'TBD' },
-        { href: '#', label: 'TBD' },
+        { href: '#', label: 'More Item 1' },
+        // { href: '#', label: 'TBD' },
+        // { href: '#', label: 'TBD' },
       ],
     },
     items: [
       privacyPolicy,
+      { href: '/page/copyright-information', label: 'Copyright Information' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
-    ],
-    topics: topics.primary,
-    more: [
-      ...utilities,
     ],
   },
 };
