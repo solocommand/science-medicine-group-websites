@@ -1,0 +1,18 @@
+<theme-section-feed-block
+  alias=input.alias
+  header=input.header
+  modifiers=input.modifiers
+>
+  <@query-params ...input.queryParams limit=input.limit skip=input.skip/>
+  <@node-list innerJustified=false ...input.nodeList />
+  <if(input.withAds)>
+    <@after>
+      <theme-gam-define-display-ad
+        name="rotation"
+        position="section_page"
+        aliases=input.aliases
+        modifiers=["inline-section-feed"]
+      />
+    </@after>
+  </if>
+</theme-section-feed-block>

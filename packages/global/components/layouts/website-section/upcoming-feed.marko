@@ -1,9 +1,15 @@
 import { getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
+$ const { pagination: p, site } = out.global;
 
-$ const { pagination: p } = out.global;
+$ const wufooUserName = site.get("wufoo.userName");
+$ const wufooFormTitle = site.get(`wufoo.${alias}.title`) || 'Drop us a line!';
+$ const wufooFormHash = site.get(`wufoo.${alias}.hash`);
+
+$ const withAds = defaultValue(input.withAds, false);
 $ const now = Date.now();
 $ const queryParams = {
   includeContentTypes: ["Event"],
@@ -12,7 +18,7 @@ $ const queryParams = {
   endingAfter: now,
   sort: {
     field: "startDate",
-    order: "desc",
+    order: "asc",
   },
 };
 $ const perPage = 12;
@@ -65,8 +71,18 @@ $ const perPage = 12;
       />
     </if>
 
-    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"]>
+    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
       <@query-params ...queryParams />
+      <@rail>
+        <div class="text-center"><a href="/page/submit-a-conference" class="btn btn-primary">Submit a Conference</a></div>
+        <theme-gam-define-display-ad
+          name="rotation"
+          position="section_page"
+          aliases=aliases
+          modifiers=["max-width-300", "center", "margin-auto-x"]
+          class="mb-block mt-3"
+        />
+      </@rail>
     </global-section-feed-wrapper>
   </@section>
 

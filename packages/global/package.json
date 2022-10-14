@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/package-global",
-  "version": "0.3.3",
+  "version": "1.3.3",
   "author": "Brandon Krigbaum <brandon@parameter1.com>",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/global",
   "license": "MIT",
@@ -10,10 +10,18 @@
     "test": "yarn lint"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@parameter1/base-cms-env": "^3.0.0",
+>>>>>>> 94b0ffd81eed0f98246e135104a9377885c543c4
     "@parameter1/base-cms-image": "^3.8.0",
     "@parameter1/base-cms-inflector": "^3.0.0",
     "@parameter1/base-cms-marko-core": "^3.3.1",
     "@parameter1/base-cms-marko-web": "^3.8.0",
+<<<<<<< HEAD
+=======
+    "@parameter1/base-cms-marko-web-auth0-identity-x": "^3.7.4",
+>>>>>>> 94b0ffd81eed0f98246e135104a9377885c543c4
     "@parameter1/base-cms-marko-web-deferred-script-loader": "^3.7.1",
     "@parameter1/base-cms-marko-web-gam": "^3.7.1",
     "@parameter1/base-cms-marko-web-gtm": "^3.7.3",
@@ -22,19 +30,32 @@
     "@parameter1/base-cms-marko-web-identity-x": "^3.7.4",
     "@parameter1/base-cms-marko-web-inquiry": "^3.0.0",
     "@parameter1/base-cms-marko-web-native-x": "^3.7.3",
+<<<<<<< HEAD
     "@parameter1/base-cms-marko-web-omeda": "^3.7.3",
     "@parameter1/base-cms-marko-web-omeda-identity-x": "^3.7.9",
     "@parameter1/base-cms-marko-web-p1-events": "^3.7.1",
+=======
+    "@parameter1/base-cms-marko-web-p1-events": "^3.7.1",
+    "@parameter1/base-cms-marko-web-recaptcha": "^3.0.0",
+>>>>>>> 94b0ffd81eed0f98246e135104a9377885c543c4
     "@parameter1/base-cms-marko-web-reveal-ad": "^3.0.0",
     "@parameter1/base-cms-marko-web-search": "^3.3.1",
     "@parameter1/base-cms-marko-web-social-sharing": "^3.0.0",
     "@parameter1/base-cms-marko-web-theme-default": "^3.9.1",
+<<<<<<< HEAD
     "@parameter1/base-cms-marko-web-theme-monorail": "^3.9.2",
+=======
+    "@parameter1/base-cms-marko-web-theme-monorail": "^3.9.1",
+>>>>>>> 94b0ffd81eed0f98246e135104a9377885c543c4
     "@parameter1/base-cms-object-path": "^3.0.0",
     "@parameter1/base-cms-utils": "^3.0.0",
     "@parameter1/base-cms-web-cli": "^3.8.0",
     "@parameter1/base-cms-web-common": "^3.3.1",
+<<<<<<< HEAD
     "@parameter1/omeda-graphql-client-express": "^0.4.2",
+=======
+    "@trevoreyre/autocomplete-vue": "^2.2.0",
+>>>>>>> 94b0ffd81eed0f98246e135104a9377885c543c4
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.1",
@@ -43,7 +64,7 @@
     "html-entities": "^2.1.0",
     "http-errors": "^1.7.3",
     "moment": "^2.29.1",
-    "newrelic": "^6.4.1",
+    "newrelic": "^6.14.0",
     "node-fetch": "^2.6.1",
     "object-path": "^0.11.5",
     "slug": "^4.0.2"

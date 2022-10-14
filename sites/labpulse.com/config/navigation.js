@@ -1,87 +1,57 @@
-const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
-
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
-const topics = [
-  { href: '/business-insights', label: 'Business Insights' },
-  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
-  { href: '/diseases', label: 'Diseases' },
-  { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
-  { href: '/resources', label: 'Resources' },
-];
-
-const secondary = [
-  { href: '/resources/cases', label: 'Cases' },
-  { href: '/resources/webinars', label: 'Webinars' },
-  { href: '/resources/video', label: 'Video' },
-  { href: '/resources/conferences', label: 'Conferences' },
-  { href: '#', label: 'Vendor Connect' },
-];
-
 const businessInsights = [
-  { href: '/business-insights/business-financial-trends', label: 'Business and Financial Trends' },
-  { href: '/business-insights/regulatory-news', label: 'Regulatory News' },
-  { href: '/business-insights/reimbursement-legislation', label: 'Reimbursement and Legislation' },
-  { href: '/business-insights/research', label: 'Research' },
+  // { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
+  { href: '/business-insights/policy-and-regulation', label: 'Policy & Regulation' },
+  { href: '/business-insights/trends-and-finance', label: 'Trends & Finance' },
+];
+
+const researchDevelopment = [
+  { href: '/research-and-development/clinical-trial', label: 'Clinical Trials' },
+  { href: '/research-and-development/collaboration', label: 'Collaboration' },
+  { href: '/research-and-development/funding', label: 'Funding' },
+  // { href: '/research-and-development/ruo', label: 'RUO' },
 ];
 
 const diagnosticTechnologies = [
-  { href: '/diagnostic-technologies/artificial-intelligence', label: 'Artificial Intelligence' },
-  { href: '/diagnostic-technologies/automation-liquid-handling', label: 'Automation/Liquid Handling' },
-  { href: '/diagnostic-technologies/biomarker-discovery-validation', label: 'Biomarker Discovery & Validation' },
   { href: '/diagnostic-technologies/clinical-chemistry', label: 'Clinical Chemistry' },
-  { href: '/diagnostic-technologies/business-financial-trends', label: 'Business and Financial Trends' },
-  { href: '/diagnostic-technologies/clinical-proteomics', label: 'Clinical Proteomics' },
-  { href: '/diagnostic-technologies/clinical-sequencing', label: 'Clinical Sequencing' },
-  { href: '/diagnostic-technologies/drug-discovery-development', label: 'Drug Discovery and Development' },
-  { href: '/diagnostic-technologies/emerging-technologies', label: 'Emerging Technologies' },
-  { href: '/diagnostic-technologies/hematology', label: 'Hematology' },
+  { href: '/diagnostic-technologies/emerging-technology', label: 'Emerging Technology' },
   { href: '/diagnostic-technologies/immunoassays', label: 'Immunoassays' },
-  { href: '/diagnostic-technologies/lab-software', label: 'Lab Software' },
-  { href: '/diagnostic-technologies/liquid-biopsy', label: 'Liquid Biopsy' },
-  { href: '/diagnostic-technologies/mass-spec', label: 'Mass Spec' },
-  { href: '/diagnostic-technologies/medical-imaging', label: 'Medical Imaging' },
   { href: '/diagnostic-technologies/molecular-diagnostics', label: 'Molecular Diagnostics' },
-  { href: '/diagnostic-technologies/pathology-histology', label: 'Pathology and Histology' },
-  { href: '/diagnostic-technologies/proteomics', label: 'Proteomics' },
-  { href: '/diagnostic-technologies/urinalysis', label: 'Urinalysis' },
-  { href: '/diagnostic-technologies/veterinary-diagnostics', label: 'Veterinary Diagnostics' },
+  { href: '/diagnostic-technologies/pathology-and-ai', label: 'Pathology & AI' },
 ];
 
 const diseases = [
-  { href: '/diseases/autoimmune-diseases', label: 'Autoimmune Diseases' },
-  { href: '/diseases/cancers', label: 'Cancers' },
-  { href: '/diseases/cardiovascular-diseases', label: 'Cardiovascular Diseases' },
-  { href: '/diseases/diabetes', label: 'Diabetes' },
-  { href: '/diseases/drugs-abuse-toxicology', label: 'Drugs Abuse/Toxicology' },
-  { href: '/diseases/hematology', label: 'Hematology' },
-  { href: '/diseases/infectious-diseases', label: 'Infectious Diseases' },
-  { href: '/diseases/inherited-diseases', label: 'Inherited Diseases' },
-  { href: '/diseases/neurological-psychological-disorders', label: 'Neurological & Psychological Disorders' },
-  { href: '/diseases/reproductive-health', label: 'Reproductive Health' },
-  { href: '/diseases/respiratory-diseases', label: 'Respiratory Diseases' },
-];
-
-const pointOfCareTesting = [
-  { href: '/point-of-care-testing/home', label: 'Home' },
-  { href: '/point-of-care-testing/hospital', label: 'Hospital' },
-  { href: '/point-of-care-testing/urgent-care-doctors-office', label: 'Urgent Care / Doctor\'s Office' },
+  { href: '/diseases/autoimmune', label: 'Autoimmune' },
+  { href: '/diseases/cancer', label: 'Cancer' },
+  { href: '/diseases/cardiovascular', label: 'Cardiovascular' },
+  { href: '/diseases/covid-19', label: 'COVID-19' },
+  { href: '/diseases/health-topics', label: 'Health Topics' },
+  { href: '/diseases/infectious', label: 'Infectious' },
 ];
 
 const resources = [
-  { href: '/resources/people-in-the-news', label: 'People in the News' },
-  { href: '/resources/cases', label: 'Cases' },
+  { href: '/page/about-us', label: 'About Us' },
+  // { href: '/resources/cases', label: 'Cases' },
+  { href: '/resources/conferences', label: 'Conferences' },
+  // { href: '/showcasts', label: 'Showcasts' },
+  // { href: '/resources/vendors', label: 'Vendors' },
+  { href: '/resources/videos', label: 'Videos' },
+  { href: '/resources/webinars', label: 'Webinars' },
+];
+
+const topics = [
+  { href: '/business-insights', label: 'Business Insights', children: businessInsights },
+  { href: '/diagnostic-technologies', label: 'Diagnostic Technologies', children: diagnosticTechnologies },
+  { href: '/diseases', label: 'Diseases', children: diseases },
+  { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
+  { href: '/research-and-development', label: 'Research & Development', children: researchDevelopment },
 ];
 
 const mobileMenu = {
-  primary: sortNavItems([
-    ...topics,
-  ]),
-  secondary: sortNavItems([
-    ...secondary,
-    subscribe,
-  ]),
+  primary: topics,
+  secondary: resources,
 };
 
 module.exports = {
@@ -94,80 +64,180 @@ module.exports = {
     },
   ],
   user: {
-    items: [],
+    items: [
+      {
+        href: '/page/account',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      // {
+      //   href: '/login',
+      //   label: 'Sign In',
+      //   when: 'logged-out',
+      //   modifiers: ['user'],
+      // },
+      {
+        href: '/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
+    tools: [
+      {
+        href: '/page/account',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      // {
+      //   href: '/login',
+      //   label: 'Sign In',
+      //   when: 'logged-out',
+      //   modifiers: ['user'],
+      // },
+      {
+        href: '/user/profile',
+        label: 'Modify profile',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+      {
+        href: '/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
   },
   mobileMenu,
   topics,
   primary: {
-    items: sortNavItems([
-      ...topics,
-    ]),
+    items: resources,
   },
   secondary: {
-    items: [
-      ...secondary,
-    ],
+    items: topics,
   },
   tertiary: {
     items: [],
   },
+  contexts: [
+    {
+      when: ['/business-insights'],
+      secondary: {
+        items: topics,
+      },
+      tertiary: { items: [] },
+      primary: {
+        items: businessInsights,
+      },
+    },
+    {
+      when: ['/diagnostic-technologies'],
+      secondary: { items: [...topics] },
+      tertiary: { items: [] },
+      primary: {
+        items: diagnosticTechnologies,
+      },
+    },
+    {
+      when: ['/diseases'],
+      secondary: { items: [...topics] },
+      tertiary: { items: [] },
+      primary: {
+        items: diseases,
+      },
+    },
+    {
+      when: ['/research-and-development'],
+      secondary: { items: [...topics] },
+      tertiary: { items: [] },
+      primary: {
+        items: researchDevelopment,
+      },
+    },
+    {
+      when: ['/resources'],
+      secondary: { items: [...topics] },
+      tertiary: { items: [] },
+      primary: {
+        items: resources,
+      },
+    },
+  ],
   toggleMenu: {
     col1: {
       label: 'Business Insights',
-      items: [
-        ...sortNavItems(businessInsights),
-        { href: '/business-insites', label: 'View all &raquo;' },
-      ],
+      items: businessInsights,
     },
     col2: {
-      label: 'Diagnostic Tech',
-      items: [
-        ...sortNavItems(diagnosticTechnologies).slice(0, 10),
-        { href: '/diagnostic-technologies', label: 'View all &raquo;' },
-      ],
+      label: 'Research & Development',
+      items: researchDevelopment,
     },
     col3: {
-      label: 'Diseases',
-      items: [
-        ...sortNavItems(diseases).slice(0, 10),
-        { href: '/diseases', label: 'View all &raquo;' },
-      ],
+      label: 'Diagnostic Technologies',
+      items: diagnosticTechnologies,
     },
     col4: {
+      label: 'Diseases',
+      items: diseases,
+    },
+    col5: {
       label: 'Resources',
-      items: [
-        ...resources,
-        ...pointOfCareTesting,
-      ],
+      items: resources,
     },
   },
   footer: {
     col1: {
       label: 'Topics',
+      colspan: 5,
       items: [
         { href: '/business-insights', label: 'Business Insights' },
         { href: '/diagnostic-technologies', label: 'Diagnostic Technologies' },
         { href: '/diseases', label: 'Diseases' },
+        { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
+        { href: '/research-and-development', label: 'Research & Development' },
       ],
     },
     col2: {
       label: 'Resources',
-      items: [
-        ...resources,
-        { href: '#', label: 'TBD' },
-        { href: '#', label: 'TBD' },
-      ],
+      items: resources,
     },
-    col3: {
-      label: 'More',
-      items: [
-        { href: '#', label: 'TBD' },
-        { href: '#', label: 'TBD' },
-      ],
-    },
+    // Original Footer Navigation
+    // col1: {
+    //   label: 'Business Insights',
+    //   items: businessInsights,
+    // },
+    // col2: {
+    //   label: 'Research & Development',
+    //   colspan: '3',
+    //   items: researchDevelopment,
+    // },
+    // col3: {
+    //   label: 'Diagnostic Technologies',
+    //   colspan: '3',
+    //   items: diagnosticTechnologies,
+    // },
+    // col4: {
+    //   label: 'Diseases',
+    //   items: diseases,
+    // },
+    // col5: {
+    //   label: 'Resources',
+    //   items: resources,
+    // },
+
+
+    // col3: {
+    //   label: 'More',
+    //   items: [
+    //     { href: '#', label: 'TBD' },
+    //     { href: '#', label: 'TBD' },
+    //   ],
+    // },
     items: [
       privacyPolicy,
-      { href: '/page/copyright-information', label: 'Copyright Information' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
     ],

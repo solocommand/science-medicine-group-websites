@@ -21,13 +21,20 @@ const secondary = [
 ];
 
 const mobileMenu = {
-  primary: sortNavItems([
+  primary: [
     ...topics,
-  ]),
+  ],
   secondary: sortNavItems([
     ...secondary,
     subscribe,
   ]),
+};
+
+const desktopMenu = {
+  about: [],
+  sections: [
+    ...topics,
+  ],
 };
 
 module.exports = {
@@ -40,8 +47,22 @@ module.exports = {
     },
   ],
   user: {
-    items: [],
+    items: [
+      {
+        href: '/login',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      {
+        href: '/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
   },
+  desktopMenu,
   mobileMenu,
   topics,
   primary: {

@@ -9,10 +9,15 @@
 // @import "../../node_modules/@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
 // @import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
 
+// package component css inclusions
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
+@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
 
 // skin components
 @import "./components/section-feed-upcoming";
 @import "./components/content-meter";
+@import "./components/directory-section-feed";
 @import "./components/site-footer";
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
@@ -189,7 +194,10 @@ label {
 .page-wrapper {
   // $marko-web-document-container-gutter: 20px; couldn't get to work
   padding: 20px;
-
+  &--no-padding-x {
+    padding-right: 0;
+    padding-left: 0;
+  }
   .breadcrumbs {
     &--website-section {
       @include skin-typography($style: "slug-medium", $link-style: "primary");
@@ -211,6 +219,10 @@ label {
         margin-left: -16px;
       }
     }
+  }
+  .details__image {
+    clear: both;
+    float: right;
   }
 }
 
@@ -241,15 +253,23 @@ label {
   }
   &--inline-content#{&}--template-inline-content-desktop {
     display: none;
-    background-color: white;
+    background-color: #fff;
     margin-left: 0;
     margin-right: 0;
     > *:first-child {
-      border-top: 3px solid $gray-200;
-      border-bottom: 3px solid $gray-200;
+      border-top: 3px solid $skin-ad-bg-color;
+      border-bottom: 3px solid $skin-ad-bg-color;
     }
+    @media (min-width: 980px) {
+      display: block;
+    }
+  }
+  &--inline-content#{&}--template-inline-content-mobile {
     @media (min-width: 780px) {
       display: block;
+    }
+    @media (min-width: 980px) {
+      display: none;
     }
   }
   &--with-label {
@@ -263,6 +283,17 @@ label {
       }
     }
   }
+  &--inline-section-feed {
+    min-height: 250px + $container-height;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    > *:first-child {
+      padding-bottom: 30px;
+      border-bottom: 1px solid $skin-ad-bg-color;
+    }
+  }
 }
 
 .site-footer {
@@ -274,6 +305,7 @@ label {
 // Begin right rail content layout CSS
 .content-page-body {
   padding-top: 12px;
+  min-height: 500px;
   .primary-image {
     &--aligned-center {
       @media (min-width: 900px) {
@@ -291,60 +323,29 @@ label {
     }
   }
 }
-.content-page-header {
-  max-width: none;
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.ad-container {
-  &--inline-content#{&}--template-inline-content-desktop,
-  &--inline-content#{&}--template-inline-content-mobile {
-    min-height: 0;
-    margin-bottom: 0;
-    > *:first-child {
-      padding-bottom: 30px;
-      margin-bottom: 30px;
-    }
-  }
-  &--inline-content#{&}--template-inline-content-desktop {
-    display: none;
+.page {
+  .content-page-header {
+    max-width: none;
     margin-right: 0;
     margin-left: 0;
-    background-color: #fff;
-    > *:first-child {
-      border-top: 3px solid $skin-ad-bg-color;
-      border-bottom: 3px solid $skin-ad-bg-color;
-    }
-    @media (min-width: 780px) {
-      display: block;
+  }
+  &--content-page {
+    .content-page-header {
+      max-width: 700px;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
-  &--with-label {
-    > *:first-child {
-      &::before {
-        padding-bottom: 1rem;
-        font-size: 12px;
-        color: $gray-500;
-        text-transform: none;
-        content: "Advertisement";
+  &--search {
+    .ad-container {
+      &--template-leaderboard {
+        min-height: 0;
+        display: none;
       }
     }
   }
-  &--inline-section-feed {
-    min-height: 0;
-    margin-bottom: 0;
-    margin-right: 0;
-    margin-left: 0;
-    background-color: #fff;
-    > *:first-child {
-      padding-bottom: 30px;
-      // margin-bottom: 30px;
-      // border-top: 3px solid $skin-ad-bg-color;
-      border-bottom: 1px solid $skin-ad-bg-color;
-    }
-  }
 }
+
 .node-list {
   &--latest-content-list {
     .node-list {
@@ -381,7 +382,7 @@ label {
 }
 .node-list {
   $self: &;
-  &--latest-content-list, &--section-feed, &--section-list {
+  &--latest-content-list, &--section-feed, &--section-list, &--wufoo {
     #{ $self }__header {
       @include skin-typography($style: "header-2");
       margin-bottom: 16px;
@@ -396,6 +397,11 @@ label {
         top: 12px;
         width: 40px;
       }
+    }
+  }
+  &--wufoo {
+    #{ $self }__body {
+      padding: 0;
     }
   }
 }
@@ -447,6 +453,11 @@ label {
 
 .site-menu {
   $self: &;
+  top: $theme-site-navbar-logo-height-sm;
+  @media (min-width: $skin-desktop-menu-breakpoint) {
+    top: $theme-site-navbar-logo-height-sm + 26px;
+    z-index: 15000;
+  }
   &__section {
     &--primary {
       #{ $self } {
@@ -456,6 +467,87 @@ label {
           }
         }
       }
+    }
+  }
+  &__contents-desktop {
+    .social-follow__header,
+    #{ $self }__header,
+    #{ $self }__link {
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .social-follow__header,
+    #{ $self }__header {
+      font-weight: 500;
+    }
+    .marko-web-icon--social-follow svg {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+.page {
+  &--content-event {
+    .page-dates {
+      &__content-starts,
+      &__content-ends {
+        @include skin-typography($style: "article-text", $link-style: "content-body");
+      }
+    }
+  }
+}
+.page-contact-details {
+  @include skin-typography($style: "article-text", $link-style: "content-body");
+}
+
+// @todo cleanup and port this.
+.input-group .input-group-prepend + input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.csmulti-legend {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 500;
+  padding-top: 3px;
+}
+
+.csmulti-wrapper.border {
+  border-radius: $input-border-radius;
+  border-color: $input-border-color !important;
+}
+
+.csmulti-wrapper.border:hover {
+  border-color: $skin-input-hover-border-color !important;
+}
+
+.csmulti-inner {
+  label {
+    font-weight: inherit;
+  }
+}
+
+.input-group {
+  .input-group-text, .btn {
+    border-radius: $input-border-radius;
+  }
+
+  .input-group-prepend {
+    .input-group-text {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  input[id^=custom-select-write-in] {
+    border-radius: 0;
+  }
+
+  .input-group-append {
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 }

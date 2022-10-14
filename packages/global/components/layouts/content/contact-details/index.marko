@@ -1,0 +1,98 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { getAsArray, getAsObject } from "@parameter1/base-cms-object-path";
+
+$ const blockName = defaultValue(input.blockName, "page-contact-details");
+
+$ const content = getAsObject(input, "obj");
+$ const modifiers = [ ...getAsArray(input, "modifiers"), content.type];
+$ const showEmail = input.showEmail != null ? input.showEmail : true;
+
+$ const addressFields = ["address1", "address2", "cityStateZip", "country"];
+$ const showAddress = addressFields.some(k => content[k]);
+
+$ const phoneFields = ["phone", "fax", "mobile", "tollfree"];
+$ const showPhones = phoneFields.some(k => content[k]);
+
+$ const socialLinks = getAsArray(content, "socialLinks");
+$ const showSocial = socialLinks.length;
+
+$ const fields = ["title", "website"];
+$ if (showEmail) fields.push("publicEmail");
+$ const showFields = fields.some(k => content[k]);
+
+$ const websiteLinkAttrs = getAsObject(input, "websiteLinkAttrs");
+$ const socialLinkAttrs = getAsObject(input, "socialLinkAttrs");
+
+$ const lang = input.lang || "en";
+
+<marko-web-block
+  tag=input.tag
+  class=input.class
+  modifiers=modifiers
+  attrs=input.attrs
+  name="page-contact-details"
+>
+  <if(showAddress)>
+    <global-content-contact-details-section block-name=blockName>
+      <address class=`${blockName}__address`>
+        <marko-web-content-address1 block-name=blockName obj=content />
+        <marko-web-content-address2 block-name=blockName obj=content />
+        <marko-web-content-city-state-zip block-name=blockName obj=content />
+        <marko-web-content-country block-name=blockName obj=content />
+      </address>
+    </global-content-contact-details-section>
+  </if>
+
+  <if(showFields)>
+    <global-content-contact-details-section block-name=blockName>
+      <marko-web-content-title block-name=blockName obj=content />
+      <if(showEmail)>
+        <marko-web-content-public-email block-name=blockName obj=content link=true/>
+      </if>
+      <marko-web-content-website block-name=blockName obj=content link={ attrs: websiteLinkAttrs } />
+    </global-content-contact-details-section>
+  </if>
+
+  <if(showSocial)>
+    <global-content-contact-details-section block-name=blockName modifiers=["social-links"]>
+      <for|item| of=socialLinks>
+        <theme-social-follow
+          label=item.label
+          provider=item.provider
+          href=item.url
+          modifiers=["dark", "lg"]
+          attrs=socialLinkAttrs
+        />
+      </for>
+    </global-content-contact-details-section>
+  </if>
+
+  <if(showPhones)>
+    <global-content-contact-details-section block-name=blockName>
+      <if(content.phone)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Phone:</span>
+          <marko-web-content-phone block-name=blockName obj=content />
+        </div>
+      </if>
+      <if(content.mobile)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Mobile:</span>
+          <marko-web-content-mobile block-name=blockName obj=content />
+        </div>
+      </if>
+      <if(content.tollfree)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Tollfree:</span>
+          <marko-web-content-tollfree block-name=blockName obj=content />
+        </div>
+      </if>
+      <if(content.fax)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Fax:</span>
+          <marko-web-content-fax block-name=blockName obj=content />
+        </div>
+      </if>
+    </global-content-contact-details-section>
+  </if>
+</marko-web-block>

@@ -1,22 +1,23 @@
-const navigation = require('./navigation');
-const contentMeter = require('./content-meter');
+const auth0 = require('./auth0');
+const braze = require('./braze');
 const gam = require('./gam');
-const nativeX = require('./native-x');
 const identityX = require('./identity-x');
+const nativeX = require('./native-x');
+const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
 
 module.exports = {
-  navigation,
-  contentMeter,
+  // Module configs
+  auth0,
+  braze,
   gam,
-  nativeX,
   identityX,
-  idxNavItems: {
-    enable: process.env.IDX_NAV_ENABLE || false,
-  },
+  nativeX,
+  navigation,
   newsletter,
   search,
+  // Site configs
   company: 'Science and Medicine Group',
   p1events: {
     tenant: 'smg',
@@ -29,12 +30,16 @@ module.exports = {
       srcset: [
         'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=90&auto=format,compress 2x',
       ],
+      width: '158',
+      height: '35',
     },
     footer: {
       src: 'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=60&auto=format,compress',
       srcset: [
         'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=120&auto=format,compress 2x',
       ],
+      width: '204',
+      height: '45',
     },
     corporate: {
       alt: 'Science and Medicine Group Logo',
@@ -57,11 +62,19 @@ module.exports = {
   gtm: {
     containerId: 'GTM-W5TZ4SS',
   },
-  // wufoo: {
-  //   userName: 'randallreilly',
-  // },
+  wufoo: {
+    userName: 'labpulse',
+    'contact-us': {
+      title: 'Drop us a line!',
+      hash: 'mbaniw419houf4',
+    },
+    'resources/conferences': {
+      title: 'Submit A Conference!',
+      hash: 'z1op3s8517hgdmv',
+    },
+  },
   inquiry: {
-    enabled: false,
+    enabled: true,
     directSend: false,
     sendTo: 'support@parameter1.com',
     sendFrom: 'LabPulse.com <noreply@parameter1.com>',

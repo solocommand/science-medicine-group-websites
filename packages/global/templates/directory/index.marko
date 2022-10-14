@@ -1,0 +1,168 @@
+import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
+import { getAsArray } from "@parameter1/base-cms-object-path";
+
+import queryFragment from "../../graphql/fragments/directory-section-featured-feed-block";
+
+$ const { id, alias, name, pageNode } = input;
+$ const { $markoWebSearch: search, GAM } = out.global;
+$ const sortField = (search.input.searchQuery) ? undefined : "NAME";
+$ const sortOrder = (search.input.searchQuery) ? undefined : "ASC";
+$ const currentPage = search.getCurrentPage();
+
+<theme-website-section-page id=id alias=alias name=name>
+  <@head>
+    <marko-web-gtm-website-section-context|{ context }| alias=alias>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-website-section-context>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-p1-events-track-website-section node=section />
+    </marko-web-resolve-page>
+    <${input.head} />
+  </@head>
+  <if(GAM.enableRevealAd)>
+    <@above-container>
+      <marko-web-resolve-page|{ data: section }| node=pageNode>
+        $ const aliases = hierarchyAliases(section);
+        <theme-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
+      </marko-web-resolve-page>
+    </@above-container>
+  </if>
+  <@page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-page-wrapper>
+        <@section|{ blockName }|>
+          <theme-breadcrumbs modifiers=["directory", "content-page"]>
+            $ const children = getAsArray(section, "hierarchy");
+            <for|child| of=children>
+                <@item>
+                  $ const link = search.input.searchQuery ? `/${child.alias}?searchQuery=${search.input.searchQuery}` : `/${child.alias}`;
+                  <marko-web-link title=child.name href=link>${child.name}</marko-web-link>
+                </@item>
+            </for>
+          </theme-breadcrumbs>
+          <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj=section>
+            <if(currentPage > 1)>${value}: Page ${currentPage}</if>
+            <else>${value}</else>
+          </marko-web-website-section-name>
+          <marko-web-website-section-description block-name=blockName obj=section />
+        </@section>
+        <@section|{ blockName }|>
+          <div class="row">
+            <div class="col-lg-3">
+              <marko-web-search-filter-container title="Subcategories">
+                <@title value="Subcategories" />
+                $ const facetAlias = section.children.edges.length ? alias : section.parent.alias;
+                <theme-directory-facet-block primary-alias=facetAlias search-query=search.input.searchQuery active-id=id />
+              </marko-web-search-filter-container>
+              <if(section.parent)>
+                <div class="mt-block">
+                  <div class="company-search__title"> Company Search:</div>
+                  <theme-company-search-block />
+                </div>
+              </if>
+            </div>
+
+            <div class="col-lg-9">
+              <if(!section.parent)>
+                <div class="row">
+                  <div class="col-md-6 mb-block">
+                    <div class="company-search__title"> Search Companies:</div>
+                    <theme-company-search-block />
+                  </div>
+                  <div class="col-md-6 mb-block">
+                    <div class="section-search__title">Search Categories:</div>
+                    <theme-section-search-block section-ids=[id] include-self=false/>
+                  </div>
+                </div>
+              </if>
+              <if(currentPage === 1)>
+                $ const featuredQueryParams = {
+                  sectionAlias: alias,
+                  limit: 25,
+                  optionName: 'Pinned' ,
+                  queryFragment,
+                }
+                <marko-web-query|{ nodes: featuredNodes }| name='website-scheduled-content' params=featuredQueryParams>
+                  <if(featuredNodes.length)>
+                    <div class="directory-featured-listing__item--wrapper directory-featured-listing__item--open">
+                      <marko-web-node-list
+                        inner-justified=false
+                        flush-x=false
+                        flush-y=false
+                        modifiers=["directory-section-feed", "featured-listings"]
+                      >
+                        <@header>
+                          Featured
+                          <theme-menu-toggle-button
+                            class='directory-featured-listing__toggle'
+                            targets=['.directory-featured-listing__item--wrapper']
+                            toggle-class='directory-featured-listing__item--open'
+                            initially-expanded=true
+                            icon-modifiers=["sm"]
+                            icon-name="chevron-up"
+                            expanded-icon-name="chevron-down"
+                          />
+                        </@header>
+                        <@nodes nodes=featuredNodes>
+                          <@slot|{ node }|>
+                            <theme-directory-section-feed-content-node
+                              node=node
+                              with-dates=false
+                              is-featured=true
+                              with-teaser=true
+                            />
+                          </@slot>
+                        </@nodes>
+                      </marko-web-node-list>
+                    </div>
+                  </if>
+                </marko-web-query>
+              </if>
+
+              <marko-web-search-query|{ nodes, totalCount }|
+                limit=search.getLimit()
+                skip=search.getSkip()
+                sortField=sortField
+                sortOrder=sortOrder
+                content-types=search.input.contentTypes
+                search-query=search.input.searchQuery
+                assigned-to-website-section-ids=[section.id]
+                query-fragment=queryFragment
+              >
+                <marko-web-page-wrapper modifiers=["no-padding-x"]>
+                  <if(nodes.length)>
+                    <@section>
+                      <marko-web-node-list
+                        inner-justified=true
+                        flush-x=true
+                        flush-y=false
+                        modifiers=["directory-section-feed"]
+                      >
+                        <@nodes nodes=nodes>
+                          <@slot|{ node }|>
+                            <theme-directory-section-feed-content-node node=node is-featured=false with-teaser=true display-image=false with-dates=false />
+                          </@slot>
+                        </@nodes>
+                      </marko-web-node-list>
+                      <marko-web-search-pagination-controls total-count=totalCount>
+                        <@link class="btn btn-primary" />
+                      </marko-web-search-pagination-controls>
+                    </@section>
+                  </if>
+                </marko-web-page-wrapper>
+              </marko-web-search-query>
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <theme-gam-define-display-ad
+            name="rotation"
+            position="static_page"
+            modifiers=["inter-block"]
+          />
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+</theme-website-section-page>

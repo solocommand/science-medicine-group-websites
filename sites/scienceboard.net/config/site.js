@@ -1,22 +1,21 @@
-const navigation = require('./navigation');
-const contentMeter = require('./content-meter');
+const auth0 = require('./auth0');
 const gam = require('./gam');
-const nativeX = require('./native-x');
 const identityX = require('./identity-x');
+const nativeX = require('./native-x');
+const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
 
 module.exports = {
-  navigation,
-  contentMeter,
+  // Module configs
+  auth0,
   gam,
-  nativeX,
   identityX,
-  idxNavItems: {
-    enable: process.env.IDX_NAV_ENABLE || false,
-  },
+  nativeX,
+  navigation,
   newsletter,
   search,
+  // Site configs
   company: 'Science and Medicine Group',
   p1events: {
     tenant: 'smg',

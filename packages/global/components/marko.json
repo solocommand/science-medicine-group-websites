@@ -1,5 +1,6 @@
 {
   "taglib-imports": [
+    "./auth0/marko.json",
     "./blocks/marko.json",
     "./layouts/marko.json",
     "./wrappers/marko.json"

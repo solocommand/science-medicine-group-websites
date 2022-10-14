@@ -6,21 +6,24 @@ module.exports = ({
   hiddenFields = [
     'street',
     'addressExtra',
-    'city',
-    'regionCode',
+    'organization',
+    'organizationTitle',
+    'phoneNumber',
   ],
   defaultCountryCode = '',
   requiredServerFields = [
     'givenName',
     'familyName',
+    'city',
+    'regionCode',
     'countryCode',
-    'postalCode',
   ],
   requiredClientFields = [
     'givenName',
     'familyName',
+    'city',
+    'regionCode',
     'countryCode',
-    'postalCode',
   ],
   ...rest
 } = {}) => {
@@ -31,6 +34,7 @@ module.exports = ({
     hiddenFields,
     requiredServerFields,
     requiredClientFields,
+    booleanQuestionsLabel: 'Choose your subscriptions:',
     onHookError: newrelic.noticeError.bind(newrelic),
     ...rest,
   });

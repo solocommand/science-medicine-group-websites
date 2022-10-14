@@ -4,71 +4,137 @@ $ const { pagination: p } = out.global;
 $ const perPage = 12;
 $ const withPagination = defaultValue(input.withPagination, true);
 $ const { modifiers } = input;
+$ const withAds = defaultValue(input.withAds, true);
 $ const queryParams = {
   requiresImage: false,
   ...input.queryParams,
 };
 
-<div class="row">
-  <div class="col-lg-8">
-    <theme-section-feed-block
-      alias=input.alias
-      header=input.header
-      modifiers=modifiers
-    >
-      <@query-params ...queryParams limit=3 skip=p.skip({ perPage })/>
-      <@node-list innerJustified=false ...input.nodeList />
-    </theme-section-feed-block>
-    <theme-gam-define-display-ad
-      name="inline-content-desktop"
-      position="section_page"
-      aliases=input.aliases
-      modifiers=["inline-section-feed"]
-    />
-    <theme-section-feed-block alias=input.alias modifiers=modifiers>
-      <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 3 }) />
-      <@node-list innerJustified=false ...input.nodeList />
-    </theme-section-feed-block>
-    <theme-gam-define-display-ad
-      name="inline-content-desktop"
-      position="section_page"
-      aliases=input.aliases
-      modifiers=["inline-section-feed"]
-    />
+<if(input.rails && input.rails.length === 1)>
+  <div class="row">
+    <div class="col-lg-8">
+      <section-feed-block
+        alias=input.alias
+        header=input.header
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage })
+        node-list=input.nodeList
+        with-ads=withAds
+      />
+      <section-feed-block
+        alias=input.alias
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage, skip: 3 })
+        node-list=input.nodeList
+        with-ads=withAds
+      />
+      <section-feed-block
+        alias=input.alias
+        header=input.header
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage, skip: 6 })
+        node-list=input.nodeList
+        with-ads=withAds
+      />
+      <section-feed-block
+        alias=input.alias
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage, skip: 9 })
+        node-list=input.nodeList
+      />
+      <if(withPagination)>
+        <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
+          <@query-params ...queryParams />
+          <theme-pagination-controls
+            per-page=perPage
+            total-count=totalCount
+            path=input.alias
+          />
+        </theme-section-feed-block>
+      </if>
+    </div>
+    <div class="col-lg-4">
+      <${input.rails[0].renderBody} />
+    </div>
   </div>
-  <div class="col-lg-4">
-    <global-most-popular-list-block class="sticky-top" />
+</if>
+<else>
+  <div class="row">
+    <div class="col-lg-8">
+      <section-feed-block
+        alias=input.alias
+        header=input.header
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage })
+        node-list=input.nodeList
+        with-ads=withAds
+      />
+      <section-feed-block
+        alias=input.alias
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage, skip: 3 })
+        node-list=input.nodeList
+        with-ads=withAds
+      />
+    </div>
+    <div class="col-lg-4">
+      <if(input.rails && input.rails[0])>
+        <${input.rails[0].renderBody} />
+      </if>
+      <else>
+        <global-most-popular-list-block class="sticky-top" />
+      </else>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-lg-8">
-    <theme-section-feed-block alias=input.alias modifiers=modifiers>
-      <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 6 }) />
-      <@node-list innerJustified=false ...input.nodeList />
-    </theme-section-feed-block>
-    <!--   -->
-    <theme-gam-define-display-ad
-      name="inline-content-desktop"
-      position="section_page"
-      aliases=input.aliases
-      modifiers=["inline-section-feed"]
-    />
-    <theme-section-feed-block alias=input.alias modifiers=modifiers>
-      <@query-params ...queryParams limit=3 skip=p.skip({ perPage, skip: 9 }) />
-      <@node-list innerJustified=false ...input.nodeList />
-    </theme-section-feed-block>
-    <if(withPagination)>
-      <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
-        <@query-params ...queryParams />
-        <theme-pagination-controls
-          per-page=perPage
-          total-count=totalCount
-          path=input.alias
-        />
-      </theme-section-feed-block>
-    </if>
+  <div class="row">
+    <div class="col-lg-8">
+      <section-feed-block
+        alias=input.alias
+        header=input.header
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage, skip: 6 })
+        node-list=input.nodeList
+        with-ads=withAds
+      />
+      <section-feed-block
+        alias=input.alias
+        modifiers=modifiers
+        query-params=queryParams
+        limit=3
+        skip=p.skip({ perPage, skip: 9 })
+        node-list=input.nodeList
+      />
+      <if(withPagination)>
+        <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
+          <@query-params ...queryParams />
+          <theme-pagination-controls
+            per-page=perPage
+            total-count=totalCount
+            path=input.alias
+          />
+        </theme-section-feed-block>
+      </if>
+    </div>
+    <div class="col-lg-4">
+      <if(input.rails && input.rails[1])>
+        <${input.rails[1].renderBody} />
+      </if>
+      <else>
+      </else>
+    </div>
   </div>
-  <div class="col-lg-4">
-    <!-- <global-most-popular-list-block class="sticky-top" /> -->
-  </div>
-</div>
+</else>
