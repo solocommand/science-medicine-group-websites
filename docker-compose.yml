@@ -147,3 +147,18 @@ services:
     ports:
       - "9955:80"
       - "19955:19955"
+
+  ama:
+    <<: *site-cmd
+    working_dir: /root/sites/auntminnieasia.com
+    environment:
+      <<: [*env, *env-leonis]
+      HOST: www-smg-ama.dev.parameter1.com
+      PORT: 80
+      EXPOSED_PORT: 9956
+      LIVERELOAD_PORT: 19956
+      SITE_ID: 63038ec219398c102f8b457c
+    hostname: www-smg-ama.dev.parameter1.com
+    ports:
+      - "9956:80"
+      - "19956:19956"
