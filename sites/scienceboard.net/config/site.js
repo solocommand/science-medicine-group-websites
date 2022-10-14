@@ -1,4 +1,5 @@
 const auth0 = require('./auth0');
+const braze = require('./braze');
 const gam = require('./gam');
 const identityX = require('./identity-x');
 const nativeX = require('./native-x');
@@ -9,6 +10,7 @@ const search = require('./search');
 module.exports = {
   // Module configs
   auth0,
+  braze,
   gam,
   identityX,
   nativeX,

@@ -114,6 +114,7 @@ services:
       EXPOSED_PORT: 9953
       LIVERELOAD_PORT: 19953
       SITE_ID: 63038e29475dbd6a2f8b457e
+      AUTH0_BASEURL: http://www-smg-drb.dev.parameter1.com:9953
     hostname: www-smg-drb.dev.parameter1.com
     ports:
       - "9953:80"
@@ -129,6 +130,7 @@ services:
       EXPOSED_PORT: 9954
       LIVERELOAD_PORT: 19954
       SITE_ID: 63038e5dd15c7c4b2e8b458a
+      AUTH0_BASEURL: http://www-smg-am.dev.parameter1.com:9954
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
@@ -144,6 +146,7 @@ services:
       EXPOSED_PORT: 9955
       LIVERELOAD_PORT: 19955
       SITE_ID: 63038e96d15c7cc42e8b4581
+      AUTH0_BASEURL: http://www-smg-ame.dev.parameter1.com:9955
     hostname: www-smg-ame.dev.parameter1.com
     ports:
       - "9955:80"
@@ -159,6 +162,7 @@ services:
       EXPOSED_PORT: 9956
       LIVERELOAD_PORT: 19956
       SITE_ID: 63038ec219398c102f8b457c
+      AUTH0_BASEURL: http://www-smg-ama.dev.parameter1.com:9956
     hostname: www-smg-ama.dev.parameter1.com
     ports:
       - "9956:80"
