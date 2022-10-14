@@ -1,0 +1,16 @@
+$ const { id, type, pageNode, ...rest } = input;
+
+<global-content-product-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+>
+  <@after-body|{ content }|>
+    <theme-more-products-block alias="products" params={ excludeContentIds: [content.id] } />
+  </@after-body>
+
+  <@section>
+    <theme-client-side-most-popular-block />
+  </@section>
+</global-content-product-layout>

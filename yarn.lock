@@ -2381,10 +2381,10 @@
     graphql-tag "^2.12.5"
     node-fetch "^2.6.5"
 
-"@parameter1/base-cms-marko-web-omeda-identity-x@^3.7.9":
-  version "3.7.9"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-omeda-identity-x/-/base-cms-marko-web-omeda-identity-x-3.7.9.tgz#161118be0a7ee386c0e383879ab8742ffa2ed42e"
-  integrity sha512-Ka+Df1c1YN1UpXxTtzZW7KwmgCrFfB2BJsJxQsNePiEzyI2hw866FguEB1Ekke3wIseBC3KeD1T+gVmwJ0IHfQ==
+"@parameter1/base-cms-marko-web-omeda-identity-x@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-omeda-identity-x/-/base-cms-marko-web-omeda-identity-x-3.10.0.tgz#6d2df604cee740de73533da1f3b8a0b9ac4f14e0"
+  integrity sha512-S7vAeuyWfvXHUyMnjG7uR1KgIRVoFTpPLFniEjb0nl8hglSNlXAtDp+EWE9vtn/t+CiQwSHgwJWRckWu97zXHg==
   dependencies:
     "@parameter1/base-cms-marko-web-identity-x" "^3.7.4"
     "@parameter1/base-cms-marko-web-omeda" "^3.7.3"
@@ -2478,10 +2478,10 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.5"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^3.9.1":
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-3.9.1.tgz#51df1d3d9e53f18e5d18eb2fdc0ca27065c043f4"
-  integrity sha512-sB2Oiz/3KaeOLWpVIYcjEgPoOBvq3D3B96hIRhwkWyh3ydWUe6I/9zAJ5bFU/raEpKVDx1VbZbRksZJV60BuwA==
+"@parameter1/base-cms-marko-web-theme-monorail@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-3.10.0.tgz#b2b3f2517aac64b99108807418640cbe7d3e6be8"
+  integrity sha512-ZvviMEWq7sRd7IuMAlfi0QLwiS8hYZW6zHe4Y/JanrVNcUgzgZqLF7xxyp40cJuWnUgUcAiL2zybKEy13dJj9Q==
   dependencies:
     "@parameter1/base-cms-image" "^3.8.0"
     "@parameter1/base-cms-inflector" "^3.0.0"
@@ -2496,7 +2496,7 @@
     "@parameter1/base-cms-marko-web-inquiry" "^3.0.0"
     "@parameter1/base-cms-marko-web-native-x" "^3.7.3"
     "@parameter1/base-cms-marko-web-omeda" "^3.7.3"
-    "@parameter1/base-cms-marko-web-omeda-identity-x" "^3.7.9"
+    "@parameter1/base-cms-marko-web-omeda-identity-x" "^3.10.0"
     "@parameter1/base-cms-marko-web-p1-events" "^3.7.1"
     "@parameter1/base-cms-marko-web-recaptcha" "^3.0.0"
     "@parameter1/base-cms-marko-web-reveal-ad" "^2.75.1"
@@ -2654,6 +2654,24 @@
   integrity sha512-nXvI1KhR+KX8n/biQI09rvlstDom2iuBui3wKQ2iv9tyh5NRd6/Cml19Ds4wXjpFMz+96mZ5c72skyhp0s9Fng==
   dependencies:
     joi "^17.4.2"
+
+"@parameter1/omeda-graphql-client-express@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/omeda-graphql-client-express/-/omeda-graphql-client-express-0.4.2.tgz#a0552d607de75ab35862d62a2c4fac2522aef83f"
+  integrity sha512-Ui4Tt7G8gs2leBlQS/VIzrXpcsLdRp/nb6d0I5JhhKkT3EojrkpA7SZSrAChnwDoCWLn7giP0vtRnWdVE9SpVg==
+  dependencies:
+    "@parameter1/omeda-graphql-client" "^0.4.2"
+
+"@parameter1/omeda-graphql-client@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/omeda-graphql-client/-/omeda-graphql-client-0.4.2.tgz#42476b0acf1c817ad4facbdfb9b9ba34a140522c"
+  integrity sha512-ZwIu67TcrRxGBg3JJjDma2ZqjLdl79KpQDTho0sQH+2GVFvQkM2/uPgiBAv+6VRlT1FkZ6T2slxXQaGaDYW2tw==
+  dependencies:
+    apollo-cache-inmemory "^1.6.6"
+    apollo-client "^2.6.10"
+    apollo-link-http "^1.5.17"
+    graphql "^15.5.0"
+    node-fetch "^2.6.1"
 
 "@parameter1/omeda-graphql-client@^0.7.2":
   version "0.7.2"
@@ -7343,6 +7361,11 @@ graphql@^14.7.0:
   integrity sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==
   dependencies:
     iterall "^1.2.2"
+
+graphql@^15.5.0:
+  version "15.8.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.8.0.tgz#33410e96b012fa3bdb1091cc99a94769db212b38"
+  integrity sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==
 
 graphql@^15.7.2:
   version "15.7.2"

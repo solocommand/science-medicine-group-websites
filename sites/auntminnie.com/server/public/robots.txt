@@ -1,0 +1,11 @@
+# www.robotstxt.org/
+# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
+
+User-agent: *
+Disallow: /
+Disallow: /__
+Disallow: /print/content
+Disallow: /search
+
+Sitemap: https://www.auntminnie.com/sitemap.xml
+Sitemap: https://www.auntminnie.com/sitemap-google-news.xml
