@@ -14,9 +14,7 @@ const topics = [
 ];
 
 const secondary = [
-  // { href: '/resources/cases', label: 'Cases' },
-  // { href: '/resources/webinars', label: 'Webinars' },
-  // { href: '/resources/video', label: 'Video' },
+  { href: '#', label: 'Videos' },
   // { href: '/resources/conferences', label: 'Conferences' },
 ];
 
