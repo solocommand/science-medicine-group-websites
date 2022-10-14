@@ -1,0 +1,12 @@
+$theme-site-header-breakpoints: (
+  hide-primary: 1100px,
+  hide-secondary: 700px,
+  small-logo: 775px,
+  small-text-primary: 0,
+  small-text-secondary: 830px
+);
+
+// Colors
+$primary: #01274b;
+
+@import "../../node_modules/@science-medicine-group/package-global/scss/core";
