@@ -64,14 +64,10 @@ module.exports = {
   mobileMenu,
   topics,
   primary: {
-    items: sortNavItems([
-      ...topics,
-    ]),
+    items: secondary,
   },
   secondary: {
-    items: [
-      ...secondary,
-    ],
+    items: topics,
   },
   tertiary: {
     items: [],
