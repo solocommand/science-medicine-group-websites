@@ -26,7 +26,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
       <if(type !== "contact")>
         <if(authors.length === 1)>
-          <theme-author-published-node author=authors[0] content=content lazyload=false />
+          <theme-author-published-node author=authors[0] content=content lazyload=false display-updated-date=false />
         </if>
         <else-if(authors.length > 1)>
           <default-theme-content-attribution obj=content elements=["authors"] />
