@@ -1,0 +1,67 @@
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+
+$ const { id, type, pageNode, ...rest } = input;
+
+<global-content-company-layout
+  id=id
+  type=type
+  page-node=pageNode
+  ...rest
+>
+  <@after-body|{ content }|>
+    <marko-web-query|{ nodes }|
+      name="all-company-content"
+      params={
+        companyId: content.id,
+        excludeContentTypes: ['Product', "PressRelease"],
+        limit: 15,
+        queryFragment,
+      }
+    >
+      <marko-web-node-list
+        inner-justified=false
+        flush-x=true
+        flush-y=false
+        modifiers=["section-feed"]
+      >
+        <@header>
+          Latest from ${content.name}
+        </@header>
+        <@nodes nodes=nodes>
+          <@slot|{ node }|>
+            <theme-section-feed-content-node node=node />
+          </@slot>
+        </@nodes>
+      </marko-web-node-list>
+    </marko-web-query>
+    <marko-web-query|{ nodes }|
+      name="all-company-content"
+      params={
+        companyId: content.id,
+        includeContentTypes: ['Product', "PressRelease"],
+        limit: 3,
+        queryFragment,
+      }
+    >
+      <marko-web-node-list
+        inner-justified=true
+        flush-x=true
+        flush-y=false
+        modifiers=["section-feed"]
+      >
+        <@header>
+          Latest Product & Press Release from ${content.name}
+        </@header>
+        <@nodes nodes=nodes>
+          <@slot|{ node }|>
+            <theme-section-feed-content-node node=node />
+          </@slot>
+        </@nodes>
+      </marko-web-node-list>
+    </marko-web-query>
+  </@after-body>
+
+  <@section>
+    <theme-client-side-most-popular-block />
+  </@section>
+</global-content-company-layout>

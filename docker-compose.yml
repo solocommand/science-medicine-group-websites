@@ -132,3 +132,18 @@ services:
     ports:
       - "9954:80"
       - "19954:19954"
+
+  ame:
+    <<: *site-cmd
+    working_dir: /root/sites/auntminnieeurope.com
+    environment:
+      <<: [*env, *env-leonis]
+      HOST: www-smg-ame.dev.parameter1.com
+      PORT: 80
+      EXPOSED_PORT: 9955
+      LIVERELOAD_PORT: 19955
+      SITE_ID: 63038e96d15c7cc42e8b4581
+    hostname: www-smg-ame.dev.parameter1.com
+    ports:
+      - "9955:80"
+      - "19955:19955"
