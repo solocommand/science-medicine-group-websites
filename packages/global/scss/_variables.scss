@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "Fira Sans-fallback";
+  size-adjust: 102.56%;
+  ascent-override: 92%;
+  src: local("Arial");
+}
+
 // Fonts
-$skin-font-family-primary: "Fira Sans", sans-serif !default;
-$skin-font-family-secondary: "Fira Sans", sans-serif !default;
+$skin-font-family-primary: "Fira Sans", "Fira Sans-fallback", sans-serif !default;
+$skin-font-family-secondary: "Fira Sans", "Fira Sans-fallback", sans-serif !default;
 
 // Navbar
 $navbarStyle: "navbar-c" !default;
