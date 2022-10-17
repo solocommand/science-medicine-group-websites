@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const { json } = require('express');
 const { RECAPTCHA_V3_SECRET_KEY } = require('../env');
 const template = require('../templates/user/subscribe');
+const updateAppUser = require('../graphql/mutations/idx-user-update-receive-email');
 
 const { log } = console;
 
@@ -31,6 +32,20 @@ module.exports = (app) => {
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
     return response;
+  };
+
+  const createIdentityXUser = async (email, svc) => {
+    const user = await svc.createAppUser({ email });
+    await svc.client.mutate({
+      mutation: updateAppUser,
+      variables: {
+        input: {
+          id: user.id,
+          payload: { email, receiveEmail: true },
+        },
+      },
+    });
+    return user;
   };
 
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
@@ -67,7 +82,7 @@ module.exports = (app) => {
       const { email, optIns, token } = body;
 
       await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
-      const idxUser = await req.identityX.createAppUser({ email });
+      const idxUser = await createIdentityXUser(email, req.identityX);
       await createBrazeUser(email, idxUser.id);
 
       const r = await fetch(`${apiHost}/v2/subscription/status/set`, {
