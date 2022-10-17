@@ -38,6 +38,7 @@ module.exports = (app) => {
     const user = await svc.createAppUser({ email });
     const apiToken = svc.config.getApiToken();
     if (!apiToken) throw new Error('Unable to set opt-in state: No IdentityX API token has been configured.');
+    await svc.client.mutate({
       mutation: updateAppUser,
       variables: {
         input: {
