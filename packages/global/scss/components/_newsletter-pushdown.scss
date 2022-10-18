@@ -1,14 +1,4 @@
 .site-newsletter-menu {
   background: $gray-300;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: -1000;
-  transition: top 1s linear;
-  z-index: 1501;
   border-bottom: 1px solid #c4c6cb;
-  box-shadow: -0px 0px 5px 0px rgba(0,0,0,0.75);
-  &--open {
-    top: 0;
-  }
 }
