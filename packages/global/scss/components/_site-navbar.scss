@@ -1,18 +1,3 @@
-.site-header {
-  position: fixed;
-  border-bottom: none;
-}
-.document-container,
-.site-newsletter-menu__container {
-  margin-top: calculate-navbar-height-for(default);
-
-  @each $breakpoint, $width in sort-map-by-values($theme-site-header-breakpoints, desc) {
-    @media (max-width: $width) {
-      margin-top: calculate-navbar-height-for($breakpoint);
-    }
-  }
-}
-
 .site-menu {
   $self: &;
   &__section {
