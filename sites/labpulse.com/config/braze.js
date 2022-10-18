@@ -1,7 +1,17 @@
 module.exports = {
   apiHost: 'https://rest.iad-05.braze.com',
   apiKey: process.env.BRAZE_API_KEY,
-
+  tenant: 'smg',
+  fieldMap: {
+    id: 'external_id',
+    givenName: 'first_name',
+    familyName: 'last_name',
+    email: 'email',
+    city: 'home_city',
+    countryCode: 'country',
+    phoneNumber: 'phone',
+    organization: 'org_name',
+  },
   subscriptionGroups: [
     // @todo read from IdentityX fields! hardcoding for now.
     {
