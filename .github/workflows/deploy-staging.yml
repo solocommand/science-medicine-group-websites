@@ -38,6 +38,10 @@ jobs:
         site:
           - labpulse.com
           - scienceboard.net
+          - drbicuspid.com
+          - auntminnie.com
+          - auntminnieeurope.com
+          - auntminnieasia.com
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to Kubernetes
