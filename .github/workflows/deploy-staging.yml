@@ -36,8 +36,12 @@ jobs:
         namespace:
           - staging-websites-leonis
         site:
-          - labpulse.com
+          # - labpulse.com # Only deploy staging from staging branch
           - scienceboard.net
+          - drbicuspid.com
+          - auntminnie.com
+          - auntminnieeurope.com
+          - auntminnieasia.com
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to Kubernetes
