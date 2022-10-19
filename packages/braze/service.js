@@ -18,24 +18,11 @@ class Braze {
     };
   }
 
-  /**
-   * Upserts a Braze user via the API.
-   * @param {String} email The email address of the user.
-   * @param {String} externalId The external ID to assign to the user
-   * @param {Object} payload Aditional attributes to assign to the user.
-   * @returns Object
-   */
-  async trackUser(email, externalId, payload = {}) {
-    const r = await fetch(`${this.host}/users/track`, {
+  async request(endpoint, opts = {}) {
+    const r = await fetch(`${this.host}/${endpoint}`, {
       method: 'post',
       headers: this.headers,
-      body: JSON.stringify({
-        attributes: [{
-          ...payload,
-          email,
-          external_id: externalId,
-        }],
-      }),
+      ...opts || {},
     });
     const response = await r.json();
     if (!r.ok) {
@@ -45,8 +32,42 @@ class Braze {
     return response;
   }
 
-  async updateSubscriptions(email, externalId, optIns = []) {
-    log('updateSubscriptions', this.apiHost, optIns);
+  /**
+   * Upserts a Braze user via the API.
+   * @param {String} email The email address of the user.
+   * @param {String} externalId The external ID to assign to the user
+   * @param {Object} payload Aditional attributes to assign to the user.
+   * @returns Object
+   */
+  async trackUser(email, externalId, payload = {}) {
+    return this.request('users/track', {
+      body: JSON.stringify({
+        attributes: [{
+          ...payload,
+          email,
+          external_id: externalId,
+        }],
+      }),
+    });
+  }
+
+  /**
+   *
+   * @param {String} email The email address to (un)subscribe
+   * @param {String} externalId The IdentityX user ID
+   * @param {Object} optIns An object of opt-in statuses, keyed by the subscription group
+   */
+  async updateSubscriptions(email, externalId, optIns = {}) {
+    return this.request('v2/subscription/status/set', {
+      body: JSON.stringify({
+        subscription_groups: Object.entries(optIns).map(([id, status]) => ({
+          subscription_group_id: id,
+          subscription_state: status ? 'subscribed' : 'unsubscribed',
+          external_ids: [externalId],
+          emails: [email],
+        })),
+      }),
+    });
   }
 }
 
