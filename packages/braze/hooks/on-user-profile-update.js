@@ -43,12 +43,14 @@ module.exports = async ({
 
   // External ID tagged subscriptions
   const optins = filterByExternalId(getAsArray(user, 'customBooleanFieldAnswers'), 'subscriptionGroup', tenant);
-  const subscriptions = optins.map(ans => ({
-    id: get(ans, 'field.externalId.identifier.value'),
-    status: ans.value,
-  }));
+  if (optins.length) {
+    const subscriptions = optins.reduce((obj, ans) => {
+      const key = get(ans, 'field.externalId.identifier.value');
+      return { ...obj, [key]: ans.value };
+    }, {});
 
-  if (subscriptions.length) await braze.updateSubscriptions(user.email, user.id, subscriptions);
+    await braze.updateSubscriptions(user.email, user.id, subscriptions);
+  }
 
   return user;
 };

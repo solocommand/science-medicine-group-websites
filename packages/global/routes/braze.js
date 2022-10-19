@@ -81,30 +81,14 @@ module.exports = (app) => {
 
   app.post('/user/subscribe', json(), asyncRoute(async (req, res) => {
     try {
-      const { body } = req;
+      const { body, braze } = req;
       const { email, optIns, token } = body;
 
       await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
       const idxUser = await createIdentityXUser(email, req.identityX);
       await createBrazeUser(email, idxUser.id);
 
-      const r = await fetch(`${apiHost}/v2/subscription/status/set`, {
-        method: 'post',
-        headers,
-        body: JSON.stringify({
-          subscription_groups: Object.entries(optIns).map(([id, status]) => ({
-            subscription_group_id: id,
-            subscription_state: status ? 'subscribed' : 'unsubscribed',
-            external_ids: [idxUser.id],
-            emails: [email],
-          })),
-        }),
-      });
-      const response = await r.json();
-      if (!r.ok) {
-        if (response.message) throw new Error(response.message);
-        throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
-      }
+      const response = await braze.updateSubscriptions(email, idxUser.id, optIns);
       res.status(200).send(response);
     } catch (e) {
       res.status(400).send({ error: e.message });
