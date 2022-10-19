@@ -16,7 +16,6 @@ module.exports = ({
     'city',
     'regionCode',
     'countryCode',
-    'phoneNumber',
   ],
   requiredClientFields = [
     'givenName',
@@ -25,7 +24,6 @@ module.exports = ({
     'city',
     'regionCode',
     'countryCode',
-    'phoneNumber',
   ],
   ...rest
 } = {}) => {
