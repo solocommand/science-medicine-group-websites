@@ -1,8 +1,8 @@
-module.exports = {
-  apiHost: 'https://rest.iad-05.braze.com',
-  apiKey: process.env.BRAZE_API_KEY,
+const config = require('@science-medicine-group/package-global/config/braze');
 
+module.exports = config({
+  siteName: 'DrBicuspid',
   subscriptionGroups: [
     // @todo read from IdentityX fields! hardcoding for now.
   ],
-};
+});

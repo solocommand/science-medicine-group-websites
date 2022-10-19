@@ -1,7 +1,7 @@
-module.exports = {
-  apiHost: 'https://rest.iad-05.braze.com',
-  apiKey: process.env.BRAZE_API_KEY,
+const config = require('@science-medicine-group/package-global/config/braze');
 
+module.exports = config({
+  siteName: 'LabPulse',
   subscriptionGroups: [
     // @todo read from IdentityX fields! hardcoding for now.
     {
@@ -29,4 +29,4 @@ module.exports = {
       groupId: '63077630-7fc8-4fa7-bcd8-f1ebaab0a7a9',
     },
   ],
-};
+});

@@ -1,10 +1,12 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@parameter1/base-cms-marko-web');
-const { set, get } = require('@parameter1/base-cms-object-path');
+const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
 const auth0IdentityX = require('@parameter1/base-cms-marko-web-auth0-identity-x');
+const braze = require('@science-medicine-group/package-braze');
+const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -60,9 +62,16 @@ module.exports = (options = {}) => {
       const nativeXConfig = get(options, 'siteConfig.nativeX');
       set(app.locals, 'nativeX', nativeXConfig);
 
+      // Load braze
+      const brazeConfig = getAsObject(options, 'siteConfig.braze');
+      braze(app, brazeConfig);
+
       const idxConfig = get(options, 'siteConfig.identityX');
       const auth0Config = get(options, 'siteConfig.auth0');
       auth0IdentityX(app, { ...auth0Config, idxConfig, idxRouteTemplates });
+
+      // Add hooks
+      brazeHooks(idxConfig, brazeConfig);
 
       // i18n
       const i18n = v => v;

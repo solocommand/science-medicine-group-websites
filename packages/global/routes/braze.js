@@ -1,6 +1,5 @@
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const { validateToken } = require('@parameter1/base-cms-marko-web-recaptcha');
-const fetch = require('node-fetch');
 const { json } = require('express');
 const { RECAPTCHA_V3_SECRET_KEY } = require('../env');
 const template = require('../templates/user/subscribe');
@@ -9,31 +8,6 @@ const updateAppUser = require('../graphql/mutations/idx-user-update-receive-emai
 const { log } = console;
 
 module.exports = (app) => {
-  const { apiHost, apiKey } = app.locals.site.getAsObject('braze');
-  const headers = {
-    'content-type': 'application/json',
-    authorization: `Bearer ${apiKey}`,
-  };
-
-  const createBrazeUser = async (email, externalId) => {
-    const r = await fetch(`${apiHost}/users/track`, {
-      method: 'post',
-      headers,
-      body: JSON.stringify({
-        attributes: [{
-          email,
-          external_id: externalId,
-        }],
-      }),
-    });
-    const response = await r.json();
-    if (!r.ok) {
-      if (response.message) throw new Error(response.message);
-      throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
-    }
-    return response;
-  };
-
   const createIdentityXUser = async (email, svc) => {
     const user = await svc.createAppUser({ email });
     const apiToken = svc.config.getApiToken();
@@ -52,6 +26,7 @@ module.exports = (app) => {
   };
 
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
+    const { braze } = req;
     const { email } = req.query;
     const questions = app.locals.site.getAsArray('braze.subscriptionGroups')
       .map(obj => ({ ...obj }));
@@ -59,8 +34,7 @@ module.exports = (app) => {
 
     if (email) {
       try {
-        const r = await fetch(`${apiHost}/subscription/user/status?email=${encodeURIComponent(email)}`, { headers });
-        const { users } = await r.json();
+        const { users } = await braze.getSubscriptionStatus(email);
         if (users) {
           users.forEach((entry) => {
             const groups = entry.subscription_groups || [];
@@ -81,30 +55,14 @@ module.exports = (app) => {
 
   app.post('/user/subscribe', json(), asyncRoute(async (req, res) => {
     try {
-      const { body } = req;
+      const { body, braze } = req;
       const { email, optIns, token } = body;
 
       await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
       const idxUser = await createIdentityXUser(email, req.identityX);
-      await createBrazeUser(email, idxUser.id);
+      await braze.trackUser(email, idxUser.id);
 
-      const r = await fetch(`${apiHost}/v2/subscription/status/set`, {
-        method: 'post',
-        headers,
-        body: JSON.stringify({
-          subscription_groups: Object.entries(optIns).map(([id, status]) => ({
-            subscription_group_id: id,
-            subscription_state: status ? 'subscribed' : 'unsubscribed',
-            external_ids: [idxUser.id],
-            emails: [email],
-          })),
-        }),
-      });
-      const response = await r.json();
-      if (!r.ok) {
-        if (response.message) throw new Error(response.message);
-        throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
-      }
+      const response = await braze.updateSubscriptions(email, idxUser.id, optIns);
       res.status(200).send(response);
     } catch (e) {
       res.status(400).send({ error: e.message });
