@@ -1,7 +1,5 @@
 const fetch = require('node-fetch');
 
-const { log } = console;
-
 class Braze {
   constructor({
     apiHost,
