@@ -1,7 +1,6 @@
 const { get, getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
 
-const { log } = console;
-
+const getFormatter = v => (typeof v === 'function' ? v : x => x.payload);
 const filterByExternalId = (arr, type, tenant) => arr.filter((v) => {
   const ns = getAsObject(v, 'field.externalId.namespace');
   return ns.provider === 'braze' && ns.type === type && ns.tenant === tenant;
@@ -26,8 +25,6 @@ module.exports = async ({
     }, {}),
   };
 
-  // @todo 'application.name': 'site_membership',
-
   // External ID tagged questions
   const questions = filterByExternalId(getAsArray(user, 'customSelectFieldAnswers'), 'attribute', tenant);
   questions.forEach((ans) => {
@@ -38,8 +35,8 @@ module.exports = async ({
     }
   });
 
-  const r = await braze.trackUser(user.email, user.id, payload);
-  log(r);
+  const formatter = getFormatter(brazeConfig.onUserProfileUpdateFormatter);
+  await braze.trackUser(user.email, user.id, await formatter({ service, payload }));
 
   // External ID tagged subscriptions
   const optins = filterByExternalId(getAsArray(user, 'customBooleanFieldAnswers'), 'subscriptionGroup', tenant);

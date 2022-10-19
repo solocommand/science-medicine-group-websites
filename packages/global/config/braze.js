@@ -3,8 +3,10 @@ const { validate } = require('@parameter1/joi/utils');
 
 module.exports = (params = {}) => {
   const {
+    siteName,
     subscriptionGroups,
   } = validate(Joi.object({
+    siteName: Joi.string().required().description('The Braze site membership identifier.'),
     // @todo remove this when they can be retrieved from IdX
     subscriptionGroups: Joi.array().items(Joi.object({
       id: Joi.string().required().description('The IdentityX field ID'),
@@ -28,6 +30,10 @@ module.exports = (params = {}) => {
       phoneNumber: 'phone',
       organization: 'org_name',
     },
+    onUserProfileUpdateFormatter: async ({ payload = [] }) => ({
+      ...payload,
+      site_membership: { add: siteName },
+    }),
     subscriptionGroups,
   };
 };
