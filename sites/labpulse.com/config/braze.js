@@ -1,17 +1,6 @@
-module.exports = {
-  apiHost: 'https://rest.iad-05.braze.com',
-  apiKey: process.env.BRAZE_API_KEY,
-  tenant: 'smg',
-  fieldMap: {
-    id: 'external_id',
-    givenName: 'first_name',
-    familyName: 'last_name',
-    email: 'email',
-    city: 'home_city',
-    countryCode: 'country',
-    phoneNumber: 'phone',
-    organization: 'org_name',
-  },
+const config = require('@science-medicine-group/package-global/config/braze');
+
+module.exports = config({
   subscriptionGroups: [
     // @todo read from IdentityX fields! hardcoding for now.
     {
@@ -39,4 +28,4 @@ module.exports = {
       groupId: '63077630-7fc8-4fa7-bcd8-f1ebaab0a7a9',
     },
   ],
-};
+});
