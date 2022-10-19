@@ -52,6 +52,7 @@ module.exports = (app) => {
   };
 
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
+    const { braze } = req;
     const { email } = req.query;
     const questions = app.locals.site.getAsArray('braze.subscriptionGroups')
       .map(obj => ({ ...obj }));
@@ -59,8 +60,7 @@ module.exports = (app) => {
 
     if (email) {
       try {
-        const r = await fetch(`${apiHost}/subscription/user/status?email=${encodeURIComponent(email)}`, { headers });
-        const { users } = await r.json();
+        const { users } = await braze.getSubscriptionStatus(email);
         if (users) {
           users.forEach((entry) => {
             const groups = entry.subscription_groups || [];

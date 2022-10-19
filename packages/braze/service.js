@@ -69,6 +69,15 @@ class Braze {
       }),
     });
   }
+
+  /**
+   *
+   * @param {String} email
+   */
+  async getSubscriptionStatus(email) {
+    const endpoint = `subscription/user/status?email=${encodeURIComponent(email)}`;
+    return this.request(endpoint, { method: 'get' });
+  }
 }
 
 module.exports = Braze;
