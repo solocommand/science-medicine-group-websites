@@ -28,8 +28,7 @@ module.exports = (app) => {
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
     const { braze } = req;
     const { email } = req.query;
-    const questions = app.locals.site.getAsArray('braze.subscriptionGroups')
-      .map(obj => ({ ...obj }));
+    const questions = app.locals.site.getAsArray('braze.subscriptionGroups');
     const optIns = questions.reduce((obj, q) => ({ ...obj, [q.groupId]: false }), {});
 
     if (email) {
