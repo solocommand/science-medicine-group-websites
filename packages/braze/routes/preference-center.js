@@ -2,7 +2,7 @@ const { asyncRoute } = require('@parameter1/base-cms-utils');
 const { validateToken } = require('@parameter1/base-cms-marko-web-recaptcha');
 const { json } = require('express');
 const { RECAPTCHA_V3_SECRET_KEY } = require('../env');
-const template = require('../templates/user/subscribe');
+const template = require('../templates/preference-center');
 const updateAppUser = require('../graphql/mutations/idx-user-update-receive-email');
 
 const { log } = console;
