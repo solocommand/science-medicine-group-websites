@@ -6,7 +6,7 @@ $ const title = `${siteName} Preference Center`;
 $ const description = `Update your ${siteName} subscriptions`;
 $ const email = req.query && req.query.email || '';
 $ const questions = site.getAsArray('braze.subscriptionGroups');
-$ const { RECAPTCHA_V3_SITE_KEY } = require('../../env');
+$ const { RECAPTCHA_V3_SITE_KEY } = require('../env');
 
 <marko-web-default-page-layout type=type title=title description=description>
   <@head>
@@ -18,7 +18,7 @@ $ const { RECAPTCHA_V3_SITE_KEY } = require('../../env');
     <marko-web-page-wrapper>
       <@section>
         <h1 class="page-wrapper__title">${description}</h1>
-        <marko-web-browser-component name="PreferenceCenter" props={
+        <marko-web-browser-component name="BrazePreferenceCenter" props={
           siteName,
           siteKey: RECAPTCHA_V3_SITE_KEY,
           email,

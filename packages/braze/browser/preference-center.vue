@@ -66,7 +66,7 @@
 <script>
 import recaptchaLoad from '@parameter1/base-cms-marko-web-recaptcha/browser/load';
 import recaptchaGetToken from '@parameter1/base-cms-marko-web-recaptcha/browser/get-token';
-import SubscriptionGroup from './braze-subscription-group.vue';
+import SubscriptionGroup from './subscription-group.vue';
 
 export default {
   /**
