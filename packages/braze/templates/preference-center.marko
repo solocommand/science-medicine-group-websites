@@ -5,7 +5,7 @@ $ const type = "profile";
 $ const title = `${siteName} Preference Center`;
 $ const description = `Update your ${siteName} subscriptions`;
 $ const email = req.query && req.query.email || '';
-$ const questions = site.getAsArray('braze.subscriptionGroups');
+$ const { questions } = input;
 $ const { RECAPTCHA_V3_SITE_KEY } = require('../env');
 
 <marko-web-default-page-layout type=type title=title description=description>

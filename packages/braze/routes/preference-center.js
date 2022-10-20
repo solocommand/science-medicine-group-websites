@@ -8,7 +8,6 @@ const updateAppUser = require('../graphql/mutations/idx-user-update-receive-emai
 const idxAppUser = require('../graphql/queries/idx-app-user');
 const { filterByExternalId } = require('../utils');
 
-const { log } = console;
 const buildAnswers = (questions, optIns) => {
   const questionMap = questions.reduce((map, q) => {
     map.set(q.groupId, q.id);
@@ -20,15 +19,9 @@ const buildAnswers = (questions, optIns) => {
     return [...arr, { fieldId, value }];
   }, []);
 };
-const buildOptins = async ({
-  email,
-  identityX,
-  braze,
-  questions,
-}) => {
-  // @todo load questions from IdX context
+const buildOptins = async ({ email, identityX, braze }) => {
+  const questions = await braze.getSubscriptionGroupQuestions(identityX);
   const optIns = questions.reduce((obj, sg) => ({ ...obj, [sg.groupId]: false }), {});
-  log(`Finding opt-ins for ${email}`);
 
   try {
     // Load user+answers, if present
@@ -45,10 +38,8 @@ const buildOptins = async ({
         const key = get(ans, 'field.externalId.identifier.value');
         if (ans.hasAnswered) optIns[key] = ans.value;
       });
-      if (answers.every(ans => ans.hasAnswered)) {
-        log('Returning from IdX', optIns);
-        return optIns;
-      }
+      // Use the IdentityX answers if already supplied.
+      if (answers.every(ans => ans.hasAnswered)) return optIns;
     }
   } catch (e) {
     // Do nothing if the idx lookup failed
@@ -56,7 +47,6 @@ const buildOptins = async ({
 
   // Check Braze
   try {
-    log('Checking Braze');
     const { users } = await braze.getSubscriptionStatus(email);
     if (users) {
       users.forEach((entry) => {
@@ -64,14 +54,12 @@ const buildOptins = async ({
         groups.forEach((group) => {
           optIns[group.id] = group.status === 'Subscribed';
         });
-        log('Returning from Braze', optIns);
         return optIns;
       });
     }
   } catch (e) {
     // Do nothing if the braze lookup failed
   }
-  log('Returning set!', optIns);
   return optIns;
 };
 
@@ -100,24 +88,21 @@ module.exports = (app) => {
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
     const { braze, identityX } = req;
     const { email } = req.query;
-    const questions = app.locals.site.getAsArray('braze.subscriptionGroups');
-    const optIns = await buildOptins({
-      questions,
-      email,
-      braze,
-      identityX,
-    });
+    const optIns = await buildOptins({ email, braze, identityX });
     res.json(optIns);
   }));
 
-  app.get('/user/subscribe', (_, res) => { res.marko(template); });
+  app.get('/user/subscribe', asyncRoute(async (req, res) => {
+    const { braze, identityX } = req;
+    const questions = await braze.getSubscriptionGroupQuestions(identityX);
+    res.marko(template, { questions });
+  }));
 
   app.post('/user/subscribe', json(), asyncRoute(async (req, res) => {
     try {
-      const { body, braze } = req;
+      const { body, braze, identityX } = req;
       const { email, optIns, token } = body;
-      // @todo read questions from IdX context
-      const questions = app.locals.site.getAsArray('braze.subscriptionGroups');
+      const questions = await braze.getSubscriptionGroupQuestions(identityX);
       const answers = buildAnswers(questions, optIns);
 
       await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
