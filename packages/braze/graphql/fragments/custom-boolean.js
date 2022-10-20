@@ -1,4 +1,5 @@
 const gql = require('graphql-tag');
+const customFieldFragment = require('./custom-field');
 
 module.exports = gql`
 fragment CustomBooleanFieldAnswerFragment on AppUserCustomBooleanFieldAnswer {
@@ -6,18 +7,8 @@ fragment CustomBooleanFieldAnswerFragment on AppUserCustomBooleanFieldAnswer {
   hasAnswered
   value
   field {
-    label
-    externalId {
-      id
-      namespace {
-        provider
-        tenant
-        type
-      }
-      identifier {
-        value
-      }
-    }
+    ...CustomFieldFragment
   }
 }
+${customFieldFragment}
 `;
