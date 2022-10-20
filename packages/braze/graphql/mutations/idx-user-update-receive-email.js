@@ -1,11 +1,16 @@
 const gql = require('graphql-tag');
 
 module.exports = gql`
-mutation SetAppUserReceiveEmail($input: UpdateAppUserMutationInput!) {
+mutation UpdateIdxUser(
+  $input: UpdateAppUserMutationInput!
+  $answers: UpdateAppUserCustomBooleanAnswersMutationInput!
+) {
   updateAppUser(input: $input) {
     id
-    email
-    receiveEmail
+  }
+  updateAppUserCustomBooleanAnswers(input: $answers) {
+    id
   }
 }
+
 `;
