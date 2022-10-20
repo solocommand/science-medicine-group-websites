@@ -11,10 +11,11 @@ const buildAnswers = (questions, optIns) => {
     map.set(q.groupId, q.id);
     return map;
   }, new Map());
-  return Object.entries(optIns).map(([brazeId, value]) => ({
-    fieldId: questionMap.get(brazeId),
-    value,
-  }));
+  return Object.entries(optIns).reduce((arr, [brazeId, value]) => {
+    const fieldId = questionMap.get(brazeId);
+    if (!fieldId) return arr;
+    return [...arr, { fieldId, value }];
+  }, []);
 };
 
 module.exports = (app) => {
