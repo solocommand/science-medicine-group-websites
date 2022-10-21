@@ -10,11 +10,9 @@
         class="custom-control-input"
       >
       <label class="custom-control-label" :for="`custom-boolean-${id}`" :required="required">
-        <strong v-html="label" />
-        <strong v-if="required" class="text-danger">*</strong>
         <span
           v-if="description"
-          class="font-weight-normal d-block text-muted"
+          class="font-weight-normal d-block"
           v-html="description"
         />
       </label>

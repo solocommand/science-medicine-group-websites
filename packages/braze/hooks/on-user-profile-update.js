@@ -1,10 +1,5 @@
-const { get, getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
-
-const getFormatter = v => (typeof v === 'function' ? v : x => x.payload);
-const filterByExternalId = (arr, type, tenant) => arr.filter((v) => {
-  const ns = getAsObject(v, 'field.externalId.namespace');
-  return ns.provider === 'braze' && ns.type === type && ns.tenant === tenant;
-});
+const { get, getAsArray } = require('@parameter1/base-cms-object-path');
+const { filterByExternalId, getFormatter } = require('../utils');
 
 /**
  *

@@ -1,4 +1,7 @@
+const { getAsArray, get } = require('@parameter1/base-cms-object-path');
 const fetch = require('node-fetch');
+const identityXCustomQuestions = require('./graphql/queries/idx-app-custom-questions');
+const { filterByExternalId } = require('./utils');
 
 class Braze {
   constructor({
@@ -75,6 +78,21 @@ class Braze {
   async getSubscriptionStatus(email) {
     const endpoint = `subscription/user/status?email=${encodeURIComponent(email)}`;
     return this.request(endpoint, { method: 'get' });
+  }
+
+  /**
+   * Used to retrieve IdentityX custom boolean questions for subscriptions
+   * @param {*} identityX The IdentityX service instance
+   */
+  async getSubscriptionGroupQuestions(identityX) {
+    const { data } = await identityX.client.query({ query: identityXCustomQuestions });
+    const nodes = getAsArray(data, 'fields.edges').map(({ node }) => ({ field: node })).filter(n => n.field.active);
+    const questions = filterByExternalId(nodes, 'subscriptionGroup', this.tenant);
+    return questions.map(({ field }) => ({
+      id: field.id,
+      description: field.label,
+      groupId: get(field, 'externalId.identifier.value'),
+    }));
   }
 }
 
