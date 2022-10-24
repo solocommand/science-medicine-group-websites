@@ -5,7 +5,7 @@
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/zero-bounce",
   "author": "Josh Worden <josh@parameter1.com>",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
     "test": "yarn lint && mocha"
