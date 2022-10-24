@@ -19,7 +19,7 @@ class ZeroBounce {
         spam_trap: Joi.bool().default(false),
         abuse: Joi.bool().default(false),
         do_not_mail: Joi.bool().default(false),
-      }),
+      }).default(),
     }), params);
     this.apiKey = apiKey;
     this.apiHost = apiHost;
