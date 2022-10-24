@@ -7,12 +7,23 @@ class ZeroBounce {
     const {
       apiKey,
       apiHost,
+      statusMap,
     } = validate(Joi.object({
       apiKey: Joi.string().required().description('The ZeroBounce API key'),
       apiHost: Joi.string().uri().default('https://api.zerobounce.net').description('The ZeroBounce API host'),
+      statusMap: Joi.object({
+        valid: Joi.bool().default(true),
+        'catch-all': Joi.bool().default(true),
+        unknown: Joi.bool().default(false),
+        invalid: Joi.bool().default(false),
+        spam_trap: Joi.bool().default(false),
+        abuse: Joi.bool().default(false),
+        do_not_mail: Joi.bool().default(false),
+      }),
     }), params);
     this.apiKey = apiKey;
     this.apiHost = apiHost;
+    this.statusMap = new Map(Object.entries(statusMap));
   }
 
   /**
@@ -52,19 +63,7 @@ class ZeroBounce {
    */
   async isEmailValid(email, ipAddress = '') {
     const { status } = await this.validateEmail(email, ipAddress);
-    switch (status) {
-      // @todo make this mappable/configurable?
-      case 'valid':
-        return true;
-      case 'catch-all':
-        // Cannot be validated
-        return true;
-      case 'unknown':
-        // @todo is this right?
-        return true;
-      default:
-        return false;
-    }
+    return this.statusMap.get(status) || false;
   }
 }
 
