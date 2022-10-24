@@ -7,7 +7,7 @@
  */
 module.exports = async ({ email, req }) => {
   const { zeroBounce } = req;
-  const valid = zeroBounce.isEmailValid(email, req.ip);
+  const valid = await zeroBounce.isEmailValid(email, req.ip);
   if (!valid) throw new Error(`The email "${email}" is not allowed. Please enter a valid email address.`);
   return [valid];
 };
