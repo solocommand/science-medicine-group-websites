@@ -7,6 +7,7 @@ const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monor
 const auth0IdentityX = require('@parameter1/base-cms-marko-web-auth0-identity-x');
 const braze = require('@science-medicine-group/package-braze');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
+const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -65,6 +66,9 @@ module.exports = (options = {}) => {
       // Load braze
       const brazeConfig = getAsObject(options, 'siteConfig.braze');
       braze(app, brazeConfig);
+
+      // Load ZeroBounce (must be loaded before IdX!)
+      zeroBounce(app);
 
       const idxConfig = get(options, 'siteConfig.identityX');
       const auth0Config = get(options, 'siteConfig.auth0');
