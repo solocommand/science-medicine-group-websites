@@ -38,6 +38,7 @@
     "@parameter1/joi": "^1.2.10",
     "@parameter1/omeda-graphql-client-express": "^0.4.2",
     "@science-medicine-group/package-braze": "^1.5.2",
+    "@science-medicine-group/package-zero-bounce": "^1.5.2",
     "@trevoreyre/autocomplete-vue": "^2.2.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.10",
