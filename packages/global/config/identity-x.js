@@ -26,6 +26,10 @@ module.exports = ({
     'regionCode',
     'countryCode',
   ],
+  defaultFieldLabels = {
+    phoneNumber: 'Mobile Phone',
+    organization: 'Organization',
+  },
   ...rest
 } = {}) => {
   const config = new IdentityXConfiguration({
@@ -38,6 +42,7 @@ module.exports = ({
     booleanQuestionsLabel: 'Choose your subscriptions:',
     onHookError: newrelic.noticeError.bind(newrelic),
     emailValidator,
+    defaultFieldLabels,
     ...rest,
   });
   return config;
