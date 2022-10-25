@@ -1,6 +1,7 @@
 const { auth } = require('express-openid-connect');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
+const { get } = require('@parameter1/base-cms-object-path');
 const identityX = require('./identity-x');
 
 /**
@@ -24,6 +25,14 @@ module.exports = (app, params = {}) => {
   });
 
   app.use(auth(config));
+
+  app.use((error, req, res, next) => {
+    if (error.error === 'access_denied' && error.error_description === 'Please verify your email address to continue.') {
+      const returnTo = get(req, 'openidState.returnTo');
+      res.redirect(302, `/user/auth0-db-email-verification${returnTo ? `?returnTo=${returnTo}` : ''}`);
+    }
+    next(error); // invoke next middleware
+  });
 
   // Redirect after login if `returnTo` URL parameter is present.
   if (config.routes.login === false) {
