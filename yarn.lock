@@ -2270,25 +2270,6 @@
     marko "~4.20.0"
     resolve-from "^2.0.0"
 
-"@parameter1/base-cms-marko-web-auth0-identity-x@^3.15.1":
-  version "3.15.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-auth0-identity-x/-/base-cms-marko-web-auth0-identity-x-3.15.1.tgz#dc5f08d65bec44ef014d6d0bcb87ba9610e29367"
-  integrity sha512-hRzjgtl4RfOW0dsOsNHMybQVewFepKqqHw/QjL4qpEcGcA0lqdjZAwvCok3g5RpGX6OojUtqfXR90i9psXXVXA==
-  dependencies:
-    "@parameter1/base-cms-marko-web-auth0" "^3.7.4"
-    "@parameter1/base-cms-marko-web-identity-x" "^3.15.1"
-    "@parameter1/base-cms-utils" "3.0.0"
-    "@parameter1/joi" "^1.2.10"
-    jsonwebtoken "^8.5.1"
-
-"@parameter1/base-cms-marko-web-auth0@^3.7.4":
-  version "3.7.4"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-auth0/-/base-cms-marko-web-auth0-3.7.4.tgz#33f816a3347cb1983f109063e4964cb5381bf5dc"
-  integrity sha512-/PN3W2qHiDnpO2E/HknHKGK0pp8ynURKGlpEVbbXrPhQ0ENe3LSfBnRsrOEpCMpaZvmv+1ggdvmNjhDwMFYqAw==
-  dependencies:
-    "@parameter1/joi" "^1.2.10"
-    express-openid-connect "^2.8.0"
-
 "@parameter1/base-cms-marko-web-deferred-script-loader@^3.7.1":
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-deferred-script-loader/-/base-cms-marko-web-deferred-script-loader-3.7.1.tgz#ae995df77571f296e251dc81670a35fbf87b3f3d"
