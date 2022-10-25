@@ -4,7 +4,7 @@ const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
-const auth0IdentityX = require('@parameter1/base-cms-marko-web-auth0-identity-x');
+const auth0 = require('@science-medicine-group/package-auth0');
 const braze = require('@science-medicine-group/package-braze');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
@@ -72,7 +72,7 @@ module.exports = (options = {}) => {
 
       const idxConfig = get(options, 'siteConfig.identityX');
       const auth0Config = get(options, 'siteConfig.auth0');
-      auth0IdentityX(app, { ...auth0Config, idxConfig, idxRouteTemplates });
+      auth0(app, { ...auth0Config, idxConfig, idxRouteTemplates });
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
