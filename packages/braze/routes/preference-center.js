@@ -4,9 +4,8 @@ const { validateToken } = require('@parameter1/base-cms-marko-web-recaptcha');
 const { json } = require('express');
 const { RECAPTCHA_V3_SECRET_KEY } = require('../env');
 const template = require('../templates/preference-center');
-const updateAppUser = require('../graphql/mutations/idx-user-update-receive-email');
 const idxAppUser = require('../graphql/queries/idx-app-user');
-const { filterByExternalId } = require('../utils');
+const { updateIdentityXUser, filterByExternalId } = require('../utils');
 
 const buildAnswers = (questions, optIns) => {
   const questionMap = questions.reduce((map, q) => {
@@ -64,27 +63,6 @@ const buildOptins = async ({ email, identityX, braze }) => {
 };
 
 module.exports = (app) => {
-  const createIdentityXUser = async (email, svc, answers) => {
-    const user = await svc.createAppUser({ email });
-    const apiToken = svc.config.getApiToken();
-    if (!apiToken) throw new Error('Unable to set opt-in state: No IdentityX API token has been configured.');
-    await svc.client.mutate({
-      mutation: updateAppUser,
-      variables: {
-        input: {
-          id: user.id,
-          payload: { email, receiveEmail: true },
-        },
-        answers: {
-          id: user.id,
-          answers,
-        },
-      },
-      context: { apiToken },
-    });
-    return user;
-  };
-
   app.get('/user/subscribe/check', json(), asyncRoute(async (req, res) => {
     const { braze, identityX } = req;
     const { email } = req.query;
@@ -106,7 +84,7 @@ module.exports = (app) => {
       const answers = buildAnswers(questions, optIns);
 
       await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
-      const idxUser = await createIdentityXUser(email, req.identityX, answers);
+      const idxUser = await updateIdentityXUser(email, req.identityX, answers);
       await braze.trackUser(email, idxUser.id);
 
       const response = await braze.updateSubscriptions(email, idxUser.id, optIns);
