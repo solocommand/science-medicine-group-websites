@@ -2547,11 +2547,6 @@
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-tenant-context/-/base-cms-tenant-context-3.0.0.tgz#e2964043c042c593d813870e8eaa15941ef13bbb"
   integrity sha512-+IrOwHkNSn9vVuiMxnTSWab8HXk0UymDiSscTVi+W5HetZhR1lbtLiPwMQ3Tnni2ATdCB61mdXq4ieAMi++dBw==
 
-"@parameter1/base-cms-utils@3.0.0", "@parameter1/base-cms-utils@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-utils/-/base-cms-utils-3.0.0.tgz#4413b94def36ff123a353115dc05f15cbc037e90"
-  integrity sha512-nzJphq3oiIlOiasFmEwadfwfkGhMecWdW68Ay52bXFc7BEoZRjEkgvYZNqT+IOw6Sf7JBKbbFchosJil4UaYYA==
-
 "@parameter1/base-cms-utils@^2.75.1":
   version "2.75.1"
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-utils/-/base-cms-utils-2.75.1.tgz#1a630b97cfa8362eb47c99459407e735aac65b71"
