@@ -557,3 +557,14 @@ label {
     }
   }
 }
+.newsletter-signup-banner {
+  &--large {
+    background-color: lighten($primary, 60%);  // #e2f3fc
+    border: 1px solid $primary;
+  }
+  &__description {
+    &--large {
+      max-width: none;
+    }
+  }
+}
