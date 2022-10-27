@@ -2,6 +2,7 @@ const { auth } = require('express-openid-connect');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { get } = require('@parameter1/base-cms-object-path');
+const { asyncRoute } = require('@parameter1/base-cms-utils');
 const identityX = require('./identity-x');
 
 /**
@@ -15,7 +16,7 @@ module.exports = (app, params = {}) => {
     clientID: Joi.string().required(),
     issuerBaseURL: Joi.string().required(),
     secret: Joi.string().required(),
-    routes: Joi.object().default({ login: false }),
+    routes: Joi.object().default({ login: false, logout: false }),
     afterCallback: Joi.function(),
   }), params);
 
@@ -47,6 +48,14 @@ module.exports = (app, params = {}) => {
       returnTo.searchParams.append('isAuth0Login', true);
       res.oidc.login({ returnTo: `${returnTo}` });
     });
+  }
+
+  // the Auth0 user has been logged out, log out the IdentityX user.
+  if (config.routes.logout === false) {
+    app.get('/logout', asyncRoute(async (req, res) => {
+      await req.identityX.logoutAppUser();
+      res.oidc.logout();
+    }));
   }
 
   // Load the IdentityX integration

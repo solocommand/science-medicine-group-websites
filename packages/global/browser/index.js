@@ -2,6 +2,7 @@
 import MonoRail from '@parameter1/base-cms-marko-web-theme-monorail/browser';
 import Braze from '@science-medicine-group/package-braze/browser';
 import FormLogin from './form-login.vue';
+import Rudderstack from './rudderstack.vue';
 
 const GlobalSiteNewsletterMenu = () => import(/* webpackChunkName: "global-site-newsletter-menu" */ './site-newsletter-menu.vue');
 const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
@@ -19,4 +20,7 @@ export default (Browser) => {
     provide: { EventBus },
   });
   Braze(Browser);
+
+  // Rudderstack identification
+  Browser.register('Rudderstack', Rudderstack, { provide: { EventBus } });
 };
