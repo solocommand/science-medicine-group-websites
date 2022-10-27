@@ -41,12 +41,6 @@ module.exports = asyncRoute(async (req, res, next) => {
   if (!req.oidc || !req.identityX) throw new Error('Auth0 and IdentityX must be enabled!');
 
   const { identityX: idxSvc, originalUrl } = req;
-  const { user } = req.oidc;
-
-  // the Auth0 user has been logged out, log out the IdentityX user.
-  if (!user && idxSvc.token) {
-    await idxSvc.logoutAppUser();
-  }
 
   if (idxSvc.token && req.query.isAuth0Login) {
     const profile = idxSvc.config.getEndpointFor('profile');
