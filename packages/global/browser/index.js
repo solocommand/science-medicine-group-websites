@@ -19,4 +19,14 @@ export default (Browser) => {
     provide: { EventBus },
   });
   Braze(Browser);
+
+  // Rudderstack identification
+  EventBus.$on('identity-x-login-link-sent', ({ email }) => {
+    const fn = window.rudderanalytics ? window.rudderanalytics.identify : () => {};
+    fn({ email });
+  });
+  EventBus.$on('identity-x-authenticated', ({ id, email }) => {
+    const fn = window.rudderanalytics ? window.rudderanalytics.identify : () => {};
+    fn(id, { email });
+  });
 };
