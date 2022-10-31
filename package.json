@@ -8,7 +8,8 @@
   "root": true,
   "workspaces": [
     "packages/*",
-    "sites/*"
+    "sites/*",
+    "services/*"
   ],
   "scripts": {
     "compile": "lerna run compile",
