@@ -5,6 +5,7 @@ const { log } = require('@parameter1/terminus/utils');
 const server = require('./server');
 const pkg = require('../package.json');
 const { PORT, EXPOSED_PORT, HOST } = require('./env');
+const redis = require('./redis');
 
 process.on('unhandledRejection', (e) => {
   throw e;
@@ -18,10 +19,12 @@ bootService({
   port: PORT,
   exposedPort: EXPOSED_PORT,
   onStart: () => {
-    log('connect to redis');
+    log('Connecting to redis');
+    return redis.connect();
   },
   onSignal: () => {
     log('disconnect from redis');
+    return redis.disconnect();
   },
 }).catch(e => setImmediate(() => {
   log('bail');
