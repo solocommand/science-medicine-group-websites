@@ -30,7 +30,7 @@ jobs:
           tags: 598984531759.dkr.ecr.us-east-2.amazonaws.com/science-medicine-group-${{ matrix.site }}:staging-${{ github.sha }}
 
   deploy:
-    needs: [build]
+    needs: [build, deploy-services]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -46,6 +46,47 @@ jobs:
           RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
           RANCHER_URL: ${{ secrets.RANCHER_URL }}
+
+  build-services:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - service: maxmind-geoip
+    steps:
+      - uses: actions/checkout@v2
+      - name: Log in to ECR
+        uses: docker/login-action@v1
+        with:
+          registry: 598984531759.dkr.ecr.us-east-2.amazonaws.com
+          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Build docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          build-args: |
+            SERVICE=${{ matrix.service }}
+          tags: 598984531759.dkr.ecr.us-east-2.amazonaws.com/science-medicine-group-${{ matrix.service }}:staging-${{ github.sha }}
+
+  deploy-services:
+    needs: [build-services]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - service: maxmind-geoip
+            namespace: staging-websites-virgon
+          - service: maxmind-geoip
+            namespace: staging-websites-leonis
+    steps:
+      - name: Deploy to Kubernetes
+        run: npx @endeavorb2b/rancher2cli dl basecms-website-service science-medicine-group-${{ matrix.service }} --namespace ${{ matrix.namespace }} 598984531759.dkr.ecr.us-east-2.amazonaws.com/science-medicine-group-${{ matrix.service }}:staging-${{ github.sha }}
+        env:
+          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
+          RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
+          RANCHER_URL: ${{ secrets.RANCHER_URL }}
+
 
   post-deploy-failure:
     if: failure()
