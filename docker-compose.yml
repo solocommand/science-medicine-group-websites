@@ -168,12 +168,19 @@ services:
       - "9956:80"
       - "19956:19956"
 
+  redis:
+    tty: true
+    image: docker.io/redis:7.0-alpine
+    ports:
+      - "9957:6379"
+
   maxmind-geoip:
     <<: *node
     working_dir: /root/services/maxmind-geoip
     entrypoint: ["/root/node_modules/.bin/gulp"]
     environment:
       <<: [*env]
+      REDIS_CACHE_URL: redis://redis:6379/0
       MAXMIND_ACCOUNT_ID: ${MAXMIND_ACCOUNT_ID-1234}
       MAXMIND_LICENSE_KEY: ${MAXMIND_LICENSE_KEY}
       EXPOSED_PORT: 9958
@@ -181,3 +188,5 @@ services:
     hostname: smg-maxmind-geoip.dev.parameter1.com
     ports:
       - "9958:80"
+    depends_on:
+      - redis
