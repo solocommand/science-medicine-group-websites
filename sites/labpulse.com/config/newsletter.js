@@ -1,6 +1,6 @@
 const defaults = {
-  name: 'Don’t Miss Out',
-  description: 'Breaking, business, and industry news about the clinical lab community.',
+  name: 'Stay in the Know',
+  description: 'Delivered right to your inbox, LabPulse’s newsletters keep you informed on the latest clinical lab updates. Subscribe to get exclusive access!',
 };
 
 module.exports = {
