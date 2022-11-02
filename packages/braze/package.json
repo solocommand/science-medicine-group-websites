@@ -5,6 +5,7 @@
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/braze",
   "author": "Josh Worden <josh@parameter1.com>",
   "license": "MIT",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
