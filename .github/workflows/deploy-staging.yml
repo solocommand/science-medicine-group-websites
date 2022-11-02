@@ -2,68 +2,89 @@ name: Deploy sites (staging)
 
 on:
   push:
-    tags:
-      - '*'
+    branches: [ staging ]
+
+env:
+  ECR_REGISTRY: 598984531759.dkr.ecr.us-east-2.amazonaws.com
+  IMG_PREFIX: science-medicine-group
 
 jobs:
   vars:
     runs-on: ubuntu-latest
     steps:
     - id: tag_version
-      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      run: |
+        REF=$(echo $GITHUB_REF | cut -d / -f 3)
+        [[ "$GITHUB_REF" =~ ^refs/tags.*$ ]] && VERSION="$REF" || VERSION="${REF}-${GITHUB_SHA::7}"
+        echo ::set-output name=version::$(echo "$VERSION")
+    - id: send-message
+      uses: archive/github-actions-slack@master
+      with:
+        slack-function: send-message
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+        slack-channel: deployments
+        slack-text: Deployment of ${{ github.repository }} has begun.
+      env:
+        INPUT_SLACK-OPTIONAL-blocks: |
+          [
+            { type: 'section', text: { type: 'mrkdwn', text: 'A deployment for *${{ github.repository }}* has begun.' } },
+            { type: 'divider' },
+            { type: 'section', fields: [
+                { type: 'mrkdwn', text: '*Version:*\n${{ steps.tag_version.outputs.version }}' },
+                { type: 'mrkdwn', text: '*Author:*\n${{ github.triggering_actor }}' },
+            ]},
+            { type: 'divider' },
+            {
+              type: 'section',
+              text: { type: 'mrkdwn', text: '${{ github.workflow}} #${{ github.run_id }}' },
+              accessory: { type: 'button', text: { type: 'plain_text', text: 'View Deployment' }, url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id}}' },
+            },
+          ]
     outputs:
-      version: ${{ steps.tag_version.outputs.VERSION }}
-      environment: staging
+      version: ${{ steps.tag_version.outputs.version }}
+      slack-channel: ${{ fromJson(steps.send-message.outputs.slack-result).response.channel }}
+      slack-thread: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}
 
-  pre-deploy:
+  post-deploy-failure:
+    if: failure()
+    needs: [vars, deploy-sites, deploy-services]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Notify failure
+      uses: archive/github-actions-slack@master
+      with:
+        slack-function: send-message
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+        slack-channel: ${{ needs.vars.outputs.slack-channel }}
+        slack-text: Deployment failed!
+        slack-optional-thread_ts: ${{ needs.vars.outputs.slack-thread }}
+        slack-optional-reply_broadcast: true
+
+  post-deploy-success:
+    if: success()
+    needs: [vars, deploy-sites, deploy-services]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Notify success
+      uses: archive/github-actions-slack@master
+      with:
+        slack-function: send-message
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+        slack-channel: ${{ needs.vars.outputs.slack-channel }}
+        slack-text: Deployment complete.
+        slack-optional-thread_ts: ${{ needs.vars.outputs.slack-thread }}
+
+  ######################
+  # Add websites here! #
+  ######################
+
+  build-sites:
     needs: [vars]
     runs-on: ubuntu-latest
-    steps:
-      - name: Notify start
-        run: npx @parameter1/base-cms-website-deployment-tool notify-started
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          ENVIRONMENT: ${{ needs.vars.outputs.environment }}
-          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
-          TRAVIS_REPO_SLUG: ${{ github.repository }}
-          TRAVIS_TAG: ${{ needs.vars.outputs.version }}
-
-  deploy-services:
-    needs: [vars, pre-deploy]
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        namespace:
-          - staging-websites-leonis
-          - staging-websites-virgon
-        service:
-          - maxmind-geoip
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy to Kubernetes
-        run: npx @parameter1/base-cms-website-deployment-tool deploy-service ${{ matrix.service }} ${{ matrix.namespace }}
-        env:
-          DOCKER_ORG: ${{ secrets.DOCKER_ORG }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          ENVIRONMENT: ${{ needs.vars.outputs.environment }}
-          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
-          RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
-          RANCHER_URL: ${{ secrets.RANCHER_URL }}
-          TRAVIS_TAG: ${{ needs.vars.outputs.version }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          TRAVIS_REPO_SLUG: ${{ github.repository }}
-          FORCE_DEPLOYMENT: 1
-
-  deploy:
-    needs: [vars, pre-deploy, deploy-services]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        namespace:
-          - staging-websites-leonis
         site:
-          # - labpulse.com # Only deploy staging from staging branch
+          - labpulse.com
           - scienceboard.net
           - drbicuspid.com
           - auntminnie.com
@@ -71,45 +92,96 @@ jobs:
           - auntminnieasia.com
     steps:
       - uses: actions/checkout@v2
+      - name: Log in to ECR
+        uses: docker/login-action@v1
+        with:
+          registry: $${ env.ECR_REGISTRY }}
+          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Build docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          build-args: |
+            SITE=${{ matrix.site }}
+          tags: $${ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.site }}:${{ needs.vars.outputs.version }}
+
+  deploy-sites:
+    needs: [vars, build-sites, deploy-services]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        namespace:
+          - staging-website-leonis
+        site:
+          - scienceboard.net
+          - drbicuspid.com
+          - auntminnie.com
+          - auntminnieeurope.com
+          - auntminnieasia.com
+        include:
+          - namespace: staging-websites-virgon
+            site: labpulse.com
+    steps:
       - name: Deploy to Kubernetes
-        run: npx @parameter1/base-cms-website-deployment-tool deploy ${{ matrix.site }} ${{ matrix.namespace }}
+        run: |
+          npx @parameter1/rancher2cli dl \
+            --wait --namespace ${{ matrix.namespace }} \
+            basecms-website ${{ matrix.site }} \
+            ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.site }}:${{ needs.vars.outputs.version }}
         env:
-          DOCKER_ORG: ${{ secrets.DOCKER_ORG }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          ENVIRONMENT: ${{ needs.vars.outputs.environment }}
           RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
           RANCHER_URL: ${{ secrets.RANCHER_URL }}
-          TRAVIS_TAG: ${{ needs.vars.outputs.version }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          TRAVIS_REPO_SLUG: ${{ github.repository }}
-          FORCE_DEPLOYMENT: 1
 
-  post-deploy-failure:
-    if: failure()
-    needs: [vars, deploy]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify failure
-        run: npx @parameter1/base-cms-website-deployment-tool notify-failed
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          ENVIRONMENT: ${{ needs.vars.outputs.environment }}
-          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
-          TRAVIS_REPO_SLUG: ${{ github.repository }}
-          TRAVIS_TAG: ${{ needs.vars.outputs.version }}
+  ######################
+  # Add services here! #
+  ######################
 
-  post-deploy-success:
-    if: success()
-    needs: [vars, deploy]
+  build-services:
+    needs: [vars]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - maxmind-geoip
     steps:
-      - name: Notify success
-        run: npx @parameter1/base-cms-website-deployment-tool notify-finished
+      - uses: actions/checkout@v2
+      - name: Log in to ECR
+        uses: docker/login-action@v1
+        with:
+          registry: $${ env.ECR_REGISTRY }}
+          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Build docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: services/${{ matrix.service }}/Dockerfile
+          push: true
+          build-args: |
+            SERVICE=${{ matrix.service }}
+          tags: $${ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.service }}:${{ needs.vars.outputs.version }}
+
+
+  deploy-services:
+    needs: [vars, build-services]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - maxmind-geoip
+        namespace:
+          - staging-websites-leonis
+          - staging-websites-virgon
+    steps:
+      - name: Deploy to Kubernetes
+        run: |
+          npx @parameter1/rancher2cli dl \
+            --wait --namespace ${{ matrix.namespace }} \
+            basecms-website-service ${{ matrix.service }} \
+            ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.service }}:${{ needs.vars.outputs.version }}
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          ENVIRONMENT: ${{ needs.vars.outputs.environment }}
           RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
-          TRAVIS_REPO_SLUG: ${{ github.repository }}
-          TRAVIS_TAG: ${{ needs.vars.outputs.version }}
+          RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
+          RANCHER_URL: ${{ secrets.RANCHER_URL }}
