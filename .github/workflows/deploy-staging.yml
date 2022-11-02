@@ -112,7 +112,7 @@ jobs:
     strategy:
       matrix:
         namespace:
-          - staging-website-leonis
+          - staging-websites-leonis
         site:
           - scienceboard.net
           - drbicuspid.com
@@ -127,7 +127,7 @@ jobs:
         run: |
           npx @parameter1/rancher2cli dl \
             --wait --namespace ${{ matrix.namespace }} \
-            basecms-website ${{ matrix.site }} \
+            basecms-website ${{ env.IMG_PREFIX }}-${{ matrix.site }} \
             ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.site }}:${{ needs.vars.outputs.version }}
         env:
           RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
@@ -179,7 +179,7 @@ jobs:
         run: |
           npx @parameter1/rancher2cli dl \
             --wait --namespace ${{ matrix.namespace }} \
-            basecms-website-service ${{ matrix.service }} \
+            basecms-website-service ${{ env.IMG_PREFIX }}-${{ matrix.service }} \
             ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.service }}:${{ needs.vars.outputs.version }}
         env:
           RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
