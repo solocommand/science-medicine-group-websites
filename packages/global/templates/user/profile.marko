@@ -1,4 +1,12 @@
+import { get } from "@parameter1/base-cms-object-path";
+
 $ const { config } = out.global;
+
+$ // Set the IdentityX default country code from the Maxmind data, if present.
+$ // Note: All local IPs will fail lookups!
+$ const maxmindDefault = get(out.global, "res.locals.maxmindData.data.registered_country.iso_code");
+$ const idxOpts = get(out.global, "res.locals.identityX.config.options");
+$ if (maxmindDefault && idxOpts) idxOpts.defaultCountryCode = maxmindDefault;
 
 $ const type = "profile";
 $ const title = `${config.siteName()} Profile`;

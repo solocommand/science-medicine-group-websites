@@ -8,6 +8,7 @@ const auth0 = require('@science-medicine-group/package-auth0');
 const braze = require('@science-medicine-group/package-braze');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
+const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -48,6 +49,9 @@ module.exports = (options = {}) => {
     onStart: async (app) => {
       if (typeof onStart === 'function') await onStart(app);
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
+
+      // MaxMind GeoIP setup
+      app.use(maxmindGeoIP);
 
       // Use paginated middleware
       app.use(paginated());
