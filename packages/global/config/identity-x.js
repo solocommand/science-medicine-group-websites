@@ -43,6 +43,7 @@ module.exports = ({
     onHookError: newrelic.noticeError.bind(newrelic),
     emailValidator,
     defaultFieldLabels,
+    enableChangeEmail: true,
     ...rest,
   });
   return config;
