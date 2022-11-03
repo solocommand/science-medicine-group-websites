@@ -14,7 +14,7 @@ module.exports = async (req, _, session) => {
   // Only handle if Auth0 & IdentityX are loaded
   if (!req.identityX) throw new Error('IdentityX must be enabled and configured!');
 
-  const { identityX: service } = req;
+  const { identityX: service, braze } = req;
   const { token } = service;
   const user = await decode(session.id_token);
 
@@ -30,7 +30,10 @@ module.exports = async (req, _, session) => {
 
   // federate trusted verification state to IdX and log in via impersonation api
   try {
-    await service.impersonateAppUser({ userId: appUser.id });
+    await Promise.all([
+      service.impersonateAppUser({ userId: appUser.id }),
+      braze.confirmUser(appUser.email, appUser.id),
+    ]);
     log('A0+IdX.cb', 'impersonated', appUser.id);
   } catch (e) {
     log('A0+IdX.cb', 'autherr', e);
