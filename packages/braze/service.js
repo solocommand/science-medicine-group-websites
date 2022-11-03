@@ -98,10 +98,19 @@ class Braze {
   }
 
   /**
-   * Returns the Braze Subscription Group used to hold unconfirmed users
+   * Opts the user into the unconfirmed subscription group
    */
-  getUnconfirmedGroupId() {
-    return this.unconfirmedGroupId;
+  unconfirmUser(email, id) {
+    const { unconfirmedGroupId } = this;
+    return this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true });
+  }
+
+  /**
+   * Opts the user out of the unconfirmed subscription group
+   */
+  confirmUser(email, id) {
+    const { unconfirmedGroupId } = this;
+    return this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false });
   }
 }
 
