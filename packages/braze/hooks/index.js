@@ -1,5 +1,6 @@
-const onUserProfileUpdate = require('./on-user-profile-update');
+const onAuthenticationSuccess = require('./on-authentication-success');
 const onLoginLinkSent = require('./on-login-link-sent');
+const onUserProfileUpdate = require('./on-user-profile-update');
 
 module.exports = (idxConfig, brazeConfig) => {
   // Update Braze with new values
@@ -14,5 +15,12 @@ module.exports = (idxConfig, brazeConfig) => {
     name: 'onLoginLinkSent',
     shouldAwait: false,
     fn: args => onLoginLinkSent({ brazeConfig, ...args }),
+  });
+
+  // Opt-in to newsletters
+  idxConfig.addHook({
+    name: 'onAuthenticationSuccess',
+    shouldAwait: true,
+    fn: args => onAuthenticationSuccess({ brazeConfig, ...args }),
   });
 };

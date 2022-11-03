@@ -4,8 +4,10 @@ const { validate } = require('@parameter1/joi/utils');
 module.exports = (params = {}) => {
   const {
     siteName,
+    unconfirmedGroupId,
   } = validate(Joi.object({
     siteName: Joi.string().required().description('The Braze site membership identifier.'),
+    unconfirmedGroupId: Joi.string().required().description('The Braze Subscription Group ID to use for unconfirmed users'),
   }), params);
 
   return {
@@ -22,6 +24,7 @@ module.exports = (params = {}) => {
       phoneNumber: 'phone',
       organization: 'org_name',
     },
+    unconfirmedGroupId,
     onUserProfileUpdateFormatter: async ({ payload = [] }) => ({
       ...payload,
       site_membership: { add: siteName },

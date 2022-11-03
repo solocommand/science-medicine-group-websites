@@ -53,6 +53,8 @@ x-site-command: &site-cmd
   <<: *node
   entrypoint: ["node_modules/.bin/basecms-website"]
   command: ["dev", "index.js"]
+  depends_on:
+    - maxmind-geoip
 
 volumes:
   yarn-cache: {}

@@ -9,6 +9,7 @@ class Braze {
     apiKey,
     tenant,
     fieldMap,
+    unconfirmedGroupId,
   } = {}) {
     this.host = apiHost;
     this.tenant = tenant;
@@ -17,6 +18,7 @@ class Braze {
       'content-type': 'application/json',
       authorization: `Bearer ${apiKey}`,
     };
+    this.unconfirmedGroupId = unconfirmedGroupId;
   }
 
   async request(endpoint, opts = {}) {
@@ -93,6 +95,13 @@ class Braze {
       description: field.label,
       groupId: get(field, 'externalId.identifier.value'),
     }));
+  }
+
+  /**
+   * Returns the Braze Subscription Group used to hold unconfirmed users
+   */
+  getUnconfirmedGroupId() {
+    return this.unconfirmedGroupId;
   }
 }
 
