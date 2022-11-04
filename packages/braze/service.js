@@ -23,19 +23,17 @@ class Braze {
   }
 
   async request(endpoint, opts = {}) {
-    debug('request', `${this.host}/${endpoint}`, { method: 'post', headers: this.headers, ...opts || {} });
-    const r = await fetch(`${this.host}/${endpoint}`, {
-      method: 'post',
-      headers: this.headers,
-      ...opts || {},
-    });
+    const method = opts.method || 'post';
+    const { headers } = this;
+    const url = `${this.host}/${endpoint}`;
+    const r = await fetch(url, { method, headers, ...opts || {} });
     const response = await r.json();
     if (!r.ok) {
-      debug('error', response);
+      debug(`${method.toUpperCase()} ${url} ERR`, { headers, ...opts || {}, response });
       if (response.message) throw new Error(response.message);
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
-    debug('response', response);
+    debug(`${method.toUpperCase()} ${url} OK`, { headers, ...opts || {}, response });
     return response;
   }
 

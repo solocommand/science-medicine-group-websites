@@ -34,18 +34,16 @@ class ZeroBounce {
    * @returns Promise
    */
   async request(endpoint, opts = {}) {
-    debug('request', `${this.apiHost}/${endpoint}`, { method: 'get', ...opts || {} });
-    const r = await fetch(`${this.apiHost}/${endpoint}`, {
-      method: 'get',
-      ...opts || {},
-    });
+    const method = opts.method || 'get';
+    const url = `${this.apiHost}/${endpoint}`;
+    const r = await fetch(url, { method, ...opts || {} });
     const response = await r.json();
     if (!r.ok) {
-      debug('error', response);
+      debug(`${method.toUpperCase()} ${url} ERR`, { ...opts || {}, response });
       if (response.message) throw new Error(response.message);
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
-    debug('response', response);
+    debug(`${method.toUpperCase()} ${url} ERR`, { ...opts || {}, response });
     return response;
   }
 
