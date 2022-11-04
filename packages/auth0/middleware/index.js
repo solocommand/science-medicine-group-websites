@@ -1,4 +1,5 @@
 const debug = require('debug')('auth0');
+const { json } = require('express');
 const { auth } = require('express-openid-connect');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
@@ -74,6 +75,16 @@ module.exports = (app, params = {}, serviceConfig = {}) => {
       res.oidc.logout();
     }));
   }
+
+  // Handle resend email request
+  app.post('/__auth0/resend-email', json(), asyncRoute(async (req, res) => {
+    const { auth0, body } = req;
+    const { userId } = body;
+    debug('resend email', userId);
+    const r = await auth0.sendVerificationEmail(userId); // @todo retrieve user id
+    debug('response', r);
+    res.json(r);
+  }));
 
   // Load the IdentityX integration
   app.use(identityX);
