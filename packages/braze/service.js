@@ -1,5 +1,6 @@
 const { getAsArray, get } = require('@parameter1/base-cms-object-path');
 const fetch = require('node-fetch');
+const debug = require('debug')('Braze');
 const identityXCustomQuestions = require('./graphql/queries/idx-app-custom-questions');
 const { filterByExternalId } = require('./utils');
 
@@ -22,6 +23,7 @@ class Braze {
   }
 
   async request(endpoint, opts = {}) {
+    debug('request', `${this.host}/${endpoint}`, { method: 'post', headers: this.headers, ...opts || {} });
     const r = await fetch(`${this.host}/${endpoint}`, {
       method: 'post',
       headers: this.headers,
@@ -29,9 +31,11 @@ class Braze {
     });
     const response = await r.json();
     if (!r.ok) {
+      debug('error', response);
       if (response.message) throw new Error(response.message);
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
+    debug('response', response);
     return response;
   }
 
@@ -55,10 +59,13 @@ class Braze {
   }
 
   /**
+   * Sets the user's subscription group memberships.
+   * @see https://www.braze.com/docs/api/endpoints/subscription_groups/post_update_user_subscription_group_status_v2/
    *
    * @param {String} email The email address to (un)subscribe
    * @param {String} externalId The IdentityX user ID
    * @param {Object} optIns An object of opt-in statuses, keyed by the subscription group
+   * @returns {Promise}
    */
   async updateSubscriptions(email, externalId, optIns = {}) {
     return this.request('v2/subscription/status/set', {
@@ -101,6 +108,7 @@ class Braze {
    * Opts the user into the unconfirmed subscription group
    */
   unconfirmUser(email, id) {
+    debug('unconfirm', email, id);
     const { unconfirmedGroupId } = this;
     return this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true });
   }
@@ -109,6 +117,7 @@ class Braze {
    * Opts the user out of the unconfirmed subscription group
    */
   confirmUser(email, id) {
+    debug('confirm', email, id);
     const { unconfirmedGroupId } = this;
     return this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false });
   }

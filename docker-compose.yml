@@ -28,6 +28,7 @@ x-env-defaults: &env
   ZERO_BOUNCE_API_KEY: ${ZERO_BOUNCE_API_KEY}
   AUTH0_SECRET: ${AUTH0_SECRET-this-isnt-very-secure}
   BRAZE_API_KEY: ${BRAZE_API_KEY}
+  DEBUG: ${DEBUG-}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
