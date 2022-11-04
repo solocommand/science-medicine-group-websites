@@ -1,14 +1,16 @@
+const debug = require('debug')('auth0');
+const { json } = require('express');
 const { auth } = require('express-openid-connect');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
-const { get } = require('@parameter1/base-cms-object-path');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const identityX = require('./identity-x');
+const Auth0 = require('../service');
 
 /**
  *
  */
-module.exports = (app, params = {}) => {
+module.exports = (app, params = {}, serviceConfig = {}) => {
   const config = validate(Joi.object({
     authRequired: Joi.boolean().default(false),
     auth0Logout: Joi.boolean().default(true),
@@ -20,20 +22,36 @@ module.exports = (app, params = {}) => {
     afterCallback: Joi.function(),
   }), params);
 
-  app.use((req, _, next) => {
-    req.auth0Enabled = true;
+  // Install Auth0 (management service)
+  app.use((req, res, next) => {
+    const service = new Auth0(serviceConfig);
+    req.auth0 = service;
+    res.locals.auth0 = service;
     next();
   });
 
+  // Install Auth0 (Express OIDC connect)
   app.use(auth(config));
 
-  app.use((error, req, res, next) => {
-    if (error.error === 'access_denied' && error.error_description === 'Please verify your email address to continue.') {
-      const returnTo = get(req, 'openidState.returnTo');
-      res.redirect(302, `/user/auth0-db-email-verification${returnTo ? `?returnTo=${returnTo}` : ''}`);
+  // Enforce user logout/notice when email is unconfirmed.
+  app.use(asyncRoute(async (req, res, next) => {
+    const { user } = req.oidc;
+    const isAuthenticated = req.oidc.isAuthenticated();
+    const isIdentified = Boolean(req.identityX.token);
+    const canRedirect = !/^\/user\/auth0-db-email-verification/.test(req.url);
+    if (isAuthenticated && isIdentified && canRedirect) {
+      debug('Checking email verification', user);
+      if (user && user.requireVerification) {
+        // Log out of IdX
+        await req.identityX.logoutAppUser(); // @todo fix upstream error when no token present
+        // Redirect to verification notice
+        const usp = new URLSearchParams({ userId: user.sub, returnTo: req.url });
+        debug('log out/redirect!', usp);
+        res.redirect(302, `/user/auth0-db-email-verification?${usp}`);
+      }
     }
-    next(error); // invoke next middleware
-  });
+    next();
+  }));
 
   // Redirect after login if `returnTo` URL parameter is present.
   if (config.routes.login === false) {
@@ -57,6 +75,16 @@ module.exports = (app, params = {}) => {
       res.oidc.logout();
     }));
   }
+
+  // Handle resend email request
+  app.post('/__auth0/resend-email', json(), asyncRoute(async (req, res) => {
+    const { auth0, body } = req;
+    const { userId } = body;
+    debug('resend email', userId);
+    const r = await auth0.sendVerificationEmail(userId); // @todo retrieve user id
+    debug('response', r);
+    res.json(r);
+  }));
 
   // Load the IdentityX integration
   app.use(identityX);

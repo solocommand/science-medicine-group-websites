@@ -1,5 +1,5 @@
 $ const { config, req } = out.global;
-$ const { returnTo } = req.query;
+$ const { returnTo, userId } = req.query;
 
 $ const type = "authentication";
 $ const title = "Email Verification Required";
@@ -16,6 +16,9 @@ $ const description = `Complete your ${config.siteName()} Profile`;
           <p>After clicking the verification link, <a href=`/login?returnTo=${returnTo}`>click here</a> to re-authenticate and return to the previous page.</p>
         </if>
         <p>If you need assistance, please reach out to us through our <a href="/page/contact-us">contact form</a>.</p>
+        <if(userId)>
+          <marko-web-browser-component name="Auth0SendVerificationEmail" props={ userId } />
+        </if>
       </@section>
     </marko-web-page-wrapper>
   </@page>

@@ -14,10 +14,10 @@
     "@parameter1/base-cms-object-path": "^3.0.0",
     "@parameter1/base-cms-utils": "^3.0.0",
     "@parameter1/joi": "^1.2.10",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
     "express-openid-connect": "^2.8.0",
-    "jsonwebtoken": "^8.5.1"
-  },
-  "publishConfig": {
-    "access": "public"
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.6"
   }
 }
