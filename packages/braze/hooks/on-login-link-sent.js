@@ -7,7 +7,7 @@ module.exports = async ({
   actionSource,
 }) => {
   const { req } = service;
-  const { braze } = req;
+  const { braze, zeroBounce } = req;
 
   // Only set opt-ins from newsletter signup controls, not on every login!
   if (actionSource !== 'newsletterSignup') return;
@@ -16,5 +16,5 @@ module.exports = async ({
   if (user.verified) return;
 
   // Opt the user into the 'unconfirmed' group
-  await braze.unconfirmUser(user.email, user.id);
+  await braze.unconfirmUser(user.email, user.id, zeroBounce.status);
 };
