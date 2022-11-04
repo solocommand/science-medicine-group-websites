@@ -81,6 +81,21 @@ class Braze {
   }
 
   /**
+   * Sets the user's subscription state to either `opted_in` or `subscribed
+   * @see https://www.braze.com/docs/api/endpoints/email/post_email_subscription_status/
+   *
+   * @param {String} email
+   * @param {Boolean} optedIn
+   * @returns {Promise}
+   */
+  updateSubscriptionStatus(email, optedIn = false) {
+    const state = optedIn === true ? 'opted_in' : 'subscribed';
+    return this.request('email/status', {
+      body: JSON.stringify({ email, subscription_state: state }),
+    });
+  }
+
+  /**
    *
    * @param {String} email
    */
@@ -110,7 +125,10 @@ class Braze {
   unconfirmUser(email, id) {
     debug('unconfirm', email, id);
     const { unconfirmedGroupId } = this;
-    return this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true });
+    return Promise.all([
+      this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true }),
+      this.updateSubscriptionStatus(email, false),
+    ]);
   }
 
   /**
@@ -119,7 +137,10 @@ class Braze {
   confirmUser(email, id) {
     debug('confirm', email, id);
     const { unconfirmedGroupId } = this;
-    return this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false });
+    return Promise.all([
+      this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false }),
+      this.updateSubscriptionStatus(email, true),
+    ]);
   }
 }
 
