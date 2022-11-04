@@ -1,6 +1,7 @@
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const fetch = require('node-fetch');
+const debug = require('debug')('zerobounce');
 
 class ZeroBounce {
   constructor(params = {}) {
@@ -33,15 +34,18 @@ class ZeroBounce {
    * @returns Promise
    */
   async request(endpoint, opts = {}) {
+    debug('request', `${this.apiHost}/${endpoint}`, { method: 'get', ...opts || {} });
     const r = await fetch(`${this.apiHost}/${endpoint}`, {
       method: 'get',
       ...opts || {},
     });
     const response = await r.json();
     if (!r.ok) {
+      debug('error', response);
       if (response.message) throw new Error(response.message);
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
+    debug('response', response);
     return response;
   }
 

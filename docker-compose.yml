@@ -27,7 +27,7 @@ x-env-defaults: &env
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY}
   ZERO_BOUNCE_API_KEY: ${ZERO_BOUNCE_API_KEY}
   AUTH0_SECRET: ${AUTH0_SECRET-this-isnt-very-secure}
-  BRAZE_API_KEY: ${BRAZE_API_KEY}
+  DEBUG: ${DEBUG-}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
@@ -85,6 +85,7 @@ services:
       LIVERELOAD_PORT: 19951
       SITE_ID: 63038dcdd15c7c4b2e8b4588
       AUTH0_BASEURL: http://www-smg-sab.dev.parameter1.com:9951
+      BRAZE_API_KEY: ${BRAZE_API_KEY_SAB}
     hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
@@ -101,6 +102,7 @@ services:
       LIVERELOAD_PORT: 19952
       SITE_ID: 62fc0ab6475dbd28008b459b
       AUTH0_BASEURL: http://www-smg-lab.dev.parameter1.com:9952
+      BRAZE_API_KEY: ${BRAZE_API_KEY_LAB}
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"
@@ -117,6 +119,7 @@ services:
       LIVERELOAD_PORT: 19953
       SITE_ID: 63038e29475dbd6a2f8b457e
       AUTH0_BASEURL: http://www-smg-drb.dev.parameter1.com:9953
+      BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
     hostname: www-smg-drb.dev.parameter1.com
     ports:
       - "9953:80"
@@ -133,6 +136,7 @@ services:
       LIVERELOAD_PORT: 19954
       SITE_ID: 63038e5dd15c7c4b2e8b458a
       AUTH0_BASEURL: http://www-smg-am.dev.parameter1.com:9954
+      BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
@@ -149,6 +153,7 @@ services:
       LIVERELOAD_PORT: 19955
       SITE_ID: 63038e96d15c7cc42e8b4581
       AUTH0_BASEURL: http://www-smg-ame.dev.parameter1.com:9955
+      BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
     hostname: www-smg-ame.dev.parameter1.com
     ports:
       - "9955:80"
@@ -165,6 +170,7 @@ services:
       LIVERELOAD_PORT: 19956
       SITE_ID: 63038ec219398c102f8b457c
       AUTH0_BASEURL: http://www-smg-ama.dev.parameter1.com:9956
+      BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
     hostname: www-smg-ama.dev.parameter1.com
     ports:
       - "9956:80"
