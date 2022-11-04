@@ -1,5 +1,6 @@
 
 import MonoRail from '@parameter1/base-cms-marko-web-theme-monorail/browser';
+import Auth0 from '@science-medicine-group/package-auth0/browser';
 import Braze from '@science-medicine-group/package-braze/browser';
 import FormLogin from './form-login.vue';
 import Rudderstack from './rudderstack.vue';
@@ -19,6 +20,7 @@ export default (Browser) => {
   Browser.register('GlobalSiteNewsletterMenu', GlobalSiteNewsletterMenu, {
     provide: { EventBus },
   });
+  Auth0(Browser);
   Braze(Browser);
 
   // Rudderstack identification
