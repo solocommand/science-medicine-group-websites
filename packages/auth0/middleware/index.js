@@ -4,11 +4,12 @@ const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const identityX = require('./identity-x');
+const Auth0 = require('../service');
 
 /**
  *
  */
-module.exports = (app, params = {}) => {
+module.exports = (app, params = {}, serviceConfig = {}) => {
   const config = validate(Joi.object({
     authRequired: Joi.boolean().default(false),
     auth0Logout: Joi.boolean().default(true),
@@ -20,8 +21,11 @@ module.exports = (app, params = {}) => {
     afterCallback: Joi.function(),
   }), params);
 
-  app.use((req, _, next) => {
-    req.auth0Enabled = true;
+  // Install Auth0 (management service)
+  app.use((req, res, next) => {
+    const service = new Auth0(serviceConfig);
+    req.auth0 = service;
+    res.locals.auth0 = service;
     next();
   });
 
