@@ -1,6 +1,6 @@
 const { getAsArray, get } = require('@parameter1/base-cms-object-path');
 const fetch = require('node-fetch');
-const debug = require('debug')('Braze');
+const debug = require('debug')('braze');
 const identityXCustomQuestions = require('./graphql/queries/idx-app-custom-questions');
 const { filterByExternalId } = require('./utils');
 
