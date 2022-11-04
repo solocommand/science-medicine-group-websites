@@ -21,9 +21,9 @@ module.exports = async (req, _, session) => {
   if (!user || token) return session;
 
   // Destroy A0 context if no email is present
-  const { email, email_verified: ev } = user;
-  if (!email || !ev) throw new Error('Auth0 user must provide a verified email address.');
+  const { email } = user;
   debug('user', user);
+  if (!email) throw new Error('Auth0 user must provide an email address.');
 
   // Upsert the IdentityX AppUser
   const appUser = await service.createAppUser({ email });
