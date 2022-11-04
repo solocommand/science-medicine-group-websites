@@ -128,7 +128,6 @@ class Braze {
    * @returns {Promise}
    */
   unconfirmUser(email, id, zeroBounceStatus) {
-    debug('unconfirm', email, id);
     const { unconfirmedGroupId } = this;
     return Promise.all([
       this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true }),
@@ -141,7 +140,6 @@ class Braze {
    * Opts the user out of the unconfirmed subscription group
    */
   confirmUser(email, id) {
-    debug('confirm', email, id);
     const { unconfirmedGroupId } = this;
     return Promise.all([
       this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false }),
