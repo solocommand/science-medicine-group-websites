@@ -1,6 +1,5 @@
 const { decode } = require('jsonwebtoken');
-
-const { log } = console;
+const debug = require('debug')('auth0');
 
 /**
  * Syncs Auth0 and IdentityX user states
@@ -24,6 +23,7 @@ module.exports = async (req, _, session) => {
   // Destroy A0 context if no email is present
   const { email, email_verified: ev } = user;
   if (!email || !ev) throw new Error('Auth0 user must provide a verified email address.');
+  debug('user', user);
 
   // Upsert the IdentityX AppUser
   const appUser = await service.createAppUser({ email });
@@ -34,9 +34,9 @@ module.exports = async (req, _, session) => {
       service.impersonateAppUser({ userId: appUser.id }),
       braze.confirmUser(appUser.email, appUser.id),
     ]);
-    log('A0+IdX.cb', 'impersonated', appUser.id);
+    debug('impersonated', appUser.id);
   } catch (e) {
-    log('A0+IdX.cb', 'autherr', e);
+    debug('autherr', e);
     throw e;
   }
 
