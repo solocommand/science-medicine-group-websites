@@ -81,8 +81,15 @@ $ const navigation = {
         icon-modifiers=["lg"]
         icon-name="three-bars"
       />
-      $ const iconName = (input.hasUser) ? 'person' : 'mail';
-      <marko-web-browser-component name="IdentityXNewsletterToggleButton" props={ iconName } ssr=true />
+      <if (input.hasUser)>
+        <!-- Add icon link to profile -->
+        <a href="/user/profile" class="site-navbar__toggler d-flex align-items-center justify-content-center">
+          <marko-web-icon name="person" modifiers=["lg"] />
+        </a>
+      </if>
+      <else>
+        <marko-web-browser-component name="IdentityXNewsletterToggleButton" ssr=true />
+      </else>
     </div>
   </default-theme-site-navbar>
 
