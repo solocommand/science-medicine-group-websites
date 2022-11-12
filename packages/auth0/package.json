@@ -9,8 +9,8 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-web": "^3.11.0",
-    "@parameter1/base-cms-marko-web-identity-x": "^3.12.3",
+    "@parameter1/base-cms-marko-web": "^3.14.0",
+    "@parameter1/base-cms-marko-web-identity-x": "^3.15.0",
     "@parameter1/base-cms-object-path": "^3.0.0",
     "@parameter1/base-cms-utils": "^3.0.0",
     "@parameter1/joi": "^1.2.10",
