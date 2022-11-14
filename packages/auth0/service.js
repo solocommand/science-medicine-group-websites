@@ -6,15 +6,15 @@ const debug = require('debug')('auth0');
 class Auth0 {
   constructor(params = {}) {
     const {
-      clientId,
+      clientID,
       issuerBaseURL,
       secret,
     } = validate(Joi.object({
-      clientId: Joi.string().required().description('The Auth0 client id'),
+      clientID: Joi.string().required().description('The Auth0 client id'),
       issuerBaseURL: Joi.string().uri().description('The Auth0 tenant URL'),
       secret: Joi.string().required().description('The Auth0 client secret'),
     }), params);
-    this.clientId = clientId;
+    this.clientID = clientID;
     this.issuerBaseURL = issuerBaseURL;
     this.secret = secret;
   }
@@ -37,7 +37,7 @@ class Auth0 {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         grant_type: 'client_credentials',
-        client_id: this.clientId,
+        client_id: this.clientID,
         client_secret: this.secret,
         audience: `${this.issuerBaseURL}/api/v2/`,
       }),
@@ -78,7 +78,7 @@ class Auth0 {
    */
   sendVerificationEmail(userId) {
     return this.request('api/v2/jobs/verification-email', {
-      body: JSON.stringify({ user_id: userId, client_id: this.clientId }),
+      body: JSON.stringify({ user_id: userId, client_id: this.clientID }),
     });
   }
 }

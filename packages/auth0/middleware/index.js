@@ -10,7 +10,7 @@ const Auth0 = require('../service');
 /**
  *
  */
-module.exports = (app, params = {}, serviceConfig = {}) => {
+module.exports = (app, params = {}) => {
   const config = validate(Joi.object({
     authRequired: Joi.boolean().default(false),
     auth0Logout: Joi.boolean().default(true),
@@ -24,7 +24,8 @@ module.exports = (app, params = {}, serviceConfig = {}) => {
 
   // Install Auth0 (management service)
   app.use((req, res, next) => {
-    const service = new Auth0(serviceConfig);
+    const { clientID, secret, issuerBaseURL } = config;
+    const service = new Auth0({ clientID, secret, issuerBaseURL });
     req.auth0 = service;
     res.locals.auth0 = service;
     next();

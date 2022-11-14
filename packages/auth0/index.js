@@ -13,7 +13,6 @@ module.exports = (app, params = {}) => {
     clientID,
     issuerBaseURL,
     clientSecret,
-    serviceConfig,
     // IdentityX Config
     idxConfig,
     idxRouteTemplates,
@@ -24,10 +23,6 @@ module.exports = (app, params = {}) => {
     issuerBaseURL: Joi.string().required().description('The Auth0 tenant URL'),
     idxConfig: Joi.object().required().instance(IdXConfig),
     idxRouteTemplates: Joi.object().required(),
-    serviceConfig: Joi.object({
-      clientId: Joi.string().required().description('The Machine-to-Machine application\'s client ID'),
-      secret: Joi.string().required().description('The machine-to-machine application\'s client secret'),
-    }).required(),
   }), params);
 
   // install identity x
@@ -40,9 +35,6 @@ module.exports = (app, params = {}) => {
     issuerBaseURL,
     secret: clientSecret,
     afterCallback,
-  }, {
-    ...serviceConfig,
-    issuerBaseURL,
   });
 
   // Custom template handling
