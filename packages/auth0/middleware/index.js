@@ -80,10 +80,12 @@ module.exports = (app, params = {}, serviceConfig = {}) => {
   app.post('/__auth0/resend-email', json(), asyncRoute(async (req, res) => {
     const { auth0, body } = req;
     const { userId } = body;
-    debug('resend email', userId);
-    const r = await auth0.sendVerificationEmail(userId); // @todo retrieve user id
-    debug('response', r);
-    res.json(r);
+    try {
+      const r = await auth0.sendVerificationEmail(userId); // @todo retrieve user id
+      res.json(r);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
   }));
 
   // Load the IdentityX integration

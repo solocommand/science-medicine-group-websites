@@ -43,7 +43,7 @@ class ZeroBounce {
       if (response.message) throw new Error(response.message);
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
-    debug(`${method.toUpperCase()} ${url} ERR`, { ...opts || {}, response });
+    debug(`${method.toUpperCase()} ${url}  OK`, { ...opts || {}, response });
     return response;
   }
 
