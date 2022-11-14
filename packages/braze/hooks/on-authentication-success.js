@@ -9,5 +9,5 @@ module.exports = async ({
   const { braze } = req;
 
   // Opt the user out of the 'unconfirmed' group
-  await braze.confirmUser(user.email, user.id, 'identity-x_verified');
+  await braze.confirmUser(user.email, user.id, 'identity-x');
 };

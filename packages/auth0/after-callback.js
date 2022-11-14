@@ -32,7 +32,7 @@ module.exports = async (req, _, session) => {
   try {
     await Promise.all([
       service.impersonateAppUser({ userId: appUser.id }),
-      braze.confirmUser(appUser.email, appUser.id, 'auth0_verified'),
+      braze.confirmUser(appUser.email, appUser.id, 'auth0'),
     ]);
     debug('impersonated', appUser.id);
   } catch (e) {
