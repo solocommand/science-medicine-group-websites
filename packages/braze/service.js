@@ -137,11 +137,12 @@ class Braze {
   /**
    * Opts the user out of the unconfirmed subscription group
    */
-  confirmUser(email, id) {
+  confirmUser(email, id, source) {
     const { unconfirmedGroupId } = this;
     return Promise.all([
       this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false }),
       this.updateSubscriptionStatus(email, true),
+      this.trackUser(email, id, { email_validation: source }),
     ]);
   }
 }
