@@ -26,6 +26,7 @@ x-env-defaults: &env
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY}
   ZERO_BOUNCE_API_KEY: ${ZERO_BOUNCE_API_KEY}
   DEBUG: ${DEBUG-}
+  GAM_TRACK_API_KEY: ${GAM_TRACK_API_KEY-}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}

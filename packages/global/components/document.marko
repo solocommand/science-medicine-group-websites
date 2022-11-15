@@ -64,7 +64,7 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
     <marko-web-gtm-start />
 
     <!-- start gam -->
-    <marko-web-gam-enable>
+    <marko-web-gam-enable key-values=getAsObject(out.global, "gamTrackTargeting")>
       <@lazy-load ...site.getAsObject("gam.lazyLoad") />
     </marko-web-gam-enable>
     <marko-web-gam-targeting key-values={ uri: req.path } />
