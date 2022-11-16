@@ -72,6 +72,13 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 force-display=forceDisplay
               />
             </else-if>
+
+            <if(content.transcript)>
+              <marko-web-link href=`#transcript-${id}` class="btn btn-transcript mt-block mb-2" title="Transcript">
+                <marko-web-icon name="file" modifiers=["lg"] /> Transcript
+              </marko-web-link>
+            </if>
+
             $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired");
             <marko-web-identity-x-access|context| enabled=requiresRegistration>
               <!-- <if(!context.canAccess || context.requiresUserInput)> -->
@@ -94,6 +101,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
               <else>
 
                 $ const bodyId = `content-body-${content.id}`;
+                $ const transcriptId = `content-transcript-${content.id}`;
 
                 <if(shouldInjectAds)>
                   $ const desktopCounts = [350, 1500, 2750, 4500, 6250, 8000, 9750, 11500, 13250, 15000, 16750, 18500];
@@ -119,9 +127,42 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                       />
                     </for>
                   </theme-gam-inject-ads>
+                  <if(content.transcript)>
+                    <theme-gam-inject-ads selector=`#${transcriptId}` detect-embeds=true>
+                      <for|char| of=desktopCounts>
+                        <!-- desktop/tablet only -->
+                        <@inject
+                          at=char
+                          name="inline-content-desktop"
+                          aliases=aliases
+                          modifiers=["max-width-970", "margin-auto-x", "inline-content"]
+                        />
+                      </for>
+
+                      <for|char| of=mobileCounts>
+                        <!-- mobile only -->
+                        <@inject
+                          at=char
+                          name="inline-content-mobile"
+                          aliases=aliases
+                          modifiers=["max-width-970", "margin-auto-x", "inline-content"]
+                        />
+                      </for>
+                    </theme-gam-inject-ads>
+                  </if>
                 </if>
 
                 <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+
+                <!-- Add Transcripts and allow for the ad injection -->
+                <if(content.transcript)>
+                  <div id=`transcript-${id}` class="page-contents__content-transcript">
+                    <marko-web-element block-name="page-contents" name="content-transcript-title">
+                      <marko-web-icon name="file" modifiers=["lg"] /> Transcript
+                    </marko-web-element>
+                    <marko-web-content-transcript obj=content block-name=blockName attrs={ id: transcriptId }  />
+                  </div>
+                </if>
 
                 <!-- needs input -->
                 <if(input.afterBody)>
