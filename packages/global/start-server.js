@@ -118,6 +118,7 @@ module.exports = (options = {}) => {
           return next();
         } catch (e) {
           // @todo log this, don't break the request.
+          const { error } = console;
           error('GAM TRACKER ERROR!', e);
           return next();
         }
