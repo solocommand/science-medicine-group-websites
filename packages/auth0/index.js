@@ -39,4 +39,5 @@ module.exports = (app, params = {}) => {
 
   // Custom template handling
   app.get('/user/auth0-db-email-verification', (_, res) => { res.marko(templates.dbEmailVerification); });
+  app.get('/user/auth0-no-email', (_, res) => { res.marko(templates.noEmail); });
 };
