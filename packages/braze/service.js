@@ -1,5 +1,6 @@
 const { getAsArray, get } = require('@parameter1/base-cms-object-path');
 const fetch = require('node-fetch');
+const debug = require('debug')('braze');
 const identityXCustomQuestions = require('./graphql/queries/idx-app-custom-questions');
 const { filterByExternalId } = require('./utils');
 
@@ -9,6 +10,7 @@ class Braze {
     apiKey,
     tenant,
     fieldMap,
+    unconfirmedGroupId,
   } = {}) {
     this.host = apiHost;
     this.tenant = tenant;
@@ -17,19 +19,21 @@ class Braze {
       'content-type': 'application/json',
       authorization: `Bearer ${apiKey}`,
     };
+    this.unconfirmedGroupId = unconfirmedGroupId;
   }
 
   async request(endpoint, opts = {}) {
-    const r = await fetch(`${this.host}/${endpoint}`, {
-      method: 'post',
-      headers: this.headers,
-      ...opts || {},
-    });
+    const method = opts.method || 'post';
+    const { headers } = this;
+    const url = `${this.host}/${endpoint}`;
+    const r = await fetch(url, { method, headers, ...opts || {} });
     const response = await r.json();
     if (!r.ok) {
+      debug(`${method.toUpperCase()} ${url} ERR`, { headers, ...opts || {}, response });
       if (response.message) throw new Error(response.message);
       throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     }
+    debug(`${method.toUpperCase()} ${url} OK`, { headers, ...opts || {}, response });
     return response;
   }
 
@@ -53,10 +57,13 @@ class Braze {
   }
 
   /**
+   * Sets the user's subscription group memberships.
+   * @see https://www.braze.com/docs/api/endpoints/subscription_groups/post_update_user_subscription_group_status_v2/
    *
    * @param {String} email The email address to (un)subscribe
    * @param {String} externalId The IdentityX user ID
    * @param {Object} optIns An object of opt-in statuses, keyed by the subscription group
+   * @returns {Promise}
    */
   async updateSubscriptions(email, externalId, optIns = {}) {
     return this.request('v2/subscription/status/set', {
@@ -68,6 +75,21 @@ class Braze {
           emails: [email],
         })),
       }),
+    });
+  }
+
+  /**
+   * Sets the user's subscription state to either `opted_in` or `subscribed
+   * @see https://www.braze.com/docs/api/endpoints/email/post_email_subscription_status/
+   *
+   * @param {String} email
+   * @param {Boolean} optedIn
+   * @returns {Promise}
+   */
+  updateSubscriptionStatus(email, optedIn = false) {
+    const state = optedIn === true ? 'opted_in' : 'subscribed';
+    return this.request('email/status', {
+      body: JSON.stringify({ email, subscription_state: state }),
     });
   }
 
@@ -93,6 +115,35 @@ class Braze {
       description: field.label,
       groupId: get(field, 'externalId.identifier.value'),
     }));
+  }
+
+  /**
+   * Opts the user into the unconfirmed group, sets subscription status, and email validation
+   *
+   * @param {String} email
+   * @param {String} id
+   * @param {String} zeroBounceStatus
+   * @returns {Promise}
+   */
+  unconfirmUser(email, id, zeroBounceStatus) {
+    const { unconfirmedGroupId } = this;
+    return Promise.all([
+      this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true }),
+      this.updateSubscriptionStatus(email, false),
+      this.trackUser(email, id, { validation_source: 'zerobounce', email_validation: zeroBounceStatus }),
+    ]);
+  }
+
+  /**
+   * Opts the user out of the unconfirmed subscription group
+   */
+  confirmUser(email, id, source) {
+    const { unconfirmedGroupId } = this;
+    return Promise.all([
+      this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false }),
+      this.updateSubscriptionStatus(email, true),
+      this.trackUser(email, id, { validation_source: source }),
+    ]);
   }
 }
 

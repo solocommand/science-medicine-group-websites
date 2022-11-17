@@ -1,19 +1,20 @@
-const baseConfig = {
-  action: '/user/subscribe',
-  hiddenInputs: [],
+const defaults = {
+  name: 'Stay in the Know',
+  description: 'Delivered right to your inbox, LabPulse’s newsletters keep you informed on the latest clinical lab updates. Subscribe to get exclusive access!',
 };
 
 module.exports = {
-  signupBannerLarge: {
-    ...baseConfig,
-    name: 'Don’t Miss Out',
-    description: 'Breaking, business, and industry news about the clinical lab community.',
+  pushdown: {
+    ...defaults,
+    imagePath: 'files/base/smg/all/image/static/lab/newsletter-phone-half.png',
+  },
+  signupBanner: {
+    ...defaults,
   },
   signupFooter: {
-    ...baseConfig,
+    ...defaults,
     colspan: 5,
     enable: true,
     name: 'Stay Connected',
-    description: 'Breaking, business, and industry news about the clinical lab community.',
   },
 };

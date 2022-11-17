@@ -18,6 +18,7 @@
 @import "./components/section-feed-upcoming";
 @import "./components/content-meter";
 @import "./components/directory-section-feed";
+@import "./components/newsletter-pushdown";
 @import "./components/site-footer";
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
@@ -232,12 +233,6 @@ label {
   }
 }
 
-.site-header {
-  margin-bottom: 1rem;
-  @media (min-width: 980px) {
-    margin-bottom: 2rem;
-  }
-}
 .ad-container {
   $self: &;
 

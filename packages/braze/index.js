@@ -11,6 +11,7 @@ module.exports = (app, params = {}) => {
       external_id: 'id',
       email: 'email',
     }).description('The Braze fields that should be mapped to IdentityX fields.'),
+    unconfirmedGroupId: Joi.string().required().description('The Braze Subscription Group ID to use for unconfirmed users'),
   }), params, { allowUnknown: true });
 
   const service = new Braze(args);

@@ -3,7 +3,7 @@ import contentIframe from "@science-medicine-group/package-global/utils/content-
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 
 $ const { site, contentMeterState } = out.global;
-$ const newsletterConfig = site.getAsObject('newsletter.signupBannerLarge');
+
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
 
@@ -81,8 +81,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
 
             $ const requiresRegistration = get(content, "userRegistration.isCurrentlyRequired");
             <marko-web-identity-x-access|context| enabled=requiresRegistration>
-              <!-- <if(!context.canAccess || context.requiresUserInput)> -->
-              <if(false)>
+              <if(!context.canAccess || context.requiresUserInput)>
                 $ const body = getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
                 <marko-web-content-body block-name=blockName obj={ body } />
 
@@ -206,9 +205,13 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 </if>
               </else>
             </marko-web-identity-x-access>
-            <if(newsletterConfig)>
-              <global-newsletter-signup-banner-large-block class="mb-block" />
-            </if>
+
+            <marko-web-identity-x-context|{ hasUser }|>
+              <if(!hasUser)>
+                <identity-x-newsletter-form-inline type="inlineContent" />
+              </if>
+            </marko-web-identity-x-context>
+
           </default-theme-page-contents>
         </div>
       </div>

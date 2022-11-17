@@ -1,6 +1,6 @@
 module.exports = {
   baseURL: process.env.AUTH0_BASEURL,
-  clientID: '8aHKTbVEAMFdtF3S2sA67zoprlfT2TVw',
+  clientID: 'wc6xJ66CzpMrfS0tjPQhoSGZ99yT6gAb',
   clientSecret: process.env.AUTH0_SECRET,
-  issuerBaseURL: 'https://dev-scienceandmedicinegroup.us.auth0.com',
+  issuerBaseURL: 'https://scienceandmedicinegroup.us.auth0.com',
 };

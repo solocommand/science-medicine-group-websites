@@ -1,0 +1,34 @@
+import { buildImgixUrl } from "@parameter1/base-cms-image";
+import { getAsObject } from "@parameter1/base-cms-object-path";
+
+$ const { site, config } = out.global;
+$ const {
+  name,
+  description,
+  imagePath,
+  disabled,
+  privacyPolicy
+} = site.getAsObject("newsletter.pushdown");
+
+$ const lang = site.config.lang || "en";
+$ const { initiallyExpanded } = getAsObject(out.global, "newsletterState");
+$ const imageSrc = imagePath ? buildImgixUrl(`https://${config.website("imageHost")}/${imagePath}`, { w: 280, auto: "format,compress" }) : null;
+$ const imageSrcset = imageSrc ? `${imageSrc}&dpr=2 2x` : null;
+
+<if(name && description)>
+  <marko-web-browser-component
+    name="GlobalSiteNewsletterMenu"
+    ssr=true
+    props={
+      siteName: config.website("name"),
+      name,
+      description,
+      disabled,
+      imageSrc,
+      imageSrcset,
+      initiallyExpanded,
+      privacyPolicyLink: privacyPolicy,
+      lang
+    }
+  />
+</if>

@@ -29,6 +29,9 @@
   "<global-site-header-c>": {
     "template": "./site-header-c.marko"
   },
+  "<global-site-newsletter-menu>": {
+    "template": "./site-newsletter-menu.marko"
+  },
   "<global-site-menu>": {
     "template": "./site-menu/index.marko"
   },
@@ -37,5 +40,11 @@
   },
   "<global-content-meter-track>": {
     "template": "./content-meter-track.marko"
+  },
+  "<global-rudderstack>": {
+    "template": "./rudderstack.marko",
+    "@active-user": {
+      "type": "object"
+    }
   }
 }
