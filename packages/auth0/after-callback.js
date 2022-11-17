@@ -9,7 +9,7 @@ const debug = require('debug')('auth0');
  * @param {Object} session
  * @returns Object the Auth0 user session object
  */
-module.exports = async (req, _, session) => {
+module.exports = async (req, res, session) => {
   // Only handle if Auth0 & IdentityX are loaded
   if (!req.identityX) throw new Error('IdentityX must be enabled and configured!');
 
@@ -23,7 +23,10 @@ module.exports = async (req, _, session) => {
   // Destroy A0 context if no email is present
   const { email } = user;
   debug('user', user);
-  if (!email) throw new Error('Auth0 user must provide an email address.');
+  if (!email) {
+    res.redirect('/user/auth0-no-email');
+    throw new Error('Auth0 user must provide an email address.');
+  }
 
   // Upsert the IdentityX AppUser
   const appUser = await service.createAppUser({ email });

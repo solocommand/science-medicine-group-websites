@@ -3,11 +3,12 @@ const { get } = require('@parameter1/base-cms-object-path');
 const cookieName = 'enlPrompted';
 const newsletterState = ({ setCookie = true } = {}) => (req, res, next) => {
   const hasCookie = Boolean(get(req, `cookies.${cookieName}`));
+  const hasUser = Boolean(get(req, 'cookies.__idx'));
   const utmMedium = get(req, 'query.utm_medium');
   const olyEncId = get(req, 'query.oly_enc_id');
   const disabled = get(req, 'query.newsletterDisabled');
   const fromEmail = utmMedium === 'email' || olyEncId || false;
-  const canBeInitiallyExpanded = !(hasCookie || fromEmail || disabled);
+  const canBeInitiallyExpanded = !(hasCookie || fromEmail || hasUser || disabled);
   const initiallyExpanded = (setCookie === true) && canBeInitiallyExpanded;
 
   // Expire in 14 days (2yr if already signed up)
