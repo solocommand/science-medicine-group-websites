@@ -1,0 +1,17 @@
+.site-menu {
+  $self: &;
+  opacity: 1;
+
+  @media (min-width: $skin-desktop-menu-breakpoint) {
+    width: 100%;
+    height: 0;
+    transition: height 0.5s ease-out;
+    transform: none;
+
+    &--open {
+      height: initial;
+      transition: height 0.5s ease-in;
+      transform: none;
+    }
+  }
+}
