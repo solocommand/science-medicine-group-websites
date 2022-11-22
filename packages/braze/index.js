@@ -1,5 +1,6 @@
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
+const setIdCookies = require('./middleware/set-id-cookies');
 const Braze = require('./service');
 
 module.exports = (app, params = {}) => {
@@ -21,4 +22,7 @@ module.exports = (app, params = {}) => {
     res.locals.braze = service;
     next();
   });
+
+  // Set the internal and external id cookies if present in the URL.
+  app.use(setIdCookies);
 };
