@@ -1,6 +1,8 @@
 const { set } = require('@parameter1/base-cms-object-path');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const fetch = require('node-fetch');
+const tokenCookie = require('@parameter1/base-cms-marko-web-identity-x/utils/token-cookie');
+
 
 module.exports = asyncRoute(async (req, res, next) => {
   try {
@@ -8,9 +10,9 @@ module.exports = asyncRoute(async (req, res, next) => {
     if (!GAM_TRACK_API_KEY) return next();
     const { identityX } = res.locals;
     if (!identityX) return next();
-    const context = await identityX.loadActiveContext();
-    const { application, user } = context;
-    if (!application || !user) return next();
+    const idxAppId = identityX.config.appId;
+    const idxUserId = tokenCookie.getFrom(req);
+    if (!idxAppId || !idxUserId) return next();
 
     const r = await fetch('https://api.gt.parameter1.dev', {
       method: 'POST',
@@ -18,12 +20,14 @@ module.exports = asyncRoute(async (req, res, next) => {
       body: JSON.stringify({
         action: 'encrypt',
         params: {
-          identities: [{
-            provider: 'identity-x',
-            tenant: application.id,
-            entityType: 'app-user',
-            id: user.id,
-          }],
+          identities: [
+            ...(idxUserId ? [{
+              provider: 'identity-x',
+              tenant: idxAppId,
+              entityType: 'app-user',
+              id: idxUserId,
+            }] : []),
+          ],
         },
       }),
     });
