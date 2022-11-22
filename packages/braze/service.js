@@ -11,6 +11,7 @@ class Braze {
     tenant,
     fieldMap,
     unconfirmedGroupId,
+    appGroupId,
   } = {}) {
     this.host = apiHost;
     this.tenant = tenant;
@@ -20,6 +21,7 @@ class Braze {
       authorization: `Bearer ${apiKey}`,
     };
     this.unconfirmedGroupId = unconfirmedGroupId;
+    this.appGroupId = appGroupId;
   }
 
   async request(endpoint, opts = {}) {

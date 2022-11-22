@@ -6,4 +6,5 @@ log('Create/set unconfirmedGroupId!');
 module.exports = config({
   siteName: 'DrBicuspid',
   unconfirmedGroupId: '~not-set~',
+  appGroupId: '634d67c3ee91fe5375c3bcac',
 });
