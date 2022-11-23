@@ -7,7 +7,7 @@ module.exports = asyncRoute(async (req, res, next) => {
     const { GAM_TRACK_API_KEY } = process.env;
     if (!GAM_TRACK_API_KEY) return next();
     const { identityX, braze } = res.locals;
-    if (!identityX || !braze) return next();
+    if (!identityX && !braze) return next();
     const identities = [];
 
     const { application, user } = await identityX.loadActiveContext();
