@@ -155,11 +155,11 @@ class Braze {
    * Sets the external id cookie and updates service state
    */
   setExternalId(id, res) {
+    this.externalId = id;
     if (res.headersSent) {
       debug('Cannot set Braze external identifier, headers have already been sent!');
       return false;
     }
-    this.externalId = id;
     const options = { maxAge: 60 * 60 * 24 * 365, httpOnly: false };
     res.cookie('braze_ext_id', id, options);
     return true;
@@ -169,11 +169,11 @@ class Braze {
    * Sets the internal id cookie and updates service state
    */
   setInternalId(id, res) {
+    this.internalId = id;
     if (res.headersSent) {
       debug('Cannot set Braze internal identifier, headers have already been sent!');
       return false;
     }
-    this.internalId = id;
     const options = { maxAge: 60 * 60 * 24 * 365, httpOnly: false };
     res.cookie('braze_int_id', id, options);
     return true;

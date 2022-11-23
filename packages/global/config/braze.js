@@ -9,7 +9,7 @@ module.exports = (params = {}) => {
   } = validate(Joi.object({
     siteName: Joi.string().required().description('The Braze site membership identifier.'),
     unconfirmedGroupId: Joi.string().required().description('The Braze Subscription Group ID to use for unconfirmed users'),
-    appGroupId: Joi.string().required().description('The Braze App Groupo ID to use.'),
+    appGroupId: Joi.string().required().description('The Braze App Group ID to use.'),
   }), params);
 
   return {
