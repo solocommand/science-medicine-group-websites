@@ -11,8 +11,8 @@ module.exports = (req, res, next) => {
   const curInternalId = req.cookies[COOKIE_INTERNAL];
   const idxUserExists = tokenCookie.exists(req);
   const {
-    [COOKIE_INTERNAL]: newExternalId,
-    [COOKIE_EXTERNAL]: newInternalId,
+    [COOKIE_INTERNAL]: newInternalId,
+    [COOKIE_EXTERNAL]: newExternalId,
   } = req.query;
   const { braze } = res.locals;
 
