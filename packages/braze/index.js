@@ -1,5 +1,6 @@
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
+const setIdCookies = require('./middleware/set-id-cookies');
 const Braze = require('./service');
 
 module.exports = (app, params = {}) => {
@@ -12,13 +13,17 @@ module.exports = (app, params = {}) => {
       email: 'email',
     }).description('The Braze fields that should be mapped to IdentityX fields.'),
     unconfirmedGroupId: Joi.string().required().description('The Braze Subscription Group ID to use for unconfirmed users'),
+    appGroupId: Joi.string().required().description('The Braze App Group ID to use.'),
   }), params, { allowUnknown: true });
 
-  const service = new Braze(args);
 
   app.use((req, res, next) => {
+    const service = new Braze({ ...args, cookies: req.cookies || {} });
     req.braze = service;
     res.locals.braze = service;
     next();
   });
+
+  // Set the internal and external id cookies if present in the URL.
+  app.use(setIdCookies);
 };
