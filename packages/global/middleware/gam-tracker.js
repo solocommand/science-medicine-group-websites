@@ -21,22 +21,13 @@ module.exports = asyncRoute(async (req, res, next) => {
     }
 
     const brazeAppGroupId = braze.appGroupId;
-    const brazeExtId = req.cookies.braze_ext_id;
-    if (brazeAppGroupId && brazeExtId) {
+    const brazeId = req.cookies.braze_int_id;
+    if (brazeAppGroupId && brazeId) {
       identities.push({
         provider: 'braze',
         tenant: brazeAppGroupId,
-        entityType: 'external',
-        id: brazeExtId,
-      });
-    }
-    const brazeIntId = req.cookies.braze_int_id;
-    if (brazeAppGroupId && brazeIntId) {
-      identities.push({
-        provider: 'braze',
-        tenant: brazeAppGroupId,
-        entityType: 'internal',
-        id: brazeIntId,
+        entityType: 'user',
+        id: brazeId,
       });
     }
 
