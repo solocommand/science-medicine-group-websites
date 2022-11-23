@@ -21,7 +21,7 @@ module.exports = asyncRoute(async (req, res, next) => {
     }
 
     const brazeAppGroupId = braze.appGroupId;
-    const brazeId = req.cookies.braze_int_id;
+    const brazeId = braze.internalId;
     if (brazeAppGroupId && brazeId) {
       identities.push({
         provider: 'braze',
