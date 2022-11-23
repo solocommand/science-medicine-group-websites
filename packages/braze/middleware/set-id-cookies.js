@@ -15,19 +15,18 @@ module.exports = (req, res, next) => {
     [COOKIE_EXTERNAL]: newInternalId,
     ...q
   } = req.query;
+  const { braze } = res.locals;
 
   // Only process requests with at least one matching query parameter
   if (!newExternalId && !newInternalId) return next();
 
   // If the user isn't logged in or doesn't have an external id cookie, set it.
   if (newExternalId && (!curExternalId || !idxUserExists)) {
-    const options = { maxAge: 60 * 60 * 24 * 365, httpOnly: false };
-    res.cookie(COOKIE_EXTERNAL, newExternalId, options);
+    braze.setExternalId(newExternalId, res);
   }
   // If the user isn't logged in or doesn't have an internal id cookie, set it.
   if (newInternalId && (!curInternalId || !idxUserExists)) {
-    const options = { maxAge: 60 * 60 * 24 * 365, httpOnly: false };
-    res.cookie(COOKIE_INTERNAL, newInternalId, options);
+    braze.setInternalId(newInternalId, res);
   }
 
   // Strip the query parameters from the request.

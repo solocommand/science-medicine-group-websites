@@ -12,6 +12,7 @@ class Braze {
     fieldMap,
     unconfirmedGroupId,
     appGroupId,
+    cookies = {},
   } = {}) {
     this.host = apiHost;
     this.tenant = tenant;
@@ -22,6 +23,8 @@ class Braze {
     };
     this.unconfirmedGroupId = unconfirmedGroupId;
     this.appGroupId = appGroupId;
+    this.externalId = cookies.braze_ext_id;
+    this.internalId = cookies.braze_int_id;
   }
 
   async request(endpoint, opts = {}) {
@@ -146,6 +149,34 @@ class Braze {
       this.updateSubscriptionStatus(email, true),
       this.trackUser(email, id, { validation_source: source }),
     ]);
+  }
+
+  /**
+   * Sets the external id cookie and updates service state
+   */
+  setExternalId(id, res) {
+    if (res.headersSent) {
+      debug('Cannot set Braze external identifier, headers have already been sent!');
+      return false;
+    }
+    this.externalId = id;
+    const options = { maxAge: 60 * 60 * 24 * 365, httpOnly: false };
+    res.cookie('braze_ext_id', id, options);
+    return true;
+  }
+
+  /**
+   * Sets the internal id cookie and updates service state
+   */
+  setInternalId(id, res) {
+    if (res.headersSent) {
+      debug('Cannot set Braze internal identifier, headers have already been sent!');
+      return false;
+    }
+    this.internalId = id;
+    const options = { maxAge: 60 * 60 * 24 * 365, httpOnly: false };
+    res.cookie('braze_int_id', id, options);
+    return true;
   }
 }
 
