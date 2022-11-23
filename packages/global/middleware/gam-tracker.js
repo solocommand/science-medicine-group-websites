@@ -10,25 +10,29 @@ module.exports = asyncRoute(async (req, res, next) => {
     if (!identityX && !braze) return next();
     const identities = [];
 
-    const { application, user } = await identityX.loadActiveContext();
-    if (application.id && user.id) {
-      identities.push({
-        provider: 'identity-x',
-        tenant: application.id,
-        entityType: 'app-user',
-        id: user.id,
-      });
+    if (identityX) {
+      const { application, user } = await identityX.loadActiveContext();
+      if (application.id && user.id) {
+        identities.push({
+          provider: 'identity-x',
+          tenant: application.id,
+          entityType: 'app-user',
+          id: user.id,
+        });
+      }
     }
 
-    const brazeAppGroupId = braze.appGroupId;
-    const brazeId = braze.internalId;
-    if (brazeAppGroupId && brazeId) {
-      identities.push({
-        provider: 'braze',
-        tenant: brazeAppGroupId,
-        entityType: 'user',
-        id: brazeId,
-      });
+    if (braze) {
+      const brazeAppGroupId = braze.appGroupId;
+      const brazeId = braze.internalId;
+      if (brazeAppGroupId && brazeId) {
+        identities.push({
+          provider: 'braze',
+          tenant: brazeAppGroupId,
+          entityType: 'user',
+          id: brazeId,
+        });
+      }
     }
 
     // Bail if no identity is available
