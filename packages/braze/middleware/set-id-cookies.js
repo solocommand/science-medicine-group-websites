@@ -13,7 +13,6 @@ module.exports = (req, res, next) => {
   const {
     [COOKIE_INTERNAL]: newExternalId,
     [COOKIE_EXTERNAL]: newInternalId,
-    ...q
   } = req.query;
   const { braze } = res.locals;
 
@@ -27,13 +26,6 @@ module.exports = (req, res, next) => {
   // If the user isn't logged in or doesn't have an internal id cookie, set it.
   if (newInternalId && (!curInternalId || !idxUserExists)) {
     braze.setInternalId(newInternalId, res);
-  }
-
-  // Strip the query parameters from the request.
-  if (newExternalId || newInternalId) {
-    const params = (new URLSearchParams(q)).toString();
-    const redirectTo = `${req.path}${params ? `?${params}` : ''}`;
-    return res.redirect(302, redirectTo);
   }
 
   return next();
