@@ -26,15 +26,15 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=45&auto=format,compress',
+      src: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=50&auto=format,compress',
       srcset: [
-        'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=90&auto=format,compress 2x',
+        'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=50&auto=format,compress&dpr=2 2x',
       ],
     },
     footer: {
       src: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=60&auto=format,compress',
       srcset: [
-        'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=120&auto=format,compress 2x',
+        'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=60&auto=format,compress&dpr=2 2x',
       ],
     },
     corporate: {
