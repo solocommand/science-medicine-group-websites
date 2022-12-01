@@ -10,3 +10,9 @@ $theme-site-header-breakpoints: (
 $primary: #01274b;
 
 @import "../../node_modules/@science-medicine-group/package-global/scss/core";
+
+.site-navbar {
+  &__logo {
+    height: 50px;
+  }
+}
