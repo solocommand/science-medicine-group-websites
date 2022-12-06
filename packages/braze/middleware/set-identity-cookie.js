@@ -61,17 +61,19 @@ module.exports = asyncRoute(async (req, res, next) => {
   // Don't do anything if a user is logged in.
   if (req.identityX && req.identityX.token) return next();
 
+  // Bail if the cookie has already been set.
+  if (getCookie({ req, res, name: COOKIE_NAME })) return next();
+
   // If we have Braze IDs, attempt to find and check the IdentityX user.
   const brazeExtId = getCookie({ req, res, name: 'braze_ext_id' });
   debug({ brazeExtId });
-  if (!brazeExtId) return next();
+  if (!brazeExtId || !/^[a-z0-f]{24}$/g.test(brazeExtId)) return next();
 
   // Find the user in IdentityX.
   const user = await findUserBy({ idx: req.identityX, id: brazeExtId });
-  if (!user) return next();
-
-  const canAccess = hasAllRequiredFields({ idx: req.identityX, user });
+  const canAccess = user && hasAllRequiredFields({ idx: req.identityX, user });
   debug({ hasAllRequiredFields: canAccess });
+
   if (!res.headersSent) {
     res.cookie(COOKIE_NAME, JSON.stringify(canAccess), { maxAge: COOKIE_MAXAGE });
   }
