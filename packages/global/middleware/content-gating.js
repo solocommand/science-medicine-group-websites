@@ -13,7 +13,7 @@ const COOKIE_NAME = '__idx_gating';
  *
  * @returns Promise([Boolean, String[]])
  */
-module.exports = app => contentGating(app, true, async ({ content, req, res }) => {
+module.exports = app => contentGating(app, true, ({ content, req, res }) => {
   const { identityX } = req;
   const requiresRegistration = get(content, 'userRegistration.isCurrentlyRequired');
   const accessLevels = getAsArray(content, 'userRegistration.accessLevels');
