@@ -5,9 +5,9 @@ const newsletterState = ({ setCookie = true } = {}) => (req, res, next) => {
   const hasCookie = Boolean(get(req, `cookies.${cookieName}`));
   const hasUser = Boolean(get(req, 'cookies.__idx'));
   const utmMedium = get(req, 'query.utm_medium');
-  const olyEncId = get(req, 'query.oly_enc_id');
+  const brazeExtId = get(req, 'query.braze_ext_id');
   const disabled = get(req, 'query.newsletterDisabled');
-  const fromEmail = utmMedium === 'email' || olyEncId || false;
+  const fromEmail = utmMedium === 'email' || brazeExtId || false;
   const canBeInitiallyExpanded = !(hasCookie || fromEmail || hasUser || disabled);
   const initiallyExpanded = (setCookie === true) && canBeInitiallyExpanded;
 
