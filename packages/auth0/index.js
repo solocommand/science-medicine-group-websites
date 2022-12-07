@@ -5,6 +5,7 @@ const IdXConfig = require('@parameter1/base-cms-marko-web-identity-x/config');
 const middleware = require('./middleware');
 const afterCallback = require('./after-callback');
 const templates = require('./templates');
+const changeEmail = require('./templates/change-email');
 
 module.exports = (app, params = {}) => {
   const {
@@ -43,4 +44,5 @@ module.exports = (app, params = {}) => {
   // Custom template handling
   app.get('/user/auth0-db-email-verification', (_, res) => { res.marko(templates.dbEmailVerification); });
   app.get('/user/auth0-no-email', (_, res) => { res.marko(templates.noEmail); });
+  app.get('/user/changeEmail', (_, res) => { res.marko(changeEmail); });
 };
