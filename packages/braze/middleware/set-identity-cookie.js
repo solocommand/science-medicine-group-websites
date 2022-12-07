@@ -67,7 +67,7 @@ module.exports = asyncRoute(async (req, res, next) => {
   // If we have Braze IDs, attempt to find and check the IdentityX user.
   const brazeExtId = getCookie({ req, res, name: 'braze_ext_id' });
   debug({ brazeExtId });
-  if (!brazeExtId || !/^[a-z0-f]{24}$/g.test(brazeExtId)) return next();
+  if (!brazeExtId || !/^[a-z0-f]{24}$/i.test(brazeExtId)) return next();
 
   // Find the user in IdentityX.
   const user = await findUserBy({ idx: req.identityX, id: brazeExtId });
