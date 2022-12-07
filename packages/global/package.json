@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/package-global",
-  "version": "1.7.5",
+  "version": "1.8.0",
   "author": "Brandon Krigbaum <brandon@parameter1.com>",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/global",
   "license": "MIT",
@@ -37,8 +37,8 @@
     "@parameter1/base-cms-web-common": "^3.3.1",
     "@parameter1/joi": "^1.2.10",
     "@parameter1/omeda-graphql-client-express": "^0.4.2",
-    "@science-medicine-group/package-auth0": "^1.7.1",
-    "@science-medicine-group/package-braze": "^1.7.5",
+    "@science-medicine-group/package-auth0": "^1.8.0",
+    "@science-medicine-group/package-braze": "^1.8.0",
     "@science-medicine-group/package-maxmind-geoip": "^1.7.0",
     "@science-medicine-group/package-zero-bounce": "^1.7.0",
     "@trevoreyre/autocomplete-vue": "^2.2.0",
