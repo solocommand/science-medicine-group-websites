@@ -15,6 +15,7 @@ const components = require('./components');
 const fragments = require('./fragments');
 const idxRouteTemplates = require('./templates/user');
 const sharedRoutes = require('./routes');
+const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 const gamTracker = require('./middleware/gam-tracker');
 const oembedHandler = require('./oembed-handler');
@@ -85,6 +86,9 @@ module.exports = (options = {}) => {
       // i18n
       const i18n = v => v;
       set(app.locals, 'i18n', options.i18n || i18n);
+
+      // Install custom content gating middleware
+      contentGating(app);
 
       // Must always be loaded last!
       app.use(gamTracker);
