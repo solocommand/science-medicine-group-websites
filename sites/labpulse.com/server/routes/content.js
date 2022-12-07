@@ -1,5 +1,6 @@
 const withContent = require('@science-medicine-group/package-global/middleware/with-content');
 const { newsletterState, formatContentResponse } = require('@science-medicine-group/package-global/middleware/newsletter-state');
+const setBrazeIdentityCookie = require('@science-medicine-group/package-braze/middleware/set-identity-cookie');
 const queryFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
 const contact = require('@science-medicine-group/package-global/templates/content/contact');
 const company = require('../templates/content/company');
@@ -32,7 +33,7 @@ module.exports = (app) => {
     formatResponse: formatContentResponse,
   }));
 
-  app.get('/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)', newsletterState({ setCookie: false }), withContent({
+  app.get('/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)', newsletterState({ setCookie: false }), setBrazeIdentityCookie, withContent({
     template: content,
     queryFragment,
     formatResponse: formatContentResponse,
