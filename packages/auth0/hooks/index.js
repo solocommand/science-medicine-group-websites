@@ -5,7 +5,6 @@ module.exports = (app, idxConfig, auth0Config) => {
   app.use((req, _, next) => {
     const { user } = req.oidc;
     // Handle changeEmail success
-    console.log('user4hook', user);
     idxConfig.addHook({
       name: 'onChangeEmailSuccess',
       shouldAwait: true,
