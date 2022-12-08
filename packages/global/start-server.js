@@ -6,6 +6,7 @@ const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitem
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
 const auth0 = require('@science-medicine-group/package-auth0');
 const braze = require('@science-medicine-group/package-braze');
+const auth0Hooks = require('@science-medicine-group/package-auth0/hooks');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
@@ -82,6 +83,7 @@ module.exports = (options = {}) => {
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
+      auth0Hooks(app, idxConfig, auth0Config);
 
       // i18n
       const i18n = v => v;
