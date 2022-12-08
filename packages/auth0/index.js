@@ -6,6 +6,7 @@ const middleware = require('./middleware');
 const afterCallback = require('./after-callback');
 const templates = require('./templates');
 const changeEmail = require('./templates/change-email');
+const Auth0 = require('./service');
 
 module.exports = (app, params = {}) => {
   const {
@@ -30,18 +31,30 @@ module.exports = (app, params = {}) => {
     idxRouteTemplates: Joi.object().required(),
   }), params);
 
+  // Install Auth0 (management service)
+  app.use((req, res, next) => {
+    const service = new Auth0({
+      apiAudienceURL,
+      clientID,
+      issuerBaseURL,
+      secret: clientSecret,
+      tenant,
+    });
+    req.auth0 = service;
+    res.locals.auth0 = service;
+    next();
+  });
+
   // install identity x
   identityX(app, idxConfig, { templates: idxRouteTemplates });
 
   // install auth0 middleware
   middleware(app, {
     afterCallback,
-    apiAudienceURL,
     baseURL,
     clientID,
     issuerBaseURL,
     secret: clientSecret,
-    tenant,
   });
 
   // Custom template handling

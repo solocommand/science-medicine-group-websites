@@ -5,7 +5,6 @@ const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const identityX = require('./identity-x');
-const Auth0 = require('../service');
 
 /**
  *
@@ -13,7 +12,6 @@ const Auth0 = require('../service');
 module.exports = (app, params = {}) => {
   const {
     afterCallback,
-    apiAudienceURL,
     auth0Logout,
     authRequired,
     baseURL,
@@ -21,10 +19,8 @@ module.exports = (app, params = {}) => {
     issuerBaseURL,
     routes,
     secret,
-    tenant,
   } = validate(Joi.object({
     afterCallback: Joi.function(),
-    apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
     auth0Logout: Joi.boolean().default(true),
     authRequired: Joi.boolean().default(false),
     baseURL: Joi.string().required(),
@@ -32,22 +28,7 @@ module.exports = (app, params = {}) => {
     issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
     routes: Joi.object().default({ login: false, logout: false }),
     secret: Joi.string().required().description('The Auth0 client secret'),
-    tenant: Joi.string().required().description('The Auth0 tenant key'),
   }), params);
-
-  // Install Auth0 (management service)
-  app.use((req, res, next) => {
-    const service = new Auth0({
-      apiAudienceURL,
-      clientID,
-      issuerBaseURL,
-      secret,
-      tenant,
-    });
-    req.auth0 = service;
-    res.locals.auth0 = service;
-    next();
-  });
 
   // Install Auth0 (Express OIDC connect)
   app.use(auth({
