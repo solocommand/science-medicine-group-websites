@@ -21,6 +21,7 @@ module.exports = (app, params = {}) => {
     issuerBaseURL,
     routes,
     secret,
+    tenant,
   } = validate(Joi.object({
     afterCallback: Joi.function(),
     apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
@@ -31,6 +32,7 @@ module.exports = (app, params = {}) => {
     issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
     routes: Joi.object().default({ login: false, logout: false }),
     secret: Joi.string().required().description('The Auth0 client secret'),
+    tenant: Joi.string().required().description('The Auth0 tenant key'),
   }), params);
 
   // Install Auth0 (management service)
@@ -40,6 +42,7 @@ module.exports = (app, params = {}) => {
       clientID,
       issuerBaseURL,
       secret,
+      tenant,
     });
     req.auth0 = service;
     res.locals.auth0 = service;

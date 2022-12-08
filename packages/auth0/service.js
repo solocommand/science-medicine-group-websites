@@ -10,16 +10,19 @@ class Auth0 {
       clientID,
       issuerBaseURL,
       secret,
+      tenant,
     } = validate(Joi.object({
       apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
       clientID: Joi.string().required().description('The Auth0 client id'),
       issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
       secret: Joi.string().required().description('The Auth0 client secret'),
+      tenant: Joi.string().required().description('The Auth0 tenant key'),
     }), params);
     this.clientID = clientID;
     this.issuerBaseURL = issuerBaseURL;
     this.apiAudienceURL = apiAudienceURL || issuerBaseURL;
     this.secret = secret;
+    this.tenant = tenant;
   }
 
   /**

@@ -15,6 +15,7 @@ module.exports = (app, params = {}) => {
     issuerBaseURL,
     apiAudienceURL,
     clientSecret,
+    tenant,
     // IdentityX Config
     idxConfig,
     idxRouteTemplates,
@@ -24,6 +25,7 @@ module.exports = (app, params = {}) => {
     clientSecret: Joi.string().required().description('The application\'s Auth0 Client Secert'),
     issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
     apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
+    tenant: Joi.string().required().description('The Auth0 tenant key'),
     idxConfig: Joi.object().required().instance(IdXConfig),
     idxRouteTemplates: Joi.object().required(),
   }), params);
@@ -33,12 +35,13 @@ module.exports = (app, params = {}) => {
 
   // install auth0 middleware
   middleware(app, {
+    afterCallback,
+    apiAudienceURL,
     baseURL,
     clientID,
     issuerBaseURL,
-    apiAudienceURL,
     secret: clientSecret,
-    afterCallback,
+    tenant,
   });
 
   // Custom template handling
