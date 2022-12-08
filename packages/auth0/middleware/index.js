@@ -11,28 +11,52 @@ const Auth0 = require('../service');
  *
  */
 module.exports = (app, params = {}) => {
-  const config = validate(Joi.object({
-    authRequired: Joi.boolean().default(false),
-    auth0Logout: Joi.boolean().default(true),
-    baseURL: Joi.string().required(),
-    clientID: Joi.string().required(),
-    issuerBaseURL: Joi.string().required(),
-    secret: Joi.string().required(),
-    routes: Joi.object().default({ login: false, logout: false }),
+  const {
+    afterCallback,
+    apiAudienceURL,
+    auth0Logout,
+    authRequired,
+    baseURL,
+    clientID,
+    issuerBaseURL,
+    routes,
+    secret,
+  } = validate(Joi.object({
     afterCallback: Joi.function(),
+    apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
+    auth0Logout: Joi.boolean().default(true),
+    authRequired: Joi.boolean().default(false),
+    baseURL: Joi.string().required(),
+    clientID: Joi.string().required().description('The Auth0 client id'),
+    issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
+    routes: Joi.object().default({ login: false, logout: false }),
+    secret: Joi.string().required().description('The Auth0 client secret'),
   }), params);
 
   // Install Auth0 (management service)
   app.use((req, res, next) => {
-    const { clientID, secret, issuerBaseURL } = config;
-    const service = new Auth0({ clientID, secret, issuerBaseURL });
+    const service = new Auth0({
+      apiAudienceURL,
+      clientID,
+      issuerBaseURL,
+      secret,
+    });
     req.auth0 = service;
     res.locals.auth0 = service;
     next();
   });
 
   // Install Auth0 (Express OIDC connect)
-  app.use(auth(config));
+  app.use(auth({
+    afterCallback,
+    auth0Logout,
+    authRequired,
+    baseURL,
+    clientID,
+    issuerBaseURL,
+    routes,
+    secret,
+  }));
 
   // Enforce user logout/notice when email is unconfirmed.
   app.use(asyncRoute(async (req, res, next) => {
@@ -55,9 +79,9 @@ module.exports = (app, params = {}) => {
   }));
 
   // Redirect after login if `returnTo` URL parameter is present.
-  if (config.routes.login === false) {
+  if (routes.login === false) {
     app.get('/login', (req, res) => {
-      const referrer = req.query.returnTo || req.get('referrer') || config.baseURL;
+      const referrer = req.query.returnTo || req.get('referrer') || baseURL;
       let returnTo;
       try {
         returnTo = new URL(referrer);
@@ -70,7 +94,7 @@ module.exports = (app, params = {}) => {
   }
 
   // the Auth0 user has been logged out, log out the IdentityX user.
-  if (config.routes.logout === false) {
+  if (routes.logout === false) {
     app.get('/logout', asyncRoute(async (req, res) => {
       await req.identityX.logoutAppUser();
       res.oidc.logout();
