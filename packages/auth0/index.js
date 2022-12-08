@@ -12,6 +12,7 @@ module.exports = (app, params = {}) => {
     baseURL,
     clientID,
     issuerBaseURL,
+    apiAudienceURL,
     clientSecret,
     // IdentityX Config
     idxConfig,
@@ -20,7 +21,8 @@ module.exports = (app, params = {}) => {
     baseURL: Joi.string().required().description('The application\'s currently available URL.'),
     clientID: Joi.string().required().description('The application\'s Auth0 ClientID'),
     clientSecret: Joi.string().required().description('The application\'s Auth0 Client Secert'),
-    issuerBaseURL: Joi.string().required().description('The Auth0 tenant URL'),
+    issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
+    apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
     idxConfig: Joi.object().required().instance(IdXConfig),
     idxRouteTemplates: Joi.object().required(),
   }), params);
@@ -33,6 +35,7 @@ module.exports = (app, params = {}) => {
     baseURL,
     clientID,
     issuerBaseURL,
+    apiAudienceURL,
     secret: clientSecret,
     afterCallback,
   });
