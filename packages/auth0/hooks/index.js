@@ -11,5 +11,5 @@ module.exports = (app, idxConfig, auth0Config) => {
       fn: args => onChangeEmailSuccess({ auth0Config, auth0User: user, ...args }),
     });
     next();
-  })
+  });
 };
