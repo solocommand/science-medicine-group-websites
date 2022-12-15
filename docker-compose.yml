@@ -88,6 +88,7 @@ services:
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_SAB-}
       BRAZE_API_KEY: ${BRAZE_API_KEY_SAB}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_SAB}
+      AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_SAB}
     hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
@@ -108,6 +109,7 @@ services:
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_LAB-}
       BRAZE_API_KEY: ${BRAZE_API_KEY_LAB}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_LAB}
+      AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_LAB}
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"
@@ -128,6 +130,7 @@ services:
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_DRB-}
       BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_DRB}
+      AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_DRB}
     hostname: www-smg-drb.dev.parameter1.com
     ports:
       - "9953:80"
@@ -148,6 +151,7 @@ services:
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_AM-}
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_AM}
+      AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_AM}
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
@@ -168,6 +172,7 @@ services:
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_AM-}
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_AM}
+      AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_AM}
     hostname: www-smg-ame.dev.parameter1.com
     ports:
       - "9955:80"
@@ -188,6 +193,7 @@ services:
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_AM-}
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_AM}
+      AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_AM}
     hostname: www-smg-ama.dev.parameter1.com
     ports:
       - "9956:80"
