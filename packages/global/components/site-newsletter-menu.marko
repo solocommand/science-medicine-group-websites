@@ -7,7 +7,6 @@ $ const {
   description,
   imagePath,
   disabled,
-  privacyPolicy
 } = site.getAsObject("newsletter.pushdown");
 
 $ const lang = site.config.lang || "en";
@@ -17,7 +16,7 @@ $ const imageSrcset = imageSrc ? `${imageSrc}&dpr=2 2x` : null;
 
 <if(name && description)>
   <marko-web-browser-component
-    name="GlobalSiteNewsletterMenu"
+    name="GlobalNewsletterMenu"
     ssr=true
     props={
       siteName: config.website("name"),
@@ -27,7 +26,6 @@ $ const imageSrcset = imageSrc ? `${imageSrc}&dpr=2 2x` : null;
       imageSrc,
       imageSrcset,
       initiallyExpanded,
-      privacyPolicyLink: privacyPolicy,
       lang
     }
   />

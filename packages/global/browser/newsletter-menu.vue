@@ -8,7 +8,6 @@
         :disabled="disabled"
         :image-src="imageSrc"
         :image-srcset="imageSrcset"
-        :privacy-policy-link="privacyPolicyLink"
       />
     </div>
   </aside>
@@ -47,10 +46,6 @@ export default {
     imageSrcset: {
       type: String,
       default: null,
-    },
-    privacyPolicyLink: {
-      type: Object,
-      required: true,
     },
     initiallyExpanded: {
       type: Boolean,

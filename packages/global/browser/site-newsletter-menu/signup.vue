@@ -67,10 +67,6 @@ export default {
       type: String,
       default: null,
     },
-    privacyPolicyLink: {
-      type: Object,
-      required: true,
-    },
   },
 
   data: () => ({
