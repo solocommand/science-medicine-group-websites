@@ -8,9 +8,6 @@
         :disabled="disabled"
         :image-src="imageSrc"
         :image-srcset="imageSrcset"
-        :privacy-policy-link="privacyPolicyLink"
-        @focus="$emit('focus', { step: 1 })"
-        @error="$emit('error', { step: 1, error: $event })"
       />
     </div>
   </aside>
@@ -49,10 +46,6 @@ export default {
     imageSrcset: {
       type: String,
       default: null,
-    },
-    privacyPolicyLink: {
-      type: Object,
-      required: true,
     },
     initiallyExpanded: {
       type: Boolean,

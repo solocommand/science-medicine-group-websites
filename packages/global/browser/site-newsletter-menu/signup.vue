@@ -15,32 +15,12 @@
       </div>
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div :class="element('description')" v-html="description" />
-
-      <form :class="element('form')" @submit.prevent="submit">
-        <label for="newsletter-menu-email" class="sr-only">Email</label>
-        <input
-          id="newsletter-menu-email"
-          v-model="email"
-          class="form-control"
-          :disabled="isLoading"
-          placeholder="example@gmail.com"
-          type="email"
-          name="email"
-          required
-          @focus="didFocus = true"
-        >
-        <div :class="`${blockName}__privacy-policy`">
-          By submitting your email, you agree to our
-          <a :href="privacyPolicyLink.href" :target="privacyPolicyLink.target" rel="noopener">
-            {{ privacyPolicyLink.label }}
-          </a>. You can opt out at any time.
-        </div>
+      <a href="/login">
         <sign-up-button
           :class="element('form-button')"
-          :is-loading="isLoading"
-          :disabled="disabled"
+          label="Sign In"
         />
-      </form>
+      </a>
     </div>
     <div :class="element('close-container', ['d-none', 'd-md-flex', 'col-md-1', 'col-lg-3'])">
       <close-button
@@ -86,10 +66,6 @@ export default {
     imageSrcset: {
       type: String,
       default: null,
-    },
-    privacyPolicyLink: {
-      type: Object,
-      required: true,
     },
   },
 

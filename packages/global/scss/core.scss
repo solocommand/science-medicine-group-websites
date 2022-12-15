@@ -555,6 +555,7 @@ label {
 }
 .newsletter-signup-banner {
   &--large {
+    flex-direction: column;
     background-color: lighten($primary, 60%);  // #e2f3fc
     border: 1px solid $primary;
   }
@@ -562,5 +563,8 @@ label {
     &--large {
       max-width: none;
     }
+  }
+  &__cta {
+    width: auto;
   }
 }
