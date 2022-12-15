@@ -10,7 +10,6 @@ class Braze {
     apiKey,
     tenant,
     fieldMap,
-    unconfirmedGroupId,
     appGroupId,
     cookies = {},
   } = {}) {
@@ -21,7 +20,6 @@ class Braze {
       'content-type': 'application/json',
       authorization: `Bearer ${apiKey}`,
     };
-    this.unconfirmedGroupId = unconfirmedGroupId;
     this.appGroupId = appGroupId;
     this.externalId = cookies.braze_ext_id;
     this.internalId = cookies.braze_int_id;
@@ -120,35 +118,6 @@ class Braze {
       description: field.label,
       groupId: get(field, 'externalId.identifier.value'),
     }));
-  }
-
-  /**
-   * Opts the user into the unconfirmed group, sets subscription status, and email validation
-   *
-   * @param {String} email
-   * @param {String} id
-   * @param {String} zeroBounceStatus
-   * @returns {Promise}
-   */
-  unconfirmUser(email, id, zeroBounceStatus) {
-    const { unconfirmedGroupId } = this;
-    return Promise.all([
-      this.updateSubscriptions(email, id, { [unconfirmedGroupId]: true }),
-      this.updateSubscriptionStatus(email, false),
-      this.trackUser(email, id, { validation_source: 'zerobounce', email_validation: zeroBounceStatus }),
-    ]);
-  }
-
-  /**
-   * Opts the user out of the unconfirmed subscription group
-   */
-  confirmUser(email, id, source) {
-    const { unconfirmedGroupId } = this;
-    return Promise.all([
-      this.updateSubscriptions(email, id, { [unconfirmedGroupId]: false }),
-      this.updateSubscriptionStatus(email, true),
-      this.trackUser(email, id, { validation_source: source }),
-    ]);
   }
 
   /**
