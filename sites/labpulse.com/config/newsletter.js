@@ -1,6 +1,10 @@
 const defaults = {
   name: 'Stay in the Know',
   description: 'Delivered right to your inbox, LabPulse’s newsletters keep you informed on the latest clinical lab updates. Subscribe to get exclusive access!',
+  privacyPolicy: {
+    href: '/termsandprivacy',
+    label: 'Terms of Use and Privacy Policy',
+  },
 };
 
 module.exports = {

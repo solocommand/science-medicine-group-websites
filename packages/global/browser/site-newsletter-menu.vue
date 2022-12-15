@@ -9,8 +9,6 @@
         :image-src="imageSrc"
         :image-srcset="imageSrcset"
         :privacy-policy-link="privacyPolicyLink"
-        @focus="$emit('focus', { step: 1 })"
-        @error="$emit('error', { step: 1, error: $event })"
       />
     </div>
   </aside>
