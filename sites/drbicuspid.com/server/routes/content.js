@@ -1,41 +1,59 @@
 const withContent = require('@science-medicine-group/package-global/middleware/with-content');
-const { newsletterState, formatContentResponse } = require('@science-medicine-group/package-global/middleware/newsletter-state');
-const setBrazeIdentityCookie = require('@science-medicine-group/package-braze/middleware/set-identity-cookie');
+const contentMeter = require('@science-medicine-group/package-global/middleware/content-meter');
 const queryFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
 const contact = require('@science-medicine-group/package-global/templates/content/contact');
+const { newsletterState, formatContentResponse } = require('@science-medicine-group/package-global/middleware/newsletter-state');
 const company = require('../templates/content/company');
 const product = require('../templates/content/product');
 const whitepaper = require('../templates/content/whitepaper');
 const content = require('../templates/content');
 
-module.exports = (app) => {
-  app.get('/*?contact/:id(\\d{8})*', newsletterState({ setCookie: false }), newsletterState({ setCookie: false }), withContent({
+const routesList = [
+  { // contact
+    regex: '/*?contact/:id(\\d{8})*',
     template: contact,
     queryFragment,
-    formatResponse: formatContentResponse,
-  }));
-
-  app.get('/*?company/:id(\\d{8})*', newsletterState({ setCookie: false }), withContent({
+  },
+  { // company
+    regex: '/*?company/:id(\\d{8})*',
     template: company,
     queryFragment,
-    formatResponse: formatContentResponse,
-  }));
-
-  app.get('/*?product/:id(\\d{8})*', newsletterState({ setCookie: false }), withContent({
+  },
+  { // product
+    regex: '/*?product/:id(\\d{8})*',
     template: product,
     queryFragment,
-    formatResponse: formatContentResponse,
-  }));
-
-  app.get('/*?whitepaper/:id(\\d{8})*', newsletterState({ setCookie: false }), withContent({
+  },
+  { // whitepaper
+    regex: '/*?whitepaper/:id(\\d{8})*',
     template: whitepaper,
     queryFragment,
-    formatResponse: formatContentResponse,
-  }));
-
-  app.get('/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)', newsletterState({ setCookie: false }), setBrazeIdentityCookie, withContent({
+  },
+  { // default
+    regex: '/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)*',
     template: content,
     queryFragment,
-    formatResponse: formatContentResponse,
-  }));
+    withContentMeter: true,
+  },
+];
+
+module.exports = (app) => {
+  const { site } = app.locals;
+  const contentMeterEnable = site.get('contentMeter.enable');
+  // determin to use newsletterstate or contentMeter middleware
+  routesList.forEach((route) => {
+    if (route.withContentMeter && contentMeterEnable) {
+      app.get(route.regex, newsletterState({ setCookie: false }), contentMeter(), withContent({
+        template: route.template,
+        queryFragment: route.queryFragment,
+        formatResponse: formatContentResponse,
+      }));
+    } else {
+      app.get(route.regex, newsletterState({ setCookie: false }), withContent({
+        template: route.template,
+        queryFragment: route.queryFragment,
+        formatResponse: formatContentResponse,
+      }));
+    }
+  });
 };
