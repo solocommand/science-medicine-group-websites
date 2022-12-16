@@ -178,20 +178,18 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                     print-path=`/print/content/${content.id}`
                   />
                 </if>
+
+                <marko-web-identity-x-context|{ hasUser }|>
+                  <if(!hasUser)>
+                    <global-newsletter-signup
+                      name=newsletterConfig.name
+                      description=newsletterConfig.description
+                      modifiers=["large"]
+                    />
+                  </if>
+                </marko-web-identity-x-context>
               </else>
             </marko-web-identity-x-access>
-
-            <marko-web-identity-x-context|{ hasUser }|>
-              <if(!hasUser)>
-                <global-newsletter-signup
-                  name=newsletterConfig.name
-                  description=newsletterConfig.description
-                  modifiers=["large"]
-                />
-                <!-- <identity-x-newsletter-form-inline type="inlineContent" /> -->
-              </if>
-            </marko-web-identity-x-context>
-
           </default-theme-page-contents>
         </div>
       </div>
