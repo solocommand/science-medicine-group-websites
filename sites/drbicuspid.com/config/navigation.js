@@ -219,7 +219,7 @@ module.exports = {
         { href: '/dental-hygiene', label: 'Dental Hygiene' },
         { href: '/digital-dentistry', label: 'Digital Dentistry' },
         { href: '/dental-business', label: 'Dental Business' },
-      ]
+      ],
     },
     col2: {
       label: 'Resources',
