@@ -1,5 +1,3 @@
-const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
-
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
@@ -67,19 +65,17 @@ const topics = [
   { href: '/dental-business', label: 'Dental Business', children: dentalBusiness },
 ];
 
-const secondary = [
+const resources = [
+  { href: '/page/about-us', label: 'About Us' },
+  { href: '/resources/conferences', label: 'Conferences' },
   { href: '/resources/videos', label: 'Videos' },
-  // { href: '/resources/conferences', label: 'Conferences' },
+  { href: '/resources/webinars', label: 'Webinars' },
+  { href: '/resources/media-press', label: 'Media & Press' },
 ];
 
 const mobileMenu = {
-  primary: sortNavItems([
-    ...topics,
-  ]),
-  secondary: sortNavItems([
-    ...secondary,
-    subscribe,
-  ]),
+  primary: topics,
+  secondary: resources,
 };
 
 module.exports = {
@@ -130,7 +126,7 @@ module.exports = {
   mobileMenu,
   topics,
   primary: {
-    items: secondary,
+    items: resources,
   },
   secondary: {
     items: topics,
@@ -192,63 +188,45 @@ module.exports = {
   ],
   toggleMenu: {
     col1: {
-      label: 'Topic 1',
-      items: [
-        { href: '#', label: 'Subtopic 1' },
-        // ...sortNavItems(businessInsights),
-        // { href: '/business-insites', label: 'View all &raquo;' },
-      ],
+      label: 'Dental Practice',
+      items: dentalPractice,
     },
     col2: {
-      label: 'Topic 2',
-      items: [
-        { href: '#', label: 'Subtopic 1' },
-        // ...sortNavItems(diagnosticTechnologies).slice(0, 10),
-        // { href: '/diagnostic-technologies', label: 'View all &raquo;' },
-      ],
+      label: 'Dental Specialties',
+      items: dentalSpecialties,
     },
     col3: {
-      label: 'Topic 3',
-      items: [
-        { href: '#', label: 'Subtopic 1' },
-        // ...sortNavItems(diseases).slice(0, 10),
-        // { href: '/diseases', label: 'View all &raquo;' },
-      ],
+      label: 'Oral-Systemic',
+      items: oralSystemic,
     },
     col4: {
-      label: 'Topic 4',
-      items: [
-        { href: '#', label: 'Subtopic 1' },
-        // ...resources,
-        // ...pointOfCareTesting,
-      ],
+      label: 'Dental Hygiene',
+      items: dentalHygiene,
+    },
+    col5: {
+      label: 'Resources',
+      items: resources,
     },
   },
   footer: {
     col1: {
       label: 'Topics',
-      items: topics,
+      colspan: 5,
+      items: [
+        { href: '/dental-practice', label: 'Dental Practice' },
+        { href: '/dental-specialties', label: 'Dental Specialties' },
+        { href: '/oral-systemic', label: 'Oral-Systemic' },
+        { href: '/dental-hygiene', label: 'Dental Hygiene' },
+        { href: '/digital-dentistry', label: 'Digital Dentistry' },
+        { href: '/dental-business', label: 'Dental Business' },
+      ]
     },
     col2: {
       label: 'Resources',
-      items: [
-        { href: '#', label: 'Resource 1' },
-        // ...resources,
-        // { href: '#', label: 'TBD' },
-        // { href: '#', label: 'TBD' },
-      ],
-    },
-    col3: {
-      label: 'More',
-      items: [
-        { href: '#', label: 'More Item 1' },
-        // { href: '#', label: 'TBD' },
-        // { href: '#', label: 'TBD' },
-      ],
+      items: resources,
     },
     items: [
       privacyPolicy,
-      { href: '/page/copyright-information', label: 'Copyright Information' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
     ],
