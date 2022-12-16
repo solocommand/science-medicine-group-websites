@@ -3,5 +3,4 @@ const defaultConfig = require('@science-medicine-group/package-global/config/con
 module.exports = {
   ...defaultConfig,
   promoCode: 'lab_registration_meter',
-  enable: true,
 };
