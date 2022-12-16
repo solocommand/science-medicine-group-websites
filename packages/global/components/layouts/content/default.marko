@@ -2,6 +2,8 @@ import { getAsArray, get } from "@parameter1/base-cms-object-path";
 import contentIframe from "@science-medicine-group/package-global/utils/content-iframe";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 
+import { cmShowOverlay, cmRestrictContentByReg, cmTruncateBody } from "../../../utils/content-meter-helpers";
+
 $ const {
   contentGatingHandler,
   contentMeterState,
@@ -11,6 +13,7 @@ $ const {
 } = out.global;
 
 $ const newsletterConfig = site.getAsObject('newsletter.signupBanner');
+$ const showOverlay = cmShowOverlay(contentMeterState);
 
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
@@ -88,12 +91,35 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
             </if>
 
             $ const [enabled, accessLevels] = contentGatingHandler({ content, req, res });
+            $ const requiresRegistration = enabled || cmRestrictContentByReg(contentMeterState, content);
             <marko-web-identity-x-access|context|
-              enabled=enabled
+              enabled=requiresRegistration
               required-access-level-ids=accessLevels
             >
-              <if(!context.canAccess || context.requiresUserInput)>
-                $ const body = getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
+              <if(cmTruncateBody(contentMeterState))>
+                $ const body = showOverlay ? getContentPreview({ body: content.body, selector: "p:lt(3)" }) : getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
+                <marko-web-content-body block-name=blockName obj={ body } >
+                  <@embed-options lazyloadImages=false/>
+                </marko-web-content-body>
+
+                <div class="content-page-preview-overlay" />
+                <if(!showOverlay)>
+                  <theme-content-page-gate
+                    can-access=context.canAccess
+                    is-logged-in=context.isLoggedIn
+                    has-required-access-level=context.hasRequiredAccessLevel
+                    requires-access-level=context.requiresAccessLevel
+                    requires-user-input=context.requiresUserInput
+                    messages=context.messages
+                    user-input-title="Step 2 of 2"
+                    profile-call-to-action=""
+                    profile-button-label="Create Account"
+                    profile-event-name="content_meter_profile"
+                  />
+                </if>
+              </if>
+              <else-if(!context.canAccess || context.requiresUserInput)>
+                $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });
                 <marko-web-content-body block-name=blockName obj={ body } />
 
                 <div class="content-page-preview-overlay" />
@@ -107,7 +133,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                   messages=context.messages
                   content-gate-type="default"
                 />
-              </if>
+              </else-if>
               <else>
 
                 $ const bodyId = `content-body-${content.id}`;
