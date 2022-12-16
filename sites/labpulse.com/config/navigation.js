@@ -193,38 +193,6 @@ module.exports = {
       label: 'Resources',
       items: resources,
     },
-    // Original Footer Navigation
-    // col1: {
-    //   label: 'Business Insights',
-    //   items: businessInsights,
-    // },
-    // col2: {
-    //   label: 'Research & Development',
-    //   colspan: '3',
-    //   items: researchDevelopment,
-    // },
-    // col3: {
-    //   label: 'Diagnostic Technologies',
-    //   colspan: '3',
-    //   items: diagnosticTechnologies,
-    // },
-    // col4: {
-    //   label: 'Diseases',
-    //   items: diseases,
-    // },
-    // col5: {
-    //   label: 'Resources',
-    //   items: resources,
-    // },
-
-
-    // col3: {
-    //   label: 'More',
-    //   items: [
-    //     { href: '#', label: 'TBD' },
-    //     { href: '#', label: 'TBD' },
-    //   ],
-    // },
     items: [
       privacyPolicy,
       { href: '/page/contact-us', label: 'Contact Us' },
