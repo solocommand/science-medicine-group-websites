@@ -42,12 +42,6 @@ async function shouldMeter(req) {
   return true;
 }
 
-const getId = (value) => {
-  if (!value) return null;
-  const trimmed = `${value}`.trim();
-  return /^[a-z0-9]{15}$/i.test(trimmed) ? trimmed : null;
-};
-
 module.exports = () => asyncRoute(async (req, res, next) => {
   const {
     identityX,
@@ -60,15 +54,12 @@ module.exports = () => asyncRoute(async (req, res, next) => {
   const idxObj = { isEnabled: true, requiredAccessLevelIds: [] };
   const contentAccess = await identityX.checkContentAccess(idxObj);
   const { isLoggedIn, requiresUserInput } = contentAccess;
-  // oly_enc_id getting of query param or if cookie is present
-  const idFromQuery = null; // @TODO: convert to braze //
-  const idFromCookie = null; // @TODO: convert to braze //
-  const olyEncId = idFromQuery || idFromCookie;
+
   // Prop to see if the newsletterState is going to attempt to be initiallyExpanded
   // If it can.  Allow it to win and add prop check to list to disable contentMeter
   const pushdownWins = Boolean(get(res, 'locals.newsletterState.canBeInitiallyExpanded'));
   // If disabled, not logged in & have a oly_enc_id or logged in and have all required fields
-  if (!config.enable || (!isLoggedIn && olyEncId) || (isLoggedIn && !requiresUserInput));
+  if (!config.enable || (isLoggedIn && !requiresUserInput));
 
   else if (isLoggedIn && requiresUserInput && await shouldMeter(req)) {
     res.locals.contentMeterState = {
