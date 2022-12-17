@@ -6,6 +6,7 @@ const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitem
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
 const auth0 = require('@science-medicine-group/package-auth0');
 const braze = require('@science-medicine-group/package-braze');
+const auth0Hooks = require('@science-medicine-group/package-auth0/hooks');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
@@ -15,6 +16,7 @@ const components = require('./components');
 const fragments = require('./fragments');
 const idxRouteTemplates = require('./templates/user');
 const sharedRoutes = require('./routes');
+const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 const gamTracker = require('./middleware/gam-tracker');
 const oembedHandler = require('./oembed-handler');
@@ -81,10 +83,14 @@ module.exports = (options = {}) => {
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
+      auth0Hooks(app, idxConfig, auth0Config);
 
       // i18n
       const i18n = v => v;
       set(app.locals, 'i18n', options.i18n || i18n);
+
+      // Install custom content gating middleware
+      contentGating(app);
 
       // Must always be loaded last!
       app.use(gamTracker);

@@ -6,17 +6,23 @@ const debug = require('debug')('auth0');
 class Auth0 {
   constructor(params = {}) {
     const {
+      apiAudienceURL,
       clientID,
       issuerBaseURL,
       secret,
+      tenant,
     } = validate(Joi.object({
+      apiAudienceURL: Joi.string().uri().description('The original Auth0 tenant URL, used for the `aud` token parameter'),
       clientID: Joi.string().required().description('The Auth0 client id'),
-      issuerBaseURL: Joi.string().uri().description('The Auth0 tenant URL'),
+      issuerBaseURL: Joi.string().required().uri().description('The (potentially customized) Auth0 tenant URL'),
       secret: Joi.string().required().description('The Auth0 client secret'),
+      tenant: Joi.string().required().description('The Auth0 tenant key'),
     }), params);
     this.clientID = clientID;
     this.issuerBaseURL = issuerBaseURL;
+    this.apiAudienceURL = apiAudienceURL || issuerBaseURL;
     this.secret = secret;
+    this.tenant = tenant;
   }
 
   /**
@@ -29,6 +35,8 @@ class Auth0 {
 
   /**
    * Retrieves a new Management API token
+   * Note: Uses the non-customized Auth0 domain as the token audience.
+   * @see https://auth0.com/docs/customize/custom-domains/configure-features-to-use-custom-domains#auth0-apis
    */
   async fetchToken() {
     const url = `${this.issuerBaseURL}/oauth/token`;
@@ -39,7 +47,7 @@ class Auth0 {
         grant_type: 'client_credentials',
         client_id: this.clientID,
         client_secret: this.secret,
-        audience: `${this.issuerBaseURL}/api/v2/`,
+        audience: `${this.apiAudienceURL}/api/v2/`,
       }),
     });
     const response = await r.json();
@@ -79,6 +87,23 @@ class Auth0 {
   sendVerificationEmail(userId) {
     return this.request('api/v2/jobs/verification-email', {
       body: JSON.stringify({ user_id: userId, client_id: this.clientID }),
+    });
+  }
+
+  /**
+   * Changes the email address of the currently logged-in user.
+   * @see https://auth0.com/docs/api/management/v2#!/Users/patch_users_by_id
+   */
+  changeEmailAddress(email, userId) {
+    if (!email) throw new Error('You must supply the new email address!');
+    if (!userId) throw new Error('You must supply the Auth0 user id!');
+    return this.request(`api/v2/users/${userId}`, {
+      method: 'patch',
+      body: JSON.stringify({
+        email,
+        email_verified: true, // IdX verified
+        verify_email: false, // Don't send a verification email for this request
+      }),
     });
   }
 }

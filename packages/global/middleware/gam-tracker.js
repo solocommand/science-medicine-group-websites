@@ -12,7 +12,7 @@ module.exports = asyncRoute(async (req, res, next) => {
 
     if (identityX) {
       const { application, user } = await identityX.loadActiveContext();
-      if (application.id && user.id) {
+      if (application && application.id && user && user.id) {
         identities.push({
           provider: 'identity-x',
           tenant: application.id,

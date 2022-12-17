@@ -5,7 +5,7 @@ import Braze from '@science-medicine-group/package-braze/browser';
 import FormLogin from './form-login.vue';
 import Rudderstack from './rudderstack.vue';
 
-const GlobalSiteNewsletterMenu = () => import(/* webpackChunkName: "global-site-newsletter-menu" */ './site-newsletter-menu.vue');
+const GlobalNewsletterMenu = () => import(/* webpackChunkName: "global-newsletter-menu" */ './newsletter-menu.vue');
 const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
 
 export default (Browser) => {
@@ -17,7 +17,7 @@ export default (Browser) => {
     },
   });
   Browser.register('ContentMeterTrack', ContentMeterTrack);
-  Browser.register('GlobalSiteNewsletterMenu', GlobalSiteNewsletterMenu, {
+  Browser.register('GlobalNewsletterMenu', GlobalNewsletterMenu, {
     provide: { EventBus },
   });
   Auth0(Browser);

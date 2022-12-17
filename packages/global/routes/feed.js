@@ -2,7 +2,7 @@ const { asyncRoute, isFunction: isFn } = require('@parameter1/base-cms-utils');
 const { getAsArray, get } = require('@parameter1/base-cms-object-path');
 const gql = require('graphql-tag');
 const { encode } = require('html-entities');
-const moment = require('moment');
+const dayjs = require('@parameter1/base-cms-dayjs');
 
 module.exports = (app) => {
   const parseEmbeddedMedia = get(app, 'locals.parseEmbeddedMedia');
@@ -82,7 +82,7 @@ module.exports = (app) => {
     const siteUrl = `https://${site.url}`;
     const encodeOptions = { mode: 'specialChars', level: 'html5' };
     const siteName = encode(site.name, encodeOptions);
-    const lastBuildDate = moment().format('ddd, DD MMM YYYY hh:mm:ss ZZ');
+    const lastBuildDate = dayjs().format('ddd, DD MMM YYYY hh:mm:ss ZZ');
 
     const items = getAsArray(data, 'websiteScheduledContent.edges').map((edge) => {
       const { node } = edge;

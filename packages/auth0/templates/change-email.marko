@@ -1,0 +1,24 @@
+$ const { config, req } = out.global;
+$ const { user } = req.oidc;
+
+$ const type = "change-email";
+$ const title = "Change Email";
+$ const description = `Change your email on ${config.siteName()}`;
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <h1 class="page-wrapper__title">${description}</h1>
+        <if(user && !user.isDbUser)>
+          <p class="muted">Sorry, this feature is unavailable to social logins.</p>
+        </if>
+        <else>
+          <p>Enter your new email address below. To complete this process, you must click on the validation link sent to your new email address!</p>
+          <marko-web-identity-x-form-change-email />
+        </else>
+        <p class="mt-2">If you need assistance, please reach out to our <a href="/page/contact-us">support team</a>.</p>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>
