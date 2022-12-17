@@ -1,5 +1,6 @@
 const auth0 = require('./auth0');
 const braze = require('./braze');
+const contentMeter = require('./content-meter');
 const gam = require('./gam');
 const identityX = require('./identity-x');
 const nativeX = require('./native-x');
@@ -11,6 +12,7 @@ module.exports = {
   // Module configs
   auth0,
   braze,
+  contentMeter,
   gam,
   identityX,
   nativeX,

@@ -5,6 +5,7 @@ $ const {
   req,
   nativeX,
   GAM,
+  contentMeterState
 } = out.global;
 
 $ const { gamDefer, gtmDefer, initOnly } = req.query;
@@ -92,6 +93,14 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
     <marko-web-identity-x-context|{ hasUser, isEnabled }|>
       <global-site-footer  has-user=hasUser reg-enabled=isEnabled />
     </marko-web-identity-x-context>
+    <if(contentMeterState && !contentMeterState.isLoggedIn)>
+      <global-content-meter-block
+        views=contentMeterState.views
+        view-limit=contentMeterState.viewLimit
+        display-overlay=contentMeterState.displayOverlay
+        display-gate=contentMeterState.displayGate
+      />
+    </if>
   </@below-container>
   <@below-wrapper>
     <marko-web-deferred-script-loader-load />
