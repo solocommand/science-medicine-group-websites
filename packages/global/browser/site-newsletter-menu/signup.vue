@@ -18,7 +18,7 @@
       <a href="/login">
         <sign-up-button
           :class="element('form-button')"
-          label="Sign In"
+          label="Sign Up"
         />
       </a>
     </div>
