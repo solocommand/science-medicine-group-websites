@@ -23,7 +23,7 @@
         To get started, click the button below.
       </p>
       <a :href="loginUrl" class="btn btn-primary" :disabled="loading">
-        Log in
+        Sign in
       </a>
       <p v-if="error" class="mt-3 text-danger">
         An error occurred: {{ error.message }}
