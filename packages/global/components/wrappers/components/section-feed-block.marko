@@ -1,3 +1,5 @@
+$ const aliases = input.aliases || [input.alias];
+
 <theme-section-feed-block
   alias=input.alias
   header=input.header
@@ -10,7 +12,7 @@
       <theme-gam-define-display-ad
         name="rotation"
         position="section_page"
-        aliases=input.aliases
+        aliases=aliases
         modifiers=["inline-section-feed"]
       />
     </@after>
