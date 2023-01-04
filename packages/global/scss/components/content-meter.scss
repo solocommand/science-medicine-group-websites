@@ -1,19 +1,6 @@
 $content-meter-mobile-breakpoint: 600px !default;
 .content-meter {
   $self: &;
-  ~ .site-footer {
-    margin-bottom: 72px;
-  }
-  &--display-overlay {
-    ~ .site-footer {
-      display: none;
-      margin-bottom: 0;
-    }
-    ~ .document-container {
-      height: 0;
-      overflow: hidden;
-    }
-  }
   &__overlay {
     z-index: 1499;
     position: fixed;
@@ -110,12 +97,6 @@ $content-meter-mobile-breakpoint: 600px !default;
   }
 
   &--open {
-    ~ .site-footer {
-      margin-bottom: 296px;
-      @media (min-width: $content-meter-mobile-breakpoint) {
-        margin-bottom: 166px;
-      }
-    }
     #{ $self } {
       &__bar {
         padding-bottom: map-get($spacers, 4);
@@ -137,6 +118,15 @@ $content-meter-mobile-breakpoint: 600px !default;
           min-height: 48px;
         }
       }
+    }
+  }
+}
+
+.marko-web-gam-fixed-ad-bottom--visible ~ .content-meter {
+  .content-meter__bar{
+    padding-bottom: 120px;
+    @media (max-width: $content-meter-mobile-breakpoint) {
+      padding-bottom: 70px;
     }
   }
 }
