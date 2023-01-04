@@ -1,9 +1,11 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { getAsArray } from "@parameter1/base-cms-object-path";
 
 $ const { pagination: p } = out.global;
 $ const perPage = 12;
 $ const withPagination = defaultValue(input.withPagination, true);
 $ const { modifiers } = input;
+$ const aliases = getAsArray(input, 'aliases');
 $ const withAds = defaultValue(input.withAds, true);
 $ const queryParams = {
   requiresImage: false,
@@ -22,6 +24,7 @@ $ const queryParams = {
         skip=p.skip({ perPage })
         node-list=input.nodeList
         with-ads=withAds
+        aliases=aliases
       />
       <section-feed-block
         alias=input.alias
@@ -31,6 +34,7 @@ $ const queryParams = {
         skip=p.skip({ perPage, skip: 3 })
         node-list=input.nodeList
         with-ads=withAds
+        aliases=aliases
       />
       <section-feed-block
         alias=input.alias
@@ -41,6 +45,7 @@ $ const queryParams = {
         skip=p.skip({ perPage, skip: 6 })
         node-list=input.nodeList
         with-ads=withAds
+        aliases=aliases
       />
       <section-feed-block
         alias=input.alias
@@ -49,6 +54,7 @@ $ const queryParams = {
         limit=3
         skip=p.skip({ perPage, skip: 9 })
         node-list=input.nodeList
+        aliases=aliases
       />
       <if(withPagination)>
         <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
@@ -78,6 +84,7 @@ $ const queryParams = {
         skip=p.skip({ perPage })
         node-list=input.nodeList
         with-ads=withAds
+        aliases=aliases
       />
       <section-feed-block
         alias=input.alias
@@ -87,6 +94,7 @@ $ const queryParams = {
         skip=p.skip({ perPage, skip: 3 })
         node-list=input.nodeList
         with-ads=withAds
+        aliases=aliases
       />
     </div>
     <div class="col-lg-4">
@@ -109,6 +117,7 @@ $ const queryParams = {
         skip=p.skip({ perPage, skip: 6 })
         node-list=input.nodeList
         with-ads=withAds
+        aliases=aliases
       />
       <section-feed-block
         alias=input.alias
@@ -117,6 +126,7 @@ $ const queryParams = {
         limit=3
         skip=p.skip({ perPage, skip: 9 })
         node-list=input.nodeList
+        aliases=aliases
       />
       <if(withPagination)>
         <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
