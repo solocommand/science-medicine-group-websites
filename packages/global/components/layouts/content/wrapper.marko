@@ -51,7 +51,7 @@ $ const alias = get(input, "primarySection.alias");
     </marko-web-resolve-page>
   </@page>
   <@below-page>
-    <if(type !== "page")>
+    <if(!["page", "company"].includes(type))>
       <marko-web-page-container for="content" tag="div" id=id type=type modifiers=["below"]>
         <!-- Refresh sticky, right-rail infinite scroll ad -->
         <!-- <marko-web-gam-refresh-ad on="load-more-in-view" slot-id="gpt-ad-rail-infinite" /> -->
