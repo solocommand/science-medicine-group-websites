@@ -11,7 +11,7 @@ $ const loader = getAsObject(input, "loader");
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
 $ const excludedSectionIds = [];
-$ const { GAM, apollo, i18n } = out.global;
+$ const { GAM, apollo, i18n, nativeX } = out.global;
 
 $ const rightRailHeader = defaultValue(input.rightRailHeader, "Latest News");
 
@@ -111,12 +111,14 @@ $ const promise = websiteSectionContentLoader(apollo, {
                     </marko-web-block>
                   </if>
                 </div>
-                <div class="col-lg-4 page-rail">
-                  <theme-latest-content-list-block nodes=standard.nodes title=rightRailHeader >
-                    <@native-x indexes=[0] name="default" aliases=aliases />
-                  </theme-latest-content-list-block>
-                  <!-- <global-video-player /> -->
-                </div>
+                <if(nativeX && nativeX.isEnabled)>
+                  <div class="col-lg-4 page-rail">
+                    <theme-latest-content-list-block nodes=standard.nodes title=rightRailHeader >
+                      <@native-x indexes=[0] name="default" aliases=aliases />
+                    </theme-latest-content-list-block>
+                    <!-- <global-video-player /> -->
+                  </div>
+                </if>
               </div>
             </@section>
             <for|s| of=sections>
