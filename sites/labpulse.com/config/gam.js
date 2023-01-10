@@ -2,6 +2,8 @@ const configureGAM = require('@science-medicine-group/package-global/config/gam'
 
 const config = configureGAM({ basePath: 'lab' });
 
+config.enableRevealAd = true;
+
 config.lazyLoad = {
   enabled: true, // set to true to enable lazy loading
   fetchMarginPercent: 100, // fetch ad when one viewport away
