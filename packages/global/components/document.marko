@@ -41,13 +41,24 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
       init-only=true
     />
 
-    <!-- init gam -->
-    <marko-web-gam-init
-      request-frame=true
-      target-tag="body"
-      on=(gamDefer || "ready")
-      init-only=true
-    />
+    <if(GAM.enableRevealAd)>
+      <!-- init gam -->
+      <marko-web-gam-init
+        request-frame=true
+        target-tag="body"
+        on=(gamDefer || "ready")
+      />
+    </if>
+    <else>
+      <!-- init gam -->
+      <marko-web-gam-init
+        request-frame=true
+        target-tag="body"
+        on=(gamDefer || "ready")
+        init-only=true
+      />
+    </else>
+
 
     <!-- init native-x -->
     <marko-web-native-x-init
