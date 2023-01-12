@@ -31,10 +31,9 @@ module.exports = async (req, res, session) => {
   }
 
   // Upsert the IdentityX AppUser
-  const appUser = await service.createAppUser({ email });
-
   // federate trusted verification state to IdX and log in via impersonation api
   try {
+    const appUser = await service.createAppUser({ email });
     await Promise.all([
       service.impersonateAppUser({ userId: appUser.id }),
       service.addExternalUserId({
@@ -49,7 +48,12 @@ module.exports = async (req, res, session) => {
     ]);
     debug('impersonated', appUser.id);
   } catch (e) {
-    debug('autherr', e);
+    debug('autherr', e, e.message);
+    if (/Please enter a valid email address/.test(e.message)) {
+      // Redirect to invalid notice
+      debug('invalid email/redirect!');
+      res.redirect(302, '/user/auth0-db-email-invalid');
+    }
     throw e;
   }
 
