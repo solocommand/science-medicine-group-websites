@@ -129,7 +129,7 @@ jobs:
             basecms-website ${{ env.IMG_PREFIX }}-${{ matrix.site }} \
             ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.site }}:${{ needs.vars.outputs.version }}
         env:
-          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
+          RANCHER_CLUSTERID: c-7p6pt
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
           RANCHER_URL: ${{ secrets.RANCHER_URL }}
 
@@ -180,6 +180,6 @@ jobs:
             basecms-website-service ${{ env.IMG_PREFIX }}-${{ matrix.service }} \
             ${{ env.ECR_REGISTRY }}/${{ env.IMG_PREFIX }}-${{ matrix.service }}:${{ needs.vars.outputs.version }}
         env:
-          RANCHER_CLUSTERID: ${{ secrets.RANCHER_CLUSTERID_BASECMS }}
+          RANCHER_CLUSTERID: c-7p6pt
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
           RANCHER_URL: ${{ secrets.RANCHER_URL }}
