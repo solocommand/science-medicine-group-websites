@@ -1,6 +1,6 @@
 const defaults = {
   name: 'Stay in the Know',
-  description: 'Delivered right to your inbox, LabPulse’s newsletters keep you informed on the latest clinical lab updates. Subscribe to get exclusive access!',
+  description: 'Delivered right to your inbox, Dr. Bicuspid’s newsletters. Subscribe to get exclusive access!',
 };
 
 module.exports = {

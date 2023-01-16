@@ -116,6 +116,14 @@ $ const promise = websiteSectionContentLoader(apollo, {
                     <@native-x indexes=[3] name="default" aliases=aliases />
                   </theme-latest-content-list-block>
                   <!-- <global-video-player /> -->
+                  <marko-web-identity-x-context|{ hasUser }|>
+                    <if(!hasUser)>
+                      <identity-x-newsletter-form-inline
+                        login-email-placeholder="example@yourcompany.com"
+                        type="inlineSection"
+                      />
+                    </if>
+                  </marko-web-identity-x-context>
                 </div>
               </div>
             </@section>
