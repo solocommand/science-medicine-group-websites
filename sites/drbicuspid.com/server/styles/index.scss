@@ -24,3 +24,9 @@ $primary: #01274b;
 .btn-primary {
   background-color: #448439;
 }
+
+.site-footer {
+  &__logo {
+    filter: none;
+  }
+}
