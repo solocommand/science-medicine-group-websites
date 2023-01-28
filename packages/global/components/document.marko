@@ -35,10 +35,10 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
 
     <!-- init p1 website events -->
     <marko-web-p1-events-init
-      on="load"
       request-frame=true
       target-tag="body"
-      init-only=true
+      on="load"
+      delay-ms=100
     />
 
     <!-- init gam -->
