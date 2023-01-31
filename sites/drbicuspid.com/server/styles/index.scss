@@ -17,10 +17,17 @@ $primary: #01274b;
   }
 }
 
+// Newsletter Signup
 .newsletter-signup-banner--large {
   background-color: #f0f1f2;
 }
 
 .btn-primary {
   background-color: #448439;
+}
+
+.site-newsletter-menu {
+  &__form-button {
+    background-color: #448439;
+  }
 }
