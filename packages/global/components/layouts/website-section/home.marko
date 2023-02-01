@@ -2,6 +2,7 @@ import { getAsObject } from "@parameter1/base-cms-object-path";
 import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-aliases";
 import { getAsArray } from "@parameter1/base-cms-object-path";
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import between from "../../../utils/between";
 
 import websiteSectionContentLoader from "../../../loaders/website-section-content";
 
@@ -114,6 +115,7 @@ $ const promise = websiteSectionContentLoader(apollo, {
                 </div>
                 <div class="col-lg-4 page-rail">
                   <theme-latest-content-list-block nodes=standard.nodes title=rightRailHeader >
+                    <@native-x index=between(1,2) name="default" aliases=aliases />
                   </theme-latest-content-list-block>
                   <!-- <global-video-player /> -->
                   <div class="sticky-top page-rail">
