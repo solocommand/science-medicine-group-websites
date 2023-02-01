@@ -242,14 +242,14 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
     />
   </@section>
 
-  <@section|{ aliases }|>
+  <!-- <@section|{ aliases }|>
     <theme-gam-define-display-ad
       name="billboard"
       position="content_page"
       aliases=aliases
       modifiers=["inter-block"]
     />
-  </@section>
+  </@section> -->
 
   <for|s| of=sections>
     <@section|{ blockName, content, aliases }| modifiers=s.modifiers>
