@@ -10,7 +10,7 @@ const dentalPractice = [
   { href: '/dental-practice/wellness', label: 'Wellness' },
 ];
 const dentalSpecialties = [
-  { href: '/dental-specialties/endontics', label: 'Endontics' },
+  { href: '/dental-specialties/endodontics', label: 'Endodontics' },
   { href: '/dental-specialties/oral-maxillofacial-surgery', label: 'Oral & Maxillofacial Surgery' },
   { href: '/dental-specialties/orofacial-pain', label: 'Orofacial Pain' },
   { href: '/dental-specialties/orthodontics', label: 'Orthodontics' },
