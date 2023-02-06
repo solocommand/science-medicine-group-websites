@@ -48,6 +48,8 @@ const topics = [
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
+  { href: '#', label: 'Cases' },
+  { href: '#', label: 'Jobs' },
 ];
 
 const resources = [
