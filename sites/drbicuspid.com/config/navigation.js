@@ -43,11 +43,11 @@ const dentalBusiness = [
 ];
 
 const topics = [
-  { href: '/dental-practice', label: 'Dental Practice', children: dentalPractice },
-  { href: '/dental-specialties', label: 'Dental Specialties', children: dentalSpecialties },
-  { href: '/dental-hygiene', label: 'Dental Hygiene', children: dentalHygiene },
+  { href: '/dental-practice', label: 'Practice', children: dentalPractice },
+  { href: '/dental-specialties', label: 'Specialties', children: dentalSpecialties },
+  { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
-  { href: '/dental-business', label: 'Dental Business', children: dentalBusiness },
+  { href: '/dental-business', label: 'Business', children: dentalBusiness },
 ];
 
 const resources = [
@@ -165,15 +165,15 @@ module.exports = {
   ],
   toggleMenu: {
     col1: {
-      label: 'Dental Practice',
+      label: 'Practice',
       items: dentalPractice,
     },
     col2: {
-      label: 'Dental Specialties',
+      label: 'Specialties',
       items: dentalSpecialties,
     },
     col4: {
-      label: 'Dental Hygiene',
+      label: 'Hygiene',
       items: dentalHygiene,
     },
     col5: {
@@ -186,11 +186,11 @@ module.exports = {
       label: 'Topics',
       colspan: 5,
       items: [
-        { href: '/dental-practice', label: 'Dental Practice' },
-        { href: '/dental-specialties', label: 'Dental Specialties' },
-        { href: '/dental-hygiene', label: 'Dental Hygiene' },
+        { href: '/dental-practice', label: 'Practice' },
+        { href: '/dental-specialties', label: 'Specialties' },
+        { href: '/dental-hygiene', label: 'Hygiene' },
         { href: '/digital-dentistry', label: 'Digital Dentistry' },
-        { href: '/dental-business', label: 'Dental Business' },
+        { href: '/dental-business', label: 'Business' },
       ],
     },
     col2: {
