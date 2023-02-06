@@ -172,6 +172,10 @@ module.exports = {
       label: 'Specialties',
       items: dentalSpecialties,
     },
+    col3: {
+      label: 'Digital Dentistry',
+      items: digitalDentistry,
+    },
     col4: {
       label: 'Hygiene',
       items: dentalHygiene,
