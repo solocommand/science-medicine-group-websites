@@ -34,7 +34,7 @@ const digitalDentistry = [
   { href: '/digital-dentistry/sleep-dentistry', label: 'Sleep Dentistry' },
 ];
 const dentalBusiness = [
-  { href: '/dental-business/dental-education-school', label: 'Dental Education' },
+  { href: '/dental-business/dental-education', label: 'Dental Education' },
   { href: '/dental-business/dental-organizations', label: 'Dental Organizations' },
   { href: '/dental-business/dso', label: 'DSO' },
   { href: '/dental-business/industry-updates', label: 'Industry Updates' },
