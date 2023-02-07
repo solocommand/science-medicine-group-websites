@@ -8,6 +8,7 @@ $theme-site-header-breakpoints: (
 
 // Colors
 $primary: #01274b;
+$red: #e31c3d;
 
 @import "../../node_modules/@science-medicine-group/package-global/scss/core";
 
@@ -22,13 +23,16 @@ $primary: #01274b;
   background-color: #f0f1f2;
 }
 
-.btn-primary {
-  background-color: #448439;
+.newsletter-signup-banner {
+  &__cta {
+    .btn-primary {
+      background-color: $red;
+    }
+  }
 }
-
 .site-newsletter-menu {
   &__form-button {
-    background-color: #448439;
+    background-color: $red;
   }
 }
 
