@@ -2,6 +2,8 @@ const configureGAM = require('@science-medicine-group/package-global/config/gam'
 
 const config = configureGAM({ basePath: 'drb' });
 
+config.enableRevealAd = true;
+
 config.lazyLoad = {
   enabled: true, // set to true to enable lazy loading
   fetchMarginPercent: 100, // fetch ad when one viewport away
@@ -16,16 +18,28 @@ config.setAliasAdUnits('default', [
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: 'rotation' },
   // Below based on enableRevealAd
-  // { name: 'reskin', path: 'reskin' },
+  { name: 'reskin', path: 'reskin' },
 ]);
 
-const aliases = [];
+const aliases = [
+  'case-of-the-x',
+  'dental-assistant',
+  'legal-issues',
+  'office-management',
+  'patient-communication',
+  'public-health',
+  'wellness',
+  'jobs',
+  'endodontics',
+  'oral-maxiollfacial-surgery',
+];
 
 aliases.forEach(alias => config.setAliasAdUnits(alias, [
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${alias}-leaderboard` },
   { name: 'rotation', templateName: 'ROTATION', path: `${alias}-rotation` },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${alias}-rotation` },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${alias}-rotation` },
+  { name: 'reskin', path: `${alias}-reskin` },
 ]));
 
 
