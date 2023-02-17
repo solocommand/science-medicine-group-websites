@@ -23,7 +23,7 @@ const dentalHygiene = [
   { href: '/dental-hygiene/hygiene-tools', label: 'Hygiene Tools' },
   { href: '/dental-hygiene/infection-control', label: 'Infection Control' },
   { href: '/dental-hygiene/nutrition', label: 'Nutrition' },
-  { href: '/dental-hygiene/oral-systemic-link', label: 'Oral Systemic Link' },
+  { href: '/dental-hygiene/oral-systemic-link', label: 'Oral-Systemic Link' },
   { href: '/dental-hygiene/scope-of-practice', label: 'Scope of Practice' },
 ];
 const digitalDentistry = [
