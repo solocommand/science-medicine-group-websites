@@ -21,7 +21,7 @@
   "devDependencies": {
     "@parameter1/base-cms-marko-compiler": "^3.0.0",
     "babel-eslint": "^10.1.0",
-    "lerna": "^3.16.4"
+    "lerna": "^6.5.1"
   },
   "resolutions": {
     "compress-brotli": "1.2.2"

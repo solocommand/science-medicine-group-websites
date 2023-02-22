@@ -49,7 +49,7 @@
     "graphql-tag": "^2.10.1",
     "html-entities": "^2.1.0",
     "http-errors": "^1.7.3",
-    "newrelic": "^6.14.0",
+    "newrelic": "^9.10.1",
     "node-fetch": "^2.6.1",
     "object-path": "^0.11.5",
     "slug": "^4.0.2"
