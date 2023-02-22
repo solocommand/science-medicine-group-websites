@@ -7,8 +7,11 @@
   "license": "MIT",
   "main": "middleware.js",
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
-    "test": "yarn lint"
+    "compile": "basecms-marko-compile compile",
+    "build": "yarn compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
     "@parameter1/base-cms-env": "^4.0.2",
