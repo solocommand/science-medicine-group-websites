@@ -8,14 +8,18 @@ module.exports = {
   },
   rules: {
     'vue/max-attributes-per-line': ['error', {
-      singleline: 3,
+      singleline: {
+        max: 3,
+      },
       multiline: {
         max: 1,
-        allowFirstLine: false,
       },
     }],
+    'vue/multi-word-component-names': 'off',
   },
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
   },
 };

@@ -6,13 +6,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-  "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
-  "build": "basecms-website build",
-  "compile": "basecms-marko-compile compile",
-  "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
-  "lint:fix": "yarn lint --fix",
-  "test": "yarn lint && yarn compile --no-clean"
-}
+    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
+    "build": "basecms-website build",
+    "compile": "basecms-marko-compile compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
+  },
   "dependencies": {
     "@parameter1/base-cms-marko-core": "^4.0.2",
     "@parameter1/base-cms-marko-web": "^4.0.2",
