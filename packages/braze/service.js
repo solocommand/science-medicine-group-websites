@@ -111,7 +111,7 @@ class Braze {
    */
   async getSubscriptionGroupQuestions(identityX) {
     const { data } = await identityX.client.query({ query: identityXCustomQuestions });
-    const nodes = getAsArray(data, 'fields.edges').map(({ node }) => ({ field: node })).filter(n => n.field.active);
+    const nodes = getAsArray(data, 'fields.edges').map(({ node }) => ({ field: node })).filter((n) => n.field.active);
     const questions = filterByExternalId(nodes, 'subscriptionGroup', this.tenant);
     return questions.map(({ field }) => ({
       id: field.id,

@@ -40,15 +40,15 @@ const findUserBy = async ({ idx, id }) => {
 
 const hasAllRequiredFields = ({ idx, user }) => {
   const requiredFields = idx.config.getRequiredServerFields();
-  const hasRequiredFields = requiredFields.every(f => user[f]);
+  const hasRequiredFields = requiredFields.every((f) => user[f]);
   if (!hasRequiredFields) return false;
 
   // Check booleans
-  const hasAllBools = getAsArray(user, 'customBooleanFieldAnswers').every(a => !a.field.required || a.hasAnswered);
+  const hasAllBools = getAsArray(user, 'customBooleanFieldAnswers').every((a) => !a.field.required || a.hasAnswered);
   if (!hasAllBools) return false;
 
   // Check selects
-  const hasAllSelects = getAsArray(user, 'customSelectFieldAnswers').every(a => !a.field.required || a.hasAnswered);
+  const hasAllSelects = getAsArray(user, 'customSelectFieldAnswers').every((a) => !a.field.required || a.hasAnswered);
   if (!hasAllSelects) return false;
 
   return true;

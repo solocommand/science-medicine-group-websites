@@ -8,7 +8,7 @@ module.exports = (app, idxConfig, auth0Config) => {
     idxConfig.addHook({
       name: 'onChangeEmailSuccess',
       shouldAwait: true,
-      fn: args => onChangeEmailSuccess({ auth0Config, auth0User: user, ...args }),
+      fn: (args) => onChangeEmailSuccess({ auth0Config, auth0User: user, ...args }),
     });
     next();
   });

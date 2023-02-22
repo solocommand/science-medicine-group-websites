@@ -38,7 +38,7 @@ const buildOptins = async ({ email, identityX, braze }) => {
         if (ans.hasAnswered) optIns[key] = ans.value;
       });
       // Use the IdentityX answers if already supplied.
-      if (answers.every(ans => ans.hasAnswered)) return optIns;
+      if (answers.every((ans) => ans.hasAnswered)) return optIns;
     }
   } catch (e) {
     // Do nothing if the idx lookup failed

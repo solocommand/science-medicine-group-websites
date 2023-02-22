@@ -14,7 +14,7 @@ const patterns = [
   { pattern: /\/index.aspx\?Sec=abt&sub=cnt/i, to: '/page/contact-us' },
 ];
 
-module.exports = siteHandler => ({ from, req, app }) => {
+module.exports = (siteHandler) => ({ from, req, app }) => {
   if (typeof siteHandler === 'function') {
     const match = siteHandler({ from, req, app });
     if (match) return match;

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-const identify = window => (...args) => {
+const identify = (window) => (...args) => {
   const fn = window.rudderanalytics ? window.rudderanalytics.identify : () => {};
   return fn(...args);
 };
