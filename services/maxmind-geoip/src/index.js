@@ -26,7 +26,7 @@ bootService({
     log('disconnect from redis');
     return redis.disconnect();
   },
-}).catch(e => setImmediate(() => {
+}).catch((e) => setImmediate(() => {
   log('bail');
   throw e;
 }));
