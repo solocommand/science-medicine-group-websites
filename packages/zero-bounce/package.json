@@ -18,5 +18,13 @@
     "@parameter1/joi": "^1.2.10",
     "debug": "^4.1.1",
     "node-fetch": "^2.6.6"
-  }
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }

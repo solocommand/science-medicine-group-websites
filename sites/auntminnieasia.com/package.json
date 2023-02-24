@@ -14,14 +14,14 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^4.0.2",
-    "@parameter1/base-cms-marko-web": "^4.0.2",
-    "@parameter1/base-cms-marko-web-gtm": "^4.0.2",
-    "@parameter1/base-cms-marko-web-identity-x": "^4.0.2",
-    "@parameter1/base-cms-marko-web-theme-monorail": "^4.0.2",
+    "@parameter1/base-cms-marko-core": "^4.2.0",
+    "@parameter1/base-cms-marko-web": "^4.2.1",
+    "@parameter1/base-cms-marko-web-gtm": "^4.1.0",
+    "@parameter1/base-cms-marko-web-identity-x": "^4.1.0",
+    "@parameter1/base-cms-marko-web-theme-monorail": "^4.1.1",
     "@parameter1/base-cms-object-path": "^4.0.2",
     "@parameter1/base-cms-utils": "^4.0.2",
-    "@parameter1/base-cms-web-cli": "^4.0.2",
+    "@parameter1/base-cms-web-cli": "^4.1.1",
     "@science-medicine-group/package-braze": "^1.11.0",
     "@science-medicine-group/package-global": "^1.11.1",
     "csvtojson": "^2.0.10",
@@ -29,5 +29,13 @@
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.5"
-  }
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }

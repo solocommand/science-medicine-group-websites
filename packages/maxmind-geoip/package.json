@@ -17,7 +17,15 @@
     "@parameter1/base-cms-env": "^4.0.2",
     "@parameter1/base-cms-utils": "^4.0.2",
     "@parameter1/micro": "^1.1.8",
-    "newrelic": "^9.10.1",
+    "newrelic": "^9.10.2",
     "node-fetch": "^2.6.1"
-  }
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }
