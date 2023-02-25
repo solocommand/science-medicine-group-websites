@@ -36,7 +36,7 @@
     "@parameter1/base-cms-marko-web-theme-monorail": "^4.3.3",
     "@parameter1/base-cms-object-path": "^4.0.2",
     "@parameter1/base-cms-utils": "^4.0.2",
-    "@parameter1/base-cms-web-cli": "^4.3.2",
+    "@parameter1/base-cms-web-cli": "^4.3.4",
     "@parameter1/base-cms-web-common": "^4.0.2",
     "@parameter1/joi": "^1.2.10",
     "@parameter1/omeda-graphql-client-express": "^0.4.2",
