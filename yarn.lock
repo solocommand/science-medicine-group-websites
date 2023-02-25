@@ -1234,10 +1234,10 @@
     moment "^2.29.1"
     node-fetch "^2.6.9"
 
-"@parameter1/base-cms-marko-web@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.2.1.tgz#8180751bc68a7a7cb95d4525b015f53e3e869962"
-  integrity sha512-dfFE0dat6yWCiSrRq6bsl5yjmRVVAr7wl2FNdwI7YB8xq/VOINX97vfSAAZ3NYEcaaINp+O5KQvLzY/P23sz6w==
+"@parameter1/base-cms-marko-web@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.3.0.tgz#fb2c18ec59e0eb3e4f63de6e290360ba9d8d46e4"
+  integrity sha512-ecamZSTTpzSHjtIwHPVvBr6idiQhBBJZG/ykwmPTExu/V8Led+ptD71Sa9WLYMtBbv8LK1b/MId1GuOc8Cn/sw==
   dependencies:
     "@godaddy/terminus" "^4.11.2"
     "@parameter1/base-cms-apollo-ssr" "^4.0.2"
@@ -1287,10 +1287,10 @@
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-utils/-/base-cms-utils-4.0.2.tgz#993893c5a6a5484eabbee4b81d9a5e1937e1b9c0"
   integrity sha512-f0EM6AYv1vzWSWkVCOGh4thcP7F6FZnsPduthq70VJGhq5B5JTNuTLn/PYdNAmJfwctc8SgpmsJ9YlDTXThKmg==
 
-"@parameter1/base-cms-web-cli@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-web-cli/-/base-cms-web-cli-4.1.1.tgz#b4c80a88c622c69c4bb305ab8417ebdfb1026fa4"
-  integrity sha512-QG0hhqg2WPB2RA9DIBBlenJGfcSMdcIRbyFwwkJx/6nU2kT6pJlVOiabYAeWU9cwogYZLt4LuYlfzUFkP/CGwg==
+"@parameter1/base-cms-web-cli@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-web-cli/-/base-cms-web-cli-4.3.1.tgz#c9b68ce506ada6c981cc182dd96cfd16c71a5f4d"
+  integrity sha512-0z49H3c4OxTdsuf48d11qsH0YCnrW/Hubwy4Zn/PBTGY6sGAuISDv2mTeooi3m1bUDij9rFMPt2xaTV5kxxnZQ==
   dependencies:
     "@parameter1/base-cms-marko-compiler" "^4.0.2"
     "@parameter1/base-cms-utils" "^4.0.2"
@@ -1299,6 +1299,7 @@
     chalk "^4.1.2"
     chokidar "^3.5.3"
     fancy-log "^2.0.0"
+    fast-glob "^3.2.12"
     livereload "^0.9.3"
     minimist "^1.2.8"
     mkdirp "^2.1.3"
