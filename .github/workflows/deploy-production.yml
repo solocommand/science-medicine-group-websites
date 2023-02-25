@@ -53,23 +53,16 @@ jobs:
         #v# Make sure this matches the site matrix! #v#
         ###############################################
         site:
-          - { id: 63038e5dd15c7c4b2e8b458a, dir: auntminnie.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnie.com }
-          - { id: 63038ec219398c102f8b457c, dir: auntminnieasia.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnieasia.com }
-          - { id: 63038e96d15c7cc42e8b4581, dir: auntminnieeurope.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnieeurope.com }
-          - { id: 63038e29475dbd6a2f8b457e, dir: drbicuspid.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-drbicuspid.com }
           - { id: 62fc0ab6475dbd28008b459b, dir: labpulse.com, stack: virgon, account: smg, tenant: smg_all, rancher_label: science-medicine-group-labpulse.com }
-          - { id: 63038dcdd15c7c4b2e8b4588, dir: scienceboard.net, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-scienceboard.net }
         ###############################################
         #^# Make sure this matches the site matrix! #^#
         ###############################################
     with:
       ecr_registry: ${{ vars.AWS_ECR_REGISTRY }}
-      docker_image: ${{ vars.AWS_ECR_REGISTRY }}/base-cms-websites:${{ matrix.site.account }}-${{ matrix.site.dir }}-${{ needs.version.outputs.version }}
-      site_id: ${{ matrix.site.id }}
-      site_host: ${{ matrix.site.dir }}
-      infra_stack: ${{ matrix.site.stack }}
-      tenant_key: ${{ matrix.tenant }}
       push: true
+      site_account: ${{ matrix.site.account }}
+      site_dir: ${{ matrix.site.dir }}
+      site_version: ${{ needs.version.outputs.version }}
     secrets: inherit
 
   deploy-sites:
@@ -81,18 +74,15 @@ jobs:
         #v# Make sure this matches the site matrix! #v#
         ###############################################
         site:
-          - { id: 63038e5dd15c7c4b2e8b458a, dir: auntminnie.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnie.com }
-          - { id: 63038ec219398c102f8b457c, dir: auntminnieasia.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnieasia.com }
-          - { id: 63038e96d15c7cc42e8b4581, dir: auntminnieeurope.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnieeurope.com }
-          - { id: 63038e29475dbd6a2f8b457e, dir: drbicuspid.com, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-drbicuspid.com }
           - { id: 62fc0ab6475dbd28008b459b, dir: labpulse.com, stack: virgon, account: smg, tenant: smg_all, rancher_label: science-medicine-group-labpulse.com }
-          - { id: 63038dcdd15c7c4b2e8b4588, dir: scienceboard.net, stack: leonis, account: smg, tenant: smg_all, rancher_label: science-medicine-group-scienceboard.net }
         ###############################################
         #^# Make sure this matches the site matrix! #^#
         ###############################################
     with:
-      docker_image: ${{ vars.AWS_ECR_REGISTRY }}/base-cms-websites:${{ matrix.site.account }}-${{ matrix.site.dir }}-${{ needs.version.outputs.version }}
-      infra_stack: ${{ matrix.site.stack }}
-      rancher_label_key: basecms-website
-      rancher_label_val: ${{ matrix.site.rancher_label }}
+      ecr_registry: ${{ vars.AWS_ECR_REGISTRY }}
+      rancher_label: ${{ matrix.site.rancher_label }}
+      site_account: ${{ matrix.site.account }}
+      site_dir: ${{ matrix.site.dir }}
+      site_stack: ${{ matrix.site.stack }}
+      site_version: ${{ needs.version.outputs.version }}
     secrets: inherit
