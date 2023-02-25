@@ -5,6 +5,17 @@
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/sites/auntminnie.com",
   "license": "MIT",
   "private": true,
+  "website": {
+    "id": "63038e5dd15c7c4b2e8b458a",
+    "tenant": "smg_all",
+    "account": "smg",
+    "stack": "leonis",
+    "key": "am",
+    "deploy": {
+      "staging": true,
+      "production": false
+    }
+  },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
     "build": "basecms-website build",
@@ -13,6 +24,14 @@
     "lint:fix": "yarn lint --fix",
     "test": "yarn lint && yarn compile --no-clean"
   },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
   "dependencies": {
     "@parameter1/base-cms-marko-core": "^4.2.0",
     "@parameter1/base-cms-marko-web": "^4.2.1",
@@ -29,13 +48,5 @@
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.5"
-  },
-  "engines": {
-    "node": ">=14.15"
-  },
-  "os": [
-    "darwin",
-    "linux",
-    "win32"
-  ]
+  }
 }
