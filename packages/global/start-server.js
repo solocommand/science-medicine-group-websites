@@ -72,7 +72,6 @@ module.exports = (options = {}) => {
 
       // Load braze
       const brazeConfig = getAsObject(options, 'siteConfig.braze');
-      console.log(brazeConfig);
       braze(app, brazeConfig);
 
       // Load ZeroBounce (must be loaded before IdX!)
