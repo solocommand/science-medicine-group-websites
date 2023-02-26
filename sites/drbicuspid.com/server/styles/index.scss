@@ -9,7 +9,7 @@ $theme-site-header-breakpoints: (
 // Colors
 $primary: #01274b;
 
-@import "../../node_modules/@science-medicine-group/package-global/scss/core";
+@import "@science-medicine-group/package-global/scss/core";
 
 .site-navbar {
   &__logo {

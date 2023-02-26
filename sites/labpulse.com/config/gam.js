@@ -27,12 +27,11 @@ const aliases = [
   'research-and-development',
 ];
 
-aliases.forEach(alias => config.setAliasAdUnits(alias, [
+aliases.forEach((alias) => config.setAliasAdUnits(alias, [
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${alias}-leaderboard` },
   { name: 'rotation', templateName: 'ROTATION', path: `${alias}-rotation` },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${alias}-rotation` },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${alias}-rotation` },
 ]));
-
 
 module.exports = config;

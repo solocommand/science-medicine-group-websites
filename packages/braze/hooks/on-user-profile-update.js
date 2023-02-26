@@ -25,7 +25,7 @@ module.exports = async ({
   questions.forEach((ans) => {
     if (ans.hasAnswered) {
       const key = get(ans, 'field.externalId.identifier.value');
-      const answers = getAsArray(ans, 'answers').map(a => a.writeInValue || a.externalIdentifier);
+      const answers = getAsArray(ans, 'answers').map((a) => a.writeInValue || a.externalIdentifier);
       payload[key] = ans.field.multiple ? answers : answers.pop();
     }
   });

@@ -7,14 +7,25 @@
   "license": "MIT",
   "main": "middleware.js",
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
-    "test": "yarn lint"
+    "compile": "basecms-marko-compile compile",
+    "build": "yarn compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-env": "^3.0.0",
-    "@parameter1/base-cms-utils": "^3.0.0",
+    "@parameter1/base-cms-env": "^4.0.2",
+    "@parameter1/base-cms-utils": "^4.0.2",
     "@parameter1/micro": "^1.1.8",
-    "newrelic": "^6.14.0",
+    "newrelic": "^9.10.2",
     "node-fetch": "^2.6.1"
-  }
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }

@@ -6,7 +6,7 @@ module.exports = {
     const ns = getAsObject(v, 'field.externalId.namespace');
     return ns.provider === 'braze' && ns.type === type && ns.tenant === tenant;
   }),
-  getFormatter: v => (typeof v === 'function' ? v : x => x.payload),
+  getFormatter: (v) => (typeof v === 'function' ? v : (x) => x.payload),
   updateIdentityXUser: async (email, svc, answers) => {
     const user = await svc.createAppUser({ email });
     const apiToken = svc.config.getApiToken();

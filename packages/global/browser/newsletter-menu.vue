@@ -17,10 +17,10 @@
 import Signup from './site-newsletter-menu/signup.vue';
 
 export default {
-  inject: ['EventBus'],
   components: {
     Signup,
   },
+  inject: ['EventBus'],
 
   props: {
     siteName: {

@@ -19,7 +19,7 @@ const query = gql`
  */
 async function findPost(req) {
   const { apollo, query: params } = req;
-  const filteredParams = Object.keys((params)).filter(key => key.match(/itemid|rid|vendorid/i));
+  const filteredParams = Object.keys((params)).filter((key) => key.match(/itemid|rid|vendorid/i));
   if (filteredParams.length) {
     // Break up an unencoded query string if necessary.
     const value = filteredParams[0].match(/(itemid|rid|vendorid)=[0-9]+/i)

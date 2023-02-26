@@ -12,18 +12,32 @@
     "services/*"
   ],
   "scripts": {
+    "build": "lerna run build",
     "compile": "lerna run compile",
+    "generate-gha-workflows": "basecms-website generate-gha-workflows",
     "lint": "lerna run lint",
-    "lint:css": "lerna run lint:css",
-    "lint:js": "lerna run lint:js",
+    "lint:fix": "lerna run lint:fix",
     "test": "lerna run test"
   },
   "devDependencies": {
-    "@parameter1/base-cms-marko-compiler": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "lerna": "^3.16.4"
+    "@parameter1/base-cms-eslint": "^4.1.0",
+    "@parameter1/base-cms-marko-compiler": "^4.0.2",
+    "@parameter1/browserslist-config-base-cms": "^4.1.0",
+    "lerna": "^6.5.1"
   },
   "resolutions": {
     "compress-brotli": "1.2.2"
-  }
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {},
+  "browserslist": [
+    "extends @parameter1/browserslist-config-base-cms"
+  ]
 }

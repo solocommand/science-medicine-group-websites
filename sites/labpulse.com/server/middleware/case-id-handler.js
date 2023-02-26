@@ -13,7 +13,7 @@ async function findPost(req) {
     if (paramKeys.length) {
       // Account for differences in capitalization between querystrings
       // (See packages/globalmiddleware/item-id-handler.js for similar)
-      const itemIDParamName = paramKeys.filter(v => v.match(/^itemid$/i))[0];
+      const itemIDParamName = paramKeys.filter((v) => v.match(/^itemid$/i))[0];
       if (sec === 'log' && itemIDParamName) {
         return { from, to: '/page/Cases', code: 302 };
       }
