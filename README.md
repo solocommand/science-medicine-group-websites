@@ -84,14 +84,6 @@ set "BASE_BROWSE_GRAPHQL_URI=https://base-browse.virgon.base.parameter1.com/grap
 
 Due to an issue with [Docker for Windows](https://forums.docker.com/t/file-system-watch-does-not-work-with-mounted-volumes/12038/16), file watching is not supported inside a container. If you are using `Docker Compose` with this project on a Microsoft Windows system, you'll need to ensure that one of the following alternate file watching methods are used.
 
-#### Polling
-To enable polling, create a `.env` file at the root of this project and add the following line:
-```
-GULP_POLLING_ENABLED=true
-```
-
-If you need to adjust the polling interval, you can do so by adding `GULP_POLLING_INTERVAL=<value in milliseconds>` to this file. The default is 1400ms.
-
 #### Volume Watcher
 Alternatively, you can use the [Docker Windows Volume Watcher](https://github.com/merofeev/docker-windows-volume-watcher) script to monitor changes to files from the host and dispatch update events to your containers. This script requires a working Python and `pip` install on the host machine.
 
