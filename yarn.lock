@@ -1234,10 +1234,10 @@
     moment "^2.29.1"
     node-fetch "^2.6.9"
 
-"@parameter1/base-cms-marko-web@^4.3.6":
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.3.6.tgz#58e638c8834a0c427bce9d24359931b2d7d73065"
-  integrity sha512-0IUIq48xi+p1WuV/7qSpWAaNW6Popmy4mTOS4gxgajwl9BXl39klqaUSkUsULGUp19U8IIi5Spihp4DxevpNOA==
+"@parameter1/base-cms-marko-web@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.4.0.tgz#06cab69dbdd065f941e1cc60e96512ac7d5d71cc"
+  integrity sha512-j2BZ5q6rmK0BM+rVb5eBp2t3SgO382WqmqJibfLuh5t5sKPtE9OjCFfodfzhTV+4z/jQRD1kSDxyCSfMSNrlVA==
   dependencies:
     "@godaddy/terminus" "^4.11.2"
     "@parameter1/base-cms-apollo-ssr" "^4.0.2"
@@ -1255,6 +1255,7 @@
     "@parameter1/base-cms-tenant-context" "^4.0.2"
     "@parameter1/base-cms-utils" "^4.0.2"
     "@parameter1/base-cms-web-common" "^4.0.2"
+    async "^3.2.4"
     cheerio "^1.0.0-rc.12"
     cookie-parser "^1.4.6"
     express "^4.18.2"
@@ -2129,7 +2130,7 @@ async-settle@^1.0.0:
   dependencies:
     async-done "^1.2.2"
 
-async@^3.2.0, async@^3.2.3:
+async@^3.2.0, async@^3.2.3, async@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.4.tgz#2d22e00f8cddeb5fde5dd33522b56d1cf569a81c"
   integrity sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==
