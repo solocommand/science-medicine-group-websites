@@ -40,7 +40,7 @@
     "@parameter1/base-cms-marko-web-theme-monorail": "^4.3.3",
     "@parameter1/base-cms-object-path": "^4.0.2",
     "@parameter1/base-cms-utils": "^4.0.2",
-    "@parameter1/base-cms-web-cli": "^4.3.4",
+    "@parameter1/base-cms-web-cli": "^4.5.3",
     "@science-medicine-group/package-braze": "^1.11.0",
     "@science-medicine-group/package-global": "^1.11.1",
     "csvtojson": "^2.0.10",
