@@ -7,7 +7,7 @@ This project supports two development environments:
 - [Docker Compose](https://docs.docker.com/compose/) (preferred)
 
 or
-- [Node.js](https://nodejs.org) (version 10.x)
+- [Node.js](https://nodejs.org) (version 14.x)
 - [Yarn](https://yarnpkg.com) package manager.
 
 ### Additional Resources
@@ -28,7 +28,7 @@ docker-compose run --rm yarn install
 
 ```sh
 # Mac/Linux/Windows native
-nvm use 10
+nvm use 14
 yarn install
 ```
 Once complete, the project dependencies will be available and the project will be ready to boot.
@@ -90,7 +90,7 @@ To enable polling, create a `.env` file at the root of this project and add the 
 GULP_POLLING_ENABLED=true
 ```
 
-If you need to adjust the polling interval, you can do so by adding `GULP_POLLING_INTERVAL=<value in milliseconds>` to this file. The default is 1000ms.
+If you need to adjust the polling interval, you can do so by adding `GULP_POLLING_INTERVAL=<value in milliseconds>` to this file. The default is 1400ms.
 
 #### Volume Watcher
 Alternatively, you can use the [Docker Windows Volume Watcher](https://github.com/merofeev/docker-windows-volume-watcher) script to monitor changes to files from the host and dispatch update events to your containers. This script requires a working Python and `pip` install on the host machine.
@@ -105,7 +105,7 @@ docker-compose run --rm yarn test
 
 ```sh
 # Mac/Linux/Windows native
-nvm use 10
+nvm use 14
 yarn test
 ```
 
