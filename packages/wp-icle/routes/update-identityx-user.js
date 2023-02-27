@@ -66,19 +66,18 @@ const buildPayload = async (svc, body) => {
 };
 
 const updateUser = async (svc, payload, user) => {
+  const apiToken = svc.config.getApiToken();
+  if (!apiToken) throw new Error('Unable to update IdentityX: no API token is present.');
   const { customSelectAnswers, ...fields } = payload;
-  debug('updateUser vars', { userId: user.id, payload: fields, answers: customSelectAnswers });
-  const { data } = await svc.client.mutate({
+  await svc.client.mutate({
     mutation: updateUserMutation,
     variables: {
       userId: user.id,
       payload: fields,
       answers: customSelectAnswers,
     },
+    context: { apiToken },
   });
-  // @todo make update
-  debug('updateUser', data);
-  return user;
 };
 
 module.exports = (app, config) => {
