@@ -20,7 +20,7 @@ const getQuestions = async (svc) => {
   const { data } = await svc.client.query({ query: identityXCustomQuestions });
   return getAsArray(data, 'fields.edges')
     .map(({ node }) => node)
-    .filter(n => n.active && n.type === 'select');
+    .filter((n) => n.active && n.type === 'select');
 };
 
 const buildPayload = async (svc, body) => {
@@ -45,16 +45,13 @@ const buildPayload = async (svc, body) => {
   questions.forEach(({ id, name, options }) => {
     const key = selectMap.get(name);
     const values = Array.isArray(body.profile[key]) ? body.profile[key] : [body.profile[key]];
-    debug({
-      name, key, values, options: options.map(n => n.label),
-    });
     if (!key || !values.length) return;
 
     const optionIds = values.map((answer) => {
       const found = options.find(({ label }) => label === answer);
       if (!found) debug(`Missing incoming option for "${name}" with label "${answer}"!`);
       return found ? found.id : null;
-    }).filter(v => v);
+    }).filter((v) => v);
 
     // All selects are required per SMG, so field values should never be unset.
     if (optionIds.length) selects.push({ fieldId: id, optionIds });
@@ -80,8 +77,7 @@ const updateUser = async (svc, payload, user) => {
   });
 };
 
-module.exports = (app, config) => {
-  const { hookUri, apiKey, idxConfig } = config;
+module.exports = (app) => {
   /**
    * @todo avoid recursion between hook invocations
    * @todo investigate SQS intermediary with lambda execution.
