@@ -7,11 +7,14 @@
   "private": true,
   "website": {
     "id": "63038dcdd15c7c4b2e8b4588",
-    "tenant": "smg_all",
+    "tenant": "smg_future",
     "account": "smg",
     "stack": "leonis",
     "key": "sab",
-    "deploy": false
+    "deploy": {
+      "staging": true,
+      "production": false
+    }
   },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
