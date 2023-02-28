@@ -40,5 +40,5 @@ const request = async (endpoint, opts = {}) => {
 
 module.exports = {
   request,
-  country: ip => request(`geoip/v2.1/country/${ip}`),
+  country: (ip) => request(`geoip/v2.1/country/${ip}`),
 };

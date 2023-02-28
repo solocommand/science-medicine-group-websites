@@ -15,7 +15,6 @@ module.exports = (app, params = {}) => {
     appGroupId: Joi.string().required().description('The Braze App Group ID to use.'),
   }), params, { allowUnknown: true });
 
-
   app.use((req, res, next) => {
     const service = new Braze({ ...args, cookies: req.cookies || {} });
     req.braze = service;

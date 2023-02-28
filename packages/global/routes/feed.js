@@ -6,7 +6,7 @@ const dayjs = require('@parameter1/base-cms-dayjs');
 
 module.exports = (app) => {
   const parseEmbeddedMedia = get(app, 'locals.parseEmbeddedMedia');
-  const renderBody = isFn(parseEmbeddedMedia) ? parseEmbeddedMedia : v => v;
+  const renderBody = isFn(parseEmbeddedMedia) ? parseEmbeddedMedia : (v) => v;
   app.get('/feed', asyncRoute(async (req, res) => {
     const FEED = gql`
       query Feed($input: WebsiteScheduledContentQueryInput = {}, $siteId: ObjectID!) {
@@ -88,14 +88,14 @@ module.exports = (app) => {
       const { node } = edge;
       const itemName = encode(node.name, encodeOptions);
       const itemUrl = get(node, 'siteContext.url');
-      const itemAuthors = getAsArray(node, 'authors.edges').map(o => get(o, 'node.name')).filter(o => o).join(', ');
+      const itemAuthors = getAsArray(node, 'authors.edges').map((o) => get(o, 'node.name')).filter((o) => o).join(', ');
       const itemPubDate = node.publishedDate;
       const itemTeaser = node.teaser;
       const itemBody = renderBody(node.body, res, { lazyloadImages: false });
       const schedules = new Set(getAsArray(node, 'websiteSchedules')
-        .map(o => get(o, 'section.name'))
-        .filter(name => name !== 'Home')
-        .map(s => `<category><![CDATA[${s}]]></category>`));
+        .map((o) => get(o, 'section.name'))
+        .filter((name) => name !== 'Home')
+        .map((s) => `<category><![CDATA[${s}]]></category>`));
       const item = [
         '<item>',
         `<title>${itemName}</title>`,

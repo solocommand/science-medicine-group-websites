@@ -4,7 +4,7 @@ $ const siteName = config.siteName();
 $ const type = "profile";
 $ const title = `${siteName} Preference Center`;
 $ const description = `Update your ${siteName} subscriptions`;
-$ const email = req.query && req.query.email || '';
+$ const reqQueryEmail = req.query && req.query.email || '';
 $ const { questions } = input;
 $ const { RECAPTCHA_V3_SITE_KEY } = require('../env');
 
@@ -21,7 +21,7 @@ $ const { RECAPTCHA_V3_SITE_KEY } = require('../env');
         <marko-web-browser-component name="BrazePreferenceCenter" props={
           siteName,
           siteKey: RECAPTCHA_V3_SITE_KEY,
-          email,
+          reqQueryEmail,
           questions
         } />
       </@section>

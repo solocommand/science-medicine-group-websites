@@ -4,7 +4,7 @@ const { REDIS_CACHE_URL } = require('./env');
 const { log } = console;
 
 const client = redis.createClient({ url: REDIS_CACHE_URL });
-client.on('error', err => log('Redis Client Error', err));
+client.on('error', (err) => log('Redis Client Error', err));
 
 module.exports = {
   connect: () => new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ module.exports = {
       resolve();
     });
   }),
-  get: key => new Promise((resolve, reject) => {
+  get: (key) => new Promise((resolve, reject) => {
     client.get(key, (err, reply) => {
       if (err) reject(err);
       resolve(reply);

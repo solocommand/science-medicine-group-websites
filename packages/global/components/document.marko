@@ -23,8 +23,6 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
       <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     </noscript>
 
-    <marko-web-deferred-script-loader-init />
-
     <!-- init gtm -->
     <marko-web-gtm-init
       container-id=site.get("gtm.containerId")
@@ -101,6 +99,5 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
         display-gate=contentMeterState.displayGate
       />
     </if>
-    <marko-web-deferred-script-loader-load />
   </@below-wrapper>
 </marko-web-document>

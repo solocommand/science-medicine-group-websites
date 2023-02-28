@@ -6,13 +6,13 @@ module.exports = (idxConfig, brazeConfig) => {
   idxConfig.addHook({
     name: 'onUserProfileUpdate',
     shouldAwait: false,
-    fn: args => onUserProfileUpdate({ brazeConfig, ...args }),
+    fn: (args) => onUserProfileUpdate({ brazeConfig, ...args }),
   });
 
   // Handle changeEmail success
   idxConfig.addHook({
     name: 'onChangeEmailSuccess',
     shouldAwait: true,
-    fn: args => onChangeEmailSuccess({ brazeConfig, ...args }),
+    fn: (args) => onChangeEmailSuccess({ brazeConfig, ...args }),
   });
 };

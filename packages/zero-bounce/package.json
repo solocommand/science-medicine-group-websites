@@ -1,19 +1,30 @@
 {
   "name": "@science-medicine-group/package-zero-bounce",
-  "version": "1.7.0",
+  "version": "2.0.1",
   "description": "ZeroBounce integration",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/zero-bounce",
   "author": "Josh Worden <josh@parameter1.com>",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
-    "test": "yarn lint"
+    "compile": "basecms-marko-compile compile",
+    "build": "yarn compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-env": "^3.0.0",
+    "@parameter1/base-cms-env": "^4.5.12",
     "@parameter1/joi": "^1.2.10",
     "debug": "^4.1.1",
     "node-fetch": "^2.6.6"
-  }
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }

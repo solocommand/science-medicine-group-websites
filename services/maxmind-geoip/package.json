@@ -1,22 +1,24 @@
 {
   "name": "@science-medicine-group/maxmind-geoip",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "author": "Josh Worden <josh@parameter1.com>",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/services/maxmind-geoip",
   "license": "MIT",
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "lint": "eslint --ext .js --ignore-path ../../.eslintignore ./",
-    "test": "yarn lint"
+    "compile": "basecms-marko-compile compile",
+    "build": "yarn compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
     "@parameter1/micro": "^1.1.8",
     "@parameter1/terminus": "^1.2.1",
     "async": "^3.2.0",
     "envalid": "^6.0.2",
-    "newrelic": "^6.14.0",
+    "newrelic": "^9.10.1",
     "node-fetch": "^2.6.7",
     "redis": "^3.1.2"
   },

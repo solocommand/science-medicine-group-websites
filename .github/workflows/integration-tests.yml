@@ -1,0 +1,32 @@
+name: Integration Tests
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  build-and-test-image:
+    uses: parameter1/actions/.github/workflows/website-build-push-test.yml@main
+    strategy:
+      matrix:
+        ###############################################
+        #v# Make sure this matches the site matrix! #v#
+        ###############################################
+        site:
+          - { dir: auntminnie.com, stack: leonis, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnie.com }
+          - { dir: auntminnieeurope.com, stack: leonis, id: 63038e96d15c7cc42e8b4581, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnieeurope.com }
+          - { dir: drbicuspid.com, stack: leonis, id: 63038e29475dbd6a2f8b457e, account: smg, tenant: smg_all, rancher_label: science-medicine-group-drbicuspid.com }
+          - { dir: labpulse.com, stack: virgon, id: 62fc0ab6475dbd28008b459b, account: smg, tenant: smg_all, rancher_label: science-medicine-group-labpulse.com }
+          - { dir: scienceboard.net, stack: leonis, id: 63038dcdd15c7c4b2e8b4588, account: smg, tenant: smg_future, rancher_label: science-medicine-group-scienceboard.net }
+        ###############################################
+        #^# Make sure this matches the site matrix! #^#
+        ###############################################
+    with:
+      docker_image: website-${{ matrix.site.dir }}
+      site_id: ${{ matrix.site.id }}
+      site_host: ${{ matrix.site.dir }}
+      infra_stack: ${{ matrix.site.stack }}
+      tenant_key: ${{ matrix.site.tenant }}
+      ecr_registry: ${{ vars.AWS_ECR_REGISTRY }}

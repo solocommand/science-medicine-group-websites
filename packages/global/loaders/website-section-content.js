@@ -39,7 +39,7 @@ module.exports = async (apolloClient, {
     ...featuredParams,
     sectionId,
   });
-  const featuredIds = featured.nodes.map(node => node.id);
+  const featuredIds = featured.nodes.map((node) => node.id);
 
   let standard = { nodes: [] };
   if (withStandardQuery) {
@@ -49,6 +49,6 @@ module.exports = async (apolloClient, {
       excludeContentIds: featuredIds,
     });
   }
-  const ids = [...featuredIds, ...standard.nodes.map(node => node.id)];
+  const ids = [...featuredIds, ...standard.nodes.map((node) => node.id)];
   return { featured, standard, ids };
 };
