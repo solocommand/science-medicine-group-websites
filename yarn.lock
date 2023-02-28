@@ -1288,10 +1288,10 @@
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-utils/-/base-cms-utils-4.5.12.tgz#039e60bf20c3deb285141b3756064f717b427a0c"
   integrity sha512-pEgxO6MAwtL4zUx31oc47sJYXOJG6xyr/RQpmfjedRLxwldz3AH8d6JZCpOSVSsUGPhWJDddDszfvI2suTDqMg==
 
-"@parameter1/base-cms-web-cli@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-web-cli/-/base-cms-web-cli-4.5.12.tgz#2678d49e32e8878b61165377f995b435cc49d230"
-  integrity sha512-Vnw3fSB0/+hG/qdCW6J5joeUolTCTL9jJXQ/bpegqy5Hd3439wKa/CaiPpEdPV/ZEyJ/WjTenxCtoxAX7gBzNQ==
+"@parameter1/base-cms-web-cli@^4.5.13":
+  version "4.5.13"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-web-cli/-/base-cms-web-cli-4.5.13.tgz#86648f1ec3e37a5a91232c0bba8978b3234ba6ab"
+  integrity sha512-3cmZ5Vpsca+YQv4dWdG9+82LCeHYKGmJsMiGB3KNufcf49Y1ExG9yDJtm72/6I0IZaodEgf04rCvK9WXlFLH4w==
   dependencies:
     "@parameter1/base-cms-marko-compiler" "^4.5.12"
     "@parameter1/base-cms-utils" "^4.5.12"
