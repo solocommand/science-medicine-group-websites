@@ -20,9 +20,9 @@
     "test": "lerna run test"
   },
   "devDependencies": {
-    "@parameter1/base-cms-eslint": "^4.1.0",
-    "@parameter1/base-cms-marko-compiler": "^4.0.2",
-    "@parameter1/browserslist-config-base-cms": "^4.1.0",
+    "@parameter1/base-cms-eslint": "^4.5.12",
+    "@parameter1/base-cms-marko-compiler": "^4.5.12",
+    "@parameter1/browserslist-config-base-cms": "^4.5.12",
     "lerna": "^6.5.1"
   },
   "resolutions": {
