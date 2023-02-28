@@ -52,43 +52,45 @@ $ const promise = websiteSectionContentLoader(apollo, {
               <div class="row">
                 <div class="col-lg-8">
                   $ const heroNode = featured.nodes.slice(0, 1)[0];
-                  $ const heroImageNode = {
-                    id: heroNode.id,
-                    type: heroNode.type,
-                    siteContext: heroNode.siteContext,
-                    primaryImage: heroNode.primaryImage,
-                  };
                   $ const featuredCardNodes = featured.nodes.slice(1);
                   $ const cardNodes = featured.nodes.slice(1);
                   $ const topStoriesTitle = section.name !== "Home" ? section.name : "Top Story";
                   <marko-web-element tag="h1" block-name="top-stories" name="header">
                     ${i18n(topStoriesTitle)}
                   </marko-web-element>
-                  <marko-web-element block-name="top-story" name="row">
-                    <marko-web-element block-name="top-story" name="col" modifiers=["hero"]>
-                      <theme-content-node
-                        image-position="top"
-                        card=true
-                        flush=true
-                        image-only=true
-                        modifiers=["top-story-hero-image"]
-                        node=heroImageNode
-                      >
-                        <@image fluid=true width=685 ar="3:2" lazyload=false />
-                      </theme-content-node>
+                  <if(heroNode)>
+                    $ const heroImageNode = {
+                      id: heroNode.id,
+                      type: heroNode.type,
+                      siteContext: heroNode.siteContext,
+                      primaryImage: heroNode.primaryImage,
+                    };
+                    <marko-web-element block-name="top-story" name="row">
+                      <marko-web-element block-name="top-story" name="col" modifiers=["hero"]>
+                        <theme-content-node
+                          image-position="top"
+                          card=true
+                          flush=true
+                          image-only=true
+                          modifiers=["top-story-hero-image"]
+                          node=heroImageNode
+                        >
+                          <@image fluid=true width=685 ar="3:2" lazyload=false />
+                        </theme-content-node>
+                      </marko-web-element>
+                      <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
+                        <theme-content-node
+                          full-height=true
+                          card=true
+                          display-image=false
+                          flush=true
+                          with-dates=false
+                          modifiers=["top-story-hero"]
+                          node=heroNode
+                        />
+                      </marko-web-element>
                     </marko-web-element>
-                    <marko-web-element block-name="top-story" name="col" modifiers=["list"]>
-                      <theme-content-node
-                        full-height=true
-                        card=true
-                        display-image=false
-                        flush=true
-                        with-dates=false
-                        modifiers=["top-story-hero"]
-                        node=heroNode
-                      />
-                    </marko-web-element>
-                  </marko-web-element>
+                  </if>
                   <if(cardNodes.length)>
                     <!-- @todo Modify content-card-deck-block to allow nodes to be passed in -->
                     <marko-web-block name="content-card-deck">

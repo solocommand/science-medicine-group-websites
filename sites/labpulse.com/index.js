@@ -13,4 +13,4 @@ module.exports = startServer({
   siteConfig,
   routes,
   redirectHandler,
-}).then(() => log('Website started!')).catch(e => setImmediate(() => { throw e; }));
+}).then(() => log('Website started!')).catch((e) => setImmediate(() => { throw e; }));

@@ -7,6 +7,7 @@ module.exports = server({
   name,
   actions: {
     ping: async () => 'pong',
+    // eslint-disable-next-line default-param-last
     country: async (params = {}, { context }) => {
       if (!params.ip) throw createError(400, 'You must provide an ip address');
       return context.client.country(params.ip);

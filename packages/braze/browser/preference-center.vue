@@ -95,7 +95,7 @@ export default {
       type: Array,
       required: true,
     },
-    email: {
+    reqQueryEmail: {
       type: String,
       default: '',
     },
@@ -105,6 +105,7 @@ export default {
    *
    */
   data: () => ({
+    email: null,
     error: null,
     loading: false,
     didSubmit: false,
@@ -114,10 +115,11 @@ export default {
 
   computed: {
     checked() {
-      return this.questions.map(q => ({ ...q, checked: this.optIns[q.groupId] }));
+      return this.questions.map((q) => ({ ...q, checked: this.optIns[q.groupId] }));
     },
   },
   created() {
+    if (this.reqQueryEmail) this.email = this.reqQueryEmail;
     this.loadRecaptcha();
   },
 
@@ -125,7 +127,6 @@ export default {
     // Set submission state
     this.setOptIns();
   },
-
 
   /**
    *

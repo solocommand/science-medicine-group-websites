@@ -86,7 +86,7 @@ module.exports = (options = {}) => {
       auth0Hooks(app, idxConfig, auth0Config);
 
       // i18n
-      const i18n = v => v;
+      const i18n = (v) => v;
       set(app.locals, 'i18n', options.i18n || i18n);
 
       // Install custom content gating middleware
@@ -95,7 +95,7 @@ module.exports = (options = {}) => {
       // Must always be loaded last!
       app.use(gamTracker);
     },
-    onAsyncBlockError: e => newrelic.noticeError(e),
+    onAsyncBlockError: (e) => newrelic.noticeError(e),
     redirectHandler: redirectHandler(options.redirectHandler),
     embeddedMediaHandlers: {
       oembed: oembedHandler,

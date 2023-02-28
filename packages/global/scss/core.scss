@@ -2,17 +2,17 @@
 @import "variables";
 
 // import theme css
-@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/core";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/core";
 // Bottom Sticky Leader Board
-@import "../../node_modules/@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
+@import "@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
 // Reveal Ad CSS
-// @import "../../node_modules/@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
-// @import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
+// @import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
+// @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
 
 // package component css inclusions
-@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
-@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
-@import "../../node_modules/@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
 
 // skin components
 @import "./components/section-feed-upcoming";

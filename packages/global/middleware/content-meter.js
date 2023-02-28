@@ -36,7 +36,7 @@ async function shouldMeter(req) {
   // excludeLabels: Excludes content metering on page that matches labels
   const excludeLabels = defaultValue(config.excludeLabels, []);
   const contentLabels = defaultValue(content.labels, []);
-  if (excludeLabels.some(r => contentLabels.indexOf(r) >= 0)) {
+  if (excludeLabels.some((r) => contentLabels.indexOf(r) >= 0)) {
     return false;
   }
   return true;
@@ -75,9 +75,9 @@ module.exports = () => asyncRoute(async (req, res, next) => {
     const hasCookie = Boolean(get(req, `cookies.${cookieName}`));
 
     const value = (hasCookie) ? JSON.parse(get(req, `cookies.${cookieName}`)) : [];
-    let valid = value.filter(pageView => pageView.viewed > now - config.timeframe);
+    let valid = value.filter((pageView) => pageView.viewed > now - config.timeframe);
 
-    if (valid.find(v => v.id === id)) {
+    if (valid.find((v) => v.id === id)) {
       valid = valid.map((pageview) => {
         const { id: viewId } = pageview;
         if (viewId === id) return { id, viewed: now };
@@ -87,7 +87,7 @@ module.exports = () => asyncRoute(async (req, res, next) => {
       valid.push({ id, viewed: now });
     }
 
-    const displayOverlay = (valid.length >= config.viewLimit && !valid.find(v => v.id === id));
+    const displayOverlay = (valid.length >= config.viewLimit && !valid.find((v) => v.id === id));
 
     res.locals.contentMeterState = {
       ...config,

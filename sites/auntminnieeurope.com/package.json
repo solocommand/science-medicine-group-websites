@@ -1,30 +1,48 @@
 {
   "name": "@science-medicine-group/auntminnieeurope.com",
-  "version": "1.10.1",
+  "version": "2.0.1",
   "author": "Brandon Krigbaum <brandon@parameter1.com>",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/sites/auntminnieeurope.com",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "dev": "basecms-website dev index.js",
-    "build": "basecms-website build",
-    "compile": "basecms-marko-compile compile --dir ./ --silent true",
-    "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
-    "lint:css": "stylelint ./**/*.scss --max-warnings 5",
-    "test": "yarn lint && yarn compile && yarn build"
+  "website": {
+    "id": "63038e96d15c7cc42e8b4581",
+    "tenant": "smg_future",
+    "account": "smg",
+    "stack": "leonis",
+    "key": "ame",
+    "deploy": {
+      "staging": true,
+      "production": false
+    }
   },
+  "scripts": {
+    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
+    "build": "basecms-website build",
+    "compile": "basecms-marko-compile compile",
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
+  },
+  "engines": {
+    "node": ">=14.15"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^3.17.3",
-    "@parameter1/base-cms-marko-web": "^3.17.3",
-    "@parameter1/base-cms-marko-web-gtm": "^3.20.0",
-    "@parameter1/base-cms-marko-web-identity-x": "^3.21.0",
-    "@parameter1/base-cms-marko-web-theme-monorail": "^3.21.4",
-    "@parameter1/base-cms-object-path": "^3.0.0",
-    "@parameter1/base-cms-utils": "^3.0.0",
-    "@parameter1/base-cms-web-cli": "^3.17.3",
-    "@science-medicine-group/package-braze": "^1.10.1",
-    "@science-medicine-group/package-global": "^1.10.1",
+    "@parameter1/base-cms-marko-core": "^4.5.12",
+    "@parameter1/base-cms-marko-web": "^4.5.12",
+    "@parameter1/base-cms-marko-web-gtm": "^4.5.12",
+    "@parameter1/base-cms-marko-web-identity-x": "^4.5.12",
+    "@parameter1/base-cms-marko-web-theme-monorail": "^4.5.12",
+    "@parameter1/base-cms-object-path": "^4.5.12",
+    "@parameter1/base-cms-utils": "^4.5.12",
+    "@parameter1/base-cms-web-cli": "^4.5.12",
+    "@science-medicine-group/package-braze": "^2.0.1",
+    "@science-medicine-group/package-global": "^2.0.1",
     "csvtojson": "^2.0.10",
     "debounce": "^1.2.0",
     "graphql": "^14.5.4",

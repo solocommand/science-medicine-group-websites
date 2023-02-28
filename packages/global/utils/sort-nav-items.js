@@ -1,1 +1,1 @@
-module.exports = items => items.sort((a, b) => a.label.localeCompare(b.label));
+module.exports = (items) => items.sort((a, b) => a.label.localeCompare(b.label));

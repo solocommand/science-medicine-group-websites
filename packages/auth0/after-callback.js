@@ -31,25 +31,34 @@ module.exports = async (req, res, session) => {
   }
 
   // Upsert the IdentityX AppUser
-  const appUser = await service.createAppUser({ email });
-
   // federate trusted verification state to IdX and log in via impersonation api
   try {
-    await Promise.all([
-      service.impersonateAppUser({ userId: appUser.id }),
-      service.addExternalUserId({
+    const appUser = await service.createAppUser({ email });
+    await service.impersonateAppUser({ userId: appUser.id });
+    debug('impersonated', appUser.id);
+
+    try {
+      // Attempt to store Auth0 ids
+      await service.addExternalUserId({
         userId: appUser.id,
         identifier: { value: user.sub },
-        namespace: {
-          provider: 'auth0',
-          tenant,
-          type: 'user',
-        },
-      }),
-    ]);
-    debug('impersonated', appUser.id);
+        namespace: { provider: 'auth0', tenant, type: 'user' },
+      });
+    } catch (e) {
+      await service.addExternalUserId({
+        userId: appUser.id,
+        identifier: { value: Buffer.from(user.sub).toString('base64'), type: 'base64' },
+        namespace: { provider: 'auth0', tenant, type: 'user' },
+      });
+      debug('Unable to store raw auth0 external id', e.message);
+    }
   } catch (e) {
-    debug('autherr', e);
+    debug('autherr', e, e.message);
+    if (/Please enter a valid email address/.test(e.message)) {
+      // Redirect to invalid notice
+      debug('invalid email/redirect!');
+      res.redirect(302, '/user/auth0-db-email-invalid');
+    }
     throw e;
   }
 

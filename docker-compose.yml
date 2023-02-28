@@ -3,7 +3,7 @@ version: '3.7'
 x-node-defaults: &node
   tty: true
   init: true
-  image: node:10.24
+  image: node:14.21
   entrypoint: ["node"]
   working_dir: /root
   restart: always
@@ -16,7 +16,6 @@ x-env-defaults: &env
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
   NODE_ENV: development
-  TENANT_KEY: smg_all
   SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
   SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
   YARN_CACHE_FOLDER: /.yarn-cache
@@ -52,8 +51,8 @@ x-env-virgon: &env-virgon
 
 x-site-command: &site-cmd
   <<: *node
-  entrypoint: ["node_modules/.bin/basecms-website"]
-  command: ["dev", "index.js"]
+  entrypoint: ["yarn"]
+  command: ["dev"]
   depends_on:
     - maxmind-geoip
 
@@ -79,12 +78,11 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/scienceboard.net
     environment:
-      <<: [*env, *env-leonis]
+      <<: *env
       HOST: www-smg-sab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
-      SITE_ID: 63038dcdd15c7c4b2e8b4588
       AUTH0_BASEURL: http://www-smg-sab.dev.parameter1.com:9951
       AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_SAB-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_SAB-}
@@ -100,12 +98,11 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/labpulse.com
     environment:
-      <<: [*env, *env-virgon]
+      <<: *env
       HOST: www-smg-lab.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
-      SITE_ID: 62fc0ab6475dbd28008b459b
       AUTH0_BASEURL: http://www-smg-lab.dev.parameter1.com:9952
       AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_LAB-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_LAB-}
@@ -121,12 +118,11 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/drbicuspid.com
     environment:
-      <<: [*env, *env-leonis]
+      <<: *env
       HOST: www-smg-drb.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9953
       LIVERELOAD_PORT: 19953
-      SITE_ID: 63038e29475dbd6a2f8b457e
       AUTH0_BASEURL: http://www-smg-drb.dev.parameter1.com:9953
       AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_DRB-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_DRB-}
@@ -142,12 +138,11 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/auntminnie.com
     environment:
-      <<: [*env, *env-leonis]
+      <<: *env
       HOST: www-smg-am.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9954
       LIVERELOAD_PORT: 19954
-      SITE_ID: 63038e5dd15c7c4b2e8b458a
       AUTH0_BASEURL: http://www-smg-am.dev.parameter1.com:9954
       AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_AM-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_AM-}
@@ -163,12 +158,11 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/auntminnieeurope.com
     environment:
-      <<: [*env, *env-leonis]
+      <<: *env
       HOST: www-smg-ame.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9955
       LIVERELOAD_PORT: 19955
-      SITE_ID: 63038e96d15c7cc42e8b4581
       AUTH0_BASEURL: http://www-smg-ame.dev.parameter1.com:9955
       AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_AM-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_AM-}
@@ -184,12 +178,11 @@ services:
     <<: *site-cmd
     working_dir: /root/sites/auntminnieasia.com
     environment:
-      <<: [*env, *env-leonis]
+      <<: *env
       HOST: www-smg-ama.dev.parameter1.com
       PORT: 80
       EXPOSED_PORT: 9956
       LIVERELOAD_PORT: 19956
-      SITE_ID: 63038ec219398c102f8b457c
       AUTH0_BASEURL: http://www-smg-ama.dev.parameter1.com:9956
       AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_AM-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_AM-}
