@@ -9,4 +9,9 @@ config
     { name: 'default', id: '62fce264ffb1230001dca87e' },
   ]);
 
+config
+  .setAliasPlacements('cases', [
+    { name: 'cases', id: '6400e1b493fb8e0001c3a6fb' },
+  ]);
+
 module.exports = config;
