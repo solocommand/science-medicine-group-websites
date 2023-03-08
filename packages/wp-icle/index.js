@@ -10,6 +10,7 @@ module.exports = (app, params = {}) => {
     apiKey: Joi.string().required().description('The Wordpress ICLE hook api key.'),
     // AWS API details
     queueUrl: Joi.string().uri().required().description('The SQS queue to push new events to'),
+    region: Joi.string().default('us-east-2'),
     accessKey: Joi.string().required(),
     secretKey: Joi.string().required(),
   }), params, { allowUnknown: true });
