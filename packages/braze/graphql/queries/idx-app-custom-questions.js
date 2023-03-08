@@ -6,7 +6,7 @@ query BrazeFindAppFields {
   fields(input: { sort: { field: createdAt, order: asc } }) {
     edges {
       node {
-        ...CustomFieldFragment
+        ...BrazeCustomFieldFragment
       }
     }
   }

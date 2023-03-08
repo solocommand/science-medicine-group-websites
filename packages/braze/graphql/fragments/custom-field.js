@@ -1,7 +1,7 @@
 const gql = require('graphql-tag');
 
 module.exports = gql`
-fragment CustomFieldFragment on FieldInterface {
+fragment BrazeCustomFieldFragment on FieldInterface {
   id
   active
   label
