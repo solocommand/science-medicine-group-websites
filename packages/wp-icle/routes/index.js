@@ -1,5 +1,5 @@
-const updateIdentityXUser = require('./update-identityx-user');
+const updateIdentityXUsers = require('./update-identityx-users');
 
 module.exports = (app, config) => {
-  updateIdentityXUser(app, config);
+  updateIdentityXUsers(app, config);
 };
