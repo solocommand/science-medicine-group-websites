@@ -338,6 +338,13 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fullhuman/postcss-purgecss@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-5.0.0.tgz#70db9a537c73750fbcf745b49573db758daba1d8"
+  integrity sha512-onDS/b/2pMRzqSoj4qOs2tYFmOpaspjTAgvACIHMPiicu1ptajiBruTrjBzTKdxWdX0ldaBb7wj8nEaTLyFkJw==
+  dependencies:
+    purgecss "^5.0.0"
+
 "@gar/promisify@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
@@ -908,13 +915,13 @@
   dependencies:
     dayjs "^1.11.7"
 
-"@parameter1/base-cms-embedded-media@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-embedded-media/-/base-cms-embedded-media-4.5.12.tgz#97421940fc314965ce2dba3cb058c9643fadd523"
-  integrity sha512-6ep6z6C2bNOjOVOn/t4CH4kTVRbvcjjv9lAfgu5xdyyyl33OzqjkRDujWNMHAmktqpm3P1WyRCxn4bSYrcjz8g==
+"@parameter1/base-cms-embedded-media@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-embedded-media/-/base-cms-embedded-media-4.6.0.tgz#1dadc4e0cb81c88857e2d4fe2de824008e4185d9"
+  integrity sha512-IjP/jUf45ARXm9nLFSTU11BkfbdkSxPuKW+C+AOBKwxMKWI/fWPQ4yVI5z4b5BLg+nOfzMQcfNujitDBLnNsPQ==
   dependencies:
     "@parameter1/base-cms-html" "^4.5.12"
-    "@parameter1/base-cms-image" "^4.5.12"
+    "@parameter1/base-cms-image" "^4.6.0"
     "@parameter1/base-cms-inflector" "^4.5.12"
     cheerio "^1.0.0-rc.12"
     escape-string-regexp "^1.0.5"
@@ -964,10 +971,10 @@
     html2plaintext "^2.1.4"
     striptags "^3.2.0"
 
-"@parameter1/base-cms-image@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-image/-/base-cms-image-4.5.12.tgz#ce1889030281ebf06ceefcfa85107ac6eac99b0a"
-  integrity sha512-nr7cAu71aMxPAuULD0lQAEi7F85Vv0g1KULzu2dXJL3Xgyp30qn0ELtqr5s/sbXVBHjIxfo6Ulw/3t6VbmVoMg==
+"@parameter1/base-cms-image@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-image/-/base-cms-image-4.6.0.tgz#51fef26086fa3bd2157338004e2b1eb15d563bb5"
+  integrity sha512-vkOZOuJVX0lFj/ByU6MWW1wNuc8FWvQBJ99akPxxyfo/Jss8h0G+HhtQXHanRHN8oIcHM78ipKQ8zOYufBQF3A==
   dependencies:
     "@parameter1/base-cms-html" "^4.5.12"
     "@parameter1/base-cms-inflector" "^4.5.12"
@@ -991,21 +998,21 @@
     marko "~4.20.0"
     minimist "^1.2.8"
 
-"@parameter1/base-cms-marko-core@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-core/-/base-cms-marko-core-4.5.12.tgz#a8f237e2efb7b64665c60ab3deaddcbd41666102"
-  integrity sha512-BgDYkbKb0GWgIjRxmySYnMqWQapyWGv807jcpL6QGj+gLs4yrmR3IKhHtJmGfSe62MXLf95p9G3R9owGfVJ0tw==
+"@parameter1/base-cms-marko-core@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-core/-/base-cms-marko-core-4.6.0.tgz#d8ac9bfdb73e6453729813513077d0919ac0496a"
+  integrity sha512-C0ECKgxO1IEoKzUEBQD/5jNGpC17YnGjloCWB9NEMmDwEO36VvJL5F4It8Rnx6sDfujesf71SyBAW0F7drTahQ==
   dependencies:
     "@parameter1/base-cms-dayjs" "^4.5.12"
-    "@parameter1/base-cms-marko-express" "^4.5.12"
+    "@parameter1/base-cms-marko-express" "^4.6.0"
     "@parameter1/base-cms-object-path" "^4.5.12"
     "@parameter1/base-cms-utils" "^4.5.12"
     "@parameter1/base-cms-web-common" "^4.5.12"
 
-"@parameter1/base-cms-marko-express@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-express/-/base-cms-marko-express-4.5.12.tgz#73b43c5c9d5a62a2c65049af7bdb376dc74ef980"
-  integrity sha512-/jk84+na8FYylR/jAoFSO7QOFw7xFqsDeJ59v6M1j9aL+4PUiB73fU00/PZtD5mqYWQ0D2IJrnr36FxnIPZbZw==
+"@parameter1/base-cms-marko-express@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-express/-/base-cms-marko-express-4.6.0.tgz#191cf860bb33cc4903e0f1a6d4e07106ae930f5d"
+  integrity sha512-n6z9U+WU2yom4p8pyS6PMJqu8CzPuStyjDziRLj1fpbxXX17fEGVmZ7o8+DVfic5hE5PyZQoN2USq+nGQ+nXyQ==
   dependencies:
     marko "~4.20.0"
     pretty "^2.0.0"
@@ -1188,10 +1195,10 @@
   dependencies:
     "@parameter1/base-cms-utils" "^4.5.12"
 
-"@parameter1/base-cms-marko-web-theme-default@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-default/-/base-cms-marko-web-theme-default-4.5.12.tgz#9de26c417ca17a8585e66db09d2599f568de264e"
-  integrity sha512-QKcKVa6uWoOjVjtI3myeuW0XwQWKEOr2vduzv9zRCc1F8P5zxmbAJm0nLEUyYWQyyuLK1KH+1IrX+g0/WAI2oQ==
+"@parameter1/base-cms-marko-web-theme-default@^4.7.2":
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-default/-/base-cms-marko-web-theme-default-4.7.2.tgz#04eeeeeac86cfb2235d83d182c24c1dcc88d06ce"
+  integrity sha512-/Yl52HUSsJp2uAp5ltRafwuwI+qBSSaKMibB6LgY0HsbTP1gNVSlWRD2NP/+NF2SLhTiT3aOZpUgyY4K0a1JKg==
   dependencies:
     "@parameter1/base-cms-marko-web-icons" "^4.5.12"
     "@parameter1/base-cms-object-path" "^4.5.12"
@@ -1200,13 +1207,13 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.6"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.5.12.tgz#0bb823d766797038ab10c9f16c6970f25ba78366"
-  integrity sha512-kqnohnA1H+D2tQEMLlF4KW9fp5NAd2K1gOPqA8zyNTQSnfN89I5JnB6tcbwWvgy1429TB6ah+czZMkSjyHdnYQ==
+"@parameter1/base-cms-marko-web-theme-monorail@^4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.8.0.tgz#3da36cb828a45b54cc1ca4c476a9c039f25d0b14"
+  integrity sha512-1g6nLovG0zpINeOsMlQM4E1JRl2zIbAHxRrZM0CPGEBX1nz3my5zdktRzA3mhDsfZqAismvcLUsFOEX6Kdkl9w==
   dependencies:
     "@parameter1/base-cms-dayjs" "^4.5.12"
-    "@parameter1/base-cms-image" "^4.5.12"
+    "@parameter1/base-cms-image" "^4.6.0"
     "@parameter1/base-cms-inflector" "^4.5.12"
     "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.5.12"
     "@parameter1/base-cms-marko-web-gam" "^4.5.12"
@@ -1234,21 +1241,21 @@
     moment "^2.29.1"
     node-fetch "^2.6.9"
 
-"@parameter1/base-cms-marko-web@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.5.12.tgz#2be536186c75a93d942ef0b39a50dff20cd691d1"
-  integrity sha512-IaGb1baVIp4RU+dsA6Wyj85lB2gWpON7pC1xeXxfXjTUoK+bOtV3cPG+x79uIXI3eH2/G8Co/IcqHRyVv4ks+g==
+"@parameter1/base-cms-marko-web@^4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web/-/base-cms-marko-web-4.8.0.tgz#3fcab9f11bed563361a5653d560f57eae45cca37"
+  integrity sha512-qt83iBxNQixs4zXuYFNmlCPQXqDcY1/4FYA3OC1UEQt9K1DvLbwFkjBVLBu9Yj/X9FCDyOHpgtHlGpo3ZGVEEw==
   dependencies:
     "@godaddy/terminus" "^4.11.2"
     "@parameter1/base-cms-apollo-ssr" "^4.5.12"
     "@parameter1/base-cms-dayjs" "^4.5.12"
-    "@parameter1/base-cms-embedded-media" "^4.5.12"
+    "@parameter1/base-cms-embedded-media" "^4.6.0"
     "@parameter1/base-cms-express-apollo" "^4.5.12"
     "@parameter1/base-cms-graphql-fragment-types" "^4.5.12"
     "@parameter1/base-cms-html" "^4.5.12"
-    "@parameter1/base-cms-image" "^4.5.12"
+    "@parameter1/base-cms-image" "^4.6.0"
     "@parameter1/base-cms-inflector" "^4.5.12"
-    "@parameter1/base-cms-marko-express" "^4.5.12"
+    "@parameter1/base-cms-marko-express" "^4.6.0"
     "@parameter1/base-cms-marko-node-require" "^4.5.12"
     "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.5.12"
     "@parameter1/base-cms-object-path" "^4.5.12"
@@ -1266,6 +1273,7 @@
     http-errors "^1.8.1"
     jquery "^3.6.3"
     marko "~4.20.0"
+    nanoid "^3.3.4"
     node-fetch "^2.6.9"
     vue "^2.7.14"
     vue-server-renderer "^2.7.14"
@@ -1288,11 +1296,12 @@
   resolved "https://registry.yarnpkg.com/@parameter1/base-cms-utils/-/base-cms-utils-4.5.12.tgz#039e60bf20c3deb285141b3756064f717b427a0c"
   integrity sha512-pEgxO6MAwtL4zUx31oc47sJYXOJG6xyr/RQpmfjedRLxwldz3AH8d6JZCpOSVSsUGPhWJDddDszfvI2suTDqMg==
 
-"@parameter1/base-cms-web-cli@^4.5.13":
-  version "4.5.13"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-web-cli/-/base-cms-web-cli-4.5.13.tgz#86648f1ec3e37a5a91232c0bba8978b3234ba6ab"
-  integrity sha512-3cmZ5Vpsca+YQv4dWdG9+82LCeHYKGmJsMiGB3KNufcf49Y1ExG9yDJtm72/6I0IZaodEgf04rCvK9WXlFLH4w==
+"@parameter1/base-cms-web-cli@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-web-cli/-/base-cms-web-cli-4.8.1.tgz#215ac8228493adbeee4cfeaa00f395510b210aa3"
+  integrity sha512-BRG0zA7BhubKcZT/HFW3xfv3DS/eGjL4xH3e01/C3bqJmYoq9d04h4i0OWZCBcXehDkh3iZr0gkfquMie7Wjfg==
   dependencies:
+    "@fullhuman/postcss-purgecss" "^5.0.0"
     "@parameter1/base-cms-marko-compiler" "^4.5.12"
     "@parameter1/base-cms-utils" "^4.5.12"
     "@vitejs/plugin-vue2" "^2.2.0"
@@ -1305,6 +1314,7 @@
     minimist "^1.2.8"
     mkdirp "^2.1.3"
     postcss "^8.4.21"
+    purgecss "^5.0.0"
     sass "^1.58.3"
     vite "^4.1.4"
     vue "^2.7.14"
@@ -2878,6 +2888,11 @@ commander@^2.19.0:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
+commander@^9.0.0:
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
+  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 common-ancestor-path@^1.0.1:
   version "1.0.1"
@@ -8014,7 +8029,7 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha512-xTgYBc3fuo7Yt7JbiuFxSYGToMoz8fLoE6TC9Wx1P/u+LfeThMOAqmuyECnlBaaJb+u1m9hHiXUEtwW4OzfUJg==
 
-postcss-selector-parser@^6.0.9:
+postcss-selector-parser@^6.0.7, postcss-selector-parser@^6.0.9:
   version "6.0.11"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.11.tgz#2e41dc39b7ad74046e1615185185cd0b17d0c8dc"
   integrity sha512-zbARubNdogI9j7WY4nQJBiNqQf3sLS3wCP4WfOidu+p28LofJqDH1tcXypGrcmMHhDk2t9wGhCsYe/+szLTy1g==
@@ -8027,7 +8042,7 @@ postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@^8.4.14, postcss@^8.4.21:
+postcss@^8.4.14, postcss@^8.4.21, postcss@^8.4.4:
   version "8.4.21"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.21.tgz#c639b719a57efc3187b13a1d765675485f4134f4"
   integrity sha512-tP7u/Sn/dVxK2NnruI4H9BG+x+Wxz6oeZ1cJ8P6G/PZY0IKk4k/63TDsQf2kQq3+qoJeLm2kIBUNlZe3zgb4Zg==
@@ -8190,6 +8205,16 @@ punycode@^2.1.0, punycode@^2.1.1:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.0.tgz#f67fa67c94da8f4d0cfff981aee4118064199b8f"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
+
+purgecss@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-5.0.0.tgz#08526ba3fef95e42c54503ca59d3f2ee8d6e5189"
+  integrity sha512-RAnuxrGuVyLLTr8uMbKaxDRGWMgK5CCYDfRyUNNcaz5P3kGgD2b7ymQGYEyo2ST7Tl/ScwFgf5l3slKMxHSbrw==
+  dependencies:
+    commander "^9.0.0"
+    glob "^8.0.3"
+    postcss "^8.4.4"
+    postcss-selector-parser "^6.0.7"
 
 q@^1.5.1:
   version "1.5.1"
