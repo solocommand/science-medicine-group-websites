@@ -1,9 +1,16 @@
 const debug = require('debug')('wp-icle');
+const fetch = require('node-fetch');
 const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
-const { getAsArray } = require('@parameter1/base-cms-object-path');
+const { get, getAsArray } = require('@parameter1/base-cms-object-path');
 const updateUserMutation = require('../graphql/mutations/update-user');
 const identityXCustomQuestions = require('../graphql/queries/idx-app-custom-questions');
+
+const {
+  WPICLE_ENDPOINT = 'https://staging.my.drbicuspid.com/api/identity-x/user',
+  // WPICLE_ENDPOINT = 'http://host.docker.internal:8000/api/identity-x/user',
+  WP_ICLE_HOOK_KEY,
+} = process.env;
 
 const fieldMapping = new Map([
   ['First Name', 'givenName'],
@@ -23,13 +30,25 @@ const getQuestions = async (svc) => {
     .filter((n) => n.active && n.type === 'select');
 };
 
-const buildPayload = async (svc, body) => {
-  const payload = Object.keys(body.profile).reduce((obj, key) => {
+const fetchUsers = async (emails) => {
+  const response = await fetch(WPICLE_ENDPOINT, {
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${WP_ICLE_HOOK_KEY}`,
+    },
+    body: JSON.stringify({ emails }),
+  });
+  return response.json();
+};
+
+const buildPayload = async (svc, profile) => {
+  const payload = Object.keys(profile).reduce((obj, key) => {
     if (!fieldMapping.has(key)) return obj;
     const newKey = fieldMapping.get(key);
-    const val = body.profile[key];
+    const val = profile[key];
     return { ...obj, [newKey]: val };
-  }, { email: body.profile.user_email });
+  }, { email: profile.user_email });
 
   // load idx questions
   const questions = await getQuestions(svc);
@@ -44,7 +63,7 @@ const buildPayload = async (svc, body) => {
   ]);
   questions.forEach(({ id, name, options }) => {
     const key = selectMap.get(name);
-    const values = Array.isArray(body.profile[key]) ? body.profile[key] : [body.profile[key]];
+    const values = Array.isArray(profile[key]) ? profile[key] : [profile[key]];
     if (!key || !values.length) return;
 
     const optionIds = values.map((answer) => {
@@ -63,6 +82,8 @@ const buildPayload = async (svc, body) => {
 };
 
 const updateUser = async (svc, payload, user) => {
+  // @todo Trigger user update idx hooks to fire Braze/etc.
+  // @todo _dont_ re-fire user dispatch to WPICLE in this invocation (?)
   const apiToken = svc.config.getApiToken();
   if (!apiToken) throw new Error('Unable to update IdentityX: no API token is present.');
   const { customSelectAnswers, ...fields } = payload;
@@ -79,32 +100,45 @@ const updateUser = async (svc, payload, user) => {
 
 module.exports = (app) => {
   /**
-   * @todo avoid recursion between hook invocations
-   * @todo investigate SQS intermediary with lambda execution.
+   *
    */
-  app.post('/api/update-identityx-user', json(), asyncRoute(async (req, res) => {
+  app.post('/api/update-identityx-users', json(), asyncRoute(async (req, res) => {
+    const batchItemFailures = [];
     try {
       const { identityX: svc } = res.locals;
       if (!svc) throw new Error('Unable to load IdentityX user service!');
       // @todo validate auth header
 
-      const { body } = req;
-      const { user_email: email } = body.profile;
-      const payload = await buildPayload(svc, body);
-
-      const user = await svc.createAppUser({ email });
-      await updateUser(svc, payload, user);
-
-      // @todo Trigger user update idx hooks to fire Braze/etc.
-      // @todo _dont_ re-fire user dispatch to WPICLE in this invocation (?)
+      const { body: records = [] } = req;
+      const messageIds = new Map();
+      const emails = records.map(({ messageId, body }) => {
+        const { email } = JSON.parse(body);
+        messageIds.set(email, messageId);
+        return email;
+      });
+      const profiles = await fetchUsers(emails);
+      await Promise.allSettled(profiles.map(async (profile) => {
+        const { user_email: email } = profile;
+        const messageId = messageIds.get(email);
+        if (!email) throw new Error('User could not be loaded!');
+        try {
+          // @todo handle ids/externalId for changed emails?
+          const payload = await buildPayload(svc, profile);
+          if (svc.config.options.emailValidator) {}
+          const user = await svc.createAppUser({ email });
+          await updateUser(svc, payload, user);
+        } catch (e) {
+          debug(`Error: ${e.message}`, e);
+          if (messageId) batchItemFailures.push(messageId);
+        }
+      }));
 
       res.json({
         name: 'user-update',
-        payload,
-        user: user.id,
+        batchItemFailures,
       });
     } catch (e) {
-      res.status(500).json({ error: e.message });
+      res.status(500).json({ batchItemFailures, error: e.message });
     }
   }));
 };
