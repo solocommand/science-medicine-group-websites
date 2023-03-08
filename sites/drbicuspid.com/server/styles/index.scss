@@ -8,11 +8,36 @@ $theme-site-header-breakpoints: (
 
 // Colors
 $primary: #01274b;
+$red: #e31c3d;
 
 @import "@science-medicine-group/package-global/scss/core";
 
 .site-navbar {
   &__logo {
     height: 50px;
+  }
+}
+
+// Newsletter Signup
+.newsletter-signup-banner--large {
+  background-color: #f0f1f2;
+}
+
+.newsletter-signup-banner {
+  &__cta {
+    .btn-primary {
+      background-color: $red;
+    }
+  }
+}
+.site-newsletter-menu {
+  &__form-button {
+    background-color: $red;
+  }
+}
+
+.site-footer {
+  &__logo {
+    filter: none;
   }
 }

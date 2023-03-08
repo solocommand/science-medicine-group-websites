@@ -3,6 +3,7 @@ import contentIframe from "@science-medicine-group/package-global/utils/content-
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 
 import { cmShowOverlay, cmRestrictContentByReg, cmTruncateBody } from "../../../utils/content-meter-helpers";
+import between from "../../../utils/between";
 
 $ const {
   contentGatingHandler,
@@ -227,7 +228,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
           query-params={ excludeContentTypes, excludeContentIds: [content.id] }
           class="sticky-top"
         >
-          <@native-x indexes=[0] name="default" aliases=aliases />
+          <@native-x index=between(1,2) name="default" aliases=aliases />
         </theme-latest-content-list-block>
       </div>
     </div>
@@ -241,6 +242,15 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
       with-native-x=true
     />
   </@section>
+
+  <!-- <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="billboard"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section> -->
 
   <for|s| of=sections>
     <@section|{ blockName, content, aliases }| modifiers=s.modifiers>

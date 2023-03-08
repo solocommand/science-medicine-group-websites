@@ -84,7 +84,6 @@ label {
 
 .document-container {
   padding-top: 0;
-  background-color: $white;
 }
 
 .node {
@@ -568,4 +567,27 @@ label {
   &__cta {
     width: auto;
   }
+}
+
+// this is to fix the display of the newsletter pushdown
+.site-newsletter-menu {
+  background-color: $gray-300;
+  z-index: 0;
+  .row {
+    visibility: hidden;
+    opacity: 0;
+    transition:visibility 0.3s linear,opacity 0.3s linear;
+  }
+  &--open {
+    .row {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+// Prevent Billboard from breaking out of document-container
+.ad-container--inter-block {
+  margin-right: 0;
+  margin-left: 0;
 }

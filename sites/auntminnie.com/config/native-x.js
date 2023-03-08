@@ -2,7 +2,7 @@ const configureNativeX = require('@science-medicine-group/package-global/config/
 
 const config = configureNativeX();
 
-config.enabled = process.env.enable_native_x === 'true';
+config.enabled = process.env.ENABLE_NATIVE_X === 'true';
 
 config
   .setAliasPlacements('default', [
