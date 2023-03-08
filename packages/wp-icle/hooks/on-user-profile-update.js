@@ -11,7 +11,6 @@ module.exports = async ({ service, user }) => {
   // Check if we're globally or temporarily (hook fired inside sync from ICLE) disabled.
   if (!config.enabled) return;
 
-  debug('onUserProfileUpdate', 'icleconfig', config, user);
   const { id, email } = user;
 
   // Initialize SQS client
