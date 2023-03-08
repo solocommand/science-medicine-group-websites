@@ -4,9 +4,14 @@ const routes = require('./routes');
 
 module.exports = (app, params = {}) => {
   const config = validate(Joi.object({
-    hookUri: Joi.string().uri().required().description('The Wordpress ICLE hook URI.'),
+    enabled: Joi.bool().default(true),
+    // Wordpress API details
     endpoint: Joi.string().uri().required().description('The Wordpress ICLE API URI.'),
     apiKey: Joi.string().required().description('The Wordpress ICLE hook api key.'),
+    // AWS API details
+    queueUrl: Joi.string().uri().required().description('The SQS queue to push new events to'),
+    accessKey: Joi.string().required(),
+    secretKey: Joi.string().required(),
   }), params, { allowUnknown: true });
 
   // Inject config state to response locals

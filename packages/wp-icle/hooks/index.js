@@ -4,6 +4,6 @@ module.exports = (idxConfig, icleConfig) => {
   idxConfig.addHook({
     name: 'onUserProfileUpdate',
     shouldAwait: false,
-    fn: args => onUserProfileUpdate({ icleConfig, ...args }),
+    fn: (args) => onUserProfileUpdate({ icleConfig, ...args }),
   });
 };
