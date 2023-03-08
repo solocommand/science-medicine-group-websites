@@ -1,0 +1,9 @@
+.node-list {
+  $self: &;
+  &__header {
+    &--external-api {
+      padding-bottom: $marko-web-node-list-padding !important;
+      @include marko-web-node-list-border($property: border-bottom);
+    }
+  }
+}

@@ -1,0 +1,134 @@
+import fetch from "node-fetch";
+import { getAsObject } from "@parameter1/base-cms-object-path";
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+
+$ const { nativeX: nxConfig, i18n } = out.global;
+
+$ const { apiUrl, name, description } = input;
+$ const button = getAsObject(input, "button");
+$ const nativeX = getAsObject(input, "nativeX");
+
+
+$ const apiCall = async (url) => {
+  if (url) {
+    const response = await fetch(url)
+    const jsonResponse = await response.json()
+    return jsonResponse;
+  }
+  return [];
+};
+
+$ const nativeXPlacementName = defaultValue(nativeX.placementName, "default");
+$ const aliases = defaultValue(nativeX.placementAliases, []);
+$ const uri = nxConfig.getUri();
+$ const placement = nxConfig.getPlacement({ name: nativeXPlacementName, aliases });
+$ const withSponsor = defaultValue(input.withSponsor, true);
+
+
+$ const blockName = "section-card-list";
+$ const buttonClass = button.class || "btn btn-secondary";
+$ const linkHeader = input.linkHeader || false;
+
+<if(apiUrl)>
+  <marko-web-resolve|{ resolved }| promise=apiCall(apiUrl)>
+    $ const nodes = input.resolvedToNodesConverter({ resolved }) || resolved;
+    <if(nodes && nodes.length)>
+      $ const heroNode = nodes.slice(0, 1)[0];
+      $ const heroImageNode = {
+        id: heroNode.id,
+        type: heroNode.type,
+        siteContext: heroNode.siteContext,
+        primaryImage: heroNode.primaryImage,
+      };
+      $ const listNodes = nodes.slice(1);
+      <marko-web-block name=blockName>
+      <marko-web-element block-name=blockName name="header">
+        <if(linkHeader && input.alias)>
+          <marko-web-link href=`${input.alias}`>
+            ${input.name}
+          </marko-web-link>
+        </if>
+        <else>
+          ${input.name}
+        </else>
+      </marko-web-element>
+      <marko-web-element block-name=blockName name="description">
+        ${input.description}
+      </marko-web-element>
+
+      <marko-web-element block-name=blockName name="row">
+        <marko-web-element block-name=blockName name="col">
+          <theme-content-node
+            image-position="top"
+            card=true
+            flush=true
+            image-only=true
+            modifiers=[`${blockName}-hero-image`]
+            node=heroImageNode
+          >
+            <@image fluid=true width=340 ar="3:2" />
+          </theme-content-node>
+        </marko-web-element>
+        <marko-web-element block-name=blockName name="col">
+          <theme-content-node
+            full-height=true
+            card=true
+            display-image=false
+            flush=true
+            modifiers=[`${blockName}-hero`]
+            with-dates=false
+            with-section=false
+            node=heroNode
+          />
+        </marko-web-element>
+        <marko-web-element block-name=blockName name="col">
+        <marko-web-native-x-fetch-elements|{ ads }| uri=uri id=placement.id opts={ n: 0 }>
+        $ const [sponsor] = ads || [];
+        $ const headerModifiers = sponsor && withSponsor ? ['external-api'] : [];
+          <marko-web-node-list
+            flush-x=true
+            flush-y=true
+            modifiers=[blockName]
+          >
+          <@header modifiers=headerModifiers>
+            <if(sponsor && sponsor.image && withSponsor)>
+              $ const attrs = { style: { width: '100%', height: 50 }, ...sponsor.attributes.container };
+              $ const linkAttrs = { href: sponsor.href, attrs: sponsor.attributes.link };
+              <marko-web-img
+                class=`${blockName}__logo`
+                src=sponsor.image.src
+                srcset=[`${sponsor.image.src}&dpr=2 2x`]
+                alt="Sponsor Logo"
+                attrs=attrs
+                link=linkAttrs
+              />
+            </if>
+          </@header>
+            <@nodes nodes=listNodes>
+              <@slot|{ node }|>
+                <theme-content-node
+                  display-image=false
+                  flush=true
+                  modifiers=[`${blockName}-item`]
+                  with-teaser=false
+                  with-dates=false
+                  with-section=false
+                  node=node
+                />
+              </@slot>
+            </@nodes>
+          </marko-web-node-list>
+        </marko-web-native-x-fetch-elements>
+          <if(button.link)>
+            <marko-web-element block-name=blockName name="btn-wrapper">
+              <marko-web-link href=button.link class=buttonClass>
+                ${button.text || 'View All'}
+              </marko-web-link>
+            </marko-web-element>
+          </if>
+        </marko-web-element>
+      </marko-web-element>
+    </marko-web-block>
+    </if>
+  </marko-web-resolve>
+</if>
