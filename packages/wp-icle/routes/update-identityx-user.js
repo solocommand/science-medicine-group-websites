@@ -3,7 +3,9 @@ const fetch = require('node-fetch');
 const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const { get, getAsArray } = require('@parameter1/base-cms-object-path');
+const callHooksFor = require('@parameter1/base-cms-marko-web-identity-x/utils/call-hooks-for');
 const updateUserMutation = require('../graphql/mutations/update-user');
+const freshUserQuery = require('../graphql/queries/user-by-id');
 const identityXCustomQuestions = require('../graphql/queries/idx-app-custom-questions');
 
 const {
@@ -83,7 +85,6 @@ const buildPayload = async (svc, profile) => {
 
 const updateUser = async (svc, payload, user) => {
   // @todo Trigger user update idx hooks to fire Braze/etc.
-  // @todo _dont_ re-fire user dispatch to WPICLE in this invocation (?)
   const apiToken = svc.config.getApiToken();
   if (!apiToken) throw new Error('Unable to update IdentityX: no API token is present.');
   const { customSelectAnswers, ...fields } = payload;
@@ -96,6 +97,14 @@ const updateUser = async (svc, payload, user) => {
     },
     context: { apiToken },
   });
+  const { data: { appUserById: freshUser } } = await svc.client.query({
+    query: freshUserQuery,
+    variables: { userId: user.id },
+    context: { apiToken },
+  });
+
+  // @todo _dont_ re-fire user dispatch to WPICLE in this invocation (?)
+  await callHooksFor(svc, 'onUserProfileUpdate', { user: freshUser });
 };
 
 module.exports = (app) => {
@@ -103,11 +112,19 @@ module.exports = (app) => {
    *
    */
   app.post('/api/update-identityx-users', json(), asyncRoute(async (req, res) => {
-    const batchItemFailures = [];
+    if (req.get('authorization') !== `Bearer ${WP_ICLE_HOOK_KEY}`) {
+      res.status(401).json({ error: 'API key is missing or invalid.' });
+      return;
+    }
+
     try {
+      const batchItemFailures = [];
       const { identityX: svc } = res.locals;
       if (!svc) throw new Error('Unable to load IdentityX user service!');
-      // @todo validate auth header
+
+      // Disable validator for this request
+      const validator = get(svc, 'config.options.emailValidator');
+      svc.config.options.emailValidator = null;
 
       const { body: records = [] } = req;
       const messageIds = new Map();
@@ -124,7 +141,6 @@ module.exports = (app) => {
         try {
           // @todo handle ids/externalId for changed emails?
           const payload = await buildPayload(svc, profile);
-          if (svc.config.options.emailValidator) {}
           const user = await svc.createAppUser({ email });
           await updateUser(svc, payload, user);
         } catch (e) {
@@ -137,8 +153,11 @@ module.exports = (app) => {
         name: 'user-update',
         batchItemFailures,
       });
+
+      // Restore the validator
+      svc.config.options.emailValidator = validator;
     } catch (e) {
-      res.status(500).json({ batchItemFailures, error: e.message });
+      res.status(500).json({ error: e.message });
     }
   }));
 };

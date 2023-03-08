@@ -6,7 +6,7 @@ query WPICLEFindAppFields {
   fields(input: { sort: { field: createdAt, order: asc } }) {
     edges {
       node {
-        ...CustomFieldFragment
+        ...WPICLECustomFieldFragment
       }
     }
   }
