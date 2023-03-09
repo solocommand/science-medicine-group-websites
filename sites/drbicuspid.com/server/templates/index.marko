@@ -7,7 +7,7 @@ $ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
     type: 'Case',
     shortName: node.name,
     teaser: node.description,
-    siteContext: { path: `https://dev.my.drbicuspid.com/cases/${node.url}` },
+    siteContext: { path: `https://staging.my.drbicuspid.com/cases/${node.url}` },
     primaryImage: { src: node.imagepath }
   })));
 
@@ -19,11 +19,11 @@ $ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
 >
   <@section>
     <global-external-api-block
-      api-url="https://dev.my.drbicuspid.com/wp-json/mo/v1/getCases?custom_param1=3"
+      api-url="https://staging.my.drbicuspid.com/wp-json/mo/v1/getCases?custom_param1=3"
       resolved-to-nodes-converter=resolvedToNodesConverter
       name="Case of the Week"
       description="Check out our Case of the Week!"
-      button={ link: "https://dev.my.drbicuspid.com/cases", text: "View All Cases" }
+      button={ link: "https://staging.my.drbicuspid.com/cases", text: "View All Cases" }
       native-x={ placementName: 'cases', placementAliases: ['cases'] }
     />
   </@section>
