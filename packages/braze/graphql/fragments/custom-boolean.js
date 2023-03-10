@@ -7,7 +7,7 @@ fragment CustomBooleanFieldAnswerFragment on AppUserCustomBooleanFieldAnswer {
   hasAnswered
   value
   field {
-    ...CustomFieldFragment
+    ...BrazeCustomFieldFragment
   }
 }
 ${customFieldFragment}

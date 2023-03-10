@@ -5,11 +5,13 @@ const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
 const auth0 = require('@science-medicine-group/package-auth0');
-const braze = require('@science-medicine-group/package-braze');
 const auth0Hooks = require('@science-medicine-group/package-auth0/hooks');
+const braze = require('@science-medicine-group/package-braze');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
-const zeroBounce = require('@science-medicine-group/package-zero-bounce');
+const icle = require('@science-medicine-group/package-wp-icle');
+const icleHooks = require('@science-medicine-group/package-wp-icle/hooks');
 const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
+const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -81,9 +83,20 @@ module.exports = (options = {}) => {
       const auth0Config = get(options, 'siteConfig.auth0');
       auth0(app, { ...auth0Config, idxConfig, idxRouteTemplates });
 
+      // Load ICLE hook handler and dispatcher, if enabled
+      const icleConfig = get(options, 'siteConfig.wpIcle');
+      if (icleConfig && icleConfig.enabled) {
+        // Load the incoming webhook handler
+        icle(app, { ...icleConfig, idxConfig });
+      }
+
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
       auth0Hooks(app, idxConfig, auth0Config);
+      if (icleConfig && icleConfig.enabled) {
+        // Load the outbound webhook dispatcher
+        icleHooks(idxConfig, icleConfig);
+      }
 
       // i18n
       const i18n = (v) => v;
