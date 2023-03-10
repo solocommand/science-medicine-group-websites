@@ -1,6 +1,5 @@
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
-const routes = require('./routes');
 
 module.exports = (app, params = {}) => {
   const config = validate(Joi.object({
@@ -20,7 +19,4 @@ module.exports = (app, params = {}) => {
     res.locals.icle = config;
     next();
   });
-
-  // Load API endpoint (incoming hook handler)
-  routes(app);
 };
