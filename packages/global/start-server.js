@@ -10,6 +10,7 @@ const braze = require('@science-medicine-group/package-braze');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 const icle = require('@science-medicine-group/package-wp-icle');
 const icleHooks = require('@science-medicine-group/package-wp-icle/hooks');
+const icleRoutes = require('@science-medicine-group/package-wp-icle/routes');
 const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 
@@ -81,22 +82,17 @@ module.exports = (options = {}) => {
 
       const idxConfig = get(options, 'siteConfig.identityX');
       const auth0Config = get(options, 'siteConfig.auth0');
+      const icleConfig = getAsObject(options, 'siteConfig.wpIcle');
+      // Load ICLE configuration middleware
+      if (icleConfig.enabled) icle(app, { ...icleConfig, idxConfig });
+      // Load Auth0+IdentityX
       auth0(app, { ...auth0Config, idxConfig, idxRouteTemplates });
-
-      // Load ICLE hook handler and dispatcher, if enabled
-      const icleConfig = get(options, 'siteConfig.wpIcle');
-      if (icleConfig && icleConfig.enabled) {
-        // Load the incoming webhook handler
-        icle(app, { ...icleConfig, idxConfig });
-      }
+      if (icleConfig.enabled) icleRoutes(app);
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
       auth0Hooks(app, idxConfig, auth0Config);
-      if (icleConfig && icleConfig.enabled) {
-        // Load the outbound webhook dispatcher
-        icleHooks(idxConfig, icleConfig);
-      }
+      if (icleConfig.enabled) icleHooks(idxConfig, icleConfig);
 
       // i18n
       const i18n = (v) => v;
