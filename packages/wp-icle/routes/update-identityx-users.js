@@ -129,10 +129,12 @@ module.exports = (app) => {
 
     try {
       const batchItemFailures = [];
+      const errors = [];
 
       const { body: records = [] } = req;
       const messageIds = new Map();
       const emails = records.map(({ messageId, body }) => {
+        debug(`Received user update from SQS with message id ${messageId}.`);
         const { email } = JSON.parse(body);
         messageIds.set(email, messageId);
         return email;
@@ -157,7 +159,8 @@ module.exports = (app) => {
           const user = await svc.createAppUser({ email });
           await updateUser(svc, payload, user);
         } catch (e) {
-          debug(`Error: ${e.message}`, e);
+          debug(`Error: ${e.message}`);
+          errors.push(e.messsage);
           if (messageId) batchItemFailures.push(messageId);
         }
       }));
@@ -165,6 +168,7 @@ module.exports = (app) => {
       res.json({
         name: 'user-update',
         batchItemFailures,
+        errors,
       });
     } catch (e) {
       res.status(500).json({ error: e.message });
