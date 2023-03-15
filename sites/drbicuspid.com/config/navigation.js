@@ -58,6 +58,8 @@ const resources = [
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/media-press', label: 'Media & Press' },
+  { href: '/page/advertising', label: 'Advertising' },
+  { href: '/page/help', label: 'Help' },
 ];
 
 const mobileMenu = {
