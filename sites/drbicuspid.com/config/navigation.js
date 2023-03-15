@@ -48,8 +48,8 @@ const topics = [
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
-  { href: 'https://staging.my.drbicuspid.com/cases', label: 'Cases' },
-  { href: 'https://staging.my.drbicuspid.com/jobs', label: 'Jobs' },
+  { href: 'https://my.drbicuspid.com/cases', label: 'Cases' },
+  { href: 'https://my.drbicuspid.com/jobs', label: 'Jobs' },
 ];
 
 const resources = [
