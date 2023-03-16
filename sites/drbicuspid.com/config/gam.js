@@ -12,7 +12,7 @@ config.lazyLoad = {
 };
 
 config.setAliasAdUnits('default', [
-  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: 'leaderboard' },
+  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: 'sticky-footer' },
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: 'leaderboard' },
   { name: 'rotation', templateName: 'ROTATION', path: 'rotation' },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
@@ -35,6 +35,7 @@ const aliases = [
 ];
 
 aliases.forEach((alias) => config.setAliasAdUnits(alias, [
+  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: 'sticky-footer' },
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${alias}-leaderboard` },
   { name: 'rotation', templateName: 'ROTATION', path: `${alias}-rotation` },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${alias}-rotation` },
