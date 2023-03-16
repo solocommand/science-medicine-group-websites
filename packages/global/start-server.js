@@ -96,7 +96,7 @@ module.exports = (options = {}) => {
       const auth0Config = get(options, 'siteConfig.auth0');
       const icleConfig = getAsObject(options, 'siteConfig.wpIcle');
       // Load ICLE configuration middleware
-      if (icleConfig.enabled) icle(app, { ...icleConfig, idxConfig });
+      if (icleConfig.enabled) icle(app, { ...icleConfig, idxConfig, brazeConfig });
       // Load Auth0+IdentityX
       auth0(app, { ...auth0Config, idxConfig, idxRouteTemplates });
       if (icleConfig.enabled) icleRoutes(app);

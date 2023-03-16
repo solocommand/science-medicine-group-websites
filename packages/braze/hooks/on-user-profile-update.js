@@ -30,8 +30,15 @@ module.exports = async ({
     }
   });
 
+  // Append the site membership
+  payload.site_membership = { add: brazeConfig.siteName };
+
+  // Set role if present, fall back to "Account Holder" if not.
+  payload.role = get(user, `customAttributes.${brazeConfig.siteName}Role`) || 'Account Holder';
+
+  // Apply any site-specific payload customizations
   const formatter = getFormatter(brazeConfig.onUserProfileUpdateFormatter);
-  await braze.trackUser(user.email, user.id, await formatter({ service, payload }));
+  await braze.trackUser(user.email, user.id, await formatter({ service, payload, user }));
 
   // External ID tagged subscriptions
   const optins = filterByExternalId(getAsArray(user, 'customBooleanFieldAnswers'), 'subscriptionGroup', tenant);
