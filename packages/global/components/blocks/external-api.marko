@@ -3,7 +3,7 @@ import { getAsObject } from "@parameter1/base-cms-object-path";
 import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
 
 $ const { nativeX: nxConfig, i18n } = out.global;
-
+$ const { log } = console;
 $ const { apiUrl, name, description } = input;
 $ const button = getAsObject(input, "button");
 $ const nativeX = getAsObject(input, "nativeX");
@@ -11,8 +11,12 @@ $ const nativeX = getAsObject(input, "nativeX");
 
 $ const apiCall = async (url) => {
   if (url) {
-    const response = await fetch(url)
-    const jsonResponse = await response.json()
+    const response = await fetch(url);
+    const jsonResponse = await response.json();
+    if (!response.ok) {
+      log('Unsuccesssful external API response!', apiUrl, jsonResponse);
+      return [];
+    }
     return jsonResponse;
   }
   return [];
