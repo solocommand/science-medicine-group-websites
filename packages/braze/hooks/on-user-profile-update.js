@@ -30,6 +30,10 @@ module.exports = async ({
     }
   });
 
+  // Append the site membership
+  payload.site_membership = { add: brazeConfig.siteName };
+
+  // Apply any site-specific payload customizations
   const formatter = getFormatter(brazeConfig.onUserProfileUpdateFormatter);
   await braze.trackUser(user.email, user.id, await formatter({ service, payload }));
 

@@ -24,10 +24,7 @@ module.exports = (params = {}) => {
       phoneNumber: 'phone',
       organization: 'org_name',
     },
+    siteName,
     appGroupId,
-    onUserProfileUpdateFormatter: async ({ payload = [] }) => ({
-      ...payload,
-      site_membership: { add: siteName },
-    }),
   };
 };
