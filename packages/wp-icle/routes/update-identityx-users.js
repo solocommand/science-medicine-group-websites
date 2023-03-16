@@ -15,7 +15,7 @@ const identityXCustomQuestions = require('../graphql/queries/idx-app-custom-ques
  * @param {Object} profile The BuddyBoss custom profile dataset
  * @returns Object
  */
-const buildPayload = async (svc, profile) => {
+const buildPayload = async ({ svc, profile, config }) => {
   const fieldMapping = new Map([
     ['First Name', 'givenName'],
     ['Last Name', 'familyName'],
@@ -69,6 +69,12 @@ const buildPayload = async (svc, profile) => {
 
   payload.customSelectAnswers = selects;
 
+  // Set `siteNameRole` custom attribute
+  const { siteName } = config.brazeConfig;
+  payload.customAttributes = {
+    [`${siteName}Role`]: getAsArray(profile, 'roles').includes('communitymember') ? 'Community Member' : 'Account Holder',
+  };
+
   return payload;
 };
 
@@ -82,13 +88,14 @@ const buildPayload = async (svc, profile) => {
 const updateUser = async (svc, payload, user) => {
   const apiToken = svc.config.getApiToken();
   if (!apiToken) throw new Error('Unable to update IdentityX: no API token is present.');
-  const { customSelectAnswers, ...fields } = payload;
+  const { customSelectAnswers, customAttributes, ...fields } = payload;
   await svc.client.mutate({
     mutation: updateUserMutation,
     variables: {
       userId: user.id,
       payload: fields,
       answers: customSelectAnswers,
+      attributes: customAttributes,
     },
     context: { apiToken },
   });
@@ -155,7 +162,7 @@ module.exports = (app) => {
         if (!email) throw new Error('User could not be loaded!');
         try {
           // @todo handle ids/externalId for changed emails?
-          const payload = await buildPayload(svc, profile);
+          const payload = await buildPayload({ svc, profile, config });
           const user = await svc.createAppUser({ email });
           await updateUser(svc, payload, user);
         } catch (e) {

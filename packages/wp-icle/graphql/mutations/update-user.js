@@ -5,6 +5,7 @@ mutation UpdateUserFromWPICLE(
   $userId: String!,
   $payload: UpdateAppUserPayloadInput!,
   $answers: [UpdateAppUserCustomSelectAnswer!]!
+  $attributes: JSONObject!
 ) {
   updateAppUser(input: {
     id: $userId
@@ -13,6 +14,10 @@ mutation UpdateUserFromWPICLE(
   updateAppUserCustomSelectAnswers(input: {
     id: $userId
     answers: $answers
+  }) { id }
+  updateAppUserCustomAttributes(input: {
+    id: $userId
+    attributes: $attributes
   }) { id }
 }
 `;
