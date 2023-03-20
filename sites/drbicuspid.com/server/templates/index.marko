@@ -7,7 +7,7 @@ $ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
     type: 'Case',
     shortName: node.name,
     teaser: node.description,
-    siteContext: { path: `https://my.drbicuspid.com/cases/${node.url}?VerifyLogin=1` },
+    siteContext: { path: `${node.url}?VerifyLogin=1` },
     primaryImage: { src: node.imagepath }
   })));
 
