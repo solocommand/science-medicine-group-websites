@@ -33,7 +33,11 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
 >
   <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
     $ const { primarySection } = content;
+    $ const isSponsored = getAsArray(content, "labels").includes("Sponsored");
     <div class="content-page-header">
+      <if(isSponsored)>
+        <div class="content-page-sponsored-header mb-3">Sponsored</div>
+      </if>
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
       <if(type !== "contact")>
