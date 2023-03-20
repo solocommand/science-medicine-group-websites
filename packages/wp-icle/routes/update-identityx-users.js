@@ -4,6 +4,7 @@ const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const { get, getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
 const callHooksFor = require('@parameter1/base-cms-marko-web-identity-x/utils/call-hooks-for');
+const regions = require('../regions');
 const updateUserMutation = require('../graphql/mutations/update-user');
 const freshUserQuery = require('../graphql/queries/user-by-id');
 const identityXCustomQuestions = require('../graphql/queries/idx-app-custom-questions');
@@ -40,6 +41,24 @@ const buildPayload = async ({ svc, profile, config }) => {
     const val = profile[key];
     return { ...obj, [newKey]: val };
   }, { email: profile.user_email });
+
+  // Parse region into regionCode.
+  if (payload.countryCode === 'US' && profile['State/Region']) {
+    const opts = Object.entries(regions.US);
+    const comp = profile['State/Region'].toLocaleLowerCase();
+    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
+    if (regionCode) payload.regionCode = regionCode;
+  } else if (payload.countryCode === 'CA' && profile['State/Region CA']) {
+    const opts = Object.entries(regions.CA);
+    const comp = profile['State/Region CA'].toLocaleLowerCase();
+    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
+    if (regionCode) payload.regionCode = regionCode;
+  } else if (payload.countryCode === 'MX' && profile['State/Region MX']) {
+    const opts = Object.entries(regions.MX);
+    const comp = profile['State/Region MX'].toLocaleLowerCase();
+    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
+    if (regionCode) payload.regionCode = regionCode;
+  }
 
   // load idx questions
   const questions = await getQuestions();
@@ -89,6 +108,14 @@ const updateUser = async (svc, payload, user) => {
   const apiToken = svc.config.getApiToken();
   if (!apiToken) throw new Error('Unable to update IdentityX: no API token is present.');
   const { customSelectAnswers, customAttributes, ...fields } = payload;
+
+  // The country changed, clean up the region and postal codes
+  if (fields.countryCode && fields.countryCode !== user.countryCode) {
+    // Explicitly unset fields if the country changed and we dont have a new value
+    if (!fields.regionCode) fields.regionCode = null;
+    if (fields.postalCode !== user.postalCode) fields.postalCode = null;
+  }
+
   await svc.client.mutate({
     mutation: updateUserMutation,
     variables: {
@@ -167,7 +194,7 @@ module.exports = (app) => {
           await updateUser(svc, payload, user);
         } catch (e) {
           debug(`Error: ${e.message}`);
-          errors.push(e.messsage);
+          errors.push(e.message);
           if (messageId) batchItemFailures.push(messageId);
         }
       }));
