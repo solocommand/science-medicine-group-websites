@@ -35,7 +35,6 @@ const digitalDentistry = [
 ];
 const dentalBusiness = [
   { href: '/dental-business/dental-education', label: 'Dental Education' },
-  { href: '/dental-business/dental-organizations', label: 'Dental Organizations' },
   { href: '/dental-business/dso', label: 'DSO' },
   { href: '/dental-business/industry-updates', label: 'Industry Updates' },
   { href: '/dental-business/practice-sales', label: 'Practice Sales' },
