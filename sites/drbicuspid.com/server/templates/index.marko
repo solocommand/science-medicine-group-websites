@@ -7,7 +7,7 @@ $ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
     type: 'Case',
     shortName: node.name,
     teaser: node.description,
-    siteContext: { path: `https://my.drbicuspid.com/cases/${node.url}` },
+    siteContext: { path: `https://my.drbicuspid.com/cases/${node.url}?VerifyLogin=1` },
     primaryImage: { src: node.imagepath }
   })));
 
@@ -23,7 +23,7 @@ $ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
       resolved-to-nodes-converter=resolvedToNodesConverter
       name="Case of the Week"
       description="Check out our Case of the Week!"
-      button={ link: "https://my.drbicuspid.com/cases", text: "View All Cases" }
+      button={ link: "https://my.drbicuspid.com/cases?VerifyLogin=1", text: "View All Cases" }
       native-x={ placementName: 'cases', placementAliases: ['cases'] }
     />
   </@section>
