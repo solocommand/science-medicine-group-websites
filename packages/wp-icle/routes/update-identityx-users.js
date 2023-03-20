@@ -166,36 +166,38 @@ module.exports = (app) => {
       const errors = [];
 
       const { body: records = [] } = req;
-      const messageIds = new Map();
-      const emails = records.map(({ messageId, body }) => {
+      const emails = records.reduce((map, { messageId, body }) => {
         debug(`Received user update from SQS with message id ${messageId}.`);
         const { email } = JSON.parse(body);
-        messageIds.set(email, messageId);
-        return email;
-      });
+        if (!map.has(email)) map.set(email, []);
+        map.get(email).push(messageId);
+        return map;
+      }, new Map());
 
+      // make unique
       const profiles = await (await fetch(config.endpoint, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
           authorization: `Bearer ${config.apiKey}`,
         },
-        body: JSON.stringify({ emails }),
+        body: JSON.stringify({ emails: [...emails.keys()] }),
       })).json();
 
-      await Promise.allSettled(profiles.map(async (profile) => {
+      // Change to all
+      await Promise.all(profiles.map(async (profile) => {
         const { user_email: email } = profile;
-        const messageId = messageIds.get(email);
-        if (!email) throw new Error('User could not be loaded!');
         try {
+          if (!email) throw new Error(`User could not be loaded by email ${email}`);
           // @todo handle ids/externalId for changed emails?
           const payload = await buildPayload({ svc, profile, config });
           const user = await svc.createAppUser({ email });
           await updateUser(svc, payload, user);
         } catch (e) {
+          const messageIds = emails.get(email);
           debug(`Error: ${e.message}`);
           errors.push(e.message);
-          if (messageId) batchItemFailures.push(messageId);
+          if (messageIds) batchItemFailures.push(...messageIds);
         }
       }));
 
