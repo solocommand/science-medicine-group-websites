@@ -167,7 +167,7 @@ module.exports = (app) => {
           await updateUser(svc, payload, user);
         } catch (e) {
           debug(`Error: ${e.message}`);
-          errors.push(e.messsage);
+          errors.push(e.message);
           if (messageId) batchItemFailures.push(messageId);
         }
       }));
