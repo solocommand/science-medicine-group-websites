@@ -22,25 +22,28 @@ config.setAliasAdUnits('default', [
 ]);
 
 const aliases = [
-  'case-of-the-x',
-  'dental-assistant',
-  'legal-issues',
-  'office-management',
-  'patient-communication',
-  'public-health',
-  'wellness',
-  'jobs',
-  'endodontics',
-  'oral-maxiollfacial-surgery',
+  { alias: 'case-of-the-x' },
+  { alias: 'jobs' },
+  { alias: 'dental-practice/dental-assistant', prefix: 'dental-assistant' },
+  { alias: 'dental-practice/legal-issues', prefix: 'legal-issues' },
+  { alias: 'dental-practice/office-management', prefix: 'office-management' },
+  { alias: 'dental-practice/patient-communication', prefix: 'patient-communication' },
+  { alias: 'dental-practice/public-health', prefix: 'public-health' },
+  { alias: 'dental-practice/wellness', prefix: 'wellness' },
+  { alias: 'dental-specialties/endodontics', prefix: 'endodontics' },
+  { alias: 'dental-specialties/oral-maxillofacial-surgery', prefix: 'oral-maxillofacial-surgery' },
+  { alias: 'dental-specialties/smile-design', prefix: 'smile-design' },
+  { alias: 'dental-specialties/orofacial-pain', prefix: 'orofacial-pain' },
+  { alias: 'digital-dentistry/imaging', prefix: 'imaging' },
 ];
 
-aliases.forEach((alias) => config.setAliasAdUnits(alias, [
-  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: `${alias}-sticky-footer` },
-  { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${alias}-leaderboard` },
-  { name: 'rotation', templateName: 'ROTATION', path: `${alias}-rotation` },
-  { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${alias}-rotation` },
-  { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${alias}-rotation` },
-  { name: 'reskin', path: `${alias}-reskin` },
+aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
+  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: `${prefix}-sticky-footer` },
+  { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${prefix}-leaderboard` },
+  { name: 'rotation', templateName: 'ROTATION', path: `${prefix}-rotation` },
+  { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${prefix}-rotation` },
+  { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${prefix}-rotation` },
+  { name: 'reskin', path: `${prefix}-reskin` },
 ]));
 
 module.exports = config;
