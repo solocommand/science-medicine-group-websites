@@ -25,7 +25,6 @@ module.exports = async (req, res, session) => {
 
   // Destroy A0 context if no email is present
   const { email } = user;
-  debug('user', user);
   if (!email) {
     res.redirect('/user/auth0-no-email');
     throw new Error('Auth0 user must provide an email address.');
