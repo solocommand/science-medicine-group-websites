@@ -1,4 +1,3 @@
-const debug = require('debug')('braze');
 const { buildPayload } = require('../utils');
 
 /**
