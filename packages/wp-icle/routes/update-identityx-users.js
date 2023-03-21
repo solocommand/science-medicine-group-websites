@@ -46,18 +46,30 @@ const buildPayload = async ({ svc, profile, config }) => {
   if (payload.countryCode === 'US' && profile['State/Region']) {
     const opts = Object.entries(regions.US);
     const comp = profile['State/Region'].toLocaleLowerCase();
-    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
-    if (regionCode) payload.regionCode = regionCode;
+    const [regionCode] = opts.find((opt) => comp === opt[1].name.toLocaleLowerCase()) || [];
+    if (regionCode) {
+      payload.regionCode = regionCode;
+    } else {
+      debug(`Unable to find US region code for "${profile['State/Region']}"`);
+    }
   } else if (payload.countryCode === 'CA' && profile['State/Region CA']) {
     const opts = Object.entries(regions.CA);
     const comp = profile['State/Region CA'].toLocaleLowerCase();
-    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
-    if (regionCode) payload.regionCode = regionCode;
+    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase()) || [];
+    if (regionCode) {
+      payload.regionCode = regionCode;
+    } else {
+      debug(`Unable to find CA region code for "${profile['State/Region CA']}"`);
+    }
   } else if (payload.countryCode === 'MX' && profile['State/Region MX']) {
     const opts = Object.entries(regions.MX);
     const comp = profile['State/Region MX'].toLocaleLowerCase();
     const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
-    if (regionCode) payload.regionCode = regionCode;
+    if (regionCode) {
+      payload.regionCode = regionCode;
+    } else {
+      debug(`Unable to find MX region code for "${profile['State/Region MX']}"`);
+    }
   }
 
   // load idx questions
