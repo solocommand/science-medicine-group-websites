@@ -4,9 +4,11 @@ const { validate } = require('@parameter1/joi/utils');
 module.exports = (params = {}) => {
   const {
     siteName,
+    unconfirmedGroupId,
     appGroupId,
   } = validate(Joi.object({
     siteName: Joi.string().required().description('The Braze site membership identifier.'),
+    unconfirmedGroupId: Joi.string().required().description('The Braze Subscription Group ID to use for unconfirmed users'),
     appGroupId: Joi.string().required().description('The Braze App Group ID to use.'),
   }), params);
 
@@ -24,6 +26,7 @@ module.exports = (params = {}) => {
       phoneNumber: 'phone',
       organization: 'org_name',
     },
+    unconfirmedGroupId,
     siteName,
     appGroupId,
   };
