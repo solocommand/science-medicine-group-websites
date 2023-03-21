@@ -1,5 +1,5 @@
 const { get, getAsArray } = require('@parameter1/base-cms-object-path');
-const { filterByExternalId, getFormatter } = require('../utils');
+const { filterByExternalId, buildPayload } = require('../utils');
 
 /**
  *
@@ -11,14 +11,15 @@ module.exports = async ({
 }) => {
   const { tenant, fieldMap } = brazeConfig;
   const { braze } = service.req;
-  const payload = {
-    external_id: user.id,
-    ...Object.keys(fieldMap).reduce((obj, k) => {
+  const payload = buildPayload({
+    brazeConfig,
+    user,
+    payload: Object.keys(fieldMap).reduce((obj, k) => {
       const key = fieldMap[k];
       const val = get(user, k);
       return { ...obj, ...(val && { [key]: val }) };
     }, {}),
-  };
+  });
 
   // External ID tagged questions
   const questions = filterByExternalId(getAsArray(user, 'customSelectFieldAnswers'), 'attribute', tenant);
@@ -30,15 +31,8 @@ module.exports = async ({
     }
   });
 
-  // Append the site membership
-  payload.site_membership = { add: brazeConfig.siteName };
-
-  // Set role if present, fall back to "Account Holder" if not.
-  payload.role = get(user, `customAttributes.${brazeConfig.siteName}Role`) || 'Account Holder';
-
-  // Apply any site-specific payload customizations
-  const formatter = getFormatter(brazeConfig.onUserProfileUpdateFormatter);
-  await braze.trackUser(user.email, user.id, await formatter({ service, payload, user }));
+  // Update Braze with the user data
+  await braze.trackUser(user.email, user.id, payload);
 
   // External ID tagged subscriptions
   const optins = filterByExternalId(getAsArray(user, 'customBooleanFieldAnswers'), 'subscriptionGroup', tenant);
