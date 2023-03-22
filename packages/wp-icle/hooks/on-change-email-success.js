@@ -25,5 +25,5 @@ module.exports = async ({ service, user, oldEmail }) => {
     MessageBody: JSON.stringify({ id, email, oldEmail }),
   }));
 
-  debug(`Dispatched user update to SQS with message id ${r.MessageId}.`);
+  debug(`Dispatched email change to SQS with message id ${r.MessageId}.`);
 };
