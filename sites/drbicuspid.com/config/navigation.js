@@ -206,6 +206,7 @@ module.exports = {
     },
     items: [
       privacyPolicy,
+      { href: '/page/terms-conditions', label: 'Terms & Conditions' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
     ],
