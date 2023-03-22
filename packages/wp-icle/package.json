@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/package-wp-icle",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Marko Braze integration",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/wp-icle",
   "author": "Josh Worden <josh@parameter1.com>",
