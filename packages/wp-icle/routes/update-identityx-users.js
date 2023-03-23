@@ -167,12 +167,6 @@ module.exports = (app) => {
       return;
     }
 
-    // Disable validator and ICLE hooks for this request
-    const intialEnabled = config.enabled;
-    const initialValidator = get(svc, 'config.options.emailValidator');
-    svc.config.options.emailValidator = null;
-    config.enabled = false;
-
     try {
       const batchItemFailures = [];
       const errors = [];
@@ -219,10 +213,6 @@ module.exports = (app) => {
       });
     } catch (e) {
       res.status(500).json({ error: e.message });
-    } finally {
-      // Restore the validator and ICLE hooks
-      svc.config.options.emailValidator = initialValidator;
-      config.enabled = intialEnabled;
     }
   }));
 };

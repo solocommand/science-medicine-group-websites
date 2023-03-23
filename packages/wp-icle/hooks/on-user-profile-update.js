@@ -8,8 +8,10 @@ const { SQSClient, SendMessageCommand } = require('@aws-sdk/client-sqs');
  */
 module.exports = async ({ service, user }) => {
   const config = getAsObject(service, 'res.locals.icle');
-  // Check if we're globally or temporarily (hook fired inside sync from ICLE) disabled.
-  if (!config.enabled) return;
+
+  // Do not dispatch updates when syncing users
+  const { originalUrl } = getAsObject(service, 'req');
+  if (originalUrl === '/api/update-identityx-users') return;
 
   const { id, email } = user;
 
