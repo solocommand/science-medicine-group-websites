@@ -190,11 +190,10 @@ module.exports = (app) => {
       });
       const profiles = await response.json();
 
-      await Promise.all(profiles.map(async (profile) => {
-        const { user_email: email } = profile;
+      await Promise.all([...emails.keys()].map(async (email) => {
         try {
-          if (!email) throw new Error(`User could not be loaded by email ${email}`);
-          // @todo handle ids/externalId for changed emails?
+          const profile = profiles.find((p) => p.user_email === email);
+          if (!profile) throw new Error(`User profile was not returned for ${email}!`);
           const payload = await buildPayload({ svc, profile, config });
           const user = await svc.createAppUser({ email });
           await updateUser(svc, payload, user);
