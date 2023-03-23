@@ -3,38 +3,27 @@ const privacyPolicy = require('./privacy-policy');
 
 const dentalPractice = [
   { href: '/dental-practice/dental-assistant', label: 'Dental Assistant' },
-  { href: '/dental-practice/human-resources', label: 'Human Resources' },
-  { href: '/dental-practice/insurance', label: 'Insurance' },
   { href: '/dental-practice/legal-issues', label: 'Legal Issues' },
-  { href: '/dental-practice/marketing', label: 'Marketing' },
   { href: '/dental-practice/office-management', label: 'Office Management' },
   { href: '/dental-practice/patient-communication', label: 'Patient Communication' },
-  { href: '/dental-practice/practice-sales', label: 'Practice Sales' },
+  { href: '/dental-practice/public-health', label: 'Public Health' },
+  { href: '/dental-practice/wellness', label: 'Wellness' },
 ];
 const dentalSpecialties = [
-  { href: '/dental-specialties/dental-lab', label: 'Dental Lab' },
-  { href: '/dental-specialties/endontics', label: 'Endontics' },
+  { href: '/dental-specialties/endodontics', label: 'Endodontics' },
   { href: '/dental-specialties/oral-maxillofacial-surgery', label: 'Oral & Maxillofacial Surgery' },
   { href: '/dental-specialties/orofacial-pain', label: 'Orofacial Pain' },
+  { href: '/dental-specialties/orthodontics', label: 'Orthodontics' },
   { href: '/dental-specialties/pediatrics', label: 'Pediatrics' },
   { href: '/dental-specialties/periodontics', label: 'Periodontics' },
-  { href: '/dental-specialties/restorations', label: 'Restorations' },
+  { href: '/dental-specialties/prosthodontics', label: 'Prosthodontics' },
   { href: '/dental-specialties/smile-design', label: 'Smile Design' },
-];
-const oralSystemic = [
-  { href: '/oral-systemic/antibiotics', label: 'Antibiotics' },
-  { href: '/oral-systemic/oral-systemic-link', label: 'Oral-Systemic Link' },
-  { href: '/oral-systemic/nutrition', label: 'Nutrition' },
-  { href: '/oral-systemic/oral-cancer', label: 'Oral Cancer' },
-  { href: '/oral-systemic/tmj-tmd', label: 'TMJ/TMD' },
-  { href: '/oral-systemic/tobacco', label: 'Tobacco' },
 ];
 const dentalHygiene = [
   { href: '/dental-hygiene/hygiene-tools', label: 'Hygiene Tools' },
   { href: '/dental-hygiene/infection-control', label: 'Infection Control' },
-  { href: '/dental-hygiene/oral-bacteria', label: 'Oral Bacteria' },
-  { href: '/dental-hygiene/prevention', label: 'Prevention' },
-  { href: '/dental-hygiene/saliva-testing', label: 'Saliva Testing' },
+  { href: '/dental-hygiene/nutrition', label: 'Nutrition' },
+  { href: '/dental-hygiene/oral-systemic-link', label: 'Oral-Systemic Link' },
   { href: '/dental-hygiene/scope-of-practice', label: 'Scope of Practice' },
 ];
 const digitalDentistry = [
@@ -42,26 +31,24 @@ const digitalDentistry = [
   { href: '/digital-dentistry/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
   { href: '/digital-dentistry/implants', label: 'Implants' },
   { href: '/digital-dentistry/invisible-aligners', label: 'Invisible Aligners' },
-  { href: '/digital-dentistry/lasers', label: 'Lasers' },
   { href: '/digital-dentistry/sleep-dentistry', label: 'Sleep Dentistry' },
-  { href: '/digital-dentistry/treatment-software', label: 'Treatment Software' },
 ];
 const dentalBusiness = [
-  { href: '/dental-business/dental-education-school', label: 'Dental Education / School' },
+  { href: '/dental-business/dental-education', label: 'Dental Education' },
   { href: '/dental-business/dso', label: 'DSO' },
   { href: '/dental-business/industry-updates', label: 'Industry Updates' },
-  { href: '/dental-business/practice-trends', label: 'Practice Trends' },
-  { href: '/dental-business/product-updates', label: 'Product Updates' },
+  { href: '/dental-business/practice-sales', label: 'Practice Sales' },
   { href: '/dental-business/regulatory-updates', label: 'Regulatory Updates' },
 ];
 
 const topics = [
-  { href: '/dental-practice', label: 'Dental Practice', children: dentalPractice },
-  { href: '/dental-specialties', label: 'Dental Specialties', children: dentalSpecialties },
-  { href: '/oral-systemic', label: 'Oral-Systemic', children: oralSystemic },
-  { href: '/dental-hygiene', label: 'Dental Hygiene', children: dentalHygiene },
+  { href: '/dental-practice', label: 'Practice', children: dentalPractice },
+  { href: '/dental-specialties', label: 'Specialties', children: dentalSpecialties },
+  { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
-  { href: '/dental-business', label: 'Dental Business', children: dentalBusiness },
+  { href: '/dental-business', label: 'Business', children: dentalBusiness },
+  { href: 'https://my.drbicuspid.com/cases?VerifyLogin=1', label: 'Cases' },
+  { href: 'https://my.drbicuspid.com/jobs?VerifyLogin=1', label: 'Jobs' },
 ];
 
 const resources = [
@@ -70,6 +57,8 @@ const resources = [
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/media-press', label: 'Media & Press' },
+  { href: '/page/advertising', label: 'Advertising' },
+  { href: '/page/help', label: 'Help' },
 ];
 
 const mobileMenu = {
@@ -153,14 +142,6 @@ module.exports = {
       },
     },
     {
-      when: ['/oral-systemic'],
-      secondary: { items: [...topics] },
-      tertiary: { items: [] },
-      primary: {
-        items: oralSystemic,
-      },
-    },
-    {
       when: ['/dental-hygiene'],
       secondary: { items: topics },
       tertiary: { items: [] },
@@ -187,19 +168,19 @@ module.exports = {
   ],
   toggleMenu: {
     col1: {
-      label: 'Dental Practice',
+      label: 'Practice',
       items: dentalPractice,
     },
     col2: {
-      label: 'Dental Specialties',
+      label: 'Specialties',
       items: dentalSpecialties,
     },
     col3: {
-      label: 'Oral-Systemic',
-      items: oralSystemic,
+      label: 'Digital Dentistry',
+      items: digitalDentistry,
     },
     col4: {
-      label: 'Dental Hygiene',
+      label: 'Hygiene',
       items: dentalHygiene,
     },
     col5: {
@@ -212,12 +193,11 @@ module.exports = {
       label: 'Topics',
       colspan: 5,
       items: [
-        { href: '/dental-practice', label: 'Dental Practice' },
-        { href: '/dental-specialties', label: 'Dental Specialties' },
-        { href: '/oral-systemic', label: 'Oral-Systemic' },
-        { href: '/dental-hygiene', label: 'Dental Hygiene' },
+        { href: '/dental-practice', label: 'Practice' },
+        { href: '/dental-specialties', label: 'Specialties' },
+        { href: '/dental-hygiene', label: 'Hygiene' },
         { href: '/digital-dentistry', label: 'Digital Dentistry' },
-        { href: '/dental-business', label: 'Dental Business' },
+        { href: '/dental-business', label: 'Business' },
       ],
     },
     col2: {
@@ -226,6 +206,7 @@ module.exports = {
     },
     items: [
       privacyPolicy,
+      { href: '/page/terms-conditions', label: 'Terms & Conditions' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
     ],

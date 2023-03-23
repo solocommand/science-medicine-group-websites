@@ -2,8 +2,9 @@ const debug = require('debug')('wp-icle');
 const fetch = require('node-fetch');
 const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
-const { get, getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
+const { getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
 const callHooksFor = require('@parameter1/base-cms-marko-web-identity-x/utils/call-hooks-for');
+const regions = require('../regions');
 const updateUserMutation = require('../graphql/mutations/update-user');
 const freshUserQuery = require('../graphql/queries/user-by-id');
 const identityXCustomQuestions = require('../graphql/queries/idx-app-custom-questions');
@@ -40,6 +41,36 @@ const buildPayload = async ({ svc, profile, config }) => {
     const val = profile[key];
     return { ...obj, [newKey]: val };
   }, { email: profile.user_email });
+
+  // Parse region into regionCode.
+  if (payload.countryCode === 'US' && profile['State/Region']) {
+    const opts = Object.entries(regions.US);
+    const comp = profile['State/Region'].toLocaleLowerCase();
+    const [regionCode] = opts.find((opt) => comp === opt[1].name.toLocaleLowerCase()) || [];
+    if (regionCode) {
+      payload.regionCode = regionCode;
+    } else {
+      debug(`Unable to find US region code for "${profile['State/Region']}"`);
+    }
+  } else if (payload.countryCode === 'CA' && profile['State/Region CA']) {
+    const opts = Object.entries(regions.CA);
+    const comp = profile['State/Region CA'].toLocaleLowerCase();
+    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase()) || [];
+    if (regionCode) {
+      payload.regionCode = regionCode;
+    } else {
+      debug(`Unable to find CA region code for "${profile['State/Region CA']}"`);
+    }
+  } else if (payload.countryCode === 'MX' && profile['State/Region MX']) {
+    const opts = Object.entries(regions.MX);
+    const comp = profile['State/Region MX'].toLocaleLowerCase();
+    const [regionCode] = opts.find(([, data]) => comp === data.name.toLocaleLowerCase());
+    if (regionCode) {
+      payload.regionCode = regionCode;
+    } else {
+      debug(`Unable to find MX region code for "${profile['State/Region MX']}"`);
+    }
+  }
 
   // load idx questions
   const questions = await getQuestions();
@@ -89,6 +120,14 @@ const updateUser = async (svc, payload, user) => {
   const apiToken = svc.config.getApiToken();
   if (!apiToken) throw new Error('Unable to update IdentityX: no API token is present.');
   const { customSelectAnswers, customAttributes, ...fields } = payload;
+
+  // The country changed, clean up the region and postal codes
+  if (fields.countryCode && fields.countryCode !== user.countryCode) {
+    // Explicitly unset fields if the country changed and we dont have a new value
+    if (!fields.regionCode) fields.regionCode = null;
+    if (fields.postalCode !== user.postalCode) fields.postalCode = null;
+  }
+
   await svc.client.mutate({
     mutation: updateUserMutation,
     variables: {
@@ -128,47 +167,41 @@ module.exports = (app) => {
       return;
     }
 
-    // Disable validator and ICLE hooks for this request
-    const intialEnabled = config.enabled;
-    const initialValidator = get(svc, 'config.options.emailValidator');
-    svc.config.options.emailValidator = null;
-    config.enabled = false;
-
     try {
       const batchItemFailures = [];
       const errors = [];
 
       const { body: records = [] } = req;
-      const messageIds = new Map();
-      const emails = records.map(({ messageId, body }) => {
+      const emails = records.reduce((map, { messageId, body }) => {
         debug(`Received user update from SQS with message id ${messageId}.`);
         const { email } = JSON.parse(body);
-        messageIds.set(email, messageId);
-        return email;
-      });
+        if (!map.has(email)) map.set(email, []);
+        map.get(email).push(messageId);
+        return map;
+      }, new Map());
 
-      const profiles = await (await fetch(config.endpoint, {
+      const response = await fetch(config.endpoint, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
           authorization: `Bearer ${config.apiKey}`,
         },
-        body: JSON.stringify({ emails }),
-      })).json();
+        body: JSON.stringify({ emails: [...emails.keys()] }),
+      });
+      const profiles = await response.json();
 
-      await Promise.allSettled(profiles.map(async (profile) => {
-        const { user_email: email } = profile;
-        const messageId = messageIds.get(email);
-        if (!email) throw new Error('User could not be loaded!');
+      await Promise.all([...emails.keys()].map(async (email) => {
         try {
-          // @todo handle ids/externalId for changed emails?
+          const profile = profiles.find((p) => p.user_email === email);
+          if (!profile) throw new Error(`User profile was not returned for ${email}!`);
           const payload = await buildPayload({ svc, profile, config });
           const user = await svc.createAppUser({ email });
           await updateUser(svc, payload, user);
         } catch (e) {
+          const messageIds = emails.get(email);
           debug(`Error: ${e.message}`);
-          errors.push(e.messsage);
-          if (messageId) batchItemFailures.push(messageId);
+          errors.push(e.message);
+          if (messageIds) batchItemFailures.push(...messageIds);
         }
       }));
 
@@ -179,10 +212,6 @@ module.exports = (app) => {
       });
     } catch (e) {
       res.status(500).json({ error: e.message });
-    } finally {
-      // Restore the validator and ICLE hooks
-      svc.config.options.emailValidator = initialValidator;
-      config.enabled = intialEnabled;
     }
   }));
 };

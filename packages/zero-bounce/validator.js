@@ -6,7 +6,11 @@
  * @returns {Tuple} [Boolean, String] the validation status and error message
  */
 module.exports = async ({ email, req }) => {
-  const { zeroBounce } = req;
+  const { zeroBounce, originalUrl } = req;
+
+  // Do not validate emails when syncing users
+  if (originalUrl === '/api/update-identityx-users') return [true];
+
   const { status } = await zeroBounce.validateEmail(email, req.ip);
   const valid = zeroBounce.statusMap.get(status) || false;
   zeroBounce.status = status;

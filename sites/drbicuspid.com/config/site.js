@@ -36,9 +36,9 @@ module.exports = {
       ],
     },
     footer: {
-      src: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=60&auto=format,compress',
+      src: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/DrB_LogoWhite.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=60&auto=format,compress&dpr=2 2x',
+        'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/DrB_LogoWhite.png?h=60&auto=format,compress&dpr=2 2x',
       ],
     },
     corporate: {
