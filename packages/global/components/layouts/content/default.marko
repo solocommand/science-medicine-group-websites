@@ -3,6 +3,7 @@ import contentIframe from "@science-medicine-group/package-global/utils/content-
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 
 import { cmShowOverlay, cmRestrictContentByReg, cmTruncateBody } from "../../../utils/content-meter-helpers";
+import between from "../../../utils/between";
 
 $ const {
   contentGatingHandler,
@@ -32,7 +33,11 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
 >
   <@section|{ blockName, content, aliases, authors }| modifiers=["content-header"]>
     $ const { primarySection } = content;
+    $ const isSponsored = getAsArray(content, "labels").includes("Sponsored");
     <div class="content-page-header">
+      <if(isSponsored)>
+        <div class="content-page-sponsored-header mb-3">Sponsored</div>
+      </if>
       <theme-content-page-breadcrumbs section=primarySection />
       <marko-web-content-name tag="h1" block-name=blockName obj=content />
       <if(type !== "contact")>
@@ -227,7 +232,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
           query-params={ excludeContentTypes, excludeContentIds: [content.id] }
           class="sticky-top"
         >
-          <@native-x indexes=[0] name="default" aliases=aliases />
+          <@native-x index=between(1,2) name="default" aliases=aliases />
         </theme-latest-content-list-block>
       </div>
     </div>
@@ -241,6 +246,15 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
       with-native-x=true
     />
   </@section>
+
+  <!-- <@section|{ aliases }|>
+    <theme-gam-define-display-ad
+      name="billboard"
+      position="content_page"
+      aliases=aliases
+      modifiers=["inter-block"]
+    />
+  </@section> -->
 
   <for|s| of=sections>
     <@section|{ blockName, content, aliases }| modifiers=s.modifiers>

@@ -24,6 +24,7 @@
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
 @import "./components/user";
+@import "./components/external-api";
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -83,7 +84,6 @@ label {
 
 .document-container {
   padding-top: 0;
-  background-color: $white;
 }
 
 .node {
@@ -364,6 +364,7 @@ label {
 .top-stories,
 .related-stories,
 .content-card-deck,
+.section-card-list,
 .section-cards {
   &__header {
     position: relative;
@@ -567,4 +568,39 @@ label {
   &__cta {
     width: auto;
   }
+}
+
+// this is to fix the display of the newsletter pushdown
+.site-newsletter-menu {
+  background-color: $gray-300;
+  z-index: 0;
+  .row {
+    visibility: hidden;
+    opacity: 0;
+    transition:visibility 0.3s linear,opacity 0.3s linear;
+  }
+  &--open {
+    .row {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+// Prevent Billboard from breaking out of document-container
+.ad-container--inter-block {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.content-page-sponsored-header {
+  background-color: $primary;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  line-height: 1.5;
+  padding: 2px 0.75em 1px;
+  text-align: center;
+  text-transform: uppercase;
 }

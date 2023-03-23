@@ -1,6 +1,7 @@
 const { decode } = require('jsonwebtoken');
 const { get } = require('@parameter1/base-cms-object-path');
 const debug = require('debug')('auth0');
+const callHooksFor = require('@parameter1/base-cms-marko-web-identity-x/utils/call-hooks-for');
 
 /**
  * Syncs Auth0 and IdentityX user states
@@ -24,7 +25,6 @@ module.exports = async (req, res, session) => {
 
   // Destroy A0 context if no email is present
   const { email } = user;
-  debug('user', user);
   if (!email) {
     res.redirect('/user/auth0-no-email');
     throw new Error('Auth0 user must provide an email address.');
@@ -36,6 +36,8 @@ module.exports = async (req, res, session) => {
     const appUser = await service.createAppUser({ email });
     await service.impersonateAppUser({ userId: appUser.id });
     debug('impersonated', appUser.id);
+    // @todo Remove this if/when hook dispatch is added to impersonateAppUser
+    await callHooksFor(service, 'onAuthenticationSuccess', { req, res, user: appUser });
 
     try {
       // Attempt to store Auth0 ids
