@@ -2,9 +2,9 @@
   <div>
     <form @submit.prevent="handleSubmit">
       <p>
-        Haven't seen the verification message yet? Click the button below to re-send.
+        Haven't seen the verification message yet? Click the link below to re-send.
       </p>
-      <button type="submit" class="btn btn-primary" :disabled="isButtonDisabled">
+      <button type="submit" class="btn btn-link" :disabled="isButtonDisabled">
         Send verification email
       </button>
       <span v-if="didSubmit" class="ml-2">
