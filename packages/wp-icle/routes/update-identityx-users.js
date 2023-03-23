@@ -2,7 +2,7 @@ const debug = require('debug')('wp-icle');
 const fetch = require('node-fetch');
 const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
-const { get, getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
+const { getAsArray, getAsObject } = require('@parameter1/base-cms-object-path');
 const callHooksFor = require('@parameter1/base-cms-marko-web-identity-x/utils/call-hooks-for');
 const regions = require('../regions');
 const updateUserMutation = require('../graphql/mutations/update-user');
@@ -167,12 +167,6 @@ module.exports = (app) => {
       return;
     }
 
-    // Disable validator and ICLE hooks for this request
-    const intialEnabled = config.enabled;
-    const initialValidator = get(svc, 'config.options.emailValidator');
-    svc.config.options.emailValidator = null;
-    config.enabled = false;
-
     try {
       const batchItemFailures = [];
       const errors = [];
@@ -186,17 +180,16 @@ module.exports = (app) => {
         return map;
       }, new Map());
 
-      // make unique
-      const profiles = await (await fetch(config.endpoint, {
+      const response = await fetch(config.endpoint, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
           authorization: `Bearer ${config.apiKey}`,
         },
         body: JSON.stringify({ emails: [...emails.keys()] }),
-      })).json();
+      });
+      const profiles = await response.json();
 
-      // Change to all
       await Promise.all([...emails.keys()].map(async (email) => {
         try {
           const profile = profiles.find((p) => p.user_email === email);
@@ -219,10 +212,6 @@ module.exports = (app) => {
       });
     } catch (e) {
       res.status(500).json({ error: e.message });
-    } finally {
-      // Restore the validator and ICLE hooks
-      svc.config.options.emailValidator = initialValidator;
-      config.enabled = intialEnabled;
     }
   }));
 };
