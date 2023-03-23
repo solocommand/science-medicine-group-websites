@@ -186,17 +186,16 @@ module.exports = (app) => {
         return map;
       }, new Map());
 
-      // make unique
-      const profiles = await (await fetch(config.endpoint, {
+      const response = await fetch(config.endpoint, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
           authorization: `Bearer ${config.apiKey}`,
         },
         body: JSON.stringify({ emails: [...emails.keys()] }),
-      })).json();
+      });
+      const profiles = await response.json();
 
-      // Change to all
       await Promise.all(profiles.map(async (profile) => {
         const { user_email: email } = profile;
         try {
