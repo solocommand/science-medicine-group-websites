@@ -6,7 +6,7 @@ config.enabled = process.env.enable_native_x === 'true';
 
 config
   .setAliasPlacements('default', [
-    { name: 'default', id: '62fce302ffb1230001dca8e7' },
+    { name: 'default', id: '62fce200ffb1230001dca815' },
   ]);
 
 module.exports = config;
