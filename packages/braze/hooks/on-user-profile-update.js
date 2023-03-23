@@ -34,6 +34,11 @@ module.exports = async ({
   // Update Braze with the user data
   await braze.trackUser(user.email, user.id, payload);
 
+  // Automatically confirm users with the community member role
+  if (payload.role === 'Community Member') {
+    await braze.confirmUser(user.email, user.id, 'identity-x');
+  }
+
   // External ID tagged subscriptions
   const optins = filterByExternalId(getAsArray(user, 'customBooleanFieldAnswers'), 'subscriptionGroup', tenant);
   if (optins.length) {
