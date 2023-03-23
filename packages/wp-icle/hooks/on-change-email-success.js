@@ -6,12 +6,10 @@ const { SQSClient, SendMessageCommand } = require('@aws-sdk/client-sqs');
  * Pushes an event to the configured SQS queue when a user profile update occurs.
  * @param {*} args
  */
-module.exports = async ({ service, user }) => {
+module.exports = async ({ service, user, oldEmail }) => {
   const config = getAsObject(service, 'res.locals.icle');
-
-  // Do not dispatch updates when syncing users
-  const { originalUrl } = getAsObject(service, 'req');
-  if (originalUrl === '/api/update-identityx-users') return;
+  // Check if we're globally or temporarily (hook fired inside sync from ICLE) disabled.
+  if (!config.enabled) return;
 
   const { id, email } = user;
 
@@ -24,8 +22,8 @@ module.exports = async ({ service, user }) => {
   // Push message to SQS
   const r = await client.send(new SendMessageCommand({
     QueueUrl: config.queueUrl,
-    MessageBody: JSON.stringify({ id, email }),
+    MessageBody: JSON.stringify({ id, email, oldEmail }),
   }));
 
-  debug(`Dispatched user update to SQS with message id ${r.MessageId}.`);
+  debug(`Dispatched email change to SQS with message id ${r.MessageId}.`);
 };

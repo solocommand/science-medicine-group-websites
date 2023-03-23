@@ -2,13 +2,29 @@ import hierarchyAliases from "@parameter1/base-cms-marko-web/utils/hierarchy-ali
 
 $ const { id, alias, name, pageNode } = input;
 
+$ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
+    id: node.ID,
+    type: 'Case',
+    shortName: node.name,
+    teaser: node.description,
+    siteContext: { path: `https://my.drbicuspid.com/cases/${node.url}?VerifyLogin=1` },
+    primaryImage: { src: node.imagepath }
+  })));
+
 <global-website-section-home-layout
   id=id
   alias=alias
   name=name
   page-node=pageNode
 >
-  <!-- <@section>
-    <theme-section-list-deck-block aliases=["business-insights", "diagnostic-technologies", "diseases"] />
-  </@section> -->
+  <@section>
+    <global-external-api-block
+      api-url="https://my.drbicuspid.com/wp-json/mo/v1/getCase/3"
+      resolved-to-nodes-converter=resolvedToNodesConverter
+      name="Case of the Week"
+      description="Check out our Case of the Week!"
+      button={ link: "https://my.drbicuspid.com/cases?VerifyLogin=1", text: "View All Cases" }
+      native-x={ placementName: 'cases', placementAliases: ['cases'] }
+    />
+  </@section>
 </global-website-section-home-layout>

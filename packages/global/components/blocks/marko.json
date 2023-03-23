@@ -14,5 +14,16 @@
   "<global-sponsors-block>": {
     "template": "./sponsors.marko",
     "@alias": "string"
+  },
+  "<global-external-api-block>": {
+    "template": "./external-api.marko",
+    "@api-url": "string",
+    "@resolved-to-nodes-converter": "object",
+    "@name": "string",
+    "@description": "string",
+    "@with-sponsor": "boolean",
+    "@link-header": "boolean",
+    "@button": "object",
+    "@native-x": "object"
   }
 }
