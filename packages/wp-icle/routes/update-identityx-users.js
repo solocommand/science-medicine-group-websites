@@ -125,7 +125,8 @@ const updateUser = async (svc, payload, user) => {
   if (fields.countryCode && fields.countryCode !== user.countryCode) {
     // Explicitly unset fields if the country changed and we dont have a new value
     if (!fields.regionCode) fields.regionCode = null;
-    if (fields.postalCode !== user.postalCode) fields.postalCode = null;
+    // Remove the postalCode if the country changed and we don't have a new one
+    if (fields.postalCode === user.postalCode) fields.postalCode = null;
   }
 
   await svc.client.mutate({
