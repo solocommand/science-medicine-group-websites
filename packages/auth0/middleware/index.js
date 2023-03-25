@@ -49,7 +49,6 @@ module.exports = (app, params = {}) => {
     const isIdentified = Boolean(req.identityX.token);
     const canRedirect = !/^\/user\/auth0-db-email-verification/.test(req.url);
     if (isAuthenticated && isIdentified && canRedirect) {
-      debug('Checking email verification', user);
       if (user && user.requireVerification) {
         // Log out of IdX
         await req.identityX.logoutAppUser(); // @todo fix upstream error when no token present
