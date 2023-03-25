@@ -9,12 +9,9 @@
     "id": "63038e29475dbd6a2f8b457e",
     "tenant": "smg_all",
     "account": "smg",
-    "stack": "leonis",
+    "stack": "virgon",
     "key": "drb",
-    "deploy": {
-      "staging": true,
-      "production": false
-    }
+    "deploy": true
   },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
