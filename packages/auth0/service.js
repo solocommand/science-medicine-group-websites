@@ -2,7 +2,7 @@ const { get } = require('@parameter1/base-cms-object-path');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const fetch = require('node-fetch');
-const debug = require('debug')('auth0');
+const debug = require('debug')('auth0-api');
 
 class Auth0 {
   constructor(params = {}) {
@@ -110,6 +110,7 @@ class Auth0 {
       method: 'patch',
       body: JSON.stringify({
         email,
+        name: email, // Set name to new email (to reduce confusion)
         email_verified: true, // IdX verified
         verify_email: false, // Don't send a verification email for this request
       }),
