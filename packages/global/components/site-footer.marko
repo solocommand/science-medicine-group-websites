@@ -66,11 +66,15 @@ $ const tagline = site.get("tagline");
           <div class=`col-md-${newsletterConfig.colspan || 4} mb-block`>
             <marko-web-identity-x-context|{ hasUser }|>
               $ const href = (hasUser) ? "/user/profile" : "/login";
+              $ const name = (hasUser) ? "User Account": newsletterConfig.name;
+              $ const desc = (hasUser) ? "" : newsletterConfig.description;
+              $ const cta = (hasUser) ? "Modify Profile" : "Sign Up";
               <global-newsletter-signup
-                name=newsletterConfig.name
-                description=newsletterConfig.description
+                name=name
+                description=desc
                 modifiers=["footer"]
                 href=href
+                cta=cta
               />
             </marko-web-identity-x-context>
           </div>
