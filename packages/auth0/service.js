@@ -1,7 +1,8 @@
+const { get } = require('@parameter1/base-cms-object-path');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const fetch = require('node-fetch');
-const debug = require('debug')('auth0');
+const debug = require('debug')('auth0-api');
 
 class Auth0 {
   constructor(params = {}) {
@@ -51,7 +52,6 @@ class Auth0 {
       }),
     });
     const response = await r.json();
-    debug('fetchToken', response);
     if (!r.ok || !response.access_token) throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     return response.access_token;
   }
@@ -91,16 +91,26 @@ class Auth0 {
   }
 
   /**
-   * Changes the email address of the currently logged-in user.
+   * Changes the email address of an Auth0 user.
+   *
+   * @see https://auth0.com/docs/api/management/v2#!/Users_By_Email/get_users_by_email
    * @see https://auth0.com/docs/api/management/v2#!/Users/patch_users_by_id
    */
-  changeEmailAddress(email, userId) {
+  async changeEmailAddress(email, oldEmail) {
     if (!email) throw new Error('You must supply the new email address!');
-    if (!userId) throw new Error('You must supply the Auth0 user id!');
+    if (!oldEmail) throw new Error('You must supply the old email address!');
+    const params = new URLSearchParams({
+      include_fields: false,
+      email: oldEmail,
+    });
+    const users = await this.request(`api/v2/users-by-email?${params}`, { method: 'get' });
+    const userId = get(users, '0.user_id');
+    if (!userId) throw new Error('Unable to find Auth0 user using old email address!');
     return this.request(`api/v2/users/${userId}`, {
       method: 'patch',
       body: JSON.stringify({
         email,
+        name: email, // Set name to new email (to reduce confusion)
         email_verified: true, // IdX verified
         verify_email: false, // Don't send a verification email for this request
       }),

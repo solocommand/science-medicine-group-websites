@@ -9,7 +9,7 @@ module.exports = (idxConfig, icleConfig) => {
   });
   idxConfig.addHook({
     name: 'onChangeEmailSuccess',
-    shouldAwait: false,
+    shouldAwait: true,
     fn: (args) => onChangeEmailSuccess({ icleConfig, ...args }),
   });
 };

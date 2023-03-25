@@ -103,7 +103,7 @@ module.exports = (options = {}) => {
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
-      auth0Hooks(app, idxConfig, auth0Config);
+      auth0Hooks(idxConfig, auth0Config);
       if (icleConfig.enabled) icleHooks(idxConfig, icleConfig);
 
       // i18n
