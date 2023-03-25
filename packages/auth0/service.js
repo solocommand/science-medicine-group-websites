@@ -51,7 +51,6 @@ class Auth0 {
       }),
     });
     const response = await r.json();
-    debug('fetchToken', response);
     if (!r.ok || !response.access_token) throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
     return response.access_token;
   }
