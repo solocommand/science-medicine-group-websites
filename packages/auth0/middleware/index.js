@@ -64,6 +64,7 @@ module.exports = (app, params = {}) => {
   // Redirect after login if `returnTo` URL parameter is present.
   if (routes.login === false) {
     app.get('/login', (req, res) => {
+      const { source, additionalEventData } = req.query;
       const referrer = req.query.returnTo || req.get('referrer') || baseURL;
       let returnTo;
       try {
@@ -72,7 +73,19 @@ module.exports = (app, params = {}) => {
         returnTo = new URL(referrer, `${req.protocol}://${req.get('host')}`);
       }
       returnTo.searchParams.append('isAuth0Login', true);
-      res.oidc.login({ returnTo: `${returnTo}` });
+      res.oidc.login({
+        authorizationParams: {
+          // Auth0 defaults
+          response_type: 'id_token',
+          response_mode: 'form_post',
+          scope: 'openid profile email',
+          // Custom kv data
+          source,
+          additionalEventData,
+          returnTo: `${returnTo}`,
+        },
+        returnTo: `${returnTo}`,
+      });
     });
   }
 
