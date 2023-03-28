@@ -41,6 +41,7 @@ module.exports = asyncRoute(async (req, res, next) => {
   if (!req.oidc || !req.identityX) throw new Error('Auth0 and IdentityX must be enabled!');
 
   const { identityX: idxSvc, originalUrl } = req;
+  const { user } = req.oidc;
 
   if (idxSvc.token && req.query.isAuth0Login) {
     const profile = idxSvc.config.getEndpointFor('profile');
@@ -53,7 +54,12 @@ module.exports = asyncRoute(async (req, res, next) => {
       if (url.pathname === profile) {
         res.redirect(302, profile);
       } else {
-        res.redirect(302, `${profile}?returnTo=${encodeURIComponent(returnTo)}`);
+        const usp = new URLSearchParams({
+          returnTo,
+          authenticate: true,
+          loginSource: user.source || 'default',
+        });
+        res.redirect(302, `${profile}?${usp}`);
       }
     } else {
       // Strip the query parameter
