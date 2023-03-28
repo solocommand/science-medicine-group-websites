@@ -1,6 +1,7 @@
 import { get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
-$ const { config } = out.global;
+$ const { config, req } = out.global;
 
 $ // Set the IdentityX default country code from the Maxmind data, if present.
 $ // Note: All local IPs will fail lookups!
@@ -11,6 +12,8 @@ $ if (maxmindDefault && idxOpts) idxOpts.defaultCountryCode = maxmindDefault;
 $ const type = "profile";
 $ const title = `${config.siteName()} Profile`;
 $ const description = `Complete your ${config.siteName()} Profile`;
+$ const loginSource = defaultValue(req.query.loginSource, "default");
+$ const additionalEventData = {}; // @todo
 
 <marko-web-default-page-layout type=type title=title description=description>
   <@head>
@@ -24,10 +27,17 @@ $ const description = `Complete your ${config.siteName()} Profile`;
         <h1 class="page-wrapper__title">${description}</h1>
         <marko-web-identity-x-context|{ user }|>
           <if(user)>
-            <marko-web-identity-x-form-profile />
+            <if(req.query.authenticate)>
+              <marko-web-browser-component name="Auth0Authenticated" props={
+                activeUser: user,
+                source: loginSource,
+                additionalEventData,
+              } />
+            </if>
+            <marko-web-identity-x-form-profile login-source=loginSource />
           </if>
           <else>
-            <marko-web-identity-x-form-login />
+            <marko-web-identity-x-form-login source=loginSource />
           </else>
         </marko-web-identity-x-context>
       </@section>

@@ -3,6 +3,7 @@ import Auth0 from '@science-medicine-group/package-auth0/browser';
 import Braze from '@science-medicine-group/package-braze/browser';
 import FormLogin from './form-login.vue';
 import Rudderstack from './rudderstack.vue';
+import Auth0Authenticated from './auth0-authenticated.vue';
 
 const GlobalNewsletterMenu = () => import(/* webpackChunkName: "global-newsletter-menu" */ './newsletter-menu.vue');
 const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
@@ -14,6 +15,9 @@ export default (Browser) => {
     idxArgs: {
       CustomLoginComponent: FormLogin,
     },
+  });
+  Browser.register('Auth0Authenticated', Auth0Authenticated, {
+    provide: { EventBus },
   });
   Browser.register('ContentMeterTrack', ContentMeterTrack);
   Browser.register('GlobalNewsletterMenu', GlobalNewsletterMenu, {
