@@ -53,7 +53,7 @@ module.exports = (app, params = {}) => {
         // Log out of IdX
         await req.identityX.logoutAppUser(); // @todo fix upstream error when no token present
         // Redirect to verification notice
-        const usp = new URLSearchParams({ userId: user.sub, returnTo: req.url });
+        const usp = new URLSearchParams({ userId: user.sub });
         debug('log out/redirect!', usp);
         res.redirect(302, `/user/auth0-db-email-verification?${usp}`);
       }
