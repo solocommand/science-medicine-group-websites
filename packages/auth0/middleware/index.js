@@ -6,6 +6,8 @@ const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const identityX = require('./identity-x');
 
+const returnToCookieName = '__idxReturnTo';
+
 /**
  *
  */
@@ -56,6 +58,13 @@ module.exports = (app, params = {}) => {
         const usp = new URLSearchParams({ userId: user.sub });
         debug('log out/redirect!', usp);
         res.redirect(302, `/user/auth0-db-email-verification?${usp}`);
+      } else if (user && user.returnTo) {
+        debug(`Redirecting to ${user.returnTo}!`);
+        // We only want to do this once.
+        if (!req.cookies[returnToCookieName]) {
+          res.cookie(returnToCookieName, '1', { maxAge: 900000 });
+          res.redirect(302, user.returnTo);
+        }
       }
     }
     next();
