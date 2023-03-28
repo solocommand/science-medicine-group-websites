@@ -61,6 +61,20 @@ module.exports = (app, params = {}) => {
     next();
   }));
 
+  app.get('/user/verify-email', (req, res) => {
+    res.oidc.login({
+      authorizationParams: {
+        // Auth0 defaults
+        response_type: 'id_token',
+        response_mode: 'form_post',
+        scope: 'openid profile email',
+        // Custom kv data
+        verifyEmail: true,
+      },
+      returnTo: '/',
+    });
+  });
+
   // Redirect after login if `returnTo` URL parameter is present.
   if (routes.login === false) {
     app.get('/login', (req, res) => {
