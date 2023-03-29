@@ -52,7 +52,7 @@ const topics = [
 const resources = [
   { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/conferences', label: 'Conferences' },
-  { href: '/resources/videos', label: 'Videos' },
+  // { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/media-press', label: 'Media & Press' },
   { href: '/page/advertising', label: 'Advertising' },
