@@ -16,7 +16,6 @@ const dentalSpecialties = [
   { href: '/dental-specialties/orthodontics', label: 'Orthodontics' },
   { href: '/dental-specialties/pediatrics', label: 'Pediatrics' },
   { href: '/dental-specialties/periodontics', label: 'Periodontics' },
-  { href: '/dental-specialties/prosthodontics', label: 'Prosthodontics' },
   { href: '/dental-specialties/smile-design', label: 'Smile Design' },
 ];
 const dentalHygiene = [
@@ -27,10 +26,9 @@ const dentalHygiene = [
   { href: '/dental-hygiene/scope-of-practice', label: 'Scope of Practice' },
 ];
 const digitalDentistry = [
-  { href: '/digital-dentistry/ai', label: 'AI' },
+  { href: '/digital-dentistry/treatment-software', label: 'Treatment Software' },
   { href: '/digital-dentistry/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
   { href: '/digital-dentistry/implants', label: 'Implants' },
-  { href: '/digital-dentistry/invisible-aligners', label: 'Invisible Aligners' },
   { href: '/digital-dentistry/sleep-dentistry', label: 'Sleep Dentistry' },
 ];
 const dentalBusiness = [
@@ -54,7 +52,7 @@ const topics = [
 const resources = [
   { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/conferences', label: 'Conferences' },
-  { href: '/resources/videos', label: 'Videos' },
+  // { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/media-press', label: 'Media & Press' },
   { href: '/page/advertising', label: 'Advertising' },

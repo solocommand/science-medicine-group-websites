@@ -54,10 +54,22 @@ module.exports = {
     { provider: 'facebook', href: 'https://www.facebook.com/DrBicuspid', target: '_blank' },
     { provider: 'twitter', href: 'https://twitter.com/drbicuspid', target: '_blank' },
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/drbicuspid.com/', target: '_blank' },
+    { provider: 'instagram', href: 'https://www.instagram.com/drbicuspid/', target: '_blank' },
   ],
   podcastLinks: [],
   gtm: {
     containerId: 'GTM-5RJ8D63',
+  },
+  wufoo: {
+    userName: 'labpulse',
+    'contact-us': {
+      title: 'Drop us a line!',
+      hash: 'q1n469z1k0s3hc',
+    },
+    'resources/conferences': {
+      title: 'Submit A Conference!',
+      hash: 'z1op3s8517hgdmv',
+    },
   },
   inquiry: {
     enabled: false,
