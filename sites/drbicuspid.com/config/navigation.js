@@ -30,7 +30,6 @@ const digitalDentistry = [
   { href: '/digital-dentistry/ai', label: 'AI' },
   { href: '/digital-dentistry/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
   { href: '/digital-dentistry/implants', label: 'Implants' },
-  { href: '/digital-dentistry/invisible-aligners', label: 'Invisible Aligners' },
   { href: '/digital-dentistry/sleep-dentistry', label: 'Sleep Dentistry' },
 ];
 const dentalBusiness = [
