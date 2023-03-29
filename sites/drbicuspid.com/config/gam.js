@@ -35,6 +35,7 @@ const aliases = [
   { alias: 'dental-specialties/smile-design', prefix: 'smile-design' },
   { alias: 'dental-specialties/orofacial-pain', prefix: 'orofacial-pain' },
   { alias: 'digital-dentistry/imaging', prefix: 'imaging' },
+  { alias: 'digital-dentistry/imaging-cad-cam', prefix: 'imaging-cad-cam' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
