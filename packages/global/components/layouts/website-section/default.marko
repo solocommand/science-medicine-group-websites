@@ -40,8 +40,8 @@ $ const { GAM } = out.global;
     </marko-web-resolve-page>
   </@page>
   <@foot>
-    <marko-web-resolve-page|{ data: content }| node=pageNode>
-      <theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <theme-fixed-ad-bottom aliases=hierarchyAliases(section) />
     </marko-web-resolve-page>
   </@foot>
 </theme-website-section-page>
