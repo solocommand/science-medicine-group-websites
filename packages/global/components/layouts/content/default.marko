@@ -62,6 +62,13 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
         </default-theme-page-dates>
       </else-if>
       <global-sponsored-section-logo alias=primarySection.alias modifiers=["content-page"] class="mt-3" />
+      <if(displaySocialShare)>
+        <marko-web-social-sharing
+          path=content.siteContext.path
+          providers=["print", "facebook", "linkedin", "twitter", "pinterest"]
+          print-path=`/print/content/${content.id}`
+        />
+      </if>
     </div>
   </@section>
 
