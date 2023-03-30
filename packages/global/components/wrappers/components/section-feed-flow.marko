@@ -1,0 +1,18 @@
+$ const { nodes } = input;
+
+$ const adName = input.adName || "rotation";
+
+<if(nodes && nodes.length)>
+  <theme-section-feed-flow ...input.flow nodes=nodes header=input.header modifiers=input.modifiers>
+    <@node-list inner-justified=false ...input.nodeList />
+    <@node with-dates=true with-section=false ...input.node />
+  </theme-section-feed-flow>
+  <if(input.withAds)>
+    <theme-gam-define-display-ad
+      name=adName
+      position="section_page"
+      aliases=input.aliases
+      modifiers=["inline-section-feed"]
+    />
+  </if>
+</if>
