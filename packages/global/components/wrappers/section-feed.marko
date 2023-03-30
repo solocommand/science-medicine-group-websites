@@ -1,150 +1,139 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
-import { getAsArray } from "@parameter1/base-cms-object-path";
+import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
 
-$ const { pagination: p } = out.global;
-$ const perPage = 12;
+$ const { pagination: p, req } = out.global;
+
 $ const withPagination = defaultValue(input.withPagination, true);
+$ const perPage = 12;
+$ const skip = p.skip({ perPage });
+
 $ const { modifiers } = input;
-$ const aliases = getAsArray(input, 'aliases');
+$ const path = input.path || input.alias || req.path;
 $ const withAds = defaultValue(input.withAds, true);
+$ const aboveTheFold = defaultValue(input.aboveTheFold, false);
+
+$ const queryName = input.queryName ? input.queryName : "website-scheduled-content";
 $ const queryParams = {
-  requiresImage: false,
+  queryFragment,
   ...input.queryParams,
+  ...(new Set(["website-scheduled-content", "website-optioned-content"]).has(queryName) && {
+    sectionAlias: input.alias,
+  }),
 };
 
-<if(input.rails && input.rails.length === 1)>
-  <div class="row">
-    <div class="col-lg-8">
-      <section-feed-block
-        alias=input.alias
-        header=input.header
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage })
-        node-list=input.nodeList
-        with-ads=withAds
-        aliases=aliases
-      />
-      <section-feed-block
-        alias=input.alias
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage, skip: 3 })
-        node-list=input.nodeList
-        with-ads=withAds
-        aliases=aliases
-      />
-      <section-feed-block
-        alias=input.alias
-        header=input.header
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage, skip: 6 })
-        node-list=input.nodeList
-        with-ads=withAds
-        aliases=aliases
-      />
-      <section-feed-block
-        alias=input.alias
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage, skip: 9 })
-        node-list=input.nodeList
-        aliases=aliases
-      />
-      <if(withPagination)>
-        <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
-          <@query-params ...queryParams />
-          <theme-pagination-controls
-            per-page=perPage
-            total-count=totalCount
-            path=input.alias
+$ const chunkLengths = [3, 3, 3, 3];
+$ const limit = chunkLengths.reduce((n, length) => (n + length), 0);
+$ const params = { ...queryParams, limit, skip };
+
+<marko-web-query|{ nodes }| name=queryName params=params>
+  $ const nodeGroups = chunkLengths.reduce((chunked, length, index) => {
+    const start = length * index;
+    const end = start + length;
+    chunked.push(nodes.slice(start, end));
+    return chunked;
+  }, []);
+
+  <if(input.rails && input.rails.length === 1)>
+    <div class="row">
+      <div class="col-lg-8">
+        <for|nodeGroup, index| of=nodeGroups>
+          $ const isLast = index === nodeGroups.length - 1;
+          $ const header = index === 0 ? input.header : null;
+          $ const adName = "rotation";
+          $ const flowInput = (index === 0 && aboveTheFold) ? { ...input.flow, lazyload: false } : input.flow;
+          <section-feed-flow
+            nodes=nodeGroup
+            header=header
+            modifiers=modifiers
+            node=input.node
+            node-list=input.nodeList
+            aliases=input.aliases
+            flow=flowInput
+            with-ads=withAds
+            ad-name=adName
           />
-        </theme-section-feed-block>
-      </if>
-    </div>
-    <div class="col-lg-4">
-      <${input.rails[0].renderBody} />
-    </div>
-  </div>
-</if>
-<else>
-  <div class="row">
-    <div class="col-lg-8">
-      <section-feed-block
-        alias=input.alias
-        header=input.header
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage })
-        node-list=input.nodeList
-        with-ads=withAds
-        aliases=aliases
-      />
-      <section-feed-block
-        alias=input.alias
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage, skip: 3 })
-        node-list=input.nodeList
-        with-ads=withAds
-        aliases=aliases
-      />
-    </div>
-    <div class="col-lg-4">
-      <if(input.rails && input.rails[0])>
+        </for>
+        <if(withPagination)>
+          <theme-section-feed-block|{ totalCount }| alias=input.alias query-name=queryName count-only=true>
+            <@query-params ...queryParams />
+            <theme-pagination-controls
+              per-page=limit
+              total-count=totalCount
+              path=path
+            />
+          </theme-section-feed-block>
+        </if>
+      </div>
+      <div class="col-lg-4">
         <${input.rails[0].renderBody} />
-      </if>
-      <else>
-        <global-most-popular-list-block class="sticky-top" />
-      </else>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-8">
-      <section-feed-block
-        alias=input.alias
-        header=input.header
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage, skip: 6 })
-        node-list=input.nodeList
-        with-ads=withAds
-        aliases=aliases
-      />
-      <section-feed-block
-        alias=input.alias
-        modifiers=modifiers
-        query-params=queryParams
-        limit=3
-        skip=p.skip({ perPage, skip: 9 })
-        node-list=input.nodeList
-        aliases=aliases
-      />
-      <if(withPagination)>
-        <theme-section-feed-block|{ totalCount }| alias=input.alias count-only=true>
-          <@query-params ...queryParams />
-          <theme-pagination-controls
-            per-page=perPage
-            total-count=totalCount
-            path=input.alias
+  </if>
+  <else>
+    $ const topNodeGroups = nodeGroups.slice(0, 2);
+    $ const bottomNodeGroups = nodeGroups.slice(2);
+    <div class="row">
+      <div class="col-lg-8">
+        <for|nodeGroup, index| of=topNodeGroups>
+          $ const header = index === 0 ? input.header : null;
+          $ const adName = "rotation";
+          $ const flowInput = (index === 0 && aboveTheFold) ? { ...input.flow, lazyload: false } : input.flow;
+          <section-feed-flow
+            nodes=nodeGroup
+            header=header
+            modifiers=modifiers
+            node=input.node
+            node-list=input.nodeList
+            aliases=input.aliases
+            with-ads=withAds
+            ad-name=adName
+            flow=flowInput
           />
-        </theme-section-feed-block>
-      </if>
+        </for>
+      </div>
+      <div class="col-lg-4">
+        <if(input.rails && input.rails[0])>
+          <${input.rails[0].renderBody} />
+        </if>
+        <else>
+          <theme-client-side-most-popular-list-block class="sticky-top" />
+        </else>
+      </div>
     </div>
-    <div class="col-lg-4">
-      <if(input.rails && input.rails[1])>
-        <${input.rails[1].renderBody} />
-      </if>
-      <else>
-      </else>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <for|nodeGroup, index| of=bottomNodeGroups>
+          $ const isLast = index === bottomNodeGroups.length - 1;
+          <section-feed-flow
+            nodes=nodeGroup
+            modifiers=modifiers
+            node=input.node
+            node-list=input.nodeList
+            aliases=input.aliases
+            with-ads=(!isLast && withAds)
+            flow=input.flow
+          />
+        </for>
+        <if(withPagination)>
+          <theme-section-feed-block|{ totalCount }| alias=input.alias query-name=queryName count-only=true>
+            <@query-params ...queryParams />
+            <theme-pagination-controls
+              per-page=limit
+              total-count=totalCount
+              path=path
+            />
+          </theme-section-feed-block>
+        </if>
+      </div>
+      <div class="col-lg-4">
+        <if(input.rails && input.rails[1])>
+          <${input.rails[1].renderBody} />
+        </if>
+        <else>
+          <!-- <theme-client-side-most-popular-list-block class="sticky-top" /> -->
+        </else>
+      </div>
     </div>
-  </div>
-</else>
+  </else>
+</marko-web-query>
