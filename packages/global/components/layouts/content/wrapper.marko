@@ -57,9 +57,9 @@ $ const alias = get(input, "primarySection.alias");
         <!-- <marko-web-gam-refresh-ad on="load-more-in-view" slot-id="gpt-ad-rail-infinite" /> -->
 
         <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
-          $ const section = content.primarySection;
+          $ const aliases = hierarchyAliases(content.primarySection);
           <marko-web-page-wrapper>
-            <@section|{ aliases }|>
+            <@section>
               <global-section-feed-wrapper aliases=aliases alias=content.primarySection.alias>
                 <@header>More in ${content.primarySection.name}</@header>
                 <@query-params excludeContentIds=[content.id] />

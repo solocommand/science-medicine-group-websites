@@ -2,6 +2,7 @@
   "taglib-imports": [],
   "<global-section-feed-wrapper>": {
     "template": "./section-feed.marko",
+    "<flow>": {},
     "@rails <rail>[]": {},
     "@after": {},
     "@with-pagination": "boolean",
@@ -10,7 +11,11 @@
     "@alias": "string",
     "@header": "string",
     "@aliases": "array",
+    "@query-name": "string",
     "@query-params": "object",
-    "@node-list": "object"
+    "@node": "object",
+    "@node-list": "object",
+    "@path": "string",
+    "@above-the-fold": "boolean"
   }
 }
