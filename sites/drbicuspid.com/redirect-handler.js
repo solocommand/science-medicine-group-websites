@@ -127,5 +127,10 @@ module.exports = ({ from, req }) => {
     };
   }
 
+  // Redirect old email links to homepage
+  if (sec === 'eba') {
+    return { to: '/' };
+  }
+
   return false;
 };
