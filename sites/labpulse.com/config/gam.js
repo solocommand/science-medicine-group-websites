@@ -18,7 +18,7 @@ config.setAliasAdUnits('default', [
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: 'rotation' },
   // Below based on enableRevealAd
-  // { name: 'reskin', path: 'reskin' },
+  { name: 'reskin', path: 'reskin' },
 ]);
 
 const aliases = [
