@@ -128,12 +128,13 @@ services:
       PORT: 80
       EXPOSED_PORT: 9953
       LIVERELOAD_PORT: 19953
-      AUTH0_BASEURL: http://www-smg-drb.dev.parameter1.com:9953
-      AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_DRB-}
       AUTH0_API_AUDIENCE_URL: ${AUTH0_API_AUDIENCE_URL_DRB-}
-      BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
+      AUTH0_BASEURL: http://www-smg-drb.dev.parameter1.com:9953
+      AUTH0_CLIENTID: ${AUTH0_CLIENTID_DRB}
+      AUTH0_ISSUER_BASEURL: ${AUTH0_ISSUER_BASEURL_DRB-}
       AUTH0_SECRET: ${AUTH0_CLIENT_SECRET_DRB}
       AUTH0_TENANT: ${AUTH0_CLIENT_TENANT_DRB}
+      BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
       WPICLE_ENABLED: ${WPICLE_ENABLED_DRB-false}
     hostname: www-smg-drb.dev.parameter1.com
     ports:
