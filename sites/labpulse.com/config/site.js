@@ -83,5 +83,4 @@ module.exports = {
     logo: 'https://img.labpulse.com/files/base/smg/all/image/static/lab/lab-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
-  setSearchSortFieldToScore: true,
 };

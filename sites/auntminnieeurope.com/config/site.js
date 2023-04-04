@@ -65,5 +65,4 @@ module.exports = {
     logo: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/ame-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
-  setSearchSortFieldToScore: true,
 };

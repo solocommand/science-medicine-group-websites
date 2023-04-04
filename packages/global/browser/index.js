@@ -28,4 +28,9 @@ export default (Browser) => {
 
   // Rudderstack identification
   Browser.register('Rudderstack', Rudderstack, { provide: { EventBus } });
+
+  EventBus.$on('identity-x-change-email-link-sent', () => {
+    // "reload" the page to update user state
+    window.location.search = 'sent=true';
+  });
 };
