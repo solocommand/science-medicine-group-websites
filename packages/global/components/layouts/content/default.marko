@@ -1,20 +1,17 @@
 import { getAsArray, get } from "@parameter1/base-cms-object-path";
 import contentIframe from "@science-medicine-group/package-global/utils/content-iframe";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
-
-import { cmShowOverlay, cmRestrictContentByReg, cmTruncateBody } from "../../../utils/content-meter-helpers";
+import { shouldOverlay, restrictContentByReg, shouldTruncate } from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-meter-helpers";
 import between from "../../../utils/between";
 
 $ const {
+  site,
   contentGatingHandler,
   contentMeterState,
-  req,
-  res,
-  site,
 } = out.global;
 
 $ const newsletterConfig = site.getAsObject('newsletter.signupBanner');
-$ const showOverlay = cmShowOverlay(contentMeterState);
+$ const showOverlay = shouldOverlay(contentMeterState);
 
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
@@ -102,13 +99,13 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
               </marko-web-link>
             </if>
 
-            $ const [enabled, accessLevels] = contentGatingHandler({ content, req, res });
-            $ const requiresRegistration = enabled || cmRestrictContentByReg(contentMeterState, content);
+            $ const requiresRegistration = restrictContentByReg(contentMeterState, contentGatingHandler, content);
+            $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
             <marko-web-identity-x-access|context|
               enabled=requiresRegistration
               required-access-level-ids=accessLevels
             >
-              <if(cmTruncateBody(contentMeterState))>
+              <if(shouldTruncate(contentMeterState))>
                 $ const body = showOverlay ? getContentPreview({ body: content.body, selector: "p:lt(3)" }) : getContentPreview({ body: content.body, selector: "p:nth-of-type(1)" });
                 <marko-web-content-body block-name=blockName obj={ body } >
                   <@embed-options lazyloadImages=false/>
@@ -129,6 +126,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                     profile-event-name="content_meter_profile"
                   />
                 </if>
+                <marko-web-content-body block-name=blockName attrs={ style: "display: none;" } obj=content modifiers=["ld-json"] />
               </if>
               <else-if(!context.canAccess || context.requiresUserInput)>
                 $ const body = getContentPreview({ body: content.body, selector: "p:lt(3)" });
@@ -145,6 +143,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                   messages=context.messages
                   content-gate-type="default"
                 />
+                <marko-web-content-body block-name=blockName attrs={ style: "display: none;" } obj=content modifiers=["ld-json"] />
               </else-if>
               <else>
 
