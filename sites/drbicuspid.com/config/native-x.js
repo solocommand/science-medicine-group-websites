@@ -7,11 +7,17 @@ config.enabled = process.env.ENABLE_NATIVE_X === 'true';
 config
   .setAliasPlacements('default', [
     { name: 'default', id: '62fce264ffb1230001dca87e' },
-  ]);
-
-config
+    // probably need to set this up!
+    { name: 'related-content', id: '62fce264ffb1230001dca87e' },
+  ])
   .setAliasPlacements('cases', [
     { name: 'cases', id: '6400e1b493fb8e0001c3a6fb' },
+  ])
+  .setAliasPlacements('dental-specialties/endodontics', [
+    { name: 'related-content', id: '6435a1eab91bf50001e2c27b' },
+  ])
+  .setAliasPlacements('dental-specialties/smile-design', [
+    { name: 'related-content', id: '6435a2049eb1640001e88aef' },
   ]);
 
 module.exports = config;
