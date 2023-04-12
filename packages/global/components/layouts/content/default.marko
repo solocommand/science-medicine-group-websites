@@ -239,19 +239,21 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
           query-params={ excludeContentTypes, excludeContentIds: [content.id] }
           class="sticky-top"
         >
-          <@native-x index=between(1,2) name="default" aliases=aliases />
+          <@native-x index=between(1,2) name="related-content" aliases=aliases />
         </theme-latest-content-list-block>
       </div>
     </div>
   </@section>
 
-  <@section|{ content }|>
+  <@section|{ aliases, content }|>
     <theme-related-stories-block
       content-id=content.id
       section-id=content.primarySection.id
       published=content.published
       with-native-x=true
-    />
+    >
+      <@native-x index=3 name="related-content" aliases=aliases />
+    </theme-related-stories-block>
   </@section>
 
   <!-- <@section|{ aliases }|>
