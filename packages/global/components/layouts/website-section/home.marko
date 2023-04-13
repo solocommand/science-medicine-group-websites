@@ -7,6 +7,15 @@ import between from "../../../utils/between";
 import websiteSectionContentLoader from "../../../loaders/website-section-content";
 
 $ const { config, site } = out.global;
+$ const icleHostname = site.get('wpIcle.hostname');
+$ const resolvedToNodesConverter = ({ resolved }) => (resolved.map((node) => ({
+  id: node.ID,
+  type: 'Case',
+  shortName: node.name,
+  teaser: node.description,
+  siteContext: { path: `https://${icleHostname}/cases/${node.url}?VerifyLogin=1` },
+  primaryImage: { src: node.imagepath }
+})));
 
 $ const loader = getAsObject(input, "loader");
 $ const { id, alias, name, pageNode } = input;
@@ -134,6 +143,18 @@ $ const promise = websiteSectionContentLoader(apollo, {
                 </div>
               </div>
             </@section>
+            <if(site.get('wpIcle.enabled'))>
+              <@section>
+                <global-external-api-block
+                  api-url=`https://${icleHostname}/wp-json/mo/v1/getCase/3`
+                  resolved-to-nodes-converter=resolvedToNodesConverter
+                  name="Case of the Week"
+                  description="Check out our Case of the Week!"
+                  button={ link: `https://${icleHostname}/cases?VerifyLogin=1`, text: "View All Cases" }
+                  native-x={ placementName: 'cases', placementAliases: ['cases'] }
+                />
+              </@section>
+            </if>
             <for|s| of=sections>
               <@section|{ blockName, section, aliases }| modifiers=s.modifiers>
                 <${s.renderBody}
