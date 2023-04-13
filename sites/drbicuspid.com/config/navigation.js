@@ -1,5 +1,6 @@
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
+const icleCfg = require('./wp-icle');
 
 const dentalPractice = [
   { href: '/dental-practice/dental-assistant', label: 'Dental Assistant' },
@@ -45,8 +46,10 @@ const topics = [
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
-  { href: 'https://my.drbicuspid.com/cases?VerifyLogin=1', label: 'Cases' },
-  { href: 'https://my.drbicuspid.com/jobs?VerifyLogin=1', label: 'Jobs' },
+  ...(icleCfg.enabled ? [
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+  ] : []),
 ];
 
 const resources = [

@@ -1,5 +1,6 @@
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
+const icleCfg = require('./wp-icle');
 
 const businessInsights = [
   // { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
@@ -48,6 +49,10 @@ const topics = [
   { href: '/diseases', label: 'Diseases', children: diseases },
   { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
   { href: '/research-and-development', label: 'Research & Development', children: researchDevelopment },
+  ...(icleCfg.enabled ? [
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+  ] : []),
 ];
 
 const mobileMenu = {

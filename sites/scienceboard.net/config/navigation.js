@@ -1,4 +1,5 @@
 const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
+const icleCfg = require('./wp-icle');
 
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
@@ -11,6 +12,10 @@ const topics = [
   { href: '/gene-and-cell-therapy', label: 'Gene and Cell Therapy' },
   { href: '/immunonology', label: 'Immunology' },
   { href: '/omics', label: 'OMICs' },
+  ...(icleCfg.enabled ? [
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+  ] : []),
 ];
 
 const secondary = [

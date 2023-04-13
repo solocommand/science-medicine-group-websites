@@ -1,4 +1,5 @@
 const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
+const icleCfg = require('./wp-icle');
 
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
@@ -9,6 +10,10 @@ const topics = [
   { href: '/ct', label: 'CT' },
   { href: '/digital-x-ray', label: 'Digital X-Ray' },
   { href: '/enterprise-imaging', label: 'Enterprise Imaging' },
+  ...(icleCfg.enabled ? [
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+  ] : []),
 ];
 
 const secondary = [
