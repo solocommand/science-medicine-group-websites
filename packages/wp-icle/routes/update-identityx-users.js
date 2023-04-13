@@ -181,7 +181,8 @@ module.exports = (app) => {
         return map;
       }, new Map());
 
-      const response = await fetch(config.endpoint, {
+      const endpoint = `https://${config.hostname}/api/identity-x/user`;
+      const response = await fetch(endpoint, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
