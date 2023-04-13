@@ -5,7 +5,7 @@ module.exports = (app, params = {}) => {
   const config = validate(Joi.object({
     enabled: Joi.bool().default(true),
     // Wordpress API details
-    endpoint: Joi.string().uri().required().description('The Wordpress ICLE API URI.'),
+    hostname: Joi.string().hostname().required().description('The Wordpress ICLE hostname'),
     apiKey: Joi.string().required().description('The Wordpress ICLE hook api key.'),
     // AWS API details
     queueUrl: Joi.string().uri().required().description('The SQS queue to push new events to'),

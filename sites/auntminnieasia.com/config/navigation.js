@@ -1,4 +1,5 @@
 const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
+const icleCfg = require('./wp-icle');
 
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
@@ -9,6 +10,10 @@ const topics = [
   { href: '#', label: 'Topic 3' },
   { href: '#', label: 'Topic 4' },
   { href: '#', label: 'Topic 5' },
+  ...(icleCfg.enabled ? [
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+  ] : []),
 ];
 
 const secondary = [
@@ -36,7 +41,40 @@ module.exports = {
     },
   ],
   user: {
-    items: [],
+    items: [
+      {
+        href: '/login',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      {
+        href: '/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
+    tools: [
+      {
+        href: '/login',
+        label: 'Sign In',
+        when: 'logged-out',
+        modifiers: ['user'],
+      },
+      {
+        href: '/user/profile',
+        label: 'Modify profile',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+      {
+        href: '/logout',
+        label: 'Sign Out',
+        when: 'logged-in',
+        modifiers: ['user'],
+      },
+    ],
   },
   mobileMenu,
   topics,

@@ -1,7 +1,9 @@
 module.exports = {
   baseURL: process.env.AUTH0_BASEURL,
-  clientID: process.env.AUTH0_CLIENTID || 'vQCESj6ejmyuZTQWEHAzVB2yecXbdwZ4',
+  clientID: process.env.AUTH0_CLIENTID || 'R6i2w5IVkZrff3CX9Xt3c6ZRBxJYRjX1',
   clientSecret: process.env.AUTH0_SECRET,
-  issuerBaseURL: process.env.AUTH0_ISSUER_BASEURL || 'https://dev-scienceandmedicinegroup.us.auth0.com',
-  tenant: process.env.AUTH0_TENANT || 'dev-scienceandmedicinegroup',
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASEURL || 'https://login.auntminnie.com',
+  tenant: process.env.AUTH0_TENANT || 'auntminnie',
+  // Set Audience URL for Management API due to custom issuer domain
+  apiAudienceURL: process.env.AUTH0_API_AUDIENCE_URL || 'https://auntminnie.us.auth0.com',
 };
