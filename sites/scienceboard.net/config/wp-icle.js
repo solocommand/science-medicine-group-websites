@@ -10,4 +10,5 @@ module.exports = {
   // AWS credentials to push to queue
   accessKey: process.env.WPICLE_AWS_ACCESS_KEY_ID,
   secretKey: process.env.WPICLE_AWS_SECRET_ACCESS_KEY,
+  hostname: process.env.WPICLE_HOSTNAME || 'my.scienceboard.net',
 };
