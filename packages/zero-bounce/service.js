@@ -51,9 +51,9 @@ class ZeroBounce {
     const params = new URLSearchParams({
       api_key: this.apiKey,
       email: encodeURIComponent(email),
-      ip_address: ipAddress || '',
+      ...(ipAddress && { ip_address: ipAddress }),
     });
-    const endpoint = `/v2/validate?${params}`;
+    const endpoint = `v2/validate?${params}`;
     return this.request(endpoint);
   }
 
