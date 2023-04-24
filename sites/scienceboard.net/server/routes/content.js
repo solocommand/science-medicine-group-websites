@@ -1,5 +1,5 @@
 const withContent = require('@science-medicine-group/package-global/middleware/with-content');
-const contentMeter = require('@science-medicine-group/package-global/middleware/content-meter');
+const contentMetering = require('@parameter1/base-cms-marko-web-theme-monorail/middleware/content-metering');
 const queryFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
 const contact = require('@science-medicine-group/package-global/templates/content/contact');
 const { newsletterState, formatContentResponse } = require('@science-medicine-group/package-global/middleware/newsletter-state');
@@ -29,31 +29,34 @@ const routesList = [
     template: whitepaper,
     queryFragment,
   },
-  { // default
-    regex: '/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)*',
-    template: content,
-    queryFragment,
-    withContentMeter: true,
-  },
 ];
 
 module.exports = (app) => {
   const { site } = app.locals;
-  const contentMeterEnable = site.get('contentMeter.enable');
-  // determin to use newsletterstate or contentMeter middleware
+
+  // Unmetered
   routesList.forEach((route) => {
-    if (route.withContentMeter && contentMeterEnable) {
-      app.get(route.regex, newsletterState({ setCookie: false }), contentMeter(), withContent({
+    app.get(
+      route.regex,
+      newsletterState({ setCookie: false }),
+      withContent({
         template: route.template,
         queryFragment: route.queryFragment,
         formatResponse: formatContentResponse,
-      }));
-    } else {
-      app.get(route.regex, newsletterState({ setCookie: false }), withContent({
-        template: route.template,
-        queryFragment: route.queryFragment,
-        formatResponse: formatContentResponse,
-      }));
-    }
+      }),
+    );
   });
+
+  // Metered
+  const config = site.getAsObject('contentMeter');
+  app.get(
+    '/*?/:id(\\d{8})/*|/:id(\\d{8})(/|$)*',
+    newsletterState({ setCookie: false }),
+    contentMetering(config),
+    withContent({
+      template: content,
+      queryFragment,
+      formatResponse: formatContentResponse,
+    }),
+  );
 };

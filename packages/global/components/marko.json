@@ -41,9 +41,6 @@
   "<global-site-footer>": {
     "template": "./site-footer.marko"
   },
-  "<global-content-meter-track>": {
-    "template": "./content-meter-track.marko"
-  },
   "<global-rudderstack>": {
     "template": "./rudderstack.marko",
     "@active-user": {
