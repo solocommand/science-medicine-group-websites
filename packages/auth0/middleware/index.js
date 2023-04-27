@@ -45,10 +45,9 @@ module.exports = (app, params = {}) => {
   }));
 
   // Attempt silent login when query parameter is present
-  app.use((req, _, next) => {
+  app.use((req, res, next) => {
     if (!req.query.VerifyLogin) return next();
-    app.use(attemptSilentLogin);
-    return next();
+    return attemptSilentLogin()(req, res, next);
   });
 
   // Enforce user logout/notice when email is unconfirmed.
