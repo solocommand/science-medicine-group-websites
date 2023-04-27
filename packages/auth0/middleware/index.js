@@ -1,7 +1,6 @@
 const debug = require('debug')('auth0');
 const { json } = require('express');
 const { auth, attemptSilentLogin } = require('express-openid-connect');
-const COOKIES = require('express-openid-connect/lib/cookies');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
