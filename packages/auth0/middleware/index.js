@@ -1,6 +1,7 @@
 const debug = require('debug')('auth0');
 const { json } = require('express');
 const { auth, attemptSilentLogin } = require('express-openid-connect');
+const COOKIES = require('express-openid-connect/lib/cookies');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
@@ -45,10 +46,12 @@ module.exports = (app, params = {}) => {
   }));
 
   // Attempt silent login when query parameter is present
-  app.use((req, _, next) => {
+  app.use((req, res, next) => {
     if (!req.query.VerifyLogin) return next();
-    app.use(attemptSilentLogin);
-    return next();
+    // Remove cookie from request before attempting SSO
+    delete req.cookies.skipSilentLogin;
+    delete req[COOKIES].skipSilentLogin;
+    return attemptSilentLogin()(req, res, next);
   });
 
   // Enforce user logout/notice when email is unconfirmed.
