@@ -56,18 +56,6 @@ module.exports = (options = {}) => {
       if (typeof onStart === 'function') await onStart(app);
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
 
-      // Attempt automatic login if `VerifyLogin` query parameter is present.
-      app.use((req, res, next) => {
-        if (!req.query.VerifyLogin) {
-          next();
-          return;
-        }
-
-        const url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
-        url.searchParams.delete('VerifyLogin');
-        res.redirect(`/login?returnTo=${url}`);
-      });
-
       // MaxMind GeoIP setup
       app.use(maxmindGeoIP);
 
