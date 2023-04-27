@@ -48,9 +48,10 @@ module.exports = (app, params = {}) => {
   // Attempt silent login when query parameter is present
   app.use((req, res, next) => {
     if (!req.query.VerifyLogin) return next();
-    // Remove cookie from request before attempting SSO
-    delete req.cookies.skipSilentLogin;
-    delete req[COOKIES].skipSilentLogin;
+    // If the SSO cookie was detected, force it to expire in 1 minute
+    if (req.cookies.skipSilentLogin) {
+      res.cookie('skipSilentLogin', true, { httpOnly: true, maxAge: 60000 });
+    }
     return attemptSilentLogin()(req, res, next);
   });
 
