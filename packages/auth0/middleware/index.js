@@ -1,6 +1,6 @@
 const debug = require('debug')('auth0');
 const { json } = require('express');
-const { auth } = require('express-openid-connect');
+const { auth, attemptSilentLogin } = require('express-openid-connect');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
@@ -43,6 +43,13 @@ module.exports = (app, params = {}) => {
     routes,
     secret,
   }));
+
+  // Attempt silent login when query parameter is present
+  app.use((req, _, next) => {
+    if (!req.query.VerifyLogin) return next();
+    app.use(attemptSilentLogin);
+    return next();
+  });
 
   // Enforce user logout/notice when email is unconfirmed.
   app.use(asyncRoute(async (req, res, next) => {
