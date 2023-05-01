@@ -18,6 +18,16 @@ config
   ])
   .setAliasPlacements('dental-specialties/smile-design', [
     { name: 'related-content', id: '6435a2049eb1640001e88aef' },
+  ])
+  .setAliasPlacements([
+    'digital-dentistry/imaging-cad-cam/cameras',
+    'digital-dentistry/imaging-cad-cam/imaging-systems',
+    'digital-dentistry/imaging-cad-cam/cbct',
+    'digital-dentistry/imaging-cad-cam/x-ray',
+    'digital-dentistry/imaging-cad-cam-/intraoral-scanners',
+    'digital-dentistry/imaging-cad-cam-/cad-cam',
+    'digital-dentistry/imaging-cad-cam/3d-printing'], [
+    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ]);
 
 module.exports = config;
