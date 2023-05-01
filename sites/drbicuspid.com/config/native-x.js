@@ -19,25 +19,7 @@ config
   .setAliasPlacements('dental-specialties/smile-design', [
     { name: 'related-content', id: '6435a2049eb1640001e88aef' },
   ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/cameras', [
-    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
-  ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/imaging-systems', [
-    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
-  ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/cbct', [
-    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
-  ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/x-ray', [
-    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
-  ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/intraoral-scanners', [
-    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
-  ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/cad-cam', [
-    { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
-  ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam/3d-printing', [
+  .setAliasPlacements('digital-dentistry/imaging-cad-cam', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ]);
 
