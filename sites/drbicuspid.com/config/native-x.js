@@ -31,10 +31,10 @@ config
   .setAliasPlacements('digital-dentistry/imaging-cad-cam/x-ray', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam-/intraoral-scanners', [
+  .setAliasPlacements('digital-dentistry/imaging-cad-cam/intraoral-scanners', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam-/cad-cam', [
+  .setAliasPlacements('digital-dentistry/imaging-cad-cam/cad-cam', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ])
   .setAliasPlacements('digital-dentistry/imaging-cad-cam/3d-printing', [
