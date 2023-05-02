@@ -49,7 +49,7 @@ module.exports = (app, params = {}) => {
     if (!req.query.VerifyLogin) return next();
     // If the SSO cookie was detected, force it to expire in 1 minute
     if (req.cookies.skipSilentLogin) {
-      res.cookie('skipSilentLogin', true, { httpOnly: true, maxAge: 60000 });
+      res.cookie('skipSilentLogin', true, { httpOnly: true, maxAge: 10000 });
     }
     return attemptSilentLogin()(req, res, next);
   });
