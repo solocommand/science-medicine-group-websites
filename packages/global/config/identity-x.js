@@ -15,7 +15,6 @@ module.exports = ({
     'familyName',
     'organization',
     'city',
-    'regionCode',
     'countryCode',
   ],
   requiredClientFields = [
