@@ -21,6 +21,9 @@ config
   ])
   .setAliasPlacements('digital-dentistry/imaging-cad-cam', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
+  ])
+  .setAliasPlacements('dental-hygiene', [
+    { name: 'related-content', id: '6455380ee248aa0001d4f458' },
   ]);
 
 module.exports = config;
