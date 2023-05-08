@@ -208,23 +208,32 @@
 /*! critical:end */
 
 // skin components
+/*! critical:start|website-section */
 @import "./components/section-feed-upcoming";
+/*! critical:end */
+/*! critical:start|content */
 @import "./components/content-meter";
+/*! critical:start|end */
+/*! critical:start|website-section.directory */
 @import "./components/directory-section-feed";
+/*! critical:end */
 @import "./components/newsletter-pushdown";
 @import "./components/site-footer";
+/*! critical:start */
 @import "./components/site-menu";
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
 @import "./components/user";
+/*! critical:end */
 @import "./components/external-api";
 
+/*! critical:start */
 body {
   -webkit-font-smoothing: antialiased;
   // set a default letter spacing of .25px, since most fonts have some form of spacing
   letter-spacing: .25px;
 }
-
+/*! critical:end */
 label {
   @include skin-typography($style: "input-label");
 }
