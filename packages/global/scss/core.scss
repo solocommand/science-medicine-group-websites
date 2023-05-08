@@ -221,7 +221,9 @@
 @import "./components/site-navbar-c";
 @import "./components/user";
 /*! critical:end */
+/*! critical:start|home */
 @import "./components/external-api";
+/*! critical:end */
 
 /*! critical:start */
 body {
