@@ -85,8 +85,8 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/breadcrumbs";
 /*! critical:end */
 
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/comments";
 /*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/comments";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/content-page";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/embedded-media";
 /*! critical:end */
@@ -140,7 +140,6 @@
 
 // 6. selectively import theme _block_ items. mark as critical when necessary
 // @todo VERIFY ALL OF THESE - were all being included by monorail
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/callout-cards";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/content-card-deck";
 /*! critical:start|content.company */
 /*! critical:start|content.product */
@@ -152,10 +151,6 @@
 /*! critical:start|content */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-content-list";
 /*! critical:end */
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-podcast";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-products-feed";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/more-products";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/most-popular";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner";
 /*! critical:start|home */
 /*! critical:start|website-section */
@@ -163,17 +158,13 @@
 /*! critical:end */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-site-footer";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/node-author";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/opinion";
 /*! critical:start|content.whitepaper */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/primary-image";
 /*! critical:end */
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/products";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/promo-card";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/read-next";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/related-native-x-stories";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/related-stories";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-card-deck-featured";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-card-list";
 /*! critical:start|website-section */
 /*! critical:start|search */
 /*! critical:start|content.contact */
@@ -192,7 +183,6 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/column-list";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/featured";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/hero";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/incremented-nodes";
 
 // 8. everything else...
 
