@@ -129,6 +129,7 @@
 /*! critical:start */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/site-header";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/site-menu";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/site-newsletter-menu";
 /*! critical:end */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/social-icons";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/sponsor-logo";
@@ -189,7 +190,6 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/top-stories";
 /*! critical:end */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/top-stories-menu";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/white-papers";
 
 // 7. selectively import theme _flow_ items. mark as critical when necessary
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/card-deck";
@@ -199,13 +199,6 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/incremented-nodes";
 
 // 8. everything else...
-
-// package component css inclusions
-/*! critical:start|website-section.directory */
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
-/*! critical:end */
 
 // skin components
 /*! critical:start|website-section */
@@ -217,7 +210,9 @@
 /*! critical:start|website-section.directory */
 @import "./components/directory-section-feed";
 /*! critical:end */
+/*! critical:start */
 @import "./components/newsletter-pushdown";
+/*! critical:end */
 @import "./components/site-footer";
 /*! critical:start */
 @import "./components/site-menu";
@@ -234,6 +229,8 @@ body {
   letter-spacing: .25px;
 }
 /*! critical:end */
+
+/*! critical:start */
 label {
   @include skin-typography($style: "input-label");
 }
@@ -260,6 +257,7 @@ label {
     }
   }
 }
+/*! critical:end */
 
 .custom-control-label {
   &::before {
@@ -272,6 +270,7 @@ label {
   }
 }
 
+/*! critical:start */
 .btn-primary {
   @include skin-button($style: "primary");
 }
@@ -279,15 +278,17 @@ label {
 .btn-secondary {
   @include skin-button($style: "secondary");
 }
+/*! critical:end */
 
 .btn-light {
   @include skin-button($style: "light");
 }
 
+/*! critical:start */
 .document-container {
   padding-top: 0;
 }
-
+/*! critical:end */
 .node {
   $self: &;
   $image-border: 1px solid rgba(239, 239, 239, .9);
@@ -436,6 +437,7 @@ label {
   }
 }
 
+/*! critical:start */
 .ad-container {
   $self: &;
 
@@ -499,6 +501,7 @@ label {
     }
   }
 }
+/*! critical:end */
 
 .site-footer {
   &__corporate-logo {
@@ -506,6 +509,7 @@ label {
   }
 }
 
+/*! critical:start|content */
 // Begin right rail content layout CSS
 .content-page-body {
   padding-top: 12px;
@@ -560,7 +564,9 @@ label {
   }
 }
 // End right rail content layout CSS
+/*! critical:end */
 
+/*! critical:start */
 // page & block title
 .page--load-more .node-list,
 .top-stories,
@@ -646,7 +652,9 @@ label {
     font-size: 1rem;
   }
 }
+/*! critical:end */
 
+/*! critical:start */
 // Prevent Reveal Ad from causing CLS
 // @TODO determin if this should be moved to @parameter1/base-cms-marko-web
 #marko-web-reveal-ad-handler {
@@ -655,7 +663,9 @@ label {
 .reveal-ad {
   height: 298px;
 }
+/*! critical:end */
 
+/*! critical:start */
 .site-menu {
   $self: &;
   top: $theme-site-navbar-logo-height-sm;
@@ -691,6 +701,8 @@ label {
     }
   }
 }
+/*! critical:end */
+
 .page {
   &--content-event {
     .page-dates {
