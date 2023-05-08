@@ -1,18 +1,211 @@
-// import local variables
+// 1. import local variables
 @import "variables";
 
-// import theme css
-@import "@parameter1/base-cms-marko-web-theme-monorail/scss/core";
-// Bottom Sticky Leader Board
-@import "@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
-// Reveal Ad CSS
-// @import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
-// @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
+// 2. theme FVMs.
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/functions";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/variables";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/mixins";
+
+// 2.1. theme mixins
+// @import "mixins";
+
+// 3. selectively import bootstrap. mark as critical when necessary–
+/*! critical:start */
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+/*! critical:end */
+/*! critical:start|user */
+/*! critical:start|content.product */
+/*! critical:start|content.company */
+@import "bootstrap/scss/custom-forms";
+/*! critical:end */
+/*! critical:start|website-section */
+/*! critical:start|search */
+/*! critical:start|user */
+/*! critical:start|content.product */
+/*! critical:start|content.company */
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/input-group";
+@import "bootstrap/scss/tables";
+/*! critical:start|user */
+/*! critical:start|error */
+/*! critical:start|website-section.directory */
+/*! critical:start|subscribe */
+/*! critical:start|content */
+@import "bootstrap/scss/breadcrumb";
+/*! critical:end */
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+
+// 4. selectively import core items. mark as critical when necessary
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web/scss/document";
+@import "@parameter1/base-cms-marko-web/scss/node";
+@import "@parameter1/base-cms-marko-web/scss/node-list";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web/scss/load-more"; // @todo verify this is used
+@import "@parameter1/base-cms-marko-web/scss/page-image"; // @todo verify this is used
+@import "@parameter1/base-cms-marko-web/scss/carousel"; // @todo verify this is used
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-icons/scss/icons";
+/*! critical:end */
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-social-sharing/scss/buttons";
+/*! critical:end */
+/*! critical:start|site-map */
+@import "@parameter1/base-cms-marko-web-html-sitemap/scss/index";
+/*! critical:end */
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom"; // bottom sticky leader board
+/*! critical:end */
+
+// 5. selectively import theme items. mark as critical when necessary
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/default-theme/site-navbar"; // load navbar from default theme first... allows for alternate monorail navbars to override these defaults
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/ad-container";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/author-node";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/author-bio-node";
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/author-published-node";
+/*! critical:end */
+/*! critical:start|user */
+/*! critical:start|error */
+/*! critical:start|website-section.directory */
+/*! critical:start|subscribe */
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/breadcrumbs";
+/*! critical:end */
+
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/comments";
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/content-page";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/embedded-media";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/identity-x";
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/lazyload";
+/*! critical:end */
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/node";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/node-list";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page";
+/*! critical:end */
+
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page-attribution";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page-contact-details";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page-dates";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page-image";
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page-rail";
+/*! critical:end */
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/page-wrapper";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/pagination-controls";
+/*! critical:start|search */
+/*! critical:start|website-section.directory */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/search-page";
+/*! critical:end */
+
+/*! critical:start|user */
+/*! critical:start|error */
+/*! critical:start|subscribe */
+/*! critical:start|content.webinar */
+/*! critical:start|site-map */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/site-footer";
+/*! critical:end */
+
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/site-header";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/site-menu";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/social-icons";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/sponsor-logo";
+/*! critical:start|content */
+/*! critical:start|website-section */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/sticky-top";
+/*! critical:end */
+
+// 6. selectively import theme _block_ items. mark as critical when necessary
+// @todo VERIFY ALL OF THESE - were all being included by monorail
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/callout-cards";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/content-card-deck";
+/*! critical:start|content.company */
+/*! critical:start|content.product */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-inquiry-form";
+/*! critical:end */
+
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/hero-card";
+/*! critical:start|home */
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-content-list";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-podcast";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-products-feed";
+/*! critical:start|magazine */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/magazine-publication-card";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/more-products";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/most-popular";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner";
+/*! critical:start|home */
+/*! critical:start|website-section */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner-large";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-site-footer";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/node-author";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/opinion";
+/*! critical:start|content.whitepaper */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/primary-image";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/products";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/promo-card";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/read-next";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/related-native-x-stories";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/related-stories";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-card-deck-featured";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-card-list";
+/*! critical:start|website-section */
+/*! critical:start|search */
+/*! critical:start|content.contact */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-feed";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-list";
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/social-follow";
+/*! critical:end */
+/*! critical:start|home */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/top-stories";
+/*! critical:end */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/top-stories-menu";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/white-papers";
+
+// 7. selectively import theme _flow_ items. mark as critical when necessary
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/card-deck";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/column-list";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/featured";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/hero";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/incremented-nodes";
+
+// 8. everything else...
 
 // package component css inclusions
+/*! critical:start|website-section.directory */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
+/*! critical:end */
 
 // skin components
 @import "./components/section-feed-upcoming";
