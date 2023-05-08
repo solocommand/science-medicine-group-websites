@@ -12,8 +12,8 @@
     "test": "yarn lint && yarn compile --no-clean"
   },
   "dependencies": {
-    "@parameter1/base-cms-marko-web": "^4.8.0",
-    "@parameter1/base-cms-marko-web-identity-x": "^4.5.12",
+    "@parameter1/base-cms-marko-web": "^4.16.0",
+    "@parameter1/base-cms-marko-web-identity-x": "^4.21.0",
     "@parameter1/base-cms-object-path": "^4.5.12",
     "@parameter1/base-cms-utils": "^4.5.12",
     "@parameter1/joi": "^1.2.10",
