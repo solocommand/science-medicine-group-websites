@@ -1,10 +1,13 @@
 import { buildImgixUrl } from "@parameter1/base-cms-image";
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
+import { getAsObject } from "@parameter1/base-cms-object-path";
 
 $ const { id, type, pageNode } = data;
 
 $ const { pagination: p, req } = out.global;
 $ const perPage = 10;
+
+$ const content = getAsObject(input, "obj");
 
 <global-content-wrapper-layout
   id=id
@@ -41,6 +44,10 @@ $ const perPage = 10;
             class=`${blockName}__image`
           />
         </if>
+
+        <global-content-contact-details-section block-name=blockName>
+          <marko-web-content-public-email block-name=blockName obj=content link=true/>
+        </global-content-contact-details-section>
 
         <default-theme-page-contents|{ blockName }| modifiers=["contact"]>
           <marko-web-content-body block-name=blockName obj=content />
