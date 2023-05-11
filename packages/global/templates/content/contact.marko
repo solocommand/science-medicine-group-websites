@@ -42,6 +42,10 @@ $ const perPage = 10;
           />
         </if>
 
+        <global-content-contact-details-section block-name=blockName>
+          <marko-web-content-public-email block-name=blockName obj=content link=true/>
+        </global-content-contact-details-section>
+
         <default-theme-page-contents|{ blockName }| modifiers=["contact"]>
           <marko-web-content-body block-name=blockName obj=content />
         </default-theme-page-contents>
