@@ -7,7 +7,6 @@ config.enabled = process.env.ENABLE_NATIVE_X === 'true';
 config
   .setAliasPlacements('default', [
     { name: 'default', id: '62fce264ffb1230001dca87e' },
-    // probably need to set this up!
     { name: 'related-content', id: '62fce264ffb1230001dca87e' },
   ])
   .setAliasPlacements('cases', [
