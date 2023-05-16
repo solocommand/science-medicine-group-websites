@@ -47,8 +47,10 @@ const topics = [
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
   ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
-    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs', when: 'logged-in' },
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=0`, label: 'Jobs', when: 'logged-out' },
   ] : []),
 ];
 

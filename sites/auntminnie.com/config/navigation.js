@@ -11,8 +11,10 @@ const topics = [
   { href: '/digital-x-ray', label: 'Digital X-Ray' },
   { href: '/enterprise-imaging', label: 'Enterprise Imaging' },
   ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases' },
-    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs' },
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs', when: 'logged-in' },
+    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
+    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=0`, label: 'Jobs', when: 'logged-out' },
   ] : []),
 ];
 
