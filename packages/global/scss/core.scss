@@ -34,6 +34,7 @@
 @import "bootstrap/scss/images";
 @import "bootstrap/scss/input-group";
 @import "bootstrap/scss/tables";
+/*! critical:end */
 /*! critical:start|user */
 /*! critical:start|error */
 /*! critical:start|website-section.directory */
@@ -90,10 +91,15 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/content-page";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/embedded-media";
 /*! critical:end */
+/*! critical:start|user */
+/*! critical:start|content.product */
+/*! critical:start|content.company */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/identity-x";
+/*! critical:end */
 /*! critical:start */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/lazyload";
 /*! critical:end */
+
 /*! critical:start */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/node";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/node-list";
@@ -140,55 +146,40 @@
 
 // 6. selectively import theme _block_ items. mark as critical when necessary
 // @todo VERIFY ALL OF THESE - were all being included by monorail
-
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/content-card-deck";
-
 /*! critical:start|content.company */
 /*! critical:start|content.product */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-inquiry-form";
 /*! critical:end */
 
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/hero-card";
-
 /*! critical:start|home */
 /*! critical:start|content */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-content-list";
 /*! critical:end */
-
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner";
-
 /*! critical:start|home */
 /*! critical:start|website-section */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner-large";
 /*! critical:end */
-
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-site-footer";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/node-author";
-
 /*! critical:start|content.whitepaper */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/primary-image";
 /*! critical:end */
-
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/promo-card";
-
-/*! critical:start|content */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/read-next";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/related-native-x-stories";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/related-stories";
-/*! critical:end */
-
 /*! critical:start|website-section */
 /*! critical:start|search */
 /*! critical:start|content.contact */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-feed";
 /*! critical:end */
-
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-list";
-
 /*! critical:start */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/social-follow";
 /*! critical:end */
-
 /*! critical:start|home */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/top-stories";
 /*! critical:end */
@@ -214,7 +205,13 @@
 /*! critical:start */
 @import "./components/newsletter-pushdown";
 /*! critical:end */
+/*! critical:start|user */
+/*! critical:start|error */
+/*! critical:start|subscribe */
+/*! critical:start|content.webinar */
+/*! critical:start|site-map */
 @import "./components/site-footer";
+/*! critical:end */
 /*! critical:start */
 @import "./components/site-menu";
 @import "./components/site-navbar";
@@ -227,11 +224,10 @@
 
 /*! critical:start */
 body {
-  -webkit-font-smoothing: antialiased;
-  // set a default letter spacing of .25px, since most fonts have some form of spacing
-  letter-spacing: .25px;
+  margin: 0;
 }
 /*! critical:end */
+
 
 /*! critical:start */
 label {
@@ -291,7 +287,6 @@ label {
 .document-container {
   padding-top: 0;
 }
-/*! critical:end */
 .node {
   $self: &;
   $image-border: 1px solid rgba(239, 239, 239, .9);
@@ -439,7 +434,7 @@ label {
     float: right;
   }
 }
-
+/*! critical:end */
 /*! critical:start */
 .ad-container {
   $self: &;
@@ -771,6 +766,7 @@ label {
     }
   }
 }
+/*! critical:start|home */
 .newsletter-signup-banner {
   &--large {
     flex-direction: column;
@@ -786,7 +782,9 @@ label {
     width: auto;
   }
 }
+/*! critical:end */
 
+/*! critical:start */
 // this is to fix the display of the newsletter pushdown
 .site-newsletter-menu {
   background-color: $gray-300;
@@ -803,13 +801,12 @@ label {
     }
   }
 }
-
 // Prevent Billboard from breaking out of document-container
 .ad-container--inter-block {
   margin-right: 0;
   margin-left: 0;
 }
-
+/*! critical:start|end */
 .content-page-sponsored-header {
   background-color: $primary;
   color: #fff;
