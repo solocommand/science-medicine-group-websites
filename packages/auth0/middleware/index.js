@@ -1,6 +1,6 @@
 const debug = require('debug')('auth0');
 const { json } = require('express');
-const { auth, attemptSilentLogin } = require('express-openid-connect');
+const { auth } = require('express-openid-connect');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
@@ -44,11 +44,29 @@ module.exports = (app, params = {}) => {
     secret,
   }));
 
-  // Attempt silent login when query parameter is present
-  app.use((req, res, next) => {
+  /**
+   * Enforces logged-in/logged-out state based on incoming SSO query parameter.
+   */
+  app.use(asyncRoute(async (req, res, next) => {
     if (!req.query.VerifyLogin) return next();
-    return attemptSilentLogin()(req, res, next);
-  });
+    const ssoState = Boolean(req.query.VerifyLogin === '1');
+    const isAuthed = req.oidc.isAuthenticated();
+    const url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    url.searchParams.delete('VerifyLogin');
+
+    if (isAuthed && ssoState === false) {
+      // Single logout if logged in.
+      await req.identityX.logoutAppUser();
+      return res.oidc.logout();
+    }
+    if (!isAuthed && ssoState) {
+      // Single sign on if logged out
+      return res.redirect(`/login?returnTo=${url}`);
+    }
+
+    // Remove the query parameter if no SSO state changed.
+    return res.redirect(url);
+  }));
 
   // Enforce user logout/notice when email is unconfirmed.
   app.use(asyncRoute(async (req, res, next) => {

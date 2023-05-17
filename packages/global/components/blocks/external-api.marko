@@ -2,12 +2,20 @@ import fetch from "node-fetch";
 import { getAsObject } from "@parameter1/base-cms-object-path";
 import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
 
-$ const { nativeX: nxConfig, i18n } = out.global;
+$ const { nativeX: nxConfig, site, req } = out.global;
 $ const { log } = console;
 $ const { apiUrl, name, description } = input;
 $ const button = getAsObject(input, "button");
 $ const nativeX = getAsObject(input, "nativeX");
-
+$ const isAuthenticated = req.oidc.isAuthenticated();
+$ const resolveNodes = ({ resolved }) => (resolved.map((node) => ({
+  id: node.ID,
+  type: 'Case',
+  shortName: node.name,
+  teaser: node.description,
+  siteContext: { path: `https://${site.get('wpIcle.hostname')}/cases/${node.url}?VerifyLogin=${isAuthenticated ? '1' : '0'}` },
+  primaryImage: { src: node.imagepath }
+})));
 
 $ const apiCall = async (url) => {
   if (url) {
@@ -27,15 +35,13 @@ $ const aliases = defaultValue(nativeX.placementAliases, []);
 $ const uri = nxConfig.getUri();
 $ const placement = nxConfig.getPlacement({ name: nativeXPlacementName, aliases });
 $ const withSponsor = defaultValue(input.withSponsor, true);
-
-
 $ const blockName = "section-card-list";
 $ const buttonClass = button.class || "btn btn-secondary";
 $ const linkHeader = input.linkHeader || false;
 
 <if(apiUrl)>
   <marko-web-resolve|{ resolved }| promise=apiCall(apiUrl)>
-    $ const nodes = input.resolvedToNodesConverter({ resolved }) || resolved;
+    $ const nodes = resolveNodes({ resolved });
     <if(nodes && nodes.length)>
       $ const heroNode = nodes.slice(0, 1)[0];
       $ const heroImageNode = {
