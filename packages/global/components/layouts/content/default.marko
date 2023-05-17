@@ -1,3 +1,4 @@
+import { buildImgixUrl } from "@parameter1/base-cms-image";
 import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
 import contentIframe from "@science-medicine-group/package-global/utils/content-iframe";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
@@ -17,6 +18,7 @@ $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStory
 $ const sections = getAsArray(input, "sections");
 
 $ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
+$ const displayPhotoswipe = ["media-gallery"].includes(type) || req.query.displayPhotoswipe ? true : false;
 $ const displayPublishedDate = ["company", "contact", "whitepaper"].includes(type) ? false : true;
 $ const displayReadNext = showReadNextBlock && ["article"].includes(type);
 $ const displaySocialShare = ["contact"].includes(type) ? false : true;
@@ -175,13 +177,27 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                   </div>
                 </if>
 
-                <!-- <if(displayPhotoswipe)> -->
                 $ const images = getAsArray(content, 'images.edges').map((edge) => getAsObject(edge, "node"));
-
+                <if(displayPhotoswipe && images)>
                   <marko-web-photoswipe-images images=images>
                     <@props thumbnail-click-selectors=`[data-gallery-id="${id}"] [data-image-id]` />
                   </marko-web-photoswipe-images>
-                <!-- </if> -->
+                  <div class="page-images-gallery">
+                    <h6 class="page-images-gallery__title">
+                      Thumbnails:
+                    </h6>
+                    <div class="page-images-gallery'__row row">
+                      <for|image| of=images>
+                        <div class="page-images-gallery__col col-3">
+                          <img src=buildImgixUrl(image.src, input.imageOptions) alt=image.alt data-image-id=image.id />
+                          <div class="page-images-gallery__overlay">
+                            <span class="page-images-gallery__image-name">${image.displayName}</span>
+                          </div>
+                        </div>
+                      </for>
+                    </div>
+                  </div>
+                </if>
 
                 <!-- needs input -->
                 <if(input.afterBody)>
