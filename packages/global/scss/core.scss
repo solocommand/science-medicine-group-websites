@@ -195,6 +195,20 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/hero";
 
 // 8. everything else...
+// import theme css
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/core";
+// Bottom Sticky Leader Board
+@import "@parameter1/base-cms-marko-web-gam/scss/fixed-ad-bottom";
+// Reveal Ad CSS
+// @import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
+// @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
+
+@import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
+
+// package component css inclusions
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/directory-facets";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-search";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/section-search";
 
 // skin components
 /*! critical:start|website-section */
