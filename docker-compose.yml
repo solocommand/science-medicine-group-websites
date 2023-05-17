@@ -13,6 +13,7 @@ x-node-defaults: &node
     - yarn-cache:/.yarn-cache
 
 x-env-defaults: &env
+  CSS_MODE: ${CSS_MODE-optimized}
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
   NODE_ENV: development
