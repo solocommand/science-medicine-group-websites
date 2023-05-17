@@ -14,8 +14,9 @@
     "deploy": true
   },
   "scripts": {
-    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
-    "build": "basecms-website build",
+    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
+    "build": "basecms-website build --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
+    "build:css": "basecms-website build:css --purge-content-dir ../../packages --purge-content-dir ../../node_modules/@parameter1",
     "compile": "basecms-marko-compile compile",
     "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
     "lint:fix": "yarn lint --fix",
