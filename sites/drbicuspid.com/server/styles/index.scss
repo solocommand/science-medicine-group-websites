@@ -11,8 +11,10 @@ $primary: #01274b;
 $red: #e31c3d;
 
 @import "@science-medicine-group/package-global/scss/core";
+/*! critical:start */
 @import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
+/*! critical:end */
 
 .site-navbar {
   &__logo {
@@ -21,6 +23,7 @@ $red: #e31c3d;
 }
 
 // Newsletter Signup
+/*! critical:start */
 .newsletter-signup-banner--large {
   background-color: #f0f1f2;
 }
@@ -37,7 +40,7 @@ $red: #e31c3d;
     background-color: $red;
   }
 }
-
+/*! critical:end */
 .site-footer {
   &__logo {
     filter: none;
