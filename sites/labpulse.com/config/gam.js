@@ -30,10 +30,12 @@ const aliases = [
 ];
 
 aliases.forEach((alias) => config.setAliasAdUnits(alias, [
+  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: `${alias}-leaderboard` },
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: `${alias}-leaderboard` },
   { name: 'rotation', templateName: 'ROTATION', path: `${alias}-rotation` },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${alias}-rotation` },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${alias}-rotation` },
+  { name: 'reskin', path: `${alias}-reskin` },
 ]));
 
 module.exports = config;
