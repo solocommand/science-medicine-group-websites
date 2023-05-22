@@ -5,11 +5,12 @@ const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
 const topics = [
-  { href: '/advanced-visualization', label: 'Advanced Visualization' },
-  { href: '/artificial-intelligence', label: 'Artificial Intelligence' },
-  { href: '/ct', label: 'CT' },
-  { href: '/digital-x-ray', label: 'Digital X-Ray' },
-  { href: '/enterprise-imaging', label: 'Enterprise Imaging' },
+  { href: '/clinical-news', label: 'Clinical News' },
+  { href: '/imaging-informatics', label: 'Imaging Informatics' },
+  { href: '/industry-news', label: 'Industry News' },
+  { href: '/practice-management', label: 'Practice Management' },
+  { href: '/radiology-education', label: 'Radiology Education' },
+  { href: '/subspecialties', label: 'Subspecialties' },
   ...(icleCfg.enabled ? [
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
     { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs', when: 'logged-in' },
@@ -19,8 +20,14 @@ const topics = [
 ];
 
 const secondary = [
-  { href: '#', label: 'Videos' },
-  // { href: '/resources/conferences', label: 'Conferences' },
+  { href: '/about-us', label: 'About Us' },
+  { href: '/forums', label: 'Forums' },
+  { href: '/advertising', label: 'Advertising' },
+  { href: '/help', label: 'Help' },
+  { href: '/resources/conference', label: 'Conferences' },
+  { href: '/resources/media-press', label: 'Media & Press' },
+  { href: '/resources/videos', label: 'Videos' },
+  { href: '/resources/webinars', label: 'Webinars' },
 ];
 
 const mobileMenu = {
