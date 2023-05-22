@@ -17,8 +17,9 @@
     }
   },
   "scripts": {
-    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages",
-    "build": "basecms-website build",
+    "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
+    "build": "basecms-website build --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
+    "build:css": "basecms-website build:css --purge-content-dir ../../packages --purge-content-dir ../../node_modules/@parameter1",
     "compile": "basecms-marko-compile compile",
     "lint": "eslint --ext .js --ext .vue --max-warnings 5 --config ../../.eslintrc.js --ignore-path ../../.eslintignore ./",
     "lint:fix": "yarn lint --fix",
@@ -34,10 +35,10 @@
   ],
   "dependencies": {
     "@parameter1/base-cms-marko-core": "^4.9.0",
-    "@parameter1/base-cms-marko-web": "^4.16.0",
+    "@parameter1/base-cms-marko-web": "^4.22.0",
     "@parameter1/base-cms-marko-web-gtm": "^4.17.1",
     "@parameter1/base-cms-marko-web-identity-x": "^4.21.0",
-    "@parameter1/base-cms-marko-web-theme-monorail": "^4.21.2",
+    "@parameter1/base-cms-marko-web-theme-monorail": "^4.22.2",
     "@parameter1/base-cms-object-path": "^4.5.12",
     "@parameter1/base-cms-utils": "^4.5.12",
     "@parameter1/base-cms-web-cli": "^4.18.3",
