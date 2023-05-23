@@ -146,7 +146,9 @@
 
 // 6. selectively import theme _block_ items. mark as critical when necessary
 // @todo VERIFY ALL OF THESE - were all being included by monorail
+/*! critical:start|home */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/content-card-deck";
+/*! critical:end */
 /*! critical:start|content.company */
 /*! critical:start|content.product */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/company-inquiry-form";
@@ -157,7 +159,9 @@
 /*! critical:start|content */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-content-list";
 /*! critical:end */
+/*! critical:start|home */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner";
+/*! critical:end */
 /*! critical:start|home */
 /*! critical:start|website-section */
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/newsletter-signup-banner-large";
@@ -555,7 +559,7 @@ label {
 }
 
 // End right rail content layout CSS
-/*! critical:end */
+
 
 /*! critical:start */
 // page & block title
@@ -588,7 +592,7 @@ label {
     #{ $self }__header {
       @include skin-typography($style: "header-2");
       margin-bottom: 16px;
-      padding-top: 24px;
+      padding-top: 24px !important;
       padding-left: 0;
       &:before {
         background: $primary;
