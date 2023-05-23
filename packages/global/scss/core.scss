@@ -219,7 +219,9 @@
 @import "./components/user";
 /*! critical:end */
 /*! critical:start|home */
+/*! purgecss start ignore */
 @import "./components/external-api";
+/*! purgecss end ignore */
 /*! critical:end */
 
 /*! critical:start */
