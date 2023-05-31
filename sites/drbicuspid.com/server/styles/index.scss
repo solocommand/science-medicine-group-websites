@@ -16,11 +16,13 @@ $red: #e31c3d;
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
 /*! critical:end */
 
+/*! critical:start */
 .site-navbar {
   &__logo {
     height: 50px;
   }
 }
+/*! critical:end */
 
 // Newsletter Signup
 /*! critical:start */
