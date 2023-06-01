@@ -195,12 +195,16 @@
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/flows/hero";
 
 // 8. everything else...
+/*! critical:start|content */
+@import "@parameter1/base-cms-marko-web-photoswipe/scss/main";
+/*! critical:end */
 
 // skin components
 /*! critical:start|website-section */
 @import "./components/section-feed-upcoming";
 /*! critical:end */
 /*! critical:start|content */
+@import "./components/content-page";
 @import "./components/content-meter";
 /*! critical:start|end */
 /*! critical:start|website-section.directory */
