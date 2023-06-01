@@ -5,9 +5,6 @@
   "<global-newsletter-signup-banner-large-block>": {
     "template": "./newsletter-signup-banner-large.marko"
   },
-  "<global-content-meter-block>": {
-    "template": "./content-meter.marko"
-  },
   "<global-most-popular-list-block>": {
     "template": "./most-popular-list.marko"
   },
