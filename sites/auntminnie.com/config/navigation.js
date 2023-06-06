@@ -40,7 +40,7 @@ const radiologyEducation = [
   { href: '/radiology-education/residents-fellows', label: 'Residents/Fellows' },
 ];
 const subspecialties = [
-  { href: '/subspecialties/breast-imaging', label: 'Breast Imagaing' },
+  { href: '/subspecialties/breast-imaging', label: 'Breast Imaging' },
   { href: '/subspecialties/cardiovascular-radiology', label: 'Cardiovascular Radiology' },
   { href: '/subspecialties/chest-radiology', label: 'Chest Radiology' },
   { href: '/subspecialties/emergency-radiology', label: 'Emergency Radiology' },
