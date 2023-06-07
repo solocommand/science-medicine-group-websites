@@ -231,7 +231,12 @@ module.exports = {
     },
     col2: {
       label: 'Resources',
-      items: resources,
+      items: [
+        { href: 'dev.my.auntminnie.com', label: 'Cases' },
+        { href: 'dev.my.auntminnie.com', label: 'Jobs' },
+        { href: 'dev.my.auntminnie.com', label: 'Forums' },
+        { href: 'dev.my.auntminnie.com', label: 'CME' },
+      ],
     },
     items: [
       privacyPolicy,
