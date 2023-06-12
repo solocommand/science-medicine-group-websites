@@ -10,3 +10,7 @@ $theme-site-header-breakpoints: (
 $primary: #01274b;
 
 @import "@science-medicine-group/package-global/scss/core";
+/*! critical:start */
+@import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
+/*! critical:end */
