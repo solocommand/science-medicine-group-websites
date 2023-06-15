@@ -77,10 +77,10 @@ const topics = [
 
 const resources = [
   { href: '/about-us', label: 'About Us' },
-  { href: 'dev.my.auntminnie.com', label: 'Cases' },
-  { href: 'dev.my.auntminnie.com', label: 'Jobs' },
-  { href: 'dev.my.auntminnie.com', label: 'Forums' },
-  { href: 'dev.my.auntminnie.com', label: 'CME' },
+  { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
+  { href: '/', label: 'Jobs' },
+  { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
+  { href: 'https://my.auntminnie.com/cme', label: 'CME' },
   // ...(icleCfg.enabled ? [
   //   { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
   //   { href: `https://${icleCfg.hostname}/cme?VerifyLogin=1`, label: 'CME', when: 'logged-in' },
