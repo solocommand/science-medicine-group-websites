@@ -8,7 +8,9 @@ $ const perPage = 12;
 $ const skip = p.skip({ perPage });
 
 $ const { modifiers } = input;
+$ const featuredModifiers = (modifiers) ? [...modifiers, 'featured-listings'] : ['featured-listings'];
 $ const path = input.path || input.alias || req.path;
+$ const displayPinnedContent = input.displayPinnedContent || false;
 $ const withAds = defaultValue(input.withAds, true);
 $ const aboveTheFold = defaultValue(input.aboveTheFold, false);
 
@@ -19,6 +21,14 @@ $ const queryParams = {
   ...(new Set(["website-scheduled-content", "website-optioned-content"]).has(queryName) && {
     sectionAlias: input.alias,
   }),
+};
+
+$ const queryParamsPinned = {
+  queryFragment,
+  ...input.queryParams,
+  sectionAlias: input.alias,
+  optionName: 'Pinned',
+  limit: 5, // @todo investiation config based
 };
 
 $ const chunkLengths = [3, 3, 3, 3];
@@ -36,10 +46,28 @@ $ const params = { ...queryParams, limit, skip };
   <if(input.rails && input.rails.length === 1)>
     <div class="row">
       <div class="col-lg-8">
+        $ console.log( p.page, queryParamsPinned);
+        <if(p.page === 1 && displayPinnedContent)>
+          <marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParamsPinned>
+            <section-feed-flow
+              nodes=nodes
+              modifiers=featuredModifiers
+              node=input.node
+              node-list=input.nodeList
+              aliases=input.aliases
+              flow=input.flowInput
+              with-ads=false
+            >
+              <@header>
+                Featured
+              </@header>
+            </section-feed-flow>
+          </marko-web-query>
+        </if>
         <for|nodeGroup, index| of=nodeGroups>
           $ const isLast = index === nodeGroups.length - 1;
           $ const header = index === 0 ? input.header : null;
-          $ const adName = "rotation";
+          $ const adName = index === 0 ? input.adName : "rotation";
           $ const flowInput = (index === 0 && aboveTheFold) ? { ...input.flow, lazyload: false } : input.flow;
           <section-feed-flow
             nodes=nodeGroup
@@ -74,9 +102,27 @@ $ const params = { ...queryParams, limit, skip };
     $ const bottomNodeGroups = nodeGroups.slice(2);
     <div class="row">
       <div class="col-lg-8">
+        $ console.log( p.page, queryParamsPinned);
+        <if(p.page === 1 && displayPinnedContent)>
+          <marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParamsPinned>
+            <section-feed-flow
+              nodes=nodes
+              modifiers=featuredModifiers
+              node=input.node
+              node-list=input.nodeList
+              aliases=input.aliases
+              flow=input.flowInput
+              with-ads=false
+            >
+              <@header>
+                Featured
+              </@header>
+            </section-feed-flow>
+          </marko-web-query>
+        </if>
         <for|nodeGroup, index| of=topNodeGroups>
           $ const header = index === 0 ? input.header : null;
-          $ const adName = "rotation";
+          $ const adName = index === 0 ? input.adName : "rotation";
           $ const flowInput = (index === 0 && aboveTheFold) ? { ...input.flow, lazyload: false } : input.flow;
           <section-feed-flow
             nodes=nodeGroup
