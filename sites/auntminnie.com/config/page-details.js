@@ -35,8 +35,8 @@ module.exports = {
   },
   // Radiological Society of North America (RSNA) News Coverage'
   'resources/conference/rsna': {
-    name: 'Radiological Society of North America (RSNA) News Coverage',
-    teaser: 'Radiological Society of North America (RSNA) News Coverage --- Teaser TBD',
+    name: 'Radiological Society of North America',
+    teaser: 'The Radiological Society of North America (RSNA) supports your career in radiology. Explore membership benefits and find a variety of high-quality education resources.',
     siteContext: {
       path: '/resources/conference/rsna',
     },
@@ -64,15 +64,15 @@ module.exports = {
   },
   // European Congress of Radiology (ECR) News Coverage
   'resources/conference/ecr': {
-    name: 'European Congress of Radiology (ECR) News Coverage',
-    teaser: 'European Congress of Radiology (ECR) News Coverage --- Teaser TBD',
+    name: 'European Congress of Radiology',
+    teaser: 'The leading medical society for radiology in Europe, we are dedicated to advancing the field through education, research, and innovation. Our annual European Congress of Radiology is the largest and most influential radiology meeting.',
     siteContext: {
       path: '/resources/conference/ecr',
     },
-    primaryImage: {
-      src: 'https://www.auntminnie.com/user/images/content_images/rca_rsna_2001/2016_03_02_06_32_39_747_RADCast_ecr_conf_icon.jpg',
-      alt: 'ECR News Coverage',
-    },
+    // primaryImage: {
+    //   src: 'https://www.auntminnie.com/user/images/content_images/rca_rsna_2001/2016_03_02_06_32_39_747_RADCast_ecr_conf_icon.jpg',
+    //   alt: 'ECR News Coverage',
+    // },
     teaserCTA: 'View Latest Coverage',
   },
   'resources/conference/ecr/2023': {
@@ -89,52 +89,52 @@ module.exports = {
   },
   // International Society for Magnetic Resonance in Medicine (ISMRM) News Coverage
   'resources/conference/ismrm': {
-    name: 'International Society for Magnetic Resonance in Medicine (ISMRM) News Coverage',
-    teaser: 'International Society for Magnetic Resonance in Medicine (ISMRM) News Coverage --- Teaser TBD',
+    name: 'International Society for Magnetic Resonance in Medicine',
+    teaser: 'The International Society of Magnetic Resonance (ISMAR) is the unique worldwide scientiﬁc organization that represents the entire range of the important research ﬁeld of magnetic resonance (MR), in particular nuclear magnetic resonance (NMR), electron paramagnetic resonance (EPR), and magnetic resonance imaging (MRI). These and further MR methods are used as main research tools in a very wide range of ﬁelds including Physics, Chemistry, Life Sciences, Materials Research and Medicine.',
     siteContext: {
       path: '/resources/conference/ismrm',
     },
-    primaryImage: {
-      src: 'https://www.auntminnie.com/user/images/content_images/radcastredirect/2019_05_14_22_07_0136_ISMRM-wide-logo.png',
-      alt: 'ISMRM News Coverage',
-    },
+    // primaryImage: {
+    //   src: 'https://www.auntminnie.com/user/images/content_images/radcastredirect/2019_05_14_22_07_0136_ISMRM-wide-logo.png',
+    //   alt: 'ISMRM News Coverage',
+    // },
     teaserCTA: 'View Latest Coverage',
   },
   'resources/conference/ismrm/2022': {
-    name: '2022 Radiological Society of North America (ISMRM) News Coverage',
+    name: '2022  International Society of Magnetic Resonance (ISMRM) News Coverage',
     siblinRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2021': {
-    name: '2021 Radiological Society of North America (ISMRM) News Coverage',
+    name: '2021  International Society of Magnetic Resonance (ISMRM) News Coverage',
     siblinRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2020': {
-    name: '2020 Radiological Society of North America (ISMRM) News Coverage',
+    name: '2020  International Society of Magnetic Resonance (ISMRM) News Coverage',
     siblinRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2019': {
-    name: '2019 Radiological Society of North America (ISMRM) News Coverage',
+    name: '2019  International Society of Magnetic Resonance (ISMRM) News Coverage',
     siblinRoutes: ismrmSiblingRoutes,
   },
   // American Healthcare Radiology Administrators (AHRA) News Coverage
   'resources/conference/ahra': {
-    name: 'American Healthcare Radiology Administrators (AHRA) News Coverage',
-    teaser: 'American Healthcare Radiology Administrators (AHRA) News Coverage --- Teaser TBD',
+    name: 'American Healthcare Radiology Administrators',
+    teaser: 'AHRA: The Association for Medical Imaging Management is the professional organization representing management at all levels of hospital imaging departments, freestanding imaging centers, and group practices.',
     siteContext: {
       path: '/resources/conference/ahra',
     },
-    primaryImage: {
-      src: 'https://www.auntminnie.com/user/images/content_images/radcastredirect/2021_07_29_21_10_5024_RADCast_AHRA_AMConferences_Graphic_BlackWhite.gif',
-      alt: 'AHRA News Coverage',
-    },
+    // primaryImage: {
+    //   src: 'https://www.auntminnie.com/user/images/content_images/radcastredirect/2021_07_29_21_10_5024_RADCast_AHRA_AMConferences_Graphic_BlackWhite.gif',
+    //   alt: 'AHRA News Coverage',
+    // },
     teaserCTA: 'View Latest Coverage',
   },
   'resources/conference/ahra/2022': {
-    name: '2022 Radiological Society of North America (AHRA) News Coverage',
+    name: '2022 American Healthcare Radiology Administrators (AHRA) News Coverage',
     siblinRoutes: ahraSiblingRoutes,
   },
   'resources/conference/ahra/2021': {
-    name: '2021 Radiological Society of North America (AHRA) News Coverage',
+    name: '2021 American Healthcare Radiology Administrators (AHRA) News Coverage',
     siblinRoutes: ahraSiblingRoutes,
   },
 };
