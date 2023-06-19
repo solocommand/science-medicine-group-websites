@@ -46,7 +46,6 @@ $ const params = { ...queryParams, limit, skip };
   <if(input.rails && input.rails.length === 1)>
     <div class="row">
       <div class="col-lg-8">
-        $ console.log( p.page, queryParamsPinned);
         <if(p.page === 1 && displayPinnedContent)>
           <marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParamsPinned>
             <section-feed-flow
@@ -102,7 +101,6 @@ $ const params = { ...queryParams, limit, skip };
     $ const bottomNodeGroups = nodeGroups.slice(2);
     <div class="row">
       <div class="col-lg-8">
-        $ console.log( p.page, queryParamsPinned);
         <if(p.page === 1 && displayPinnedContent)>
           <marko-web-query|{ nodes }| name="website-scheduled-content" params=queryParamsPinned>
             <section-feed-flow
