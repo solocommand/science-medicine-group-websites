@@ -53,7 +53,17 @@ $ const perPage = 12;
       />
     </if>
 
-    <global-section-feed-wrapper aliases=aliases alias=alias />
+    <global-section-feed-wrapper
+      aliases=aliases
+      alias=alias
+      display-pinned-content=input.displayPinnedContent
+      flow=input.feedFlow
+      with-ads=input.withAds
+      query-params=input.queryParams
+      above-the-fold=true
+      ad-name=input.adName
+      rails=input.rails
+    />
   </@section>
 
   <for|s| of=sections>
