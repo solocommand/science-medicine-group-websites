@@ -336,6 +336,9 @@ label {
   &__header {
     padding-bottom: 0;
   }
+  &--featured-listings {
+    padding-bottom: map-get($spacers, block);
+  }
 }
 
 .card-deck-flow {
@@ -401,8 +404,13 @@ label {
 // End right rail content layout CSS
 
 .page-wrapper {
+  $self: &;
   // $marko-web-document-container-gutter: 20px; couldn't get to work
   padding: 20px;
+  &#{ $self }--toc {
+    padding-left: 0;
+    padding-right: 0;
+  }
   &--no-padding-x {
     padding-right: 0;
     padding-left: 0;
@@ -588,7 +596,11 @@ label {
 }
 .node-list {
   $self: &;
-  &--latest-content-list, &--section-feed, &--section-list, &--wufoo {
+  &--latest-content-list,
+  &--section-feed,
+  &--section-list,
+  &--wufoo,
+  &--past-coverage {
     #{ $self }__header {
       @include skin-typography($style: "header-2");
       margin-bottom: 16px;
@@ -645,6 +657,23 @@ label {
 .section-feed-content-node {
   &__content-teaser {
     font-size: 1rem;
+  }
+}
+/*! critical:end */
+
+/*! critical:start|website-section.conferences */
+// conference child pages.
+.node-list {
+  $self: &;
+  &--featured-listings {
+    #{ $self }__header {
+      padding-top: 15px !important;
+    }
+  }
+  &--past-coverage {
+    #{ $self}__header {
+      margin-bottom: 0;
+    }
   }
 }
 /*! critical:end */
