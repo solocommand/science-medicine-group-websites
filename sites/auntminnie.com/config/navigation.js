@@ -221,10 +221,15 @@ module.exports = {
     col2: {
       label: 'Resources',
       items: [
-        { href: 'dev.my.auntminnie.com', label: 'Cases' },
-        { href: 'dev.my.auntminnie.com', label: 'Jobs' },
-        { href: 'dev.my.auntminnie.com', label: 'Forums' },
-        { href: 'dev.my.auntminnie.com', label: 'CME' },
+        { href: '/', label: 'Jobs' },
+        ...(icleCfg.enabled ? [
+          { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
+          { href: `https://${icleCfg.hostname}/cme?VerifyLogin=1`, label: 'CME', when: 'logged-in' },
+          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
+          { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
+          { href: `https://${icleCfg.hostname}/cme?VerifyLogin=0`, label: 'CME', when: 'logged-out' },
+          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
+        ] : []),
       ],
     },
     items: [
