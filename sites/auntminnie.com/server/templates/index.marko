@@ -11,4 +11,11 @@ $ const { id, alias, name, pageNode } = input;
   <@section>
     <theme-section-list-deck-block aliases=["clinical-news", "imaging-informatics", "radiology-education"] />
   </@section>
+
+  <@section>
+    <theme-section-card-list-block
+      alias="imaging-informatics/artifical-intelligence"
+      query-params={ excludeContentTypes: ["Whitepaper", "Webinar"] }
+    />
+  </@section>
 </global-website-section-home-layout>
