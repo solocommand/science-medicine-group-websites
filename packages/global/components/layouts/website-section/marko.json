@@ -13,11 +13,17 @@
     "@sections <section>[]": {},
     "<before-name>": {},
     "<after-name>": {},
+    "@feed-flow": "object",
     "@id": "number",
+    "@ad-name": "string",
+    "@display-pinned-content": "boolean",
+    "@rails <rail>[]": {},
     "@alias": "string",
     "@name": "string",
     "@page-node": "object",
-    "@with-ads": "boolean"
+    "@node": "object",
+    "@with-ads": "boolean",
+    "@query-params": "object"
   },
   "<global-website-section-upcoming-feed-layout>": {
     "template": "./upcoming-feed.marko",
