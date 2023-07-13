@@ -23,11 +23,11 @@ config.setAliasAdUnits('default', [
 ]);
 
 const aliases = [
-  'business-insights',
-  'diagnostic-technologies',
-  'diseases',
-  'point-of-care-testing',
-  'research-and-development',
+  { alias: 'business-insights' },
+  { alias: 'diagnostic-technologies' },
+  { alias: 'diseases' },
+  { alias: 'point-of-care-testing' },
+  { alias: 'research-and-development' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
