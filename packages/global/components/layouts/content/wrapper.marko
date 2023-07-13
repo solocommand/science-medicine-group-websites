@@ -20,6 +20,12 @@ $ const alias = get(input, "primarySection.alias");
       <marko-web-resolve-page|{ data: content }| node=pageNode>
         $ const aliases = hierarchyAliases(content.primarySection);
         <global-reveal-ad-handler select-all-targets=true path=GAM.getAdUnit({ name: "reskin", aliases }).path id="reveal-ad" />
+        <theme-gam-define-display-ad
+          name="reskin-mobile"
+          position="content_page"
+          aliases=aliases
+          modifiers=["inter-block"]
+        />
       </marko-web-resolve-page>
     </@above-container>
   </if>
@@ -39,14 +45,14 @@ $ const alias = get(input, "primarySection.alias");
           </@section>
         </for>
 
-        <!-- <@section>
+        <@section>
           <theme-gam-define-display-ad
-            name="rotation"
+            name="reskin-mobile"
             position="content_page"
             aliases=aliases
             modifiers=["inter-block"]
           />
-        </@section> -->
+        </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
