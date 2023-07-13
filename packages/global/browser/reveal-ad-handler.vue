@@ -74,7 +74,7 @@ export default {
 
     window.addEventListener('message', this.listener);
 
-    if (window.innerWidth >= 980) {
+    if (window.innerWidth >= 750) {
       googletag.cmd.push(() => {
         this.slot = googletag.defineOutOfPageSlot(this.path, this.id);
         this.slot.addService(googletag.pubads());

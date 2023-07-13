@@ -688,6 +688,9 @@ label {
 .reveal-ad {
   height: 298px;
 }
+body .ad-container--template-reskin-mobile + .document-container > .page:first-of-type {
+  margin-top: 0;
+}
 /*! critical:end */
 
 /*! critical:start */
