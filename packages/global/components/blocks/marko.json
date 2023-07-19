@@ -22,5 +22,10 @@
     "@link-header": "boolean",
     "@button": "object",
     "@native-x": "object"
+  },
+  "<global-collapsable-sidebar-block>": {
+    "template": "./collapsable-sidebar.marko",
+    "@item": "object",
+    "@type": "string"
   }
 }

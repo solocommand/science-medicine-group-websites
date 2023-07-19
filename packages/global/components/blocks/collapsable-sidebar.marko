@@ -1,0 +1,15 @@
+import { getAsObject } from "@parameter1/base-cms-object-path";
+$ const { type } = input;
+$ const item = getAsObject(input, "item");
+$ const blockName = "collapsable-sidebar";
+
+<if(item && item.body && item.name)>
+  <div class=blockName>
+    <marko-web-browser-component name="CollapsableSidebar" props={
+      name: item.name,
+      body: item.body,
+      type: type,
+      id: 1
+    }/>
+  </div>
+</if>
