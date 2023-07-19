@@ -1,0 +1,38 @@
+.collapsable-sidebar {
+  margin-bottom: 1rem;
+  &__item {
+    &--table-of-contents::before {
+      position: absolute;
+      right: .25rem;
+      bottom: 0;
+      font-size: .85rem;
+      text-transform: uppercase;
+    }
+    &--table-of-contents {
+      border: 1px solid $primary;
+      &::before {
+        color: $primary;
+        content: "Click to view Table of Contents";
+      }
+    }
+    position: relative;
+    padding: .5rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: .25rem;
+    font-family: $theme-font-family-sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  &__title {
+    font-size: 1.25rem;
+  }
+  &__content {
+    &--expanded {
+      max-height: max-content;
+      transition: max-height .5s 0s ease-in;
+    }
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s 0s ease-out;
+  }
+}

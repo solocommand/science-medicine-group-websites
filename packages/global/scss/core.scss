@@ -519,6 +519,7 @@ label {
 }
 
 /*! critical:start|content */
+@import "./components/collapsable-sidebar";
 // Begin right rail content layout CSS
 .content-page-body {
   padding-top: 12px;
