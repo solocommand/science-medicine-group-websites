@@ -4,6 +4,7 @@ import Braze from '@science-medicine-group/package-braze/browser';
 import FormLogin from './form-login.vue';
 import Rudderstack from './rudderstack.vue';
 import Auth0Authenticated from './auth0-authenticated.vue';
+import CollapsableSidebar from './collapsable-sidebar.vue';
 
 const GlobalNewsletterMenu = () => import(/* webpackChunkName: "global-newsletter-menu" */ './newsletter-menu.vue');
 const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
@@ -26,6 +27,7 @@ export default (Browser) => {
   });
   Auth0(Browser);
   Braze(Browser);
+  Browser.register('CollapsableSidebar', CollapsableSidebar);
 
   // Rudderstack identification
   Browser.register('Rudderstack', Rudderstack, { provide: { EventBus } });
