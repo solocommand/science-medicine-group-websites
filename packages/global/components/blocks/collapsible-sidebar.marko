@@ -1,11 +1,11 @@
 import { getAsObject } from "@parameter1/base-cms-object-path";
 $ const { type } = input;
 $ const item = getAsObject(input, "item");
-$ const blockName = "collapsable-sidebar";
+$ const blockName = "collapsible-sidebar";
 
 <if(item && item.body && item.name)>
   <div class=blockName>
-    <marko-web-browser-component name="CollapsableSidebar" props={
+    <marko-web-browser-component name="CollapsibleSidebar" props={
       name: item.name,
       body: item.body,
       type: type,

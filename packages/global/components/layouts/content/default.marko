@@ -147,7 +147,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
               </else-if>
               <else>
                 $ const tableOfContents = getAsArray(content, "sidebars").filter((sidebar) => sidebar.name === "Table of Contents").pop();
-                <global-collapsable-sidebar-block item=tableOfContents type="table-of-contents" />
+                <global-collapsible-sidebar-block item=tableOfContents type="table-of-contents" />
                 $ const bodyId = `content-body-${content.id}`;
                 <theme-body-with-injection
                   content=content

@@ -23,8 +23,8 @@
     "@button": "object",
     "@native-x": "object"
   },
-  "<global-collapsable-sidebar-block>": {
-    "template": "./collapsable-sidebar.marko",
+  "<global-collapsible-sidebar-block>": {
+    "template": "./collapsible-sidebar.marko",
     "@item": "object",
     "@type": "string"
   }
