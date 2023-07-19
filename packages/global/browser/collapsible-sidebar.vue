@@ -13,11 +13,11 @@ export default {
   props: {
     blockName: {
       type: String,
-      default: 'collapsable-sidebar',
+      default: 'collapsible-sidebar',
     },
     type: {
       type: String,
-      default: 'collapsable-sidebar',
+      default: 'collapsible-sidebar',
     },
     name: {
       default: '',
