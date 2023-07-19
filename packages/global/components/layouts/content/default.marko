@@ -149,7 +149,8 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 <marko-web-content-body block-name=blockName attrs={ style: "display: none;" } obj=content modifiers=["ld-json"] />
               </else-if>
               <else>
-
+                $ const tableOfContents = getAsArray(content, "sidebars").filter((sidebar) => sidebar.name === "Table of Contents").pop();
+                <global-collapsable-sidebar-block item=tableOfContents type="table-of-contents" />
                 $ const bodyId = `content-body-${content.id}`;
                 <theme-body-with-injection
                   content=content
@@ -209,7 +210,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                   />
                 </if>
 
-                $ const sidebars = getAsArray(content, "sidebars").map((sidebar) => sidebar.body);
+                $ const sidebars = getAsArray(content, "sidebars").filter((sidebar) => sidebar.name !== "Table of Contents").map((sidebar) => sidebar.body);
                 <marko-web-content-sidebars block-name=blockName obj={ sidebars } />
                 <if(type === "document" || type === "whitepaper")>
                     <default-theme-content-download obj=content>
