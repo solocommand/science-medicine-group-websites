@@ -7,6 +7,7 @@ import Rudderstack from './rudderstack.vue';
 import Auth0Authenticated from './auth0-authenticated.vue';
 
 const GlobalNewsletterMenu = () => import(/* webpackChunkName: "global-newsletter-menu" */ './newsletter-menu.vue');
+const GlobalRevealAdHandler = () => import(/* webpackChunkName: "reveal-ad-handler" */ './reveal-ad-handler.vue');
 
 export default (Browser) => {
   const { EventBus } = Browser;
@@ -28,6 +29,8 @@ export default (Browser) => {
 
   // Rudderstack identification
   Browser.register('Rudderstack', Rudderstack, { provide: { EventBus } });
+
+  Browser.register('GlobalRevealAdHandler', GlobalRevealAdHandler);
 
   EventBus.$on('identity-x-change-email-link-sent', () => {
     // "reload" the page to update user state

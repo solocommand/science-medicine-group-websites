@@ -46,5 +46,19 @@
     "@active-user": {
       "type": "object"
     }
+  },
+  "<global-reveal-ad-handler>": {
+    "template": "./reveal-ad-handler.marko",
+    "@target": "string",
+    "@defaults": "object",
+    "@select-all-targets": "boolean",
+    "@id": {
+      "type": "string",
+      "required": true
+    },
+    "@path": {
+      "type": "string",
+      "required": true
+    }
   }
 }
