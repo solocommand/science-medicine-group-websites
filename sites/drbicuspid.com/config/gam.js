@@ -19,6 +19,7 @@ config.setAliasAdUnits('default', [
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: 'rotation' },
   // Below based on enableRevealAd
   { name: 'reskin', path: 'reskin' },
+  { name: 'reskin-mobile', templateName: 'RESKIN-MOBILE', path: 'reskin' },
 ]);
 
 const aliases = [
@@ -46,6 +47,7 @@ aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: `${prefix}-rotation` },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: `${prefix}-rotation` },
   { name: 'reskin', path: `${prefix}-reskin` },
+  { name: 'reskin-mobile', templateName: 'RESKIN-MOBILE', path: `${prefix}-reskin` },
 ]));
 
 module.exports = config;
