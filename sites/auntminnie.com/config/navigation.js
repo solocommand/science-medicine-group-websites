@@ -15,7 +15,7 @@ const clinicalNews = [
 const imagingInformatics = [
   { href: '/imaging-informatics/advanced-visualization', label: 'Advanced Visualization' },
   { href: '/imaging-informatics/enterprise-imaging', label: 'Enterprise Imaging' },
-  { href: '/imaging-informatics/artifical-intelligence', label: 'Artifical Intelligence' },
+  { href: '/imaging-informatics/artificial-intelligence', label: 'Artificial Intelligence' },
   { href: '/imaging-informatics/cybersecurity', label: 'Cybersecurity' },
 ];
 const industryNews = [
@@ -67,12 +67,11 @@ const topics = [
 
 const resources = [
   { href: '/', label: 'Jobs' },
+  { href: 'https://www.auntminniecme.com/', label: 'CME', target: '_blank' },
   ...(icleCfg.enabled ? [
     { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/cme?VerifyLogin=1`, label: 'CME', when: 'logged-in' },
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
     { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
-    { href: `https://${icleCfg.hostname}/cme?VerifyLogin=0`, label: 'CME', when: 'logged-out' },
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
   ] : []),
   { href: '/page/about-us', label: 'About Us' },
