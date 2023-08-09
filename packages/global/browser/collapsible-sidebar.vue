@@ -45,6 +45,7 @@ export default {
         this.blockName,
         `${this.blockName}__${name}`,
         ...mod.map((m) => `${this.blockName}__${name}--${m}`),
+        ...(this.expanded ? [`${this.blockName}__${name}--expanded`] : [`${this.blockName}__${name}--collapsed`]),
       ];
     },
   },
