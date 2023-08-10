@@ -1,0 +1,9 @@
+.page-images-gallery {
+  &__col {
+    img {
+      max-width: 100%;;
+    }
+    align-self: center;
+    padding-bottom: map-get($spacers, block);
+  }
+}
