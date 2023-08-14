@@ -23,7 +23,37 @@ config.setAliasAdUnits('default', [
 ]);
 
 const aliases = [
-  { alias: 'imaging-informatics' },
+  { alias: 'clinical-news' },
+  { alias: 'clinical-news/ct', prefix: 'ct' },
+  { alias: 'clinical-news/digital-xray', prefix: 'digital-xray' },
+  { alias: 'clinical-news/interventional-radiology', prefix: 'interventional-radiology' },
+  { alias: 'clinical-news/molecular-imaging', prefix: 'molecular-imaging' },
+  { alias: 'clinical-news/mri', prefix: 'mri' },
+  { alias: 'clinical-news/radiation-oncology', prefix: 'radiation-oncology' },
+  { alias: 'clinical-news/ultrasound', prefix: 'ultrasound' },
+  { alias: 'clinical-news/womens-imaging', prefix: 'womens-imaging' },
+  { alias: 'informatics' },
+  { alias: 'informatics/advanced-visualization', prefix: 'advanced-visualization' },
+  { alias: 'informatics/enterprise-imaging', prefix: 'enterprise-imaging' },
+  { alias: 'informatics/artifical-intelligence', prefix: 'artifical-intelligence' },
+  { alias: 'informatics/cybersecurity', prefix: 'cybersecurity' },
+  { alias: 'industry-news' },
+  { alias: 'industry-news/installations', prefix: 'installations' },
+  { alias: 'industry-news/product-news', prefix: 'product-news' },
+  { alias: 'industry-news/ma', prefix: 'ma' },
+  { alias: 'industry-news/market-analysis', prefix: 'market-analysis' },
+  { alias: 'practice-management' },
+  { alias: 'practice-management/administration', prefix: 'administration' },
+  { alias: 'practice-management/associations', prefix: 'associations' },
+  { alias: 'practice-management/careers', prefix: 'careers' },
+  { alias: 'practice-management/equity-inclusion', prefix: 'equity-inclusion' },
+  { alias: 'practice-management/medicolegal', prefix: 'medicolegal' },
+  { alias: 'practice-management/patient-safety', prefix: 'patient-safety' },
+  { alias: 'practice-management/radiologic-technologist', prefix: 'radiologic-technologist' },
+  { alias: 'practice-management/service', prefix: 'service' },
+  { alias: 'education' },
+  { alias: 'education/medical-students', prefix: 'medical-students' },
+  { alias: 'education/residents-fellows', prefix: 'residents-fellows' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
