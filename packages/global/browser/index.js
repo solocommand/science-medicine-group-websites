@@ -1,4 +1,5 @@
 import MonoRail from '@parameter1/base-cms-marko-web-theme-monorail/browser';
+import PhotoSwipe from '@parameter1/base-cms-marko-web-photoswipe/browser';
 import Auth0 from '@science-medicine-group/package-auth0/browser';
 import Braze from '@science-medicine-group/package-braze/browser';
 import FormLogin from './form-login.vue';
@@ -25,6 +26,7 @@ export default (Browser) => {
   Browser.register('GlobalNewsletterMenu', GlobalNewsletterMenu, {
     provide: { EventBus },
   });
+  PhotoSwipe(Browser);
   Auth0(Browser);
   Braze(Browser);
   Browser.register('CollapsibleSidebar', CollapsibleSidebar);

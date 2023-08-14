@@ -4,7 +4,6 @@
 
 <script>
 import $ from '@parameter1/base-cms-marko-web/browser/jquery';
-
 const parseJSON = (value) => {
   try {
     return JSON.parse(value);
@@ -12,7 +11,6 @@ const parseJSON = (value) => {
     return null;
   }
 };
-
 const parseMessagePayload = (event) => {
   const obj = parseJSON(event.data);
   if (!obj) return null;
@@ -21,12 +19,9 @@ const parseMessagePayload = (event) => {
   }
   return null;
 };
-
 const target = '_blank';
 const rel = 'noopener noreferrer';
-
 const { warn } = console;
-
 export default {
   props: {
     id: {
@@ -60,20 +55,16 @@ export default {
     payload: {},
     slot: null,
   }),
-
   mounted() {
     if (!this.id || !this.path) {
       this.warn('The Ad Unit ID and path are required. Bailing early.');
       return;
     }
-
     const { googletag } = window;
     if (!googletag) {
       warn('The googletag object was not found. Bailing early.');
     }
-
     window.addEventListener('message', this.listener);
-
     if (window.innerWidth >= 750) {
       googletag.cmd.push(() => {
         this.slot = googletag.defineOutOfPageSlot(this.path, this.id);
@@ -86,12 +77,10 @@ export default {
       });
     }
   },
-
   beforeDestroy() {
     window.removeEventListener('message', this.listener);
     if (this.observer) this.observer.disconnect();
   },
-
   methods: {
     displayBackground() {
       const {
@@ -99,7 +88,6 @@ export default {
         backgroundColor,
         backgroundImagePath,
       } = this.payload;
-
       const backgroundImage = `url("${backgroundImagePath}")`;
       const revealBackground = $('<a>', { href: adClickUrl, target, rel }).addClass('reveal-ad-background').css({ backgroundImage });
       revealBackground.on('click', () => {
@@ -108,7 +96,6 @@ export default {
       $('body').css({ backgroundColor }).prepend(revealBackground);
       $('body').addClass('with-reveal-ad');
     },
-
     displayAd(element) {
       if (!element) return;
       const {
@@ -117,7 +104,6 @@ export default {
         adTitle,
         boxShadow,
       } = this.payload;
-
       const adContainer = $('<div>').addClass('reveal-ad');
       if (boxShadow) adContainer.addClass(`reveal-ad--${boxShadow}-shadow`);
       const $a = $('<a>', {
@@ -132,13 +118,11 @@ export default {
       adContainer.html($a);
       $(element).before(adContainer);
     },
-
     shouldDisplay() {
       const { displayFrequency } = this;
       this.observed += 1;
       return this.observed % displayFrequency > 0;
     },
-
     observeMutations() {
       if (!window.MutationObserver) return;
       this.observer = new MutationObserver((mutationList) => {
@@ -159,11 +143,9 @@ export default {
         this.observer.observe(node.parentNode, { childList: true, subtree: true });
       }
     },
-
     listener(event) {
       const payload = parseMessagePayload(event);
       if (!payload) return;
-
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function fn() {
           document.removeEventListener('DOMContentLoaded', fn);
@@ -173,7 +155,6 @@ export default {
         this.execute(payload);
       }
     },
-
     execute(payload) {
       const elements = this.selectAllTargets
         ? document.querySelectorAll(this.target) : [document.querySelector(this.target)];
@@ -185,12 +166,10 @@ export default {
       this.observeMutations();
       window.removeEventListener('message', this.listener);
     },
-
     trackClick() {
       if (!window.p1events) return;
       window.p1events('trackGAMSlot', { action: 'Click', slot: this.slot });
     },
-
     warn(...args) {
       warn('Reveal Ad Listener:', ...args);
     },
