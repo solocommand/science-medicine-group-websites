@@ -4,6 +4,7 @@
 
 <script>
 import $ from '@parameter1/base-cms-marko-web/browser/jquery';
+
 const parseJSON = (value) => {
   try {
     return JSON.parse(value);

@@ -12,7 +12,6 @@
       border: 1px solid $primary;
       &::before {
         color: $primary;
-        content: "Click to view Table of Contents";
       }
     }
     position: relative;
@@ -34,5 +33,17 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height .5s 0s ease-out;
+  }
+}
+
+.collapsible-sidebar__item--table-of-contents.collapsible-sidebar__item--collapsed {
+  &::before {
+    content: "Click to view Table of Contents";
+  }
+}
+
+.collapsible-sidebar__item--table-of-contents.collapsible-sidebar__item--expanded {
+  &::before {
+    content: "Collapse Table of Contents";
   }
 }
