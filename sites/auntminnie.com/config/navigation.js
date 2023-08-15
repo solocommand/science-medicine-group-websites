@@ -67,7 +67,7 @@ const topics = [
 
 const resources = [
   { href: '/', label: 'Jobs' },
-  { href: 'https://www.auntminniecme.com/', label: 'CME', target: '_blank' },
+  { href: 'https://www.auntminniecme.com/', label: 'CME' },
   ...(icleCfg.enabled ? [
     { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
@@ -221,12 +221,11 @@ module.exports = {
       label: 'Resources',
       items: [
         { href: '/', label: 'Jobs' },
+        { href: 'https://www.auntminniecme.com/', label: 'CME' },
         ...(icleCfg.enabled ? [
           { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
-          { href: `https://${icleCfg.hostname}/cme?VerifyLogin=1`, label: 'CME', when: 'logged-in' },
           { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
           { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
-          { href: `https://${icleCfg.hostname}/cme?VerifyLogin=0`, label: 'CME', when: 'logged-out' },
           { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
         ] : []),
       ],
