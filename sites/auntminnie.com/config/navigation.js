@@ -76,7 +76,6 @@ const resources = [
   ] : []),
   { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/conference', label: 'Conferences' },
-  { href: '/resources/media-press', label: 'Media & Press' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/page/advertising', label: 'Advertising' },
