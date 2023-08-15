@@ -63,22 +63,28 @@ const topics = [
   { href: '/practice-management', label: 'Practice Management', children: practiceManagement },
   { href: '/radiology-education', label: 'Education', children: radiologyEducation },
   { href: '/subspecialties', label: 'Subspecialties', children: subspecialties },
+  // eslint-disable-next-line no-script-url
+  { href: 'javascript:document.querySelector(".site-navbar__toggler").click()', label: 'More' },
 ];
 
 const resources = [
-  { href: '/', label: 'Jobs' },
+  { href: '/', label: 'Careers' },
   { href: 'https://www.auntminniecme.com/', label: 'CME' },
   ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
   ] : []),
-  { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/conference', label: 'Conferences' },
-  { href: '/resources/media-press', label: 'Media & Press' },
+  ...(icleCfg.enabled ? [
+    { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
+    { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
+  ] : []),
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
+];
+
+const more = [
+  { href: '/page/about-us', label: 'About Us' },
   { href: '/page/advertising', label: 'Advertising' },
   { href: '/page/help', label: 'Help' },
 ];
@@ -203,11 +209,15 @@ module.exports = {
       label: 'Resources',
       items: resources,
     },
+    col6: {
+      label: 'More',
+      items: more,
+    },
   },
   footer: {
     col1: {
       label: 'Topics',
-      colspan: 5,
+      colspan: 3,
       items: [
         { href: '/clinical-news', label: 'Clinical News' },
         { href: '/imaging-informatics', label: 'Imaging Informatics' },
@@ -219,16 +229,26 @@ module.exports = {
     },
     col2: {
       label: 'Resources',
+      colspan: 3,
       items: [
-        { href: '/', label: 'Jobs' },
+        { href: '/', label: 'Careers' },
+        ...(icleCfg.enabled ? [
+          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
+          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
+        ] : []),
         { href: 'https://www.auntminniecme.com/', label: 'CME' },
         ...(icleCfg.enabled ? [
           { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
-          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
           { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
-          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
         ] : []),
+        { href: '/resources/videos', label: 'Videos' },
+        { href: '/resources/webinars', label: 'Webinars' },
       ],
+    },
+    col3: {
+      label: 'More',
+      colspan: 3,
+      items: more,
     },
     items: [
       privacyPolicy,
