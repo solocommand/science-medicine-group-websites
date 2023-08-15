@@ -13,7 +13,7 @@ module.exports = {
   },
   signupFooter: {
     ...defaults,
-    colspan: 5,
+    colspan: 3,
     enable: true,
     name: 'Stay Connected',
   },
