@@ -28,9 +28,6 @@
   "<global-site-header-c>": {
     "template": "./site-header-c.marko"
   },
-  "<global-newsletter-signup>": {
-    "template": "./newsletter-signup.marko"
-  },
   "<global-site-menu>": {
     "template": "./site-menu/index.marko"
   },
