@@ -11,19 +11,8 @@ module.exports = ({
   ],
   defaultCountryCode = '',
   requiredServerFields = [
-    'givenName',
-    'familyName',
-    'organization',
-    'city',
-    'countryCode',
   ],
   requiredClientFields = [
-    'givenName',
-    'familyName',
-    'organization',
-    'city',
-    'regionCode',
-    'countryCode',
   ],
   defaultFieldLabels = {
     phoneNumber: 'Mobile Phone',
