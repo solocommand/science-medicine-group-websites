@@ -6,7 +6,6 @@ const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
-const wpIcle = require('./wp-icle');
 
 module.exports = {
   // Module configs
@@ -18,7 +17,6 @@ module.exports = {
   navigation,
   newsletter,
   search,
-  wpIcle,
   // Site configs
   company: 'Science and Medicine Group',
   p1events: {
@@ -77,4 +75,5 @@ module.exports = {
     logo: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
+  wpIcleHostname: 'my.drbicuspid.com',
 };

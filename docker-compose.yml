@@ -115,12 +115,6 @@ services:
       EXPOSED_PORT: 9953
       LIVERELOAD_PORT: 19953
       BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
-      WPICLE_ENABLED: ${WPICLE_ENABLED_DRB-false}
-      WPICLE_API_KEY: ${WPICLE_API_KEY_DRB-}
-      WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME_DRB-}
-      WPICLE_AWS_ACCESS_KEY_ID: ${WPICLE_AWS_ACCESS_KEY_ID_DRB-}
-      WPICLE_AWS_SECRET_ACCESS_KEY: ${WPICLE_AWS_SECRET_ACCESS_KEY_DRB-}
-      WPICLE_AWS_SQS_QUEUE_URL: ${WPICLE_AWS_SQS_QUEUE_URL_DRB-}
     hostname: www-smg-drb.dev.parameter1.com
     ports:
       - "9953:80"
@@ -136,7 +130,6 @@ services:
       EXPOSED_PORT: 9954
       LIVERELOAD_PORT: 19954
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
-      WPICLE_ENABLED: false
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
@@ -152,7 +145,6 @@ services:
       EXPOSED_PORT: 9955
       LIVERELOAD_PORT: 19955
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
-      WPICLE_ENABLED: false
     hostname: www-smg-ame.dev.parameter1.com
     ports:
       - "9955:80"
@@ -168,7 +160,6 @@ services:
       EXPOSED_PORT: 9956
       LIVERELOAD_PORT: 19956
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
-      WPICLE_ENABLED: false
     hostname: www-smg-ama.dev.parameter1.com
     ports:
       - "9956:80"

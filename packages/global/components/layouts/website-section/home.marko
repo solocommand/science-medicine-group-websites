@@ -7,7 +7,7 @@ import between from "../../../utils/between";
 import websiteSectionContentLoader from "../../../loaders/website-section-content";
 
 $ const { config, site, req, GAM, apollo, i18n } = out.global;
-$ const icleHostname = site.get('wpIcle.hostname');
+$ const icleHostname = site.get('wpIcleHostname');
 $ const loader = getAsObject(input, "loader");
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
@@ -125,7 +125,7 @@ $ const promise = websiteSectionContentLoader(apollo, {
                   </theme-latest-content-list-block>
                   <!-- <global-video-player /> -->
                   <div class="sticky-top page-rail">
-                    <identity-x-newsletter-form-inline type="inlineSection" />
+                    <identity-x-newsletter-form-inline type="inlineSection" with-image=false />
                   </div>
                 </div>
               </div>

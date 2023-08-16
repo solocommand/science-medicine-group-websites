@@ -6,7 +6,6 @@ const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
-const wpIcle = require('./wp-icle');
 
 module.exports = {
   // Module configs
@@ -18,7 +17,6 @@ module.exports = {
   navigation,
   newsletter,
   search,
-  wpIcle,
   // Site configs
   company: 'Science and Medicine Group',
   p1events: {

@@ -7,9 +7,6 @@ const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monor
 const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 const braze = require('@science-medicine-group/package-braze');
 const brazeHooks = require('@science-medicine-group/package-braze/hooks');
-const icle = require('@science-medicine-group/package-wp-icle');
-const icleHooks = require('@science-medicine-group/package-wp-icle/hooks');
-const icleRoutes = require('@science-medicine-group/package-wp-icle/routes');
 const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 
@@ -79,17 +76,12 @@ module.exports = (options = {}) => {
       // Load ZeroBounce (must be loaded before IdX!)
       zeroBounce(app);
 
-      const idxConfig = get(options, 'siteConfig.identityX');
-      const icleConfig = getAsObject(options, 'siteConfig.wpIcle');
-      // Load ICLE configuration middleware
-      if (icleConfig.enabled) icle(app, { ...icleConfig, idxConfig, brazeConfig });
       // Load IdentityX
+      const idxConfig = get(options, 'siteConfig.identityX');
       identityX(app, idxConfig, { templates: idxRouteTemplates });
-      if (icleConfig.enabled) icleRoutes(app);
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
-      if (icleConfig.enabled) icleHooks(idxConfig, icleConfig);
 
       // i18n
       const i18n = (v) => v;

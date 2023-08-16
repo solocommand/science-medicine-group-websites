@@ -7,7 +7,6 @@ const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const pageDetails = require('./page-details');
 const search = require('./search');
-const wpIcle = require('./wp-icle');
 
 module.exports = {
   // Module configs
@@ -19,7 +18,6 @@ module.exports = {
   navigation,
   newsletter,
   search,
-  wpIcle,
   // Site configs
   company: 'Science and Medicine Group',
   p1events: {
@@ -67,4 +65,5 @@ module.exports = {
     bgColor: '#000000',
   },
   pageDetails,
+  wpIcleHostname: 'my.auntminnie.com',
 };

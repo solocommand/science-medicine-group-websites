@@ -12,7 +12,6 @@ $ const {
   req,
 } = out.global;
 
-$ const newsletterConfig = site.getAsObject('newsletter.signupBanner');
 $ const showOverlay = shouldOverlay(contentMeterState);
 
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
@@ -244,7 +243,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
 
                 <marko-web-identity-x-context|{ hasUser }|>
                   <if(!hasUser)>
-                    <identity-x-newsletter-form-inline type="inlineContent" />
+                    <identity-x-newsletter-form-inline type="inlineContent" with-image=true />
                   </if>
                 </marko-web-identity-x-context>
               </else>
