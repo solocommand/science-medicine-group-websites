@@ -1,6 +1,6 @@
 module.exports = {
   // If the entire sync process is enabled. Driven by env to bypass in integration tests
-  enabled: ['1', 'true'].includes(process.env.WPICLE_ENABLED),
+  enabled: false,
   // The WP-ICLE API hostname to use (varies by tenant/site and environment)
   hostname: process.env.WPICLE_API_HOSTNAME || 'my.auntminnie.com',
   // The WP-ICLE API key to use (varies by endpoint)
