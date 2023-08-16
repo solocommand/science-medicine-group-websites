@@ -7,13 +7,12 @@ $ const { log } = console;
 $ const { apiUrl, name, description } = input;
 $ const button = getAsObject(input, "button");
 $ const nativeX = getAsObject(input, "nativeX");
-$ const isAuthenticated = req.oidc.isAuthenticated();
 $ const resolveNodes = ({ resolved }) => (resolved.map((node) => ({
   id: node.ID,
   type: 'Case',
   shortName: node.name,
   teaser: node.description,
-  siteContext: { path: `https://${site.get('wpIcle.hostname')}/cases/${node.url}?VerifyLogin=${isAuthenticated ? '1' : '0'}` },
+  siteContext: { path: `https://${site.get('wpIcle.hostname')}/cases/${node.url}` },
   primaryImage: { src: node.imagepath }
 })));
 

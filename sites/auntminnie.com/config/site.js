@@ -1,4 +1,3 @@
-const auth0 = require('./auth0');
 const braze = require('./braze');
 const contentMeter = require('./content-meter');
 const gam = require('./gam');
@@ -12,7 +11,6 @@ const wpIcle = require('./wp-icle');
 
 module.exports = {
   // Module configs
-  auth0,
   braze,
   contentMeter,
   gam,
