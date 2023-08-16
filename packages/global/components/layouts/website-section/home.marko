@@ -125,20 +125,12 @@ $ const promise = websiteSectionContentLoader(apollo, {
                   </theme-latest-content-list-block>
                   <!-- <global-video-player /> -->
                   <div class="sticky-top page-rail">
-                    <marko-web-identity-x-context|{ hasUser }|>
-                      <if(!hasUser)>
-                        <global-newsletter-signup
-                          name=newsletterConfig.name
-                          description=newsletterConfig.description
-                          modifiers=["large"]
-                        />
-                      </if>
-                    </marko-web-identity-x-context>
+                    <identity-x-newsletter-form-inline type="inlineSection" />
                   </div>
                 </div>
               </div>
             </@section>
-            <if(site.get('wpIcle.enabled'))>
+            <if(icleHostname)>
               <@section>
                 <global-external-api-block
                   api-url=`https://${icleHostname}/wp-json/mo/v1/getCase/3`
