@@ -244,11 +244,7 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
 
                 <marko-web-identity-x-context|{ hasUser }|>
                   <if(!hasUser)>
-                    <global-newsletter-signup
-                      name=newsletterConfig.name
-                      description=newsletterConfig.description
-                      modifiers=["large"]
-                    />
+                    <identity-x-newsletter-form-inline type="inlineContent" />
                   </if>
                 </marko-web-identity-x-context>
               </else>

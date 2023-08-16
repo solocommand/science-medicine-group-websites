@@ -811,9 +811,9 @@ body .ad-container--template-reskin-mobile {
 /*! critical:start|home */
 .newsletter-signup-banner {
   &--large {
-    flex-direction: column;
     background-color: lighten($primary, 60%);  // #e2f3fc
     border: 1px solid $primary;
+    align-items: center;
   }
   &__description {
     &--large {

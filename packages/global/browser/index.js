@@ -4,7 +4,6 @@ import Braze from '@science-medicine-group/package-braze/browser';
 import Rudderstack from './rudderstack.vue';
 import CollapsibleSidebar from './collapsible-sidebar.vue';
 
-const GlobalNewsletterMenu = () => import(/* webpackChunkName: "global-newsletter-menu" */ './newsletter-menu.vue');
 const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
 const GlobalRevealAdHandler = () => import(/* webpackChunkName: "reveal-ad-handler" */ './reveal-ad-handler.vue');
 
@@ -14,9 +13,6 @@ export default (Browser) => {
     enableOmedaIdentityX: false,
   });
   Browser.register('ContentMeterTrack', ContentMeterTrack);
-  Browser.register('GlobalNewsletterMenu', GlobalNewsletterMenu, {
-    provide: { EventBus },
-  });
   PhotoSwipe(Browser);
   Braze(Browser);
   Browser.register('CollapsibleSidebar', CollapsibleSidebar);

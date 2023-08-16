@@ -62,23 +62,9 @@ $ const tagline = site.get("tagline");
       </if>
 
       <div class="row">
-        <if(newsletterConfig.enable)>
-          <div class=`col-md-${newsletterConfig.colspan || 4} mb-block`>
-            <marko-web-identity-x-context|{ hasUser }|>
-              $ const href = (hasUser) ? "/user/profile" : "/login";
-              $ const name = (hasUser) ? "User Account": newsletterConfig.name;
-              $ const desc = (hasUser) ? "" : newsletterConfig.description;
-              $ const cta = (hasUser) ? "Modify Profile" : "Sign Up";
-              <global-newsletter-signup
-                name=name
-                description=desc
-                modifiers=["footer"]
-                href=href
-                cta=cta
-              />
-            </marko-web-identity-x-context>
-          </div>
-        </if>
+        <div class="col-md-4 mb-block">
+          <identity-x-newsletter-form-footer config-name="signupFooter" />
+        </div>
         <div class=`col-md-${site.get("navigation.footer.col1.colspan") || 2}`>
           <!-- sections -->
           <theme-site-menu-section
