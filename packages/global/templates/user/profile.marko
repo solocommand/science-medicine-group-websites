@@ -27,13 +27,7 @@ $ const additionalEventData = {}; // @todo
         <h1 class="page-wrapper__title">${description}</h1>
         <marko-web-identity-x-context|{ user }|>
           <if(user)>
-            <if(req.query.authenticate)>
-              <marko-web-browser-component name="Auth0Authenticated" props={
-                activeUser: user,
-                source: loginSource,
-                additionalEventData,
-              } />
-            </if>
+            <a href="/user/subscribe?email=${encodeURIComponent(user.email)}">Click here</a> to modify your subscription preferences.
             <marko-web-identity-x-form-profile login-source=loginSource />
           </if>
           <else>
