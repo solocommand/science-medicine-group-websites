@@ -8,6 +8,7 @@ const dentalPractice = [
   { href: '/dental-practice/office-management', label: 'Office Management' },
   { href: '/dental-practice/patient-communication', label: 'Patient Communication' },
   { href: '/dental-practice/public-health', label: 'Public Health' },
+  { href: 'https://my.drbicuspid.com/salary-scan', label: 'Salary Scan' },
   { href: '/dental-practice/wellness', label: 'Wellness' },
 ];
 const dentalSpecialties = [

@@ -519,6 +519,7 @@ label {
 }
 
 /*! critical:start|content */
+@import "./components/collapsible-sidebar";
 // Begin right rail content layout CSS
 .content-page-body {
   padding-top: 12px;
@@ -671,6 +672,15 @@ label {
 }
 .reveal-ad {
   height: 298px;
+}
+body .ad-container--template-reskin-mobile {
+  // prevent layout shift & add 20px mb (298px + 20px)
+  @media (max-width: 750px) {
+    min-height: 318px;
+  }
+  &+ .document-container > .page:first-of-type {
+    margin-top: 0;
+  }
 }
 /*! critical:end */
 

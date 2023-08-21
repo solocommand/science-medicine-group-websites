@@ -1,9 +1,11 @@
 import { getAsObject } from "@parameter1/base-cms-object-path";
+import createIdentityBuilder from '../utils/create-identity-builder.js';
 
 $ const {
   site,
   req,
   nativeX,
+  identityX,
   GAM,
   contentMeterState
 } = out.global;
@@ -28,11 +30,15 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
     />
 
     <!-- init p1 website events -->
-    <marko-web-p1-events-init
-      request-frame=true
-      target-tag="body"
-      on="load"
-    />
+    <marko-web-identity-x-context|context|>
+      <marko-web-p1-events-init
+        request-frame=true
+        target-tag="body"
+        on="load"
+        identity-query-builder=createIdentityBuilder(context)
+        enable-gam-plugin=true
+      />
+    </marko-web-identity-x-context>
 
     <!-- init gam -->
     <marko-web-gam-init
