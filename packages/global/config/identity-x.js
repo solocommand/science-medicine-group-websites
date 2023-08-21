@@ -29,7 +29,7 @@ module.exports = ({
     hiddenFields,
     requiredServerFields,
     requiredClientFields,
-    booleanQuestionsLabel: 'Choose your subscriptions:',
+    booleanQuestionsLabel: '',
     onHookError: newrelic.noticeError.bind(newrelic),
     emailValidator,
     defaultFieldLabels,
