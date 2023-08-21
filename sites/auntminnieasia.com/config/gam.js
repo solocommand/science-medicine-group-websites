@@ -17,7 +17,6 @@ config.setAliasAdUnits('default', [
   { name: 'rotation', templateName: 'ROTATION', path: 'rotation' },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: 'rotation' },
-  // Below based on enableRevealAd
   { name: 'reskin', path: 'reskin' },
   { name: 'reskin-mobile', templateName: 'RESKIN-MOBILE', path: 'reskin' },
 ]);

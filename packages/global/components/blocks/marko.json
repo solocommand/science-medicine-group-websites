@@ -27,5 +27,9 @@
     "template": "./collapsible-sidebar.marko",
     "@item": "object",
     "@type": "string"
+  },
+  "<global-icle-top-posts-block>": {
+    "template": "./icle-top-posts.marko",
+    "@api-url": "string"
   }
 }
