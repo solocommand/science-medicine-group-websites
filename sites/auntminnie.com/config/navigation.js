@@ -224,15 +224,8 @@ module.exports = {
       colspan: 3,
       items: [
         { href: '/', label: 'Careers' },
-        ...(icleCfg.enabled ? [
-          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
-          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
-        ] : []),
-        { href: 'https://www.auntminniecme.com/', label: 'CME' },
-        ...(icleCfg.enabled ? [
-          { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
-          { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
-        ] : []),
+        { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
+        { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
         { href: '/resources/videos', label: 'Videos' },
         { href: '/resources/webinars', label: 'Webinars' },
       ],

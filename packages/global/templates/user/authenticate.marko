@@ -15,7 +15,7 @@ $ const description = `Complete your ${config.siteName()} Profile`;
       <@section>
         <h1 class="page-wrapper__title">${description}</h1>
         <p>
-          Fill out the form below to enhance your online experience on ${config.siteName()}<if(req.query && req.query.redirectTo)>, or <a href="${ req.query.redirectTo }">click here</a> to continue</if>.
+          Fill out the form below to enhance your online experience on ${config.siteName()}<if(req.query && req.query.redirectTo)>, or <a href=req.query.redirectTo>click here</a> to continue</if>.
         </p>
         <marko-web-identity-x-form-authenticate />
         <p class="mt-block"><a href="/user/subscribe">Click here</a> to modify your email subscription preferences.</p>
