@@ -1,0 +1,76 @@
+import fetch from "node-fetch";
+import { load } from 'cheerio';
+
+$ const { log } = console;
+
+$ const blockName = "most-popular";
+
+$ const { apiUrl } = input;
+
+$ const apiCall = async (url) => {
+  if (url) {
+    const titles = [];
+    const links = [];
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: { 'content-type': 'application/xml'}
+    });
+    const textResponse = await response.text();
+    if (!response.ok) {
+      log('Unsuccessful ICLE Top Posts response!', url, textResponse);
+      return [];
+    }
+    const $ = load(textResponse, { xmlMode: true });
+    $('item').each(function(i, currentXMLTag) {
+      currentXMLTag.childNodes.forEach(loggerFunc);
+      function loggerFunc (item, index) {
+        if (item.name === 'title') {
+          titles.push(item.children[0].children[0].data);
+        } else if (item.name === 'link') {
+          links.push(item.children[0].data)
+        }
+      }
+    });
+    const items = [];
+    if (titles.length === links.length) {
+      titles.map((title, index) => {
+        items.push({ shortName: title, siteContext: { path: links[index] } });
+      });
+    }
+    return items;
+  }
+  return [];
+}
+
+<if(apiUrl)>
+  <marko-web-resolve|{ resolved }| promise=apiCall(apiUrl)>
+    <if(resolved.length)>
+        <marko-web-block name=blockName>
+          <marko-web-element block-name=blockName name="header">
+            Top Posts
+          </marko-web-element>
+          <theme-card-deck-flow
+            modifiers=[blockName]
+            cols=3
+            nodes=resolved
+          >
+            <@slot|{ node, index }|>
+              <marko-web-element block-name=blockName name="card-wrapper">
+                <marko-web-element block-name=blockName name="position">
+                  ${index + 1}
+                </marko-web-element>
+                <theme-content-node
+                  display-image=false
+                  with-teaser=false
+                  with-dates=false
+                  with-section=false
+                  modifiers=[blockName]
+                  node=node
+                />
+              </marko-web-element>
+            </@slot>
+          </theme-card-deck-flow>
+        </marko-web-block>
+    </if>
+  </marko-web-resolve>
+</if>
