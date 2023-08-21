@@ -10,6 +10,7 @@ class Braze {
     apiKey,
     tenant,
     fieldMap,
+    defaultGroupId,
     unconfirmedGroupId,
     appGroupId,
     cookies = {},
@@ -21,6 +22,7 @@ class Braze {
       'content-type': 'application/json',
       authorization: `Bearer ${apiKey}`,
     };
+    this.defaultGroupId = defaultGroupId;
     this.unconfirmedGroupId = unconfirmedGroupId;
     this.appGroupId = appGroupId;
     this.externalId = cookies.braze_ext_id;
