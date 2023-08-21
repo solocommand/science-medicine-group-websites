@@ -2,6 +2,8 @@ const configureGAM = require('@science-medicine-group/package-global/config/gam'
 
 const config = configureGAM({ basePath: 'am' });
 
+config.enableRevealAd = true;
+
 config.lazyLoad = {
   enabled: true, // set to true to enable lazy loading
   fetchMarginPercent: 100, // fetch ad when one viewport away
@@ -10,7 +12,7 @@ config.lazyLoad = {
 };
 
 config.setAliasAdUnits('default', [
-  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: 'leaderboard' },
+  { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: 'sticky-footer' },
   { name: 'leaderboard', templateName: 'LEADERBOARD', path: 'leaderboard' },
   { name: 'rotation', templateName: 'ROTATION', path: 'rotation' },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
@@ -20,7 +22,9 @@ config.setAliasAdUnits('default', [
   { name: 'reskin-mobile', templateName: 'RESKIN-MOBILE', path: 'reskin' },
 ]);
 
-const aliases = [];
+const aliases = [
+  { alias: 'imaging-informatics' },
+];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
   { name: 'lb-sticky-bottom', templateName: 'LB-STICKY-BOTTOM', path: `${prefix}-sticky-footer` },
