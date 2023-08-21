@@ -8,6 +8,7 @@ import Auth0Authenticated from './auth0-authenticated.vue';
 import CollapsibleSidebar from './collapsible-sidebar.vue';
 
 const GlobalNewsletterMenu = () => import(/* webpackChunkName: "global-newsletter-menu" */ './newsletter-menu.vue');
+const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
 const GlobalRevealAdHandler = () => import(/* webpackChunkName: "reveal-ad-handler" */ './reveal-ad-handler.vue');
 
 export default (Browser) => {
@@ -21,6 +22,7 @@ export default (Browser) => {
   Browser.register('Auth0Authenticated', Auth0Authenticated, {
     provide: { EventBus },
   });
+  Browser.register('ContentMeterTrack', ContentMeterTrack);
   Browser.register('GlobalNewsletterMenu', GlobalNewsletterMenu, {
     provide: { EventBus },
   });
