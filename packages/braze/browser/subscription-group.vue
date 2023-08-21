@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
-  <div class="form-group">
+  <div class="form-group w-100">
     <div class="custom-control custom-checkbox">
       <input
         :id="`custom-boolean-${id}`"

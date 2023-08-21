@@ -7,17 +7,6 @@ const template = require('../templates/preference-center');
 const idxAppUser = require('../graphql/queries/idx-app-user');
 const { updateIdentityXUser, filterByExternalId } = require('../utils');
 
-const buildAnswers = (questions, optIns) => {
-  const questionMap = questions.reduce((map, q) => {
-    map.set(q.groupId, q.id);
-    return map;
-  }, new Map());
-  return Object.entries(optIns).reduce((arr, [brazeId, value]) => {
-    const fieldId = questionMap.get(brazeId);
-    if (!fieldId) return arr;
-    return [...arr, { fieldId, value }];
-  }, []);
-};
 const buildOptins = async ({ email, identityX, braze }) => {
   const questions = await braze.getSubscriptionGroupQuestions(identityX);
   const optIns = questions.reduce((obj, sg) => ({ ...obj, [sg.groupId]: false }), {});
@@ -78,15 +67,11 @@ module.exports = (app) => {
 
   app.post('/user/subscribe', json(), asyncRoute(async (req, res) => {
     try {
-      const { body, braze, identityX } = req;
+      const { body, braze } = req;
       const { email, optIns, token } = body;
-      const questions = await braze.getSubscriptionGroupQuestions(identityX);
-      const answers = buildAnswers(questions, optIns);
-
       await validateToken({ token, secretKey: RECAPTCHA_V3_SECRET_KEY, actions: ['brazePreferenceCenter'] });
-      const idxUser = await updateIdentityXUser(email, req.identityX, answers);
+      const idxUser = await updateIdentityXUser(email, req.identityX);
       await braze.trackUser(email, idxUser.id);
-
       const response = await braze.updateSubscriptions(email, idxUser.id, optIns);
       res.status(200).send(response);
     } catch (e) {
