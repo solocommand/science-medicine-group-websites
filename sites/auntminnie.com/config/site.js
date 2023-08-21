@@ -6,6 +6,7 @@ const identityX = require('./identity-x');
 const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const newsletter = require('./newsletter');
+const pageDetails = require('./page-details');
 const search = require('./search');
 const wpIcle = require('./wp-icle');
 
@@ -67,4 +68,5 @@ module.exports = {
     logo: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/am-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
+  pageDetails,
 };
