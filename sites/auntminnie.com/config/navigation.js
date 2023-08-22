@@ -67,7 +67,8 @@ const topics = [
 ];
 
 const resources = [
-  { href: '/', label: 'Careers' },
+  { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
+  { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
   { href: 'https://www.auntminniecme.com/', label: 'CME' },
   { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
   { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
@@ -223,8 +224,10 @@ module.exports = {
       label: 'Resources',
       colspan: 3,
       items: [
-        { href: '/', label: 'Careers' },
+        { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
+        { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
         { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
+        { href: 'https://www.auntminniecme.com/', label: 'CME' },
         { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
         { href: '/resources/videos', label: 'Videos' },
         { href: '/resources/webinars', label: 'Webinars' },
