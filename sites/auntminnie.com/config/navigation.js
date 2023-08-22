@@ -68,7 +68,8 @@ const topics = [
 ];
 
 const resources = [
-  { href: '/', label: 'Careers' },
+  { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
+  { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
   { href: 'https://www.auntminniecme.com/', label: 'CME' },
   ...(icleCfg.enabled ? [
     { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
@@ -231,7 +232,8 @@ module.exports = {
       label: 'Resources',
       colspan: 3,
       items: [
-        { href: '/', label: 'Careers' },
+        { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
+        { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
         ...(icleCfg.enabled ? [
           { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
           { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
