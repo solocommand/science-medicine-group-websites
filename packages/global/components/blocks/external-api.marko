@@ -12,7 +12,7 @@ $ const resolveNodes = ({ resolved }) => (resolved.map((node) => ({
   type: 'Case',
   shortName: node.name,
   teaser: node.description,
-  siteContext: { path: `https://${site.get('wpIcle.hostname')}/cases/${node.url}` },
+  siteContext: { path: `https://${site.get('wpIcleHostname')}/cases/${node.url}` },
   primaryImage: { src: node.imagepath }
 })));
 
