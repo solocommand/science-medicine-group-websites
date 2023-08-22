@@ -1,20 +1,5 @@
-const { get, getAsObject } = require('@parameter1/base-cms-object-path');
+const { getAsObject } = require('@parameter1/base-cms-object-path');
 const updateAppUser = require('./graphql/mutations/idx-user-update-receive-email');
-
-const getUserRole = ({
-  user = {},
-  payload = {},
-  defaultRole = 'Subscriber',
-  brazeConfig = {},
-}) => {
-  // Read from incoming payload
-  const incoming = get(payload, 'role');
-  if (incoming && incoming !== defaultRole) return incoming;
-  // Read from custom attributes
-  const attr = get(user, `customAttributes.${brazeConfig.siteName}Role`);
-  if (attr) return attr;
-  return defaultRole;
-};
 
 module.exports = {
   filterByExternalId: (arr, type, tenant) => arr.filter((v) => {
@@ -29,7 +14,6 @@ module.exports = {
   }) => ({
     external_id: user.id,
     site_membership: { add: brazeConfig.siteName },
-    role: getUserRole({ user, brazeConfig }),
     ...payload,
   }),
   /**
