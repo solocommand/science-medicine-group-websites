@@ -32,12 +32,7 @@ module.exports = async ({
   /** @type {BrazeRequest} */
   const { braze } = req;
 
-  if (user.verified) {
-    // Opt the user out of the 'unconfirmed' group
-    await braze.confirmUser(user.email, user.id, 'identity-x');
-  } else {
-    await braze.unconfirmUser(user.email, user.id);
-  }
+  await braze.confirmUser(user.email, user.id, 'identity-x');
 
   const payload = buildPayload({
     brazeConfig,
