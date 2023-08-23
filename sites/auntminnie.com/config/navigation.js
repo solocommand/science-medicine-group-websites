@@ -38,6 +38,7 @@ const practiceManagement = [
 const radiologyEducation = [
   { href: '/radiology-education/medical-students', label: 'Medical Students' },
   { href: '/radiology-education/residents-fellows', label: 'Residents/Fellows' },
+  { href: '/page/scott-williams', label: 'Scott Williams' },
 ];
 const subspecialties = [
   { href: '/subspecialties/breast-imaging', label: 'Breast Imaging' },
