@@ -11,6 +11,9 @@ config
   ])
   .setAliasPlacements('cases', [
     { name: 'cases', id: '64e7906396af9a00010dab91' },
+  ])
+  .setAliasPlacements('informatics/advanced-visualization', [
+    { name: 'related-content', id: '64e66c30fd16dd0001f6e6ed' },
   ]);
 
 module.exports = config;
