@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/auntminnie.com",
-  "version": "2.5.6",
+  "version": "2.5.9",
   "author": "Brandon Krigbaum <brandon@parameter1.com>",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/sites/auntminnie.com",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "@parameter1/base-cms-utils": "^4.5.12",
     "@parameter1/base-cms-web-cli": "^4.18.3",
     "@science-medicine-group/package-braze": "^2.5.0",
-    "@science-medicine-group/package-global": "^2.5.5",
+    "@science-medicine-group/package-global": "^2.5.9",
     "csvtojson": "^2.0.10",
     "debounce": "^1.2.0",
     "graphql": "^14.5.4",
