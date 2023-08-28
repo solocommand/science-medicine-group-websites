@@ -25,7 +25,7 @@ config.setAliasAdUnits('default', [
 const aliases = [
   { alias: 'clinical-news' },
   { alias: 'clinical-news/ct', prefix: 'ct' },
-  { alias: 'clinical-news/digital-xray', prefix: 'digital-xray' },
+  { alias: 'clinical-news/digital-x-ray', prefix: 'digital-x-ray' },
   { alias: 'clinical-news/interventional-radiology', prefix: 'interventional-radiology' },
   { alias: 'clinical-news/molecular-imaging', prefix: 'molecular-imaging' },
   { alias: 'clinical-news/mri', prefix: 'mri' },
