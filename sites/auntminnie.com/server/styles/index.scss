@@ -14,9 +14,3 @@ $primary: #01274b;
 @import "@parameter1/base-cms-marko-web-reveal-ad/scss/reveal-ad";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/reveal-ad";
 /*! critical:end */
-
-.site-footer {
-  .row {
-    flex-wrap: nowrap;
-  }
-}
