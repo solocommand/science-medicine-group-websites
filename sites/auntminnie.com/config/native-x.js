@@ -12,8 +12,11 @@ config
   .setAliasPlacements('cases', [
     { name: 'cases', id: '64e7906396af9a00010dab91' },
   ])
-  .setAliasPlacements('informatics/advanced-visualization', [
+  .setAliasPlacements('imaging-informatics/advanced-visualization', [
     { name: 'related-content', id: '64e66c30fd16dd0001f6e6ed' },
+  ])
+  .setAliasPlacements('practice-management/service', [
+    { name: 'related-content', id: '64ecf95996af9a00012333ff' },
   ]);
 
 module.exports = config;
