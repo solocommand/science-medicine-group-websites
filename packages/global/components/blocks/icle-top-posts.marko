@@ -47,17 +47,43 @@ $ const apiCall = async (url) => {
     <if(resolved.length)>
         <marko-web-block name=blockName>
           <marko-web-element block-name=blockName name="header">
-            Top Posts
+            <if(input.title)>
+              ${input.title}
+            </if>
+            <else>
+              Recent Forum Posts
+            </else>
           </marko-web-element>
           <theme-card-deck-flow
             modifiers=[blockName]
             cols=3
-            nodes=resolved
+            nodes=resolved.filter((node, index) => index % 2 === 0).slice(0, 3)
           >
             <@slot|{ node, index }|>
               <marko-web-element block-name=blockName name="card-wrapper">
                 <marko-web-element block-name=blockName name="position">
-                  ${index + 1}
+                  ${(index * 2) + 1}
+                </marko-web-element>
+                <theme-content-node
+                  display-image=false
+                  with-teaser=false
+                  with-dates=false
+                  with-section=false
+                  modifiers=[blockName]
+                  node=node
+                />
+              </marko-web-element>
+            </@slot>
+          </theme-card-deck-flow>
+          <theme-card-deck-flow
+            modifiers=[blockName]
+            cols=3
+            nodes=resolved.filter((node, index) => index % 2 === 1).slice(0, 3)
+          >
+            <@slot|{ node, index }|>
+              <marko-web-element block-name=blockName name="card-wrapper">
+                <marko-web-element block-name=blockName name="position">
+                  ${(index + 1) * 2}
                 </marko-web-element>
                 <theme-content-node
                   display-image=false
