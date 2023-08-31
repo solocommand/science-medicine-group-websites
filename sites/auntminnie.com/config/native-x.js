@@ -23,6 +23,9 @@ config
   ])
   .setAliasPlacements('clinical-news/digital-x-ray', [
     { name: 'related-content', id: '64ef7e86fd16dd00011d107b' },
+  ])
+  .setAliasPlacements('clinical-news/molecular-imaging', [
+    { name: 'related-content', id: '64f0daabfd16dd0001226ae6' },
   ]);
 
 module.exports = config;
