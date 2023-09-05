@@ -34,6 +34,7 @@ const practiceManagement = [
   { href: '/practice-management/patient-safety', label: 'Patient Safety' },
   { href: '/practice-management/radiologic-technologist', label: 'Radiologic Technologist' },
   { href: '/practice-management/service', label: 'Service' },
+  { href: 'https://my.auntminnie.com/salary-scan', label: 'Salary Scan' },
 ];
 const radiologyEducation = [
   { href: '/radiology-education/medical-students', label: 'Medical Students' },
