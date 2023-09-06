@@ -28,6 +28,7 @@ const aliases = [
   { alias: 'diseases' },
   { alias: 'point-of-care-testing' },
   { alias: 'research-and-development' },
+  { alias: 'resources/whitepapers' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
