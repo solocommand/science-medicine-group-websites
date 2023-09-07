@@ -58,7 +58,7 @@ module.exports = {
   ],
   podcastLinks: [],
   gtm: {
-    containerId: 'GTM-5RJ8D63',
+    containerId: 'GTM-WJZZSMD4',
   },
   wufoo: {
     userName: 'labpulse',
