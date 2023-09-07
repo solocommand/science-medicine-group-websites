@@ -58,7 +58,14 @@ module.exports = {
   ],
   podcastLinks: [],
   gtm: {
-    containerId: 'GTM-5RJ8D63',
+    containerId: 'GTM-WJZZSMD4',
+  },
+  wufoo: {
+    userName: 'labpulse',
+    'contact-us': {
+      title: 'Drop us a line!',
+      hash: 'p1sbrws11c3y833',
+    },
   },
   inquiry: {
     enabled: false,
