@@ -60,6 +60,13 @@ module.exports = {
   gtm: {
     containerId: 'GTM-WJZZSMD4',
   },
+  wufoo: {
+    userName: 'labpulse',
+    'contact-us': {
+      title: 'Drop us a line!',
+      hash: 'p1sbrws11c3y833',
+    },
+  },
   inquiry: {
     enabled: false,
     directSend: false,
