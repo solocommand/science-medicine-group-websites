@@ -39,16 +39,5 @@ module.exports = async ({
     await braze.confirmUser(user.email, user.id, 'identity-x');
   }
 
-  // External ID tagged subscriptions
-  const optins = filterByExternalId(getAsArray(user, 'customBooleanFieldAnswers'), 'subscriptionGroup', tenant);
-  if (optins.length) {
-    const subscriptions = optins.reduce((obj, ans) => {
-      const key = get(ans, 'field.externalId.identifier.value');
-      return { ...obj, [key]: ans.value };
-    }, {});
-
-    await braze.updateSubscriptions(user.email, user.id, subscriptions);
-  }
-
   return user;
 };
