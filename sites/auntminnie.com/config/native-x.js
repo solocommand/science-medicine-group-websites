@@ -104,6 +104,20 @@ config
   ])
   .setAliasPlacements('radiology-education/residents-fellows', [
     { name: 'related-content', id: '64f8795396af9a0001519163' },
+  ])
+
+  // SUBSPECIALTIES PLACEMENTS
+  .setAliasPlacements('subspecialties/interventional-radiology', [
+    { name: 'related-content', id: '64f9fd1efd16dd0001487001' },
+  ])
+  .setAliasPlacements('subspecialties/nuclear-radiology', [
+    { name: 'related-content', id: '64f9fd2a96af9a00015916ca' },
+  ])
+  .setAliasPlacements('subspecialties/radiation-oncology', [
+    { name: 'related-content', id: '64f9fd3996af9a00015916ef' },
+  ])
+  .setAliasPlacements('subspecialties/breast-imaging', [
+    { name: 'related-content', id: '64f9fd46fd16dd00014870a3' },
   ]);
 
 module.exports = config;
