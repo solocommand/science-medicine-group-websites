@@ -54,6 +54,11 @@ const aliases = [
   { alias: 'radiology-education' },
   { alias: 'radiology-education/medical-students', prefix: 'medical-students' },
   { alias: 'radiology-education/residents-fellows', prefix: 'residents-fellows' },
+  { alias: 'subspecialties' },
+  { alias: 'subspecialties/interventional-radiology', prefix: 'interventional-radiology' },
+  { alias: 'subspecialties/nuclear-radiology', prefix: 'nuclear-radiology' },
+  { alias: 'subspecialties/radiation-oncology', prefix: 'radiation-oncology' },
+  { alias: 'subspecialties/breast-imaging', prefix: 'breast-imaging' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
