@@ -76,4 +76,5 @@ module.exports = {
     bgColor: '#000000',
   },
   pageDetails,
+  defaultForumName: 'General Radiology',
 };
