@@ -80,6 +80,9 @@ config
   .setAliasPlacements('clinical-news/radiation-oncology-therapy', [
     { name: 'related-content', id: '64f879edfd16dd000140ed8f' },
   ])
+  .setAliasPlacements('clinical-news/senl', [
+    { name: 'related-content', id: '64ff3166fd16dd000159a851' },
+  ])
 
   // INDUSTRY NEWS PLACEMENTS
   .setAliasPlacements('industry-news/installations', [
