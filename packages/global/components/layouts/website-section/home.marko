@@ -125,7 +125,11 @@ $ const promise = websiteSectionContentLoader(apollo, {
                   </theme-latest-content-list-block>
                   <!-- <global-video-player /> -->
                   <div class="sticky-top page-rail">
-                    <identity-x-newsletter-form-inline type="inlineSection" with-image=false />
+                    <marko-web-identity-x-context|{ hasUser }|>
+                      <if(!hasUser)>
+                        <identity-x-newsletter-form-inline type="inlineSection" with-image=false />
+                      </if>
+                    </marko-web-identity-x-context>
                   </div>
                 </div>
               </div>
