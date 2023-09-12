@@ -33,10 +33,12 @@ const practiceManagement = [
   { href: '/practice-management/patient-safety', label: 'Patient Safety' },
   { href: '/practice-management/radiologic-technologist', label: 'Radiologic Technologist' },
   { href: '/practice-management/service', label: 'Service' },
+  { href: 'https://my.auntminnie.com/salary-scan', label: 'Salary Scan' },
 ];
 const radiologyEducation = [
   { href: '/radiology-education/medical-students', label: 'Medical Students' },
   { href: '/radiology-education/residents-fellows', label: 'Residents/Fellows' },
+  { href: '/page/scott-williams', label: 'Scott Williams' },
 ];
 const subspecialties = [
   { href: '/subspecialties/breast-imaging', label: 'Breast Imaging' },
@@ -235,7 +237,7 @@ module.exports = {
     },
     col3: {
       label: 'More',
-      colspan: 3,
+      colspan: 2,
       items: more,
     },
     items: [

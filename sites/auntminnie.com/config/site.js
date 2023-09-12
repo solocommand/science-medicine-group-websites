@@ -33,9 +33,9 @@ module.exports = {
       ],
     },
     footer: {
-      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/am-logo.svg?h=60&auto=format,compress',
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/AM_LogoWhite.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.auntminnie.com/files/base/smg/all/image/static/am/am-logo.svg?h=120&auto=format,compress 2x',
+        'https://img.auntminnie.com/files/base/smg/all/image/static/am/AM_LogoWhite.png?h=120&auto=format,compress 2x',
       ],
     },
     corporate: {
@@ -54,7 +54,14 @@ module.exports = {
   ],
   podcastLinks: [],
   gtm: {
-    containerId: 'GTM-5RJ8D63',
+    containerId: 'GTM-WJZZSMD4',
+  },
+  wufoo: {
+    userName: 'labpulse',
+    'contact-us': {
+      title: 'Drop us a line!',
+      hash: 'p1sbrws11c3y833',
+    },
   },
   inquiry: {
     enabled: false,
@@ -66,4 +73,5 @@ module.exports = {
   },
   pageDetails,
   wpIcleHostname: 'my.auntminnie.com',
+  defaultForumName: 'General Radiology',
 };

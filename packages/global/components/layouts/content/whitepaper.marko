@@ -9,14 +9,6 @@ $ const { id, type, pageNode, ...rest } = input;
   page-node=pageNode
   ...rest
 >
-  <@section|{ aliases }| modifiers=["first-sm"]>
-    <theme-gam-define-display-ad
-      name="leaderboard"
-      position="content_page"
-      aliases=aliases
-      modifiers=["inter-block"]
-    />
-  </@section>
 
   <@section|{ blockName, content, aliases }| modifiers=["content-header"]>
     $ const { primarySection } = content;

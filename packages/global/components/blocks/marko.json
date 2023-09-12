@@ -27,6 +27,7 @@
   },
   "<global-icle-top-posts-block>": {
     "template": "./icle-top-posts.marko",
-    "@api-url": "string"
+    "@api-url": "string",
+    "@title": "string"
   }
 }
