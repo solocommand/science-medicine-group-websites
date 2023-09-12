@@ -1,5 +1,4 @@
 const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
-const icleCfg = require('./wp-icle');
 
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
@@ -12,12 +11,6 @@ const topics = [
   { href: '/gene-and-cell-therapy', label: 'Gene and Cell Therapy' },
   { href: '/immunonology', label: 'Immunology' },
   { href: '/omics', label: 'OMICs' },
-  ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
-    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=0`, label: 'Jobs', when: 'logged-out' },
-  ] : []),
 ];
 
 const secondary = [
@@ -54,7 +47,7 @@ module.exports = {
   user: {
     items: [
       {
-        href: '/login',
+        href: '/user/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
@@ -68,7 +61,7 @@ module.exports = {
     ],
     tools: [
       {
-        href: '/login',
+        href: '/user/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],

@@ -1,4 +1,3 @@
-const icleCfg = require('./wp-icle');
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
@@ -73,15 +72,8 @@ const resources = [
   { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
   { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
   { href: 'https://www.auntminniecme.com/', label: 'CME' },
-  ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
-  ] : []),
-  { href: '/resources/conference', label: 'Conferences' },
-  ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
-  ] : []),
+  { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
+  { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
 ];
@@ -109,13 +101,13 @@ module.exports = {
   user: {
     items: [
       {
-        href: '/login',
+        href: '/user/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
       },
       {
-        href: '/logout',
+        href: '/user/logout',
         label: 'Sign Out',
         when: 'logged-in',
         modifiers: ['user'],
@@ -123,7 +115,7 @@ module.exports = {
     ],
     tools: [
       {
-        href: '/login',
+        href: '/user/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
@@ -135,7 +127,7 @@ module.exports = {
         modifiers: ['user'],
       },
       {
-        href: '/logout',
+        href: '/user/logout',
         label: 'Sign Out',
         when: 'logged-in',
         modifiers: ['user'],
@@ -236,15 +228,9 @@ module.exports = {
       items: [
         { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
         { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
-        ...(icleCfg.enabled ? [
-          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
-          { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
-        ] : []),
+        { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
         { href: 'https://www.auntminniecme.com/', label: 'CME' },
-        ...(icleCfg.enabled ? [
-          { href: `https://${icleCfg.hostname}/forums?VerifyLogin=1`, label: 'Forums', when: 'logged-in' },
-          { href: `https://${icleCfg.hostname}/forums?VerifyLogin=0`, label: 'Forums', when: 'logged-out' },
-        ] : []),
+        { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
         { href: '/resources/videos', label: 'Videos' },
         { href: '/resources/webinars', label: 'Webinars' },
       ],

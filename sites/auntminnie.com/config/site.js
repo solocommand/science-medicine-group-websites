@@ -1,4 +1,3 @@
-const auth0 = require('./auth0');
 const braze = require('./braze');
 const contentMeter = require('./content-meter');
 const gam = require('./gam');
@@ -8,11 +7,9 @@ const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const pageDetails = require('./page-details');
 const search = require('./search');
-const wpIcle = require('./wp-icle');
 
 module.exports = {
   // Module configs
-  auth0,
   braze,
   contentMeter,
   gam,
@@ -21,7 +18,6 @@ module.exports = {
   navigation,
   newsletter,
   search,
-  wpIcle,
   // Site configs
   company: 'Science and Medicine Group',
   p1events: {
@@ -76,5 +72,6 @@ module.exports = {
     bgColor: '#000000',
   },
   pageDetails,
+  wpIcleHostname: 'my.auntminnie.com',
   defaultForumName: 'General Radiology',
 };

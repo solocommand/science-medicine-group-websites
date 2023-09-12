@@ -7,12 +7,11 @@ import between from "../../../utils/between";
 import websiteSectionContentLoader from "../../../loaders/website-section-content";
 
 $ const { config, site, req, GAM, apollo, i18n } = out.global;
-$ const icleHostname = site.get('wpIcle.hostname');
+$ const icleHostname = site.get('wpIcleHostname');
 $ const loader = getAsObject(input, "loader");
 $ const { id, alias, name, pageNode } = input;
 $ const sections = getAsArray(input, "sections");
 $ const excludedSectionIds = [];
-$ const isAuthenticated = req.oidc.isAuthenticated();
 $ const newsletterConfig = site.getAsObject('newsletter.signupBanner');
 $ const rightRailHeader = defaultValue(input.rightRailHeader, "Latest News");
 $ const promise = websiteSectionContentLoader(apollo, {
@@ -126,26 +125,18 @@ $ const promise = websiteSectionContentLoader(apollo, {
                   </theme-latest-content-list-block>
                   <!-- <global-video-player /> -->
                   <div class="sticky-top page-rail">
-                    <marko-web-identity-x-context|{ hasUser }|>
-                      <if(!hasUser)>
-                        <global-newsletter-signup
-                          name=newsletterConfig.name
-                          description=newsletterConfig.description
-                          modifiers=["large"]
-                        />
-                      </if>
-                    </marko-web-identity-x-context>
+                    <identity-x-newsletter-form-inline type="inlineSection" with-image=false />
                   </div>
                 </div>
               </div>
             </@section>
-            <if(site.get('wpIcle.enabled'))>
+            <if(icleHostname)>
               <@section>
                 <global-external-api-block
                   api-url=`https://${icleHostname}/wp-json/mo/v1/getCase/3`
                   name="Case of the Week"
                   description="Check out our Case of the Week!"
-                  button={ link: `https://${icleHostname}/cases?VerifyLogin=${isAuthenticated ? '1' : '0'}`, text: "View All Cases" }
+                  button={ link: `https://${icleHostname}/cases`, text: "View All Cases" }
                   native-x={ placementName: 'cases', placementAliases: ['cases'] }
                 />
               </@section>

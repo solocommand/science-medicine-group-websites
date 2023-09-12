@@ -27,14 +27,11 @@ $ const additionalEventData = {}; // @todo
         <h1 class="page-wrapper__title">${description}</h1>
         <marko-web-identity-x-context|{ user }|>
           <if(user)>
-            <if(req.query.authenticate)>
-              <marko-web-browser-component name="Auth0Authenticated" props={
-                activeUser: user,
-                source: loginSource,
-                additionalEventData,
-              } />
-            </if>
-            <marko-web-identity-x-form-profile login-source=loginSource />
+            <p>
+              Fill out the form below to enhance your online experience on ${config.siteName()}<if(req.query && req.query.returnTo)>, or <a href=req.query.returnTo>click here</a> to continue</if>.
+            </p>
+            <marko-web-identity-x-form-profile login-source=loginSource call-to-action="" />
+            <p class="mt-block"><a href=`/user/subscribe?email=${encodeURIComponent(user.email)}`>Click here</a> to modify your email subscription preferences.</p>
           </if>
           <else>
             <marko-web-identity-x-form-login source=loginSource />

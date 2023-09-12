@@ -18,12 +18,18 @@ $ const { RECAPTCHA_V3_SITE_KEY } = require('../env');
     <marko-web-page-wrapper>
       <@section>
         <h1 class="page-wrapper__title">${description}</h1>
-        <marko-web-browser-component name="BrazePreferenceCenter" props={
-          siteName,
-          siteKey: RECAPTCHA_V3_SITE_KEY,
-          reqQueryEmail,
-          questions
-        } />
+        <marko-web-identity-x-context|{ user }|>
+          $ const email = reqQueryEmail ? reqQueryEmail : (user ? user.email : null);
+          <if(user)>
+            <a href="/user/profile">Click here</a> to modify your profile.
+          </if>
+          <marko-web-browser-component name="BrazePreferenceCenter" props={
+            siteName,
+            siteKey: RECAPTCHA_V3_SITE_KEY,
+            reqQueryEmail: email,
+            questions
+          } />
+        </marko-web-identity-x-context>
       </@section>
     </marko-web-page-wrapper>
   </@page>

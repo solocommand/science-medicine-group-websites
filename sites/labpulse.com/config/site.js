@@ -1,4 +1,3 @@
-const auth0 = require('./auth0');
 const braze = require('./braze');
 const contentMeter = require('./content-meter');
 const gam = require('./gam');
@@ -7,11 +6,9 @@ const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
-const wpIcle = require('./wp-icle');
 
 module.exports = {
   // Module configs
-  auth0,
   braze,
   contentMeter,
   gam,
@@ -20,7 +17,6 @@ module.exports = {
   navigation,
   newsletter,
   search,
-  wpIcle,
   // Site configs
   company: 'Science and Medicine Group',
   p1events: {

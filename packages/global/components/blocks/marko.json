@@ -2,9 +2,6 @@
   "taglib-imports": [
     "./load-more/marko.json"
   ],
-  "<global-newsletter-signup-banner-large-block>": {
-    "template": "./newsletter-signup-banner-large.marko"
-  },
   "<global-most-popular-list-block>": {
     "template": "./most-popular-list.marko"
   },

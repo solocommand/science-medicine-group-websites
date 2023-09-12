@@ -1,6 +1,5 @@
 {
   "taglib-imports": [
-    "./auth0/marko.json",
     "./blocks/marko.json",
     "./layouts/marko.json",
     "./wrappers/marko.json"
@@ -28,12 +27,6 @@
   },
   "<global-site-header-c>": {
     "template": "./site-header-c.marko"
-  },
-  "<global-site-newsletter-menu>": {
-    "template": "./site-newsletter-menu.marko"
-  },
-  "<global-newsletter-signup>": {
-    "template": "./newsletter-signup.marko"
   },
   "<global-site-menu>": {
     "template": "./site-menu/index.marko"

@@ -1,5 +1,4 @@
 const IdentityXConfiguration = require('@parameter1/base-cms-marko-web-identity-x/config');
-const emailValidator = require('@science-medicine-group/package-zero-bounce/validator');
 const newrelic = require('newrelic');
 
 module.exports = ({
@@ -12,18 +11,9 @@ module.exports = ({
   defaultCountryCode = '',
   requiredServerFields = [
     'givenName',
-    'familyName',
-    'organization',
-    'city',
-    'countryCode',
   ],
   requiredClientFields = [
     'givenName',
-    'familyName',
-    'organization',
-    'city',
-    'regionCode',
-    'countryCode',
   ],
   defaultFieldLabels = {
     phoneNumber: 'Mobile Phone',
@@ -38,9 +28,8 @@ module.exports = ({
     hiddenFields,
     requiredServerFields,
     requiredClientFields,
-    booleanQuestionsLabel: 'Choose your subscriptions:',
+    booleanQuestionsLabel: '',
     onHookError: newrelic.noticeError.bind(newrelic),
-    emailValidator,
     defaultFieldLabels,
     enableChangeEmail: true,
     ...rest,

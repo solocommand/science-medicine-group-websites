@@ -1,6 +1,5 @@
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
-const icleCfg = require('./wp-icle');
 
 const businessInsights = [
   // { href: '/business-insights/people-on-the-move', label: 'People on the Move' },
@@ -51,12 +50,6 @@ const topics = [
   { href: '/diseases', label: 'Diseases', children: diseases },
   { href: '/point-of-care-testing', label: 'Point-of-Care Testing' },
   { href: '/research-and-development', label: 'Research & Development', children: researchDevelopment },
-  ...(icleCfg.enabled ? [
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=1`, label: 'Cases', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=1`, label: 'Jobs', when: 'logged-in' },
-    { href: `https://${icleCfg.hostname}/cases?VerifyLogin=0`, label: 'Cases', when: 'logged-out' },
-    { href: `https://${icleCfg.hostname}/jobs?VerifyLogin=0`, label: 'Jobs', when: 'logged-out' },
-  ] : []),
 ];
 
 const mobileMenu = {
@@ -76,7 +69,7 @@ module.exports = {
   user: {
     items: [
       {
-        href: '/login',
+        href: '/user/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
@@ -90,7 +83,7 @@ module.exports = {
     ],
     tools: [
       {
-        href: '/login',
+        href: '/user/login',
         label: 'Sign In',
         when: 'logged-out',
         modifiers: ['user'],
