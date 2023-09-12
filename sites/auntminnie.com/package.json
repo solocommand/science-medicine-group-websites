@@ -11,10 +11,7 @@
     "account": "smg",
     "stack": "leonis",
     "key": "am",
-    "deploy": {
-      "staging": true,
-      "production": false
-    }
+    "deploy": true
   },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
