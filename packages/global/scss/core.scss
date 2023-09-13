@@ -843,6 +843,15 @@ body .ad-container--template-reskin-mobile {
     }
   }
 }
+.newsletter-signup-banner {
+  &__right-col {
+    &--large {
+      max-width: 100%;
+      font-size: 1rem;
+      word-wrap: break-word;
+    }
+  }
+}
 // Prevent Billboard from breaking out of document-container
 .ad-container--inter-block {
   margin-right: 0;
