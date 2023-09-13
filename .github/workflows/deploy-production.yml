@@ -53,7 +53,7 @@ jobs:
         #v# Make sure this matches the site matrix! #v#
         ###############################################
         site:
-          - { dir: auntminnie.com, stack: leonis, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnie.com }
+          - { dir: auntminnie.com, stack: virgon, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnie.com }
           - { dir: auntminnieeurope.com, stack: leonis, id: 63038e96d15c7cc42e8b4581, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnieeurope.com }
         ###############################################
         #^# Make sure this matches the site matrix! #^#
@@ -74,7 +74,7 @@ jobs:
         #v# Make sure this matches the site matrix! #v#
         ###############################################
         site:
-          - { dir: auntminnie.com, stack: leonis, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnie.com }
+          - { dir: auntminnie.com, stack: virgon, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnie.com }
           - { dir: auntminnieeurope.com, stack: leonis, id: 63038e96d15c7cc42e8b4581, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnieeurope.com }
         ###############################################
         #^# Make sure this matches the site matrix! #^#

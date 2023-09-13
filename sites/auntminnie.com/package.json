@@ -7,9 +7,9 @@
   "private": true,
   "website": {
     "id": "63038e5dd15c7c4b2e8b458a",
-    "tenant": "smg_future",
+    "tenant": "smg_all",
     "account": "smg",
-    "stack": "leonis",
+    "stack": "virgon",
     "key": "am",
     "deploy": true
   },
