@@ -70,16 +70,15 @@ const topics = [
 
 const resources = [
   { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
-  { href: 'https://issuu.com/auntminnie/docs/230206_2023ambuyersguide_nobleed', label: 'Buyer\'s Guide', target: '_blank' },
   { href: 'https://www.auntminniecme.com/', label: 'CME' },
   { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
   { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
-  { href: '/resources/conference', label: 'Conferences' },
   { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
-  { href: '/resources/vendors', label: 'Vendors' },
+  { href: '/resources/conference', label: 'Conferences' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/vendors', label: 'Vendors' },
+  { href: 'https://issuu.com/auntminnie/docs/230206_2023ambuyersguide_nobleed', label: 'Buyer\'s Guide', target: '_blank' },
 ];
 
 const more = [
