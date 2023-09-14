@@ -76,6 +76,7 @@ const resources = [
   { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
+  { href: '/resources/vendors', label: 'Vendors' },
 ];
 
 const more = [
