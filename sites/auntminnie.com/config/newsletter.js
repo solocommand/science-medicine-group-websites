@@ -6,11 +6,11 @@ const defaults = {
 module.exports = {
   signupBanner: {
     ...defaults,
-    imagePath: 'files/base/p1/sandbox/image/static/newsletter-phone-full.png',
+    imagePath: 'files/base/smg/all/image/static/am/newsletter-phone-full.png',
   },
   pushdown: {
     ...defaults,
-    imagePath: 'files/base/p1/sandbox/image/static/newsletter-phone-half.png',
+    imagePath: 'files/base/smg/all/image/static/am/newsletter-phone-half.png',
   },
   signupFooter: {
     ...defaults,
