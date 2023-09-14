@@ -1,7 +1,4 @@
-const { asyncRoute } = require('@parameter1/base-cms-utils');
-const { get } = require('@parameter1/base-cms-object-path');
-
-const redirects = {
+module.exports = {
   16721: 'https://my.auntminnie.com/cases/61-year-old-woman-with-right-lower-quadrant-pain-for-one-week/',
   16693: 'https://my.auntminnie.com/cases/19-year-old-man-with-difficulty-writing/',
   16685: 'https://my.auntminnie.com/cases/57-year-old-man-with-chest-pain/',
@@ -687,27 +684,3 @@ const redirects = {
   11994: 'https://my.auntminnie.com/cases/22-year-old-woman-with-neck-swelling/',
   11958: 'https://my.auntminnie.com/cases/5-year-old-girl-with-headache,-gait-abnormality/',
 };
-
-/**
- * @param {object} req The Express request object.
- */
-async function findPost(req) {
-  const { query: params } = req;
-  const { ce_id: ceId } = params;
-
-  if (ceId) {
-    const to = get(redirects, ceId);
-    console.log(params, ceId, to);
-    if (to) return { code: 301, to };
-  }
-  console.log('fail');
-  return null;
-}
-
-module.exports = () => asyncRoute(async (req, res, next) => {
-  const { query: reqQuery } = req;
-  if (!reqQuery) return next();
-  const redirect = await findPost(req);
-  if (redirect) return res.redirect(redirect.code, redirect.to);
-  return next();
-});

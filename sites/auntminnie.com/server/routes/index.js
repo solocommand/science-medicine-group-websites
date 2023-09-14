@@ -1,18 +1,18 @@
 const itemIdHandler = require('@science-medicine-group/package-global/middleware/item-id-handler');
-const ceIdHandler = require('@science-medicine-group/package-global/middleware/ce-id-handler');
+const paramKeyToRedirectHandler = require('@science-medicine-group/package-global/middleware/param-key-to-redirect-handler');
 const directory = require('@science-medicine-group/package-global/routes/directory');
 const home = require('./home');
 const conference = require('./conference');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
+const keyToRedirects = require('../../config/ceId-redirects-obj');
 
 module.exports = (app) => {
   // Content Redirect Handler
   app.use(itemIdHandler());
 
-  // Cases redirect handler for queryParam ce_id=${id} => to my.auntminnie.com
-  app.use(ceIdHandler());
+  app.use(paramKeyToRedirectHandler({ param: 'ce_id', keyToRedirects }));
 
   // Homepage
   home(app);
