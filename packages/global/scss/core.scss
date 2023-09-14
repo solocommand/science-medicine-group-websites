@@ -686,6 +686,7 @@ label {
 /*! critical:end */
 
 /*! critical:start */
+/*! purgecss start ignore */
 // Prevent Reveal Ad from causing CLS
 // @TODO determin if this should be moved to @parameter1/base-cms-marko-web
 #marko-web-reveal-ad-handler {
@@ -696,13 +697,16 @@ label {
 }
 body .ad-container--template-reskin-mobile {
   // prevent layout shift & add 20px mb (298px + 20px)
+  display: none;
   @media (max-width: 750px) {
     min-height: 318px;
-  }
-  &+ .document-container > .page:first-of-type {
-    margin-top: 0;
+    display: block;
+    &+ .document-container > .page:first-of-type {
+      margin-top: 0;
+    }
   }
 }
+/*! purgecss end ignore */
 /*! critical:end */
 
 /*! critical:start */
