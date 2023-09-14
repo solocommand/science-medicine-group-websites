@@ -48,7 +48,7 @@ module.exports = {
     },
   },
   socialMediaLinks: [
-    { provider: 'facebook', href: 'https://www.facebook.com/auntminnie', target: '_blank' },
+    { provider: 'facebook', href: 'https://www.facebook.com/auntminnie.radiology', target: '_blank' },
     { provider: 'twitter', href: 'https://twitter.com/auntminnie', target: '_blank' },
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/auntminnie.com/', target: '_blank' },
   ],
