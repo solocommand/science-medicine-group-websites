@@ -1,3 +1,4 @@
+const { asyncRoute } = require('@parameter1/base-cms-utils');
 const itemIdHandler = require('@science-medicine-group/package-global/middleware/item-id-handler');
 const paramKeyToRedirectHandler = require('@science-medicine-group/package-global/middleware/param-key-to-redirect-handler');
 const directory = require('@science-medicine-group/package-global/routes/directory');
@@ -13,6 +14,16 @@ module.exports = (app) => {
   app.use(itemIdHandler());
 
   app.use(paramKeyToRedirectHandler({ param: 'ce_id', keyToRedirects }));
+
+  // Redirect any url that has queryParam sec=cls & sub=emp to https://auntminnie.careerwebsite.com
+  app.use(asyncRoute(async (req, res, next) => {
+    const { query: reqQuery } = req;
+    if (!reqQuery) return next();
+    const { sec, sub } = reqQuery;
+    if (!sec || !sub) return next();
+    if (sec === 'cls' && sub === 'emp') res.redirect(301, 'https://auntminnie.careerwebsite.com/');
+    return next();
+  }));
 
   // Homepage
   home(app);
