@@ -9,6 +9,18 @@ const dynamicPages = require('./dynamic-page');
 const websiteSections = require('./website-section');
 const keyToRedirects = require('../../config/ceId-redirects-obj');
 
+/**
+  * @param {Object} object
+  * @param {string} key
+  * @return {any} value
+ */
+function getParameterCaseInsensitive(object, key) {
+  const asLowercase = key.toLowerCase();
+  return object[Object.keys(object)
+    .find((k) => k.toLowerCase() === asLowercase)
+  ];
+}
+
 module.exports = (app) => {
   // Content Redirect Handler
   app.use(itemIdHandler());
@@ -19,9 +31,9 @@ module.exports = (app) => {
   app.use(asyncRoute(async (req, res, next) => {
     const { query: reqQuery } = req;
     if (!reqQuery) return next();
-    const { sec, sub } = reqQuery;
-    if (!sec || !sub) return next();
-    if (sec === 'cls' && sub === 'emp') res.redirect(301, 'https://auntminnie.careerwebsite.com/');
+    if (getParameterCaseInsensitive(reqQuery, 'sec') === 'cls'
+      || getParameterCaseInsensitive(reqQuery, 'sub') === 'emp'
+    ) res.redirect(301, 'https://auntminnie.careerwebsite.com/');
     return next();
   }));
 
