@@ -73,6 +73,15 @@
       &__body {
         margin: 0 15px;
       }
+      &__section {
+        &--social-links {
+          display: flex;
+          flex-direction: row;
+          .social-icon-link {
+            margin-right: .5rem;
+          }
+        }
+      }
     }
   }
 }
