@@ -1,7 +1,7 @@
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
-const cmeURL = process.env.cmeURL || 'https://my.drbicuspid.com';
+const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.drbicuspid.com';
 
 const dentalPractice = [
   { href: '/dental-practice/dental-assistant', label: 'Dental Assistant' },
@@ -9,7 +9,7 @@ const dentalPractice = [
   { href: '/dental-practice/office-management', label: 'Office Management' },
   { href: '/dental-practice/patient-communication', label: 'Patient Communication' },
   { href: '/dental-practice/public-health', label: 'Public Health' },
-  { href: `${cmeURL}/salary-scan`, label: 'Salary Scan' },
+  { href: `${WPICLE_API_HOSTNAME}/salary-scan`, label: 'Salary Scan' },
   { href: '/dental-practice/wellness', label: 'Wellness' },
 ];
 const dentalSpecialties = [
@@ -48,8 +48,8 @@ const topics = [
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
-  { href: `${cmeURL}/cases`, label: 'Cases' },
-  { href: `${cmeURL}/jobs`, label: 'Jobs' },
+  { href: `${WPICLE_API_HOSTNAME}/cases`, label: 'Cases' },
+  { href: `${WPICLE_API_HOSTNAME}/jobs`, label: 'Jobs' },
 ];
 
 const resources = [
