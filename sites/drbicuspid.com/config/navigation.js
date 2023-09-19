@@ -1,13 +1,15 @@
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
+const cmeURL = process.env.cmeURL || 'https://my.drbicuspid.com';
+
 const dentalPractice = [
   { href: '/dental-practice/dental-assistant', label: 'Dental Assistant' },
   { href: '/dental-practice/legal-issues', label: 'Legal Issues' },
   { href: '/dental-practice/office-management', label: 'Office Management' },
   { href: '/dental-practice/patient-communication', label: 'Patient Communication' },
   { href: '/dental-practice/public-health', label: 'Public Health' },
-  { href: 'https://staging.my.drbicuspid.com/salary-scan', label: 'Salary Scan' },
+  { href: `${cmeURL}/salary-scan`, label: 'Salary Scan' },
   { href: '/dental-practice/wellness', label: 'Wellness' },
 ];
 const dentalSpecialties = [
@@ -46,8 +48,8 @@ const topics = [
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
-  { href: 'https://staging.my.drbicuspid.com/cases', label: 'Cases' },
-  { href: 'https://staging.my.drbicuspid.com/jobs', label: 'Jobs' },
+  { href: `${cmeURL}/cases`, label: 'Cases' },
+  { href: `${cmeURL}/jobs`, label: 'Jobs' },
 ];
 
 const resources = [
