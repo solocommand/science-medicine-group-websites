@@ -75,5 +75,5 @@ module.exports = {
     logo: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
-  wpIcleHostname: 'staging.my.drbicuspid.com',
+  wpIcleHostname: 'my.drbicuspid.com',
 };
