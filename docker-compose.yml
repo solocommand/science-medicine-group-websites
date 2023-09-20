@@ -131,6 +131,7 @@ services:
       EXPOSED_PORT: 9954
       LIVERELOAD_PORT: 19954
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.auntminnie.com}
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
