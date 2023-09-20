@@ -23,7 +23,8 @@
     "@page-node": "object",
     "@node": "object",
     "@with-ads": "boolean",
-    "@query-params": "object"
+    "@query-params": "object",
+    "@featured-header": "string"
   },
   "<global-website-section-upcoming-feed-layout>": {
     "template": "./upcoming-feed.marko",

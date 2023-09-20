@@ -13,6 +13,7 @@ $ const path = input.path || input.alias || req.path;
 $ const displayPinnedContent = input.displayPinnedContent || false;
 $ const withAds = defaultValue(input.withAds, true);
 $ const aboveTheFold = defaultValue(input.aboveTheFold, false);
+$ const featuredHeader = defaultValue(input.featuredHeader, 'Featured');
 
 $ const queryName = input.queryName ? input.queryName : "website-scheduled-content";
 $ const queryParams = {
@@ -28,7 +29,7 @@ $ const queryParamsPinned = {
   ...input.queryParams,
   sectionAlias: input.alias,
   optionName: 'Pinned',
-  limit: 5, // @todo investiation config based
+  limit: 10,
 };
 
 $ const chunkLengths = [3, 3, 3, 3];
@@ -58,7 +59,7 @@ $ const params = { ...queryParams, limit, skip };
               with-ads=false
             >
               <@header>
-                Featured
+                ${featuredHeader}
               </@header>
             </section-feed-flow>
           </marko-web-query>
@@ -113,7 +114,7 @@ $ const params = { ...queryParams, limit, skip };
               with-ads=false
             >
               <@header>
-                Featured
+                ${featuredHeader}
               </@header>
             </section-feed-flow>
           </marko-web-query>

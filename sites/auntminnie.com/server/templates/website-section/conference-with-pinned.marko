@@ -5,14 +5,13 @@ $ const { id, alias, name, pageNode } = input;
 $ const { site } = out.global;
 $ const pageDetails = site.getAsObject(`pageDetails.${alias}`);
 
-$ console.warn(pageDetails);
-
 <global-website-section-feed-layout
   id=id
   alias=alias
   name=name
   page-node=pageNode
   display-pinned-content=true
+  featured-header="Preview Coverage"
 >
   <!--@after-name>
     Inital attempt will be to load additional block in the right rail
