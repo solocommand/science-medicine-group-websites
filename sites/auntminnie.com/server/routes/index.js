@@ -28,12 +28,17 @@ module.exports = (app) => {
   app.use(paramKeyToRedirectHandler({ param: 'ce_id', keyToRedirects }));
 
   // Redirect any url that has queryParam sec=cls & sub=emp to https://auntminnie.careerwebsite.com
+  // Redirect any url that has queryParam sec=olc & sub=cotx not found via paramKeyToRedirectHandler
+  // to /page/case-not-found
   app.use(asyncRoute(async (req, res, next) => {
     const { query: reqQuery } = req;
     if (!reqQuery) return next();
     if (getParameterCaseInsensitive(reqQuery, 'sec') === 'cls'
       || getParameterCaseInsensitive(reqQuery, 'sub') === 'emp'
     ) res.redirect(301, 'https://auntminnie.careerwebsite.com/');
+    if (getParameterCaseInsensitive(reqQuery, 'sec') === 'olc'
+      || getParameterCaseInsensitive(reqQuery, 'sub') === 'cotx'
+    ) res.redirect(301, '/page/case-not-found');
     return next();
   }));
 
