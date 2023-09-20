@@ -29,7 +29,6 @@ x-env-defaults: &env
   DEBUG: ${DEBUG-}
   GAM_TRACK_API_KEY: ${GAM_TRACK_API_KEY-}
   ENABLE_NATIVE_X: ${ENABLE_NATIVE_X-false}
-  WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.drbicuspid.com}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
@@ -117,6 +116,7 @@ services:
       LIVERELOAD_PORT: 19953
       BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
     hostname: www-smg-drb.dev.parameter1.com
+    WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.drbicuspid.com}
     ports:
       - "9953:80"
       - "19953:19953"
