@@ -1,21 +1,54 @@
+const debug = require('debug')('braze');
 const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
+const { get } = require('@parameter1/base-cms-object-path');
 const Joi = require('@parameter1/joi');
 const { validate } = require('@parameter1/joi/utils');
 
+/** Keys allowing authorization of alternate behavior */
+const validKeys = JSON.parse(process.env.IDENTITYX_APP_API_KEYS || '[]');
+
 /**
+ * Ensures a valid auth key is present to modify default behavior
  *
  * @param {import('express').Request} req
  * @param {Boolean} defaultValue
  * @returns
  */
-const validateAuthed = (req, defaultValue) => (v, opts) => {
-  console.log('validateAuthed', v, opts, defaultValue);
-  return false;
-  // if (req.get('authorization') !== `Bearer ${config.apiKey}`) {
-  //   res.status(401).json({ error: 'API key is missing or invalid.' });
-  //   return;
-  // }
+const validateAuthed = (req, defaultValue) => (v) => {
+  if (v === defaultValue) return v;
+
+  const authorization = req.get('authorization');
+  if (!authorization) {
+    const err = new Error('Authentication required to change this behavior.');
+    err.statusCode = 401;
+    throw err;
+  }
+
+  const [, key] = /^Bearer (.+)$/.exec(authorization) || [];
+  if (!validKeys.includes(key)) {
+    const err = new Error('Unauthorized');
+    err.statusCode = 403;
+    throw err;
+  }
+
+  return v;
+};
+
+const validateCountryCode = (v) => {
+  debug('validateCountryCode', v);
+  // Read country/region value files
+  throw new Error('NYI');
+};
+const validateRegionCode = (v) => {
+  debug('validateRegionCode', v);
+  // Read country/region value files
+  throw new Error('NYI');
+};
+const validateCustomQuestionAnswer = (v, opts) => {
+  const key = get(opts, 'state.path.0');
+  // look up the questions from the IdentityX context.
+  throw new Error(`${key} validation NYI`);
 };
 
 /**
@@ -27,8 +60,8 @@ module.exports = (app) => {
    */
   app.post('/api/identity-x', json(), asyncRoute(async (req, res) => {
     try {
-      /** @type {import('../service.js')} Braze */
       const {
+        // Standard fields
         email,
         givenName,
         familyName,
@@ -58,32 +91,32 @@ module.exports = (app) => {
         givenName: Joi.string(),
         familyName: Joi.string(),
         city: Joi.string(),
-        countryCode: Joi.string().validate(() => false),
-        regionCode: Joi.string().validate(() => false),
+        countryCode: Joi.string().custom(validateCountryCode),
+        regionCode: Joi.string().custom(validateRegionCode),
         postalCode: Joi.string(),
         organization: Joi.string(),
         organizationTitle: Joi.string(),
 
         // IdX question/answers
-        organizationType: Joi.string().validate(() => false),
-        professio: Joi.string().validate(() => false),
-        technologies: Joi.string().validate(() => false),
-        specialties: Joi.string().validate(() => false),
+        organizationType: Joi.string().custom(validateCustomQuestionAnswer),
+        profession: Joi.string().custom(validateCustomQuestionAnswer),
+        technologies: Joi.string().custom(validateCustomQuestionAnswer),
+        specialties: Joi.string().custom(validateCustomQuestionAnswer),
 
         // Behavior flags. An administrative API key is required to modify from the defaults.
         automaticOptIn: Joi.boolean().default(true)
           .description('Should the user be automatically added to the default subscription group?')
-          .validate(validateAuthed(req, true)),
+          .custom(validateAuthed(req, true)),
         sendVerificationEmail: Joi.boolean().default(true)
           .description('Should the user receive the IdentityX verification email?')
-          .validate(validateAuthed(req, true)),
+          .custom(validateAuthed(req, true)),
         overwriteIfPresent: Joi.boolean().default(false)
           .description('Should the supplied values overwrite existing profile data and sync to Braze?')
-          .validate(validateAuthed(req, false)),
+          .custom(validateAuthed(req, false)),
         automaticConfirm: Joi.boolean().default(false)
           .description('Should the user be automatically moved out of the unconfirmed subscription group?')
-          .validate(validateAuthed(req, false)),
-      }));
+          .custom(validateAuthed(req, false)),
+      }), req.body);
 
       res.json({
         email,
@@ -109,15 +142,10 @@ module.exports = (app) => {
         overwriteIfPresent,
         automaticConfirm,
       });
-    } catch (e) {
-      console.log(e);
-      res.status(e.code || 500).json({
-        error: {
-          ...e,
-          code: e.code || 500,
-          message: e.message,
-        },
-      });
+    } catch (error) {
+      debug('error', error);
+      const statusCode = get(error, 'details.0.context.error.statusCode') || error.statusCode || 500;
+      res.status(statusCode).json({ error });
     }
   }));
 };
