@@ -84,9 +84,11 @@ $ const currentPage = search.getCurrentPage();
               </if>
               <if(currentPage === 1)>
                 $ const featuredQueryParams = {
+                  limit: 250,
                   sectionAlias: alias,
-                  limit: 25,
-                  optionName: 'Pinned' ,
+                  optionName: ["Pinned", "Standard"],
+                  sort: { field: "name", order: "asc" },
+                  includeLabels: ["Premium"],
                   queryFragment,
                 }
                 <marko-web-query|{ nodes: featuredNodes }| name='website-scheduled-content' params=featuredQueryParams>
@@ -117,6 +119,7 @@ $ const currentPage = search.getCurrentPage();
                               with-dates=false
                               is-featured=true
                               with-teaser=true
+                              display-featured-social-links=true
                             />
                           </@slot>
                         </@nodes>

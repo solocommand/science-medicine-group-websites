@@ -22,6 +22,11 @@ $ const showFields = fields.some(k => content[k]);
   modifiers=input.modifiers
   attrs=input.attrs
 >
+
+  <if(getAsArray(content, 'labels').includes('Premium'))>
+    <p><b>Premium</b></p>
+  </if>
+
   <if(showAddress)>
     <default-theme-content-contact-details-section block-name=blockName>
       <address class=`${blockName}__address`>
