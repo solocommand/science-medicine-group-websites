@@ -42,6 +42,14 @@ module.exports = (app) => {
     return next();
   }));
 
+  // Redirect any url whose path starts with /radiology-jobs to https://auntminnie.careerwebsite.com
+  app.use(asyncRoute(async (req, res, next) => {
+    if (req.path.match(/^\/radiology-jobs/)) {
+      res.redirect(301, 'https://auntminnie.careerwebsite.com/');
+    }
+    return next();
+  }));
+
   // Homepage
   home(app);
 
