@@ -8,6 +8,8 @@ const newsletter = require('./newsletter');
 const pageDetails = require('./page-details');
 const search = require('./search');
 
+const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
+
 module.exports = {
   // Module configs
   braze,
@@ -72,6 +74,6 @@ module.exports = {
     bgColor: '#000000',
   },
   pageDetails,
-  wpIcleHostname: 'my.auntminnie.com',
+  wpIcleHostname: WPICLE_API_HOSTNAME,
   defaultForumName: 'General Radiology',
 };

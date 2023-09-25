@@ -137,10 +137,10 @@ $ const promise = websiteSectionContentLoader(apollo, {
             <if(icleHostname)>
               <@section>
                 <global-external-api-block
-                  api-url=`https://${icleHostname}/wp-json/mo/v1/getCase/3`
+                  api-url=`${icleHostname}/wp-json/mo/v1/getCase/3`
                   name="Cases of the Week"
                   description="Check out our Cases of the Week!"
-                  button={ link: `https://${icleHostname}/cases`, text: "View All Cases" }
+                  button={ link: `${icleHostname}/cases`, text: "View All Cases" }
                   native-x={ placementName: 'cases', placementAliases: ['cases'] }
                 />
               </@section>

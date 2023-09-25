@@ -49,7 +49,7 @@ module.exports = (app, siteConfig) => {
   app.get('/__post-comment', async (req, res) => {
     const wpIcleHostname = get(siteConfig, 'wpIcle.hostname');
     if (wpIcleHostname.match(/my\.auntminnie\.com/)) {
-      const requestToForum = await fetch(`https://${wpIcleHostname}/wp-json/smg/v1/forum_comment`, {
+      const requestToForum = await fetch(`${wpIcleHostname}/wp-json/smg/v1/forum_comment`, {
         method: 'POST',
         body: JSON.stringify(req.query),
         headers: { 'content-type': 'application/json' },
