@@ -7,6 +7,8 @@ const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
 
+const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.drbicuspid.com';
+
 module.exports = {
   // Module configs
   braze,
@@ -75,5 +77,5 @@ module.exports = {
     logo: 'https://img.drbicuspid.com/files/base/smg/all/image/static/drb/drb-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
-  wpIcleHostname: 'my.drbicuspid.com',
+  wpIcleHostname: WPICLE_API_HOSTNAME,
 };
