@@ -16,5 +16,11 @@ fragment BrazeCustomFieldFragment on FieldInterface {
       value
     }
   }
+  ...on SelectField {
+    options {
+      id
+      externalIdentifier
+    }
+  }
 }
 `;

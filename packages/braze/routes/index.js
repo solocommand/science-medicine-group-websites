@@ -1,4 +1,4 @@
-const ingestApi = require('./ingest-api');
+const ingestApi = require('../ingest');
 const preferenceCenter = require('./preference-center');
 
 module.exports = (app) => {
