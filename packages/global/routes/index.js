@@ -57,8 +57,11 @@ module.exports = (app, siteConfig) => {
       const jsonResponse = await requestToForum.json();
       if (get(jsonResponse, 'permalink')) {
         res.redirect(get(jsonResponse, 'permalink'));
+      } else {
+        res.redirect(`/${get(req, 'query.uri').split('.com/').pop()}`);
       }
+    } else {
+      res.redirect(`/${get(req, 'query.uri').split('.com/').pop()}`);
     }
-    res.redirect(`/${get(req, 'query.uri').split('.com/').pop()}`);
   });
 };
