@@ -4,22 +4,7 @@ const { json } = require('express');
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const { get } = require('@parameter1/base-cms-object-path');
 const buildSchema = require('./build-schema');
-
-/**
- * Inserts/overwrites a user's data.
- *
- * @param {import('@parameter1/base-cms-marko-web-identity-x/service')} idx
- * @param {Object} a
- * @param {Object} a.userData
- * @param {Object} a.questions
- * @param {Object} a.behaviors
- */
-const setAppUserData = async (idx, { userData, questions }) => {
-  const { email } = userData;
-  // Do something
-  const user = await idx.createAppUser({ email, questions }); // @todo!
-  return user;
-};
+const setAppUserData = require('./set-app-user-data');
 
 /**
  * @param {import('express').Application} app The Express app instance
@@ -76,10 +61,10 @@ module.exports = (app) => {
       };
 
       const questions = {
-        orgType,
-        profession,
-        technologies,
-        subspecialties,
+        orgType: await orgType,
+        profession: await profession,
+        technologies: await Promise.all(technologies || []),
+        subspecialties: await Promise.all(subspecialties || []),
       };
 
       const behaviors = {
@@ -99,7 +84,9 @@ module.exports = (app) => {
           user = await setAppUserData(identityX, { userData, questions });
         } else {
           // Throw? return?
-          throw new Error(`User with email "${email}" already exists, and \`overwriteIfPresent\` is not enabled.`);
+          const error = new Error(`User with email "${email}" already exists, and \`overwriteIfPresent\` is not enabled.`);
+          error.statusCode = 400;
+          throw error;
         }
       } else {
         user = await identityX.createAppUser({ email });
@@ -120,7 +107,9 @@ module.exports = (app) => {
     } catch (error) {
       debug('error', inspect(error, { depth: null, colors: true }));
       const statusCode = get(error, 'details.0.context.error.statusCode') || error.statusCode || 500;
-      res.status(statusCode).json({ error });
+      res.status(statusCode).json({
+        error: { message: error.message },
+      });
     }
   }));
 };
