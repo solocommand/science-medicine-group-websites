@@ -8,6 +8,10 @@ const setAppUserData = require('./set-app-user-data');
 const setBrazeUserData = require('./set-braze-user-data');
 
 /**
+ * @typedef RequestContext
+ * @prop {import('@parameter1/base-cms-marko-web-identity-x/service')} identityX
+ * @prop {import('../service')} braze
+ *
  * @param {import('express').Application} app The Express app instance
  */
 module.exports = (app) => {
@@ -17,6 +21,7 @@ module.exports = (app) => {
   app.post('/api/identity-x', json(), asyncRoute(async (req, res) => {
     const schema = buildSchema(req);
     try {
+      /** @type {RequestContext} */
       const { identityX, braze } = req;
       const {
         // Standard fields
@@ -102,9 +107,7 @@ module.exports = (app) => {
       }
 
       // Verification email send?
-      if (sendVerificationEmail) {
-        // @todo
-      }
+      if (sendVerificationEmail) await identityX.sendLoginLink({ appUser: user, source: 'idx-api' });
 
       // Auto confirm
       if (automaticConfirm) await braze.confirmUser(user.email, user.id, 'identity-x');
