@@ -106,5 +106,8 @@ module.exports = (req) => {
     automaticConfirm: Joi.boolean().default(false)
       .description('Should the user be automatically moved out of the unconfirmed subscription group?')
       .custom(validateAuthed(req, false)),
+    updateBraze: Joi.boolean().default(true)
+      .description('Should the user data be automatically synced to Braze?')
+      .custom(validateAuthed(req, true)),
   });
 };

@@ -5,6 +5,7 @@ const { asyncRoute } = require('@parameter1/base-cms-utils');
 const { get } = require('@parameter1/base-cms-object-path');
 const buildSchema = require('./build-schema');
 const setAppUserData = require('./set-app-user-data');
+const setBrazeUserData = require('./set-braze-user-data');
 
 /**
  * @param {import('express').Application} app The Express app instance
@@ -16,7 +17,7 @@ module.exports = (app) => {
   app.post('/api/identity-x', json(), asyncRoute(async (req, res) => {
     const schema = buildSchema(req);
     try {
-      const { identityX } = req;
+      const { identityX, braze } = req;
       const {
         // Standard fields
         email,
@@ -43,6 +44,7 @@ module.exports = (app) => {
         sendVerificationEmail,
         overwriteIfPresent,
         automaticConfirm,
+        updateBraze,
       } = await schema.validateAsync(req.body); // @todo validation err throws uncaught promise
 
       const userData = {
@@ -72,6 +74,7 @@ module.exports = (app) => {
         sendVerificationEmail,
         overwriteIfPresent,
         automaticConfirm,
+        updateBraze,
       };
 
       let user = {};
@@ -94,10 +97,19 @@ module.exports = (app) => {
       }
 
       // Auto opt-in
+      if (automaticOptIn) {
+        await braze.updateSubscriptions(user.email, user.id, { [braze.defaultGroupId]: true });
+      }
 
       // Verification email send?
+      if (sendVerificationEmail) {
+        // @todo
+      }
 
       // Auto confirm
+      if (automaticConfirm) await braze.confirmUser(user.email, user.id, 'identity-x');
+
+      if (updateBraze) setBrazeUserData(braze, { user });
 
       res.json({
         user,
