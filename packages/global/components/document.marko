@@ -64,6 +64,12 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
 
     <${input.head} />
 
+    <marko-web-identity-x-context|{ hasUser, user }|>
+      <if(hasUser && user.id)>
+        <marko-web-gtm-push data={ user_id: user.id } />
+      </if>
+    </marko-web-identity-x-context>
+
     <!-- start gtm -->
     <marko-web-gtm-start />
 
