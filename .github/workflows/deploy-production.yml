@@ -55,6 +55,8 @@ jobs:
         site:
           - { dir: auntminnie.com, stack: virgon, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnie.com }
           - { dir: auntminnieeurope.com, stack: leonis, id: 63038e96d15c7cc42e8b4581, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnieeurope.com }
+          - { dir: drbicuspid.com, stack: virgon, id: 63038e29475dbd6a2f8b457e, account: smg, tenant: smg_all, rancher_label: science-medicine-group-drbicuspid.com }
+          - { dir: labpulse.com, stack: virgon, id: 62fc0ab6475dbd28008b459b, account: smg, tenant: smg_all, rancher_label: science-medicine-group-labpulse.com }
         ###############################################
         #^# Make sure this matches the site matrix! #^#
         ###############################################
@@ -76,6 +78,8 @@ jobs:
         site:
           - { dir: auntminnie.com, stack: virgon, id: 63038e5dd15c7c4b2e8b458a, account: smg, tenant: smg_all, rancher_label: science-medicine-group-auntminnie.com }
           - { dir: auntminnieeurope.com, stack: leonis, id: 63038e96d15c7cc42e8b4581, account: smg, tenant: smg_future, rancher_label: science-medicine-group-auntminnieeurope.com }
+          - { dir: drbicuspid.com, stack: virgon, id: 63038e29475dbd6a2f8b457e, account: smg, tenant: smg_all, rancher_label: science-medicine-group-drbicuspid.com }
+          - { dir: labpulse.com, stack: virgon, id: 62fc0ab6475dbd28008b459b, account: smg, tenant: smg_all, rancher_label: science-medicine-group-labpulse.com }
         ###############################################
         #^# Make sure this matches the site matrix! #^#
         ###############################################
