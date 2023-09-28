@@ -13,7 +13,7 @@
     "key": "lab",
     "deploy": {
       "staging": true,
-      "production": false
+      "production": true
     }
   },
   "scripts": {
