@@ -26,6 +26,9 @@ config
   ])
   .setAliasPlacements('dental-hygiene', [
     { name: 'related-content', id: '6455380ee248aa0001d4f458' },
+  ])
+  .setAliasPlacements('dental-specialties/senl', [
+    { name: 'related-content', id: '6516d0ecb497bc00017060c2' },
   ]);
 
 module.exports = config;

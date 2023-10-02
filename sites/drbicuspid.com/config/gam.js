@@ -35,6 +35,7 @@ const aliases = [
   { alias: 'dental-specialties/oral-maxillofacial-surgery', prefix: 'oral-maxillofacial-surgery' },
   { alias: 'dental-specialties/smile-design', prefix: 'smile-design' },
   { alias: 'dental-specialties/orofacial-pain', prefix: 'orofacial-pain' },
+  { alias: 'dental-specialties/senl', prefix: 'senl' },
   { alias: 'digital-dentistry/imaging', prefix: 'imaging' },
   { alias: 'digital-dentistry/imaging-cad-cam', prefix: 'imaging-cad-cam' },
   { alias: 'dental-hygiene', prefix: 'dental-hygiene' },
