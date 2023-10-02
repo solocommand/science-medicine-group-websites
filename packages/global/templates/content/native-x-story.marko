@@ -7,6 +7,9 @@ $ const { primarySection } = content;
 
 <theme-default-page title=story.title description=story.teaser>
   <@head>
+    <marko-web-gtm-native-x-story-context|{ context }| obj=content>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-native-x-story-context>
     <marko-web-native-x-gtm-init />
     <marko-web-p1-events-track-native-story story=story />
   </@head>
