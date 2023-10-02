@@ -8,4 +8,10 @@ module.exports = configureIdentityX({
     '632cafd0ae52433e7a5b9552', // subspeciality
     '632cb03eae5243dea45b9560', // technology
   ],
+  gtmUserFields: {
+    function: '632b7010ae52430ee85b92ef',
+    profession: '632b700aae524323475b92ee',
+    subspecialty: '632cafd0ae52433e7a5b9552',
+    technology: '632cb03eae5243dea45b9560',
+  },
 });
