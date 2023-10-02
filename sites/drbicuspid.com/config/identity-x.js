@@ -9,7 +9,9 @@ module.exports = configureIdentityX({
     '63c872cbcf43bf3b55db459b', // technology
   ],
   gtmUserFields: {
-    primary_business: '63c87088cf43bf32bfdb4576',
-    job_title: '63c8717dcf43bf9bffdb4578',
+    function: '63c87088cf43bf32bfdb4576',
+    profession: '63c8717dcf43bf9bffdb4578',
+    subspecialty: '63c87203cf43bf57e0db458b',
+    technology: '63c872cbcf43bf3b55db459b',
   },
 });
