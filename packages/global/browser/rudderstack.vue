@@ -17,8 +17,8 @@ export default {
     },
   },
   created() {
-    this.EventBus.$on('identity-x-login-link-sent', ({ email }) => {
-      identify(window)({ email });
+    this.EventBus.$on('identity-x-login-link-sent', (payload) => {
+      identify(window)(payload.data?.appUser?.id, { email: payload.email });
     });
     this.EventBus.$on('identity-x-authenticated', ({ id, email }) => {
       identify(window)(id, { email });
