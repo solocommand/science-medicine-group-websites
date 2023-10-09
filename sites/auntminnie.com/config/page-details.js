@@ -69,10 +69,10 @@ module.exports = {
     siteContext: {
       path: '/resources/conference/ecr',
     },
-    // primaryImage: {
-    //   src: 'https://www.auntminnie.com/user/images/content_images/rca_rsna_2001/2016_03_02_06_32_39_747_RADCast_ecr_conf_icon.jpg',
-    //   alt: 'ECR News Coverage',
-    // },
+    primaryImage: {
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/esr-logo.png',
+      alt: 'ECR News Coverage',
+    },
     teaserCTA: 'View Latest Coverage',
   },
   'resources/conference/ecr/2023': {
@@ -94,10 +94,10 @@ module.exports = {
     siteContext: {
       path: '/resources/conference/ismrm',
     },
-    // primaryImage: {
-    //   src: 'https://www.auntminnie.com/user/images/content_images/radcastredirect/2019_05_14_22_07_0136_ISMRM-wide-logo.png',
-    //   alt: 'ISMRM News Coverage',
-    // },
+    primaryImage: {
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/ISMRM.png',
+      alt: 'ISMRM News Coverage',
+    },
     teaserCTA: 'View Latest Coverage',
   },
   'resources/conference/ismrm/2022': {
@@ -123,10 +123,10 @@ module.exports = {
     siteContext: {
       path: '/resources/conference/ahra',
     },
-    // primaryImage: {
-    //   src: 'https://www.auntminnie.com/user/images/content_images/radcastredirect/2021_07_29_21_10_5024_RADCast_AHRA_AMConferences_Graphic_BlackWhite.gif',
-    //   alt: 'AHRA News Coverage',
-    // },
+    primaryImage: {
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/ahra.jpeg',
+      alt: 'AHRA News Coverage',
+    },
     teaserCTA: 'View Latest Coverage',
   },
   'resources/conference/ahra/2022': {
