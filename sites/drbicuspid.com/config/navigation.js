@@ -49,7 +49,7 @@ const topics = [
   { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
   { href: `${WPICLE_API_HOSTNAME}/cases`, label: 'Cases' },
-  { href: `${WPICLE_API_HOSTNAME}/jobs`, label: 'Jobs' },
+  { href: 'https://drbicuspid.careerwebsite.com', label: 'Careers' },
 ];
 
 const resources = [
