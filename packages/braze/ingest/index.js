@@ -6,6 +6,7 @@ const { get } = require('@parameter1/base-cms-object-path');
 const buildSchema = require('./build-schema');
 const setAppUserData = require('./set-app-user-data');
 const setBrazeUserData = require('./set-braze-user-data');
+const validateAuth = require('./validate-auth');
 
 /**
  * @typedef RequestContext
@@ -21,6 +22,7 @@ module.exports = (app) => {
   app.post('/api/identity-x', json(), asyncRoute(async (req, res) => {
     const schema = buildSchema(req);
     try {
+      validateAuth(req);
       /** @type {RequestContext} */
       const { identityX, braze } = req;
       const {
@@ -44,10 +46,12 @@ module.exports = (app) => {
         technologies,
         subspecialties,
 
+        //
+        subscriptions,
+
         // Behavior
         automaticOptIn,
         sendVerificationEmail,
-        overwriteIfPresent,
         automaticConfirm,
         updateBraze,
       } = await schema.validateAsync(req.body); // @todo validation err throws uncaught promise
@@ -77,7 +81,6 @@ module.exports = (app) => {
       const behaviors = {
         automaticOptIn,
         sendVerificationEmail,
-        overwriteIfPresent,
         automaticConfirm,
         updateBraze,
       };
@@ -86,24 +89,18 @@ module.exports = (app) => {
       const existingUser = await identityX.loadAppUserByEmail(email);
 
       // Set user data, if possible
-      if (existingUser) {
-        if (overwriteIfPresent) {
-          // update user
-          user = await setAppUserData(identityX, { userData, questions });
-        } else {
-          // Throw? return?
-          const error = new Error(`User with email "${email}" already exists, and \`overwriteIfPresent\` is not enabled.`);
-          error.statusCode = 400;
-          throw error;
-        }
-      } else {
-        user = await identityX.createAppUser({ email });
-        user = await setAppUserData(identityX, { userData, questions });
-      }
+      if (!existingUser) user = await identityX.createAppUser({ email });
 
-      // Auto opt-in
-      if (automaticOptIn) {
-        await braze.updateSubscriptions(user.email, user.id, { [braze.defaultGroupId]: true });
+      // update user
+      user = await setAppUserData(identityX, { userData, questions });
+
+      // Manage subscriptions
+      if (Object.keys(subscriptions).length || automaticOptIn) {
+        const payload = {
+          ...subscriptions,
+          ...(automaticOptIn && { [braze.defaultGroupId]: true }),
+        };
+        await braze.updateSubscriptions(user.email, user.id, payload);
       }
 
       // Verification email send?
