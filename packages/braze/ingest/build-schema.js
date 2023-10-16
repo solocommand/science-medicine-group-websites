@@ -2,36 +2,6 @@ const Joi = require('@parameter1/joi');
 const { get } = require('@parameter1/base-cms-object-path');
 const regions = require('./regions');
 
-/** Keys allowing authorization of alternate behavior */
-const validKeys = JSON.parse(process.env.IDENTITYX_APP_API_KEYS || '[]');
-
-/**
- * Ensures a valid auth key is present to modify default behavior
- *
- * @param {import('express').Request} req
- * @param {Boolean} defaultValue
- * @returns
- */
-const validateAuthed = (req, defaultValue) => (v) => {
-  if (v === defaultValue) return v;
-
-  const authorization = req.get('authorization');
-  if (!authorization) {
-    const err = new Error('Authentication required to change this behavior.');
-    err.statusCode = 401;
-    throw err;
-  }
-
-  const [, key] = /^Bearer (.+)$/.exec(authorization) || [];
-  if (!validKeys.includes(key)) {
-    const err = new Error('Unauthorized');
-    err.statusCode = 403;
-    throw err;
-  }
-
-  return v;
-};
-
 /**
  * @typedef {import('@parameter1/base-cms-marko-web-identity-x/service')} IdentityX
  * @typedef {import('express').Request} Request
@@ -95,16 +65,12 @@ module.exports = (req) => {
 
     // Behavior flags. An administrative API key is required to modify from the defaults.
     automaticOptIn: Joi.boolean().default(true)
-      .description('Should the user be automatically added to the default subscription group?')
-      .custom(validateAuthed(req, true)),
+      .description('Should the user be automatically added to the default subscription group?'),
     sendVerificationEmail: Joi.boolean().default(true)
-      .description('Should the user receive the IdentityX verification email?')
-      .custom(validateAuthed(req, true)),
+      .description('Should the user receive the IdentityX verification email?'),
     automaticConfirm: Joi.boolean().default(false)
-      .description('Should the user be automatically moved out of the unconfirmed subscription group?')
-      .custom(validateAuthed(req, false)),
+      .description('Should the user be automatically moved out of the unconfirmed subscription group?'),
     updateBraze: Joi.boolean().default(true)
-      .description('Should the user data be automatically synced to Braze?')
-      .custom(validateAuthed(req, true)),
+      .description('Should the user data be automatically synced to Braze?'),
   });
 };

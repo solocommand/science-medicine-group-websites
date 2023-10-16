@@ -6,6 +6,7 @@ const { get } = require('@parameter1/base-cms-object-path');
 const buildSchema = require('./build-schema');
 const setAppUserData = require('./set-app-user-data');
 const setBrazeUserData = require('./set-braze-user-data');
+const validateAuth = require('./validate-auth');
 
 /**
  * @typedef RequestContext
@@ -21,6 +22,7 @@ module.exports = (app) => {
   app.post('/api/identity-x', json(), asyncRoute(async (req, res) => {
     const schema = buildSchema(req);
     try {
+      validateAuth(req);
       /** @type {RequestContext} */
       const { identityX, braze } = req;
       const {
