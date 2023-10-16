@@ -100,9 +100,6 @@ module.exports = (req) => {
     sendVerificationEmail: Joi.boolean().default(true)
       .description('Should the user receive the IdentityX verification email?')
       .custom(validateAuthed(req, true)),
-    overwriteIfPresent: Joi.boolean().default(false)
-      .description('Should the supplied values overwrite existing profile data and sync to Braze?')
-      .custom(validateAuthed(req, false)),
     automaticConfirm: Joi.boolean().default(false)
       .description('Should the user be automatically moved out of the unconfirmed subscription group?')
       .custom(validateAuthed(req, false)),

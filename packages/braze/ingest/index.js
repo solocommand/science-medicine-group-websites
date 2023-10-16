@@ -47,7 +47,6 @@ module.exports = (app) => {
         // Behavior
         automaticOptIn,
         sendVerificationEmail,
-        overwriteIfPresent,
         automaticConfirm,
         updateBraze,
       } = await schema.validateAsync(req.body); // @todo validation err throws uncaught promise
@@ -77,7 +76,6 @@ module.exports = (app) => {
       const behaviors = {
         automaticOptIn,
         sendVerificationEmail,
-        overwriteIfPresent,
         automaticConfirm,
         updateBraze,
       };
@@ -86,20 +84,10 @@ module.exports = (app) => {
       const existingUser = await identityX.loadAppUserByEmail(email);
 
       // Set user data, if possible
-      if (existingUser) {
-        if (overwriteIfPresent) {
-          // update user
-          user = await setAppUserData(identityX, { userData, questions });
-        } else {
-          // Throw? return?
-          const error = new Error(`User with email "${email}" already exists, and \`overwriteIfPresent\` is not enabled.`);
-          error.statusCode = 400;
-          throw error;
-        }
-      } else {
-        user = await identityX.createAppUser({ email });
-        user = await setAppUserData(identityX, { userData, questions });
-      }
+      if (!existingUser) user = await identityX.createAppUser({ email });
+
+      // update user
+      user = await setAppUserData(identityX, { userData, questions });
 
       // Auto opt-in
       if (automaticOptIn) {

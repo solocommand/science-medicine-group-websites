@@ -28,7 +28,6 @@ It accepts the following keyed custom selects:
 And finally, it supports the following feature flags:
 - `automaticOptIn` Bool (default `true`) If enabled, the user will be automatically added to the default subscription group
 - `automaticConfirm` Bool (default `false`) If enabled, the user will be marked as verified and opted out of the unconfirmed subscription group.
-- `overwriteIfPresent` Bool (default `false`) If enabled, updates to existing users will be allowed
 - `sendVerificationEmail` Bool (default `true`) If enabled, the login link email will be sent to the user to verify/confirm
 - `updateBraze` Bool (default `true`) If enabled, the user data will be sent to Braze after updating in IdentityX.
 
@@ -59,7 +58,6 @@ POST https://auntminnie.com/api/identity-x
 
 	"automaticConfirm": false,
 	"automaticOptIn": true,
-	"overwriteIfPresent": false,
 	"sendVerificationEmail": true,
 	"updateBraze": true
 }
@@ -78,7 +76,6 @@ Authorization: Bearer ojp2io3jrp2i3jpjp2koedp
 {
   "email": "lisa.ryan@scienceandmedicinegroup.com",
   "givenName": "Lisa",
-  "overwriteIfPresent": true,
   "sendVerificationEmail": false,
 }
 ```
