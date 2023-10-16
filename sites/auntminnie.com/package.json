@@ -11,12 +11,7 @@
     "account": "smg",
     "stack": "virgon",
     "key": "am",
-    "deploy": {
-      "production": true,
-      "staging": {
-        "stack": "leonis"
-      }
-    }
+    "deploy": true
   },
   "scripts": {
     "dev": "basecms-website dev --compile-dir ../../packages --watch-dir ../../packages --purge-css-content-dir ../../packages --purge-css-content-dir ../../node_modules/@parameter1",
