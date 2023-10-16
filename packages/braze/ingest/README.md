@@ -26,7 +26,7 @@ It accepts the following keyed custom selects:
 - `technologies` String[]
 
 It accepts a list of subscription group opt-in/out preferences, keyed by the group id:
-- `subscriptionGroups: { 1235: false }`
+- `subscriptions: { 'xxx-yyy-zzz': false }`
 
 And finally, it supports the following feature flags:
 - `automaticOptIn` Bool (default `false`) If enabled, the user will be automatically added to the default subscription group. Overrides preference for group in `subscriptionGroups` if present.
@@ -59,9 +59,14 @@ POST https://auntminnie.com/api/identity-x
 	"subspecialties": ["Imaging Informatics", "Screening"],
 	"technologies": ["Artificial Intelligence/Computer-aided detection or diagnosis"],
 
+  "subscriptions": {
+    "29j28h2-l2k2dk2j2-2dj28dj2d": true,
+    "92h229dj0-d2jd20d2hdh2-d22d": false
+  },
+
 	"automaticConfirm": false,
-	"automaticOptIn": true,
-	"sendVerificationEmail": true,
+	"automaticOptIn": false,
+	"sendVerificationEmail": false,
 	"updateBraze": true
 }
 ```
@@ -75,7 +80,6 @@ POST https://staging.drbicuspid.com/api/identity-x
 ```
 # with auth
 POST https://staging.labpulse.com/api/identity-x
-Authorization: Bearer ojp2io3jrp2i3jpjp2koedp
 {
   "email": "lisa.ryan@scienceandmedicinegroup.com",
   "givenName": "Lisa",
