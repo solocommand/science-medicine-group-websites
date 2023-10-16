@@ -25,10 +25,13 @@ It accepts the following keyed custom selects:
 - `subspecialties` String[]
 - `technologies` String[]
 
+It accepts a list of subscription group opt-in/out preferences, keyed by the group id:
+- `subscriptionGroups: { 1235: false }`
+
 And finally, it supports the following feature flags:
-- `automaticOptIn` Bool (default `true`) If enabled, the user will be automatically added to the default subscription group
+- `automaticOptIn` Bool (default `false`) If enabled, the user will be automatically added to the default subscription group. Overrides preference for group in `subscriptionGroups` if present.
 - `automaticConfirm` Bool (default `false`) If enabled, the user will be marked as verified and opted out of the unconfirmed subscription group.
-- `sendVerificationEmail` Bool (default `true`) If enabled, the login link email will be sent to the user to verify/confirm
+- `sendVerificationEmail` Bool (default `false`) If enabled, the login link email will be sent to the user to verify/confirm
 - `updateBraze` Bool (default `true`) If enabled, the user data will be sent to Braze after updating in IdentityX.
 
 In order to change a feature flag away from the default value, a Bearer auth header must be sent, and a valid pre-configured APi key supplied. Valid keys are to be stored in the `IDENTITYX_APP_API_KEYS` env var, which should be formatted as a JSON array string.

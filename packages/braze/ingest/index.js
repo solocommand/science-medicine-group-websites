@@ -46,6 +46,9 @@ module.exports = (app) => {
         technologies,
         subspecialties,
 
+        //
+        subscriptions,
+
         // Behavior
         automaticOptIn,
         sendVerificationEmail,
@@ -91,9 +94,13 @@ module.exports = (app) => {
       // update user
       user = await setAppUserData(identityX, { userData, questions });
 
-      // Auto opt-in
-      if (automaticOptIn) {
-        await braze.updateSubscriptions(user.email, user.id, { [braze.defaultGroupId]: true });
+      // Manage subscriptions
+      if (Object.keys(subscriptions).length || automaticOptIn) {
+        const payload = {
+          ...subscriptions,
+          ...(automaticOptIn && { [braze.defaultGroupId]: true }),
+        };
+        await braze.updateSubscriptions(user.email, user.id, payload);
       }
 
       // Verification email send?

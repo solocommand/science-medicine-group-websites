@@ -63,10 +63,15 @@ module.exports = (req) => {
     technologies: Joi.array().items(customQuestionSchema),
     subspecialties: Joi.array().items(customQuestionSchema),
 
+    subscriptions: Joi.object().pattern(
+      Joi.string().required(),
+      Joi.boolean().default(false),
+    ).default({}),
+
     // Behavior flags. An administrative API key is required to modify from the defaults.
-    automaticOptIn: Joi.boolean().default(true)
+    automaticOptIn: Joi.boolean().default(false)
       .description('Should the user be automatically added to the default subscription group?'),
-    sendVerificationEmail: Joi.boolean().default(true)
+    sendVerificationEmail: Joi.boolean().default(false)
       .description('Should the user receive the IdentityX verification email?'),
     automaticConfirm: Joi.boolean().default(false)
       .description('Should the user be automatically moved out of the unconfirmed subscription group?'),
