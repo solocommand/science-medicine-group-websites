@@ -41,7 +41,7 @@ module.exports = (app) => {
         phoneNumber,
 
         // Custom Questions
-        orgType,
+        org_type: orgType,
         profession,
         technologies,
         subspecialties,
@@ -72,7 +72,7 @@ module.exports = (app) => {
       };
 
       const questions = {
-        orgType: await orgType,
+        org_type: await orgType,
         profession: await profession,
         technologies: await Promise.all(technologies || []),
         subspecialties: await Promise.all(subspecialties || []),

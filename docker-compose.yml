@@ -21,7 +21,6 @@ x-env-defaults: &env
   SENDGRID_DEV_TO: ${SENDGRID_DEV_TO-support@parameter1.com}
   YARN_CACHE_FOLDER: /.yarn-cache
   IDENTITYX_API_TOKEN: ${IDENTITYX_API_TOKEN}
-  IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS-[]}
   IDENTITYX_GRAPHQL_URI: ${IDENTITYX_GRAPHQL_URI-https://identity-x.parameter1.com/graphql}
   RECAPTCHA_V3_SITE_KEY: ${RECAPTCHA_V3_SITE_KEY}
   RECAPTCHA_V3_SECRET_KEY: ${RECAPTCHA_V3_SECRET_KEY}
@@ -86,6 +85,7 @@ services:
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
       BRAZE_API_KEY: ${BRAZE_API_KEY_SAB}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_SAB-[]}
     hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
@@ -101,6 +101,7 @@ services:
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
       BRAZE_API_KEY: ${BRAZE_API_KEY_LAB}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_LAB-[]}
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"
@@ -117,6 +118,7 @@ services:
       LIVERELOAD_PORT: 19953
       BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
       WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.drbicuspid.com}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_DRB-[]}
     hostname: www-smg-drb.dev.parameter1.com
     ports:
       - "9953:80"
@@ -133,6 +135,7 @@ services:
       LIVERELOAD_PORT: 19954
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
       WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.auntminnie.com}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
@@ -148,6 +151,7 @@ services:
       EXPOSED_PORT: 9955
       LIVERELOAD_PORT: 19955
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-ame.dev.parameter1.com
     ports:
       - "9955:80"
@@ -163,6 +167,7 @@ services:
       EXPOSED_PORT: 9956
       LIVERELOAD_PORT: 19956
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-ama.dev.parameter1.com
     ports:
       - "9956:80"
