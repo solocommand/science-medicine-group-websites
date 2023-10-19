@@ -82,7 +82,6 @@ const resources = [
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/vendors', label: 'Vendors' },
   { href: 'https://issuu.com/auntminnie/docs/230206_2023ambuyersguide_nobleed', label: 'Buyer\'s Guide', target: '_blank' },
-  { href: '/page/advertising', label: 'Advertising' },
 ];
 
 const more = [
