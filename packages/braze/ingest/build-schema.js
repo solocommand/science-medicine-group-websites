@@ -1,6 +1,5 @@
 const Joi = require('@parameter1/joi');
 const { get } = require('@parameter1/base-cms-object-path');
-const regions = require('./regions');
 
 /**
  * @typedef {import('@parameter1/base-cms-marko-web-identity-x/service')} IdentityX
@@ -34,28 +33,20 @@ module.exports = (req) => {
     email: Joi.string().email().lowercase().required(),
 
     // Optional fields, used when inserting a new user or overwriting
-    givenName: Joi.string(),
-    familyName: Joi.string(),
-    street: Joi.string(),
-    addressExtra: Joi.string(),
-    city: Joi.string(),
-    countryCode: Joi.string().example('US')
-      .length(2)
+    givenName: Joi.string().allow(''),
+    familyName: Joi.string().allow(''),
+    street: Joi.string().allow(''),
+    addressExtra: Joi.string().allow(''),
+    city: Joi.string().allow(''),
+    countryCode: Joi.string().allow('').example('US')
       .description('An ISO 3166-1 alpha-2 country code.'),
-    regionCode: Joi
-      .alternatives()
-      .conditional('countryCode', [
-        { is: 'US', then: Joi.string().valid(...Object.keys(regions.US)) },
-        { is: 'MX', then: Joi.string().valid(...Object.keys(regions.MX)) },
-        { is: 'CA', then: Joi.string().valid(...Object.keys(regions.CA)) },
-        { is: true, then: Joi.string().min(1).max(3) },
-      ])
+    regionCode: Joi.string().allow('')
       .example('WI')
       .description('An ISO 3166-2 region code.'),
     postalCode: Joi.string().allow(''),
-    organization: Joi.string(),
-    organizationTitle: Joi.string(),
-    phoneNumber: Joi.string(),
+    organization: Joi.string().allow(''),
+    organizationTitle: Joi.string().allow(''),
+    phoneNumber: Joi.string().allow(''),
 
     // IdX question/answers
     org_type: customQuestionSchema,
