@@ -52,7 +52,7 @@ module.exports = (req) => {
       ])
       .example('WI')
       .description('An ISO 3166-2 region code.'),
-    postalCode: Joi.string(),
+    postalCode: Joi.string().allow(''),
     organization: Joi.string(),
     organizationTitle: Joi.string(),
     phoneNumber: Joi.string(),
