@@ -1,5 +1,6 @@
 import { buildImgixUrl } from "@parameter1/base-cms-image";
 import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import contentIframe from "@science-medicine-group/package-global/utils/content-iframe";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 import { shouldOverlay, restrictContentByReg, shouldTruncate } from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-meter-helpers";
@@ -17,6 +18,9 @@ $ const showOverlay = shouldOverlay(contentMeterState);
 
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
+
+$ const displayOverlay = (contentMeterState) ? defaultValue(contentMeterState.displayOverlay, false) : false;
+$ const withComments = (displayOverlay) ? false : defaultValue(input.withComments, true);
 
 $ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
 $ const displayPhotoswipe = ["media-gallery"].includes(type) || req.query.displayPhotoswipe ? true : false;
@@ -249,6 +253,11 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 </marko-web-identity-x-context>
               </else>
             </marko-web-identity-x-access>
+
+            <if(withComments)>
+              <theme-identity-x-comment-stream content=content />
+            </if>
+
           </default-theme-page-contents>
         </div>
       </div>
