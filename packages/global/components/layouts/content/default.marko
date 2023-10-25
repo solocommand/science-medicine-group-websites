@@ -1,5 +1,6 @@
 import { buildImgixUrl } from "@parameter1/base-cms-image";
 import { getAsArray, getAsObject, get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 import contentIframe from "@science-medicine-group/package-global/utils/content-iframe";
 import getContentPreview from "@parameter1/base-cms-marko-web-theme-monorail/utils/get-content-preview";
 import { shouldOverlay, restrictContentByReg, shouldTruncate } from "@parameter1/base-cms-marko-web-theme-monorail/utils/content-meter-helpers";
@@ -17,6 +18,9 @@ $ const showOverlay = shouldOverlay(contentMeterState);
 
 $ const { id, type, pageNode, showReadNextBlock, showBottomAdBlock, showTopStoryBlock, ...rest } = input;
 $ const sections = getAsArray(input, "sections");
+
+$ const displayOverlay = (contentMeterState) ? defaultValue(contentMeterState.displayOverlay, false) : false;
+$ const withComments = (displayOverlay) ? false : defaultValue(input.withComments, true);
 
 $ const displayPrimaryImage = ["media-gallery"].includes(type) ? false : true;
 $ const displayPhotoswipe = ["media-gallery"].includes(type) || req.query.displayPhotoswipe ? true : false;
@@ -241,15 +245,6 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                     print-path=`/print/content/${content.id}`
                   />
                 </if>
-                $ // Aunt Minnie Site ID
-                <if(["63038e5dd15c7c4b2e8b458a"].includes(get(config, 'websiteContext.id')) && site.get('wpIcleHostname'))>
-                  <form method="GET" action="/__post-comment" target="_blank">
-                    <input id="forum" type="hidden" name="forum" value=`${site.get('defaultForumName') || 'Test Forum'}`>
-                    <input id="topic" type="hidden" name="topic" value=`${content.name}`>
-                    <input id="uri" type="hidden" name="uri" value=`${req.protocol}://${req.hostname}${req.originalUrl}`>
-                    <input class="btn btn-primary" id="discuss-content" type="submit" value="Discuss">
-                  </form>
-                </if>
 
                 <marko-web-identity-x-context|{ hasUser }|>
                   <if(!hasUser)>
@@ -258,6 +253,11 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                 </marko-web-identity-x-context>
               </else>
             </marko-web-identity-x-access>
+
+            <if(withComments)>
+              <theme-identity-x-comment-stream content=content />
+            </if>
+
           </default-theme-page-contents>
         </div>
       </div>
