@@ -1,5 +1,3 @@
-const sortNavItems = require('@science-medicine-group/package-global/utils/sort-nav-items');
-
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
@@ -62,7 +60,7 @@ const topics = [
   { href: '/clinical-news', label: 'Clinical News', children: clinicalNews },
   { href: '/imaging-informatics', label: 'Informatics', children: imagingInformatics },
   { href: '/industry-news', label: 'Industry News', children: industryNews },
-  { href: '/medical-legal-and-practice', label: 'Medical, Legal, And Practice', children: [] },
+  { href: '/medical-legal-and-practice', label: 'Medical, Legal, And Practice', children: practiceManagement },
   { href: '/radiology-education', label: 'Education', children: radiologyEducation },
   { href: '/subspecialties', label: 'Subspecialties', children: subspecialties },
   // eslint-disable-next-line no-script-url
@@ -86,13 +84,8 @@ const more = [
 ];
 
 const mobileMenu = {
-  primary: sortNavItems([
-    ...topics,
-  ]),
-  secondary: sortNavItems([
-    ...resources,
-    subscribe,
-  ]),
+  primary: topics,
+  secondary: resources,
 };
 
 module.exports = {
