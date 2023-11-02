@@ -45,23 +45,4 @@ module.exports = (app, siteConfig) => {
 
   // HTML Sitemap
   htmlSitemap(app);
-
-  app.get('/__post-comment', async (req, res) => {
-    const wpIcleHostname = get(siteConfig, 'wpIcleHostname');
-    if (wpIcleHostname.match(/my\.auntminnie\.com/)) {
-      const requestToForum = await fetch(`${wpIcleHostname}/wp-json/smg/v1/forum_comment`, {
-        method: 'POST',
-        body: JSON.stringify(req.query),
-        headers: { 'content-type': 'application/json' },
-      });
-      const jsonResponse = await requestToForum.json();
-      if (get(jsonResponse, 'permalink')) {
-        res.redirect(get(jsonResponse, 'permalink'));
-      } else {
-        res.redirect(`/${get(req, 'query.uri').split('.com/').pop()}`);
-      }
-    } else {
-      res.redirect(`/${get(req, 'query.uri').split('.com/').pop()}`);
-    }
-  });
 };
