@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-const { get } = require('@parameter1/base-cms-object-path');
 const htmlSitemap = require('@parameter1/base-cms-marko-web-html-sitemap/routes');
 const renderBlock = require('@parameter1/base-cms-marko-web-theme-monorail/routes/render-block');
 const search = require('@parameter1/base-cms-marko-web-theme-monorail/routes/search');
