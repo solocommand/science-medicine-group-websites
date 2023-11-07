@@ -29,6 +29,7 @@ x-env-defaults: &env
   DEBUG: ${DEBUG-}
   GAM_TRACK_API_KEY: ${GAM_TRACK_API_KEY-}
   ENABLE_NATIVE_X: ${ENABLE_NATIVE_X-true}
+  NATIVEX_SERVE_URI: ${NATIVEX_SERVE_URI-}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
