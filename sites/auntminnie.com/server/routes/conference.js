@@ -5,6 +5,7 @@ const withPinned = require('../templates/website-section/conference-with-pinned'
 const conference = require('../templates/website-section/conference');
 
 const rsnaAliases = [
+  '2023',
   '2022',
   '2021',
   '2020',
