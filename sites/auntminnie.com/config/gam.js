@@ -61,6 +61,7 @@ const aliases = [
   { alias: 'subspecialties/nuclear-radiology', prefix: 'molecular-imaging' },
   { alias: 'subspecialties/radiation-oncology', prefix: 'radiation-oncology-therapy' },
   { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
+  { alias: 'resources/conference/rsna/2023', prefix: '2023' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
