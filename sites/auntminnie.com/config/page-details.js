@@ -1,4 +1,5 @@
 const rsnaSiblingRoutes = [
+  { title: 2023, href: 'resources/conference/rsna/2023', alt: '2023 Radiological Society of North America (RSNA News Coverage' },
   { title: 2022, href: 'resources/conference/rsna/2022', alt: '2022 Radiological Society of North America (RSNA) News Coverage' },
   { title: 2021, href: 'resources/conference/rsna/2021', alt: '2021 Radiological Society of North America (RSNA) News Coverage' },
   { title: 2020, href: 'resources/conference/rsna/2020', alt: '2020 Radiological Society of North America (RSNA) News Coverage' },
@@ -45,6 +46,10 @@ module.exports = {
       alt: 'RSNA News Coverage',
     },
     teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conference/rsna/2023': {
+    name: '2023 Radiological Society of North America (RSNA) News Coverage',
+    siblinRoutes: rsnaSiblingRoutes,
   },
   'resources/conference/rsna/2022': {
     name: '2022 Radiological Society of North America (RSNA) News Coverage',
