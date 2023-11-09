@@ -58,7 +58,7 @@ $ const sections = getAsArray(input, "sections");
       <div class="col-lg-4 pt-block">
         $ const { site } = out.global;
         $ const inquiry = site.getAsObject('inquiry');
-        <if(inquiry.enabled && content.enableRmi)>
+        <if(inquiry.enabled)>
           <theme-company-inquiry-form-block content=content initially-expanded=true />
         </if>
 
