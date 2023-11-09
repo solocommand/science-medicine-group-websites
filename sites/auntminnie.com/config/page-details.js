@@ -49,7 +49,7 @@ module.exports = {
   },
   'resources/conference/rsna/2023': {
     name: '2023 Radiological Society of North America (RSNA) News Coverage',
-    siblinRoutes: rsnaSiblingRoutes,
+    siblingRoutes: rsnaSiblingRoutes,
   },
   'resources/conference/rsna/2022': {
     name: '2022 Radiological Society of North America (RSNA) News Coverage',
