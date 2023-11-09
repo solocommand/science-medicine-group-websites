@@ -24,7 +24,7 @@ $ const pageDetails = site.getAsObject(`pageDetails.${alias}`);
         aliases=[alias]
         modifiers=["inline-section-feed"]
       />
-      $ const siblings = getAsArray(pageDetails, "siblinRoutes").filter(({ href })=> href !== alias);
+      $ const siblings = getAsArray(pageDetails, "siblingRoutes").filter(({ href })=> href !== alias);
        <marko-web-node-list class="mt-block" modifiers=["past-coverage", "flush-x"]>
         <@header>
           Additional Coverage

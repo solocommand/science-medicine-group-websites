@@ -53,19 +53,19 @@ module.exports = {
   },
   'resources/conference/rsna/2022': {
     name: '2022 Radiological Society of North America (RSNA) News Coverage',
-    siblinRoutes: rsnaSiblingRoutes,
+    siblingRoutes: rsnaSiblingRoutes,
   },
   'resources/conference/rsna/2021': {
     name: '2021 Radiological Society of North America (RSNA) News Coverage',
-    siblinRoutes: rsnaSiblingRoutes,
+    siblingRoutes: rsnaSiblingRoutes,
   },
   'resources/conference/rsna/2020': {
     name: '2020 Radiological Society of North America (RSNA) News Coverage',
-    siblinRoutes: rsnaSiblingRoutes,
+    siblingRoutes: rsnaSiblingRoutes,
   },
   'resources/conference/rsna/2019': {
     name: '2019 Radiological Society of North America (RSNA) News Coverage',
-    siblinRoutes: rsnaSiblingRoutes,
+    siblingRoutes: rsnaSiblingRoutes,
   },
   // European Congress of Radiology (ECR) News Coverage
   'resources/conference/ecr': {
@@ -82,15 +82,15 @@ module.exports = {
   },
   'resources/conference/ecr/2023': {
     name: '2023 European Congress of Radiology (ECR) News Coverage',
-    siblinRoutes: ecrSiblingRoutes,
+    siblingRoutes: ecrSiblingRoutes,
   },
   'resources/conference/ecr/2019': {
     name: '2019 European Congress of Radiology (ECR) News Coverage',
-    siblinRoutes: ecrSiblingRoutes,
+    siblingRoutes: ecrSiblingRoutes,
   },
   'resources/conference/ecr/2018': {
     name: '2018 European Congress of Radiology (ECR) News Coverage',
-    siblinRoutes: ecrSiblingRoutes,
+    siblingRoutes: ecrSiblingRoutes,
   },
   // International Society for Magnetic Resonance in Medicine (ISMRM) News Coverage
   'resources/conference/ismrm': {
@@ -107,19 +107,19 @@ module.exports = {
   },
   'resources/conference/ismrm/2022': {
     name: '2022  International Society of Magnetic Resonance (ISMRM) News Coverage',
-    siblinRoutes: ismrmSiblingRoutes,
+    siblingRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2021': {
     name: '2021  International Society of Magnetic Resonance (ISMRM) News Coverage',
-    siblinRoutes: ismrmSiblingRoutes,
+    siblingRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2020': {
     name: '2020  International Society of Magnetic Resonance (ISMRM) News Coverage',
-    siblinRoutes: ismrmSiblingRoutes,
+    siblingRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2019': {
     name: '2019  International Society of Magnetic Resonance (ISMRM) News Coverage',
-    siblinRoutes: ismrmSiblingRoutes,
+    siblingRoutes: ismrmSiblingRoutes,
   },
   // American Healthcare Radiology Administrators (AHRA) News Coverage
   'resources/conference/ahra': {
@@ -136,10 +136,10 @@ module.exports = {
   },
   'resources/conference/ahra/2022': {
     name: '2022 American Healthcare Radiology Administrators (AHRA) News Coverage',
-    siblinRoutes: ahraSiblingRoutes,
+    siblingRoutes: ahraSiblingRoutes,
   },
   'resources/conference/ahra/2021': {
     name: '2021 American Healthcare Radiology Administrators (AHRA) News Coverage',
-    siblinRoutes: ahraSiblingRoutes,
+    siblingRoutes: ahraSiblingRoutes,
   },
 };
