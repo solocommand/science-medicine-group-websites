@@ -32,7 +32,7 @@ const aliases = [
   { alias: 'clinical-news/radiation-oncology-therapy', prefix: 'radiation-oncology-therapy' },
   { alias: 'clinical-news/ultrasound', prefix: 'ultrasound' },
   { alias: 'clinical-news/womens-imaging', prefix: 'womens-imaging' },
-  { alias: 'clinical-news/senl', prefix: 'senl' },
+  { alias: 'senl' },
   { alias: 'imaging-informatics' },
   { alias: 'imaging-informatics/advanced-visualization', prefix: 'advanced-visualization' },
   { alias: 'imaging-informatics/enterprise-imaging', prefix: 'enterprise-imaging' },
@@ -61,6 +61,7 @@ const aliases = [
   { alias: 'subspecialties/nuclear-radiology', prefix: 'molecular-imaging' },
   { alias: 'subspecialties/radiation-oncology', prefix: 'radiation-oncology-therapy' },
   { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
+  { alias: 'resources/conference/rsna/2023', prefix: '2023' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [

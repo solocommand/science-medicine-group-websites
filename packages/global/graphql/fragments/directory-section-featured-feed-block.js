@@ -36,6 +36,13 @@ fragment DirectorySectionMicroFeedBlockContentFragment on Content {
     tollfree
     website
   }
+  ... on SocialLinkable {
+    socialLinks {
+      provider
+      url
+      label
+    }
+  }
 }
 
 `;

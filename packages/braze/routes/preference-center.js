@@ -8,6 +8,7 @@ const { updateIdentityXUser } = require('../utils');
 const buildOptins = async ({ email, identityX, braze }) => {
   const questions = await braze.getSubscriptionGroupQuestions(identityX);
   const optIns = questions.reduce((obj, sg) => ({ ...obj, [sg.groupId]: false }), {});
+  const questionSubscriptionGroupIds = questions.map((question) => question.groupId);
 
   // Check Braze
   try {
@@ -16,7 +17,9 @@ const buildOptins = async ({ email, identityX, braze }) => {
       users.forEach((entry) => {
         const groups = entry.subscription_groups || [];
         groups.forEach((group) => {
-          optIns[group.id] = group.status === 'Subscribed';
+          if (questionSubscriptionGroupIds.includes(group.id)) {
+            optIns[group.id] = group.status === 'Subscribed';
+          }
         });
         return optIns;
       });

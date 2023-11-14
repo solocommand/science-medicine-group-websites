@@ -7,6 +7,8 @@ const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
 
+const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
+
 module.exports = {
   // Module configs
   braze,
@@ -56,12 +58,12 @@ module.exports = {
     containerId: 'GTM-5RJ8D63',
   },
   inquiry: {
-    enabled: false,
+    enabled: true,
     directSend: false,
-    sendTo: 'support@parameter1.com',
+    sendTo: 'support@auntminnie.com',
     sendFrom: 'auntminnieeurope.com <noreply@parameter1.com>',
     logo: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/ame-logo.svg?h=45&auto=format,compress&bg=000000&pad=5',
     bgColor: '#000000',
   },
-  wpIcleHostname: 'my.auntminnie.com',
+  wpIcleHostname: WPICLE_API_HOSTNAME,
 };

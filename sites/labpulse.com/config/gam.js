@@ -25,6 +25,7 @@ config.setAliasAdUnits('default', [
 const aliases = [
   { alias: 'business-insights' },
   { alias: 'diagnostic-technologies' },
+  { alias: 'senl' },
   { alias: 'diseases' },
   { alias: 'point-of-care-testing' },
   { alias: 'research-and-development' },

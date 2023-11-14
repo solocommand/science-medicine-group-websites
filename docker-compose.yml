@@ -28,7 +28,8 @@ x-env-defaults: &env
   ZERO_BOUNCE_API_KEY: ${ZERO_BOUNCE_API_KEY}
   DEBUG: ${DEBUG-}
   GAM_TRACK_API_KEY: ${GAM_TRACK_API_KEY-}
-  ENABLE_NATIVE_X: ${ENABLE_NATIVE_X-false}
+  ENABLE_NATIVE_X: ${ENABLE_NATIVE_X-true}
+  NATIVEX_SERVE_URI: ${NATIVEX_SERVE_URI-}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
@@ -85,6 +86,7 @@ services:
       EXPOSED_PORT: 9951
       LIVERELOAD_PORT: 19951
       BRAZE_API_KEY: ${BRAZE_API_KEY_SAB}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_SAB-[]}
     hostname: www-smg-sab.dev.parameter1.com
     ports:
       - "9951:80"
@@ -100,6 +102,7 @@ services:
       EXPOSED_PORT: 9952
       LIVERELOAD_PORT: 19952
       BRAZE_API_KEY: ${BRAZE_API_KEY_LAB}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_LAB-[]}
     hostname: www-smg-lab.dev.parameter1.com
     ports:
       - "9952:80"
@@ -115,6 +118,8 @@ services:
       EXPOSED_PORT: 9953
       LIVERELOAD_PORT: 19953
       BRAZE_API_KEY: ${BRAZE_API_KEY_DRB}
+      WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.drbicuspid.com}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_DRB-[]}
     hostname: www-smg-drb.dev.parameter1.com
     ports:
       - "9953:80"
@@ -130,6 +135,8 @@ services:
       EXPOSED_PORT: 9954
       LIVERELOAD_PORT: 19954
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.auntminnie.com}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-am.dev.parameter1.com
     ports:
       - "9954:80"
@@ -145,6 +152,7 @@ services:
       EXPOSED_PORT: 9955
       LIVERELOAD_PORT: 19955
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-ame.dev.parameter1.com
     ports:
       - "9955:80"
@@ -160,6 +168,7 @@ services:
       EXPOSED_PORT: 9956
       LIVERELOAD_PORT: 19956
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-ama.dev.parameter1.com
     ports:
       - "9956:80"

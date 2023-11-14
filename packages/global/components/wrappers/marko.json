@@ -18,6 +18,7 @@
     "@node": "object",
     "@node-list": "object",
     "@path": "string",
-    "@above-the-fold": "boolean"
+    "@above-the-fold": "boolean",
+    "@featured-header": "string"
   }
 }

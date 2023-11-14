@@ -1,6 +1,8 @@
 const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
+const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
+
 const clinicalNews = [
   { href: '/clinical-news/ct', label: 'CT' },
   { href: '/clinical-news/digital-x-ray', label: 'Digital X-Ray' },
@@ -33,7 +35,7 @@ const practiceManagement = [
   { href: '/practice-management/patient-safety', label: 'Patient Safety' },
   { href: '/practice-management/radiologic-technologist', label: 'Radiologic Technologist' },
   { href: '/practice-management/service', label: 'Service' },
-  { href: 'https://my.auntminnie.com/salary-scan', label: 'Salary Scan' },
+  { href: `${WPICLE_API_HOSTNAME}/salary-scan`, label: 'Salary Scan' },
 ];
 const radiologyEducation = [
   { href: '/radiology-education/medical-students', label: 'Medical Students' },
@@ -58,6 +60,7 @@ const subspecialties = [
 ];
 
 const topics = [
+  { href: 'https://www.auntminnieeurope.com/index.aspx?sec=def', label: 'Europe' },
   { href: '/clinical-news', label: 'Clinical News', children: clinicalNews },
   { href: '/imaging-informatics', label: 'Informatics', children: imagingInformatics },
   { href: '/industry-news', label: 'Industry News', children: industryNews },
@@ -69,11 +72,11 @@ const topics = [
 ];
 
 const resources = [
-  { href: 'https://my.auntminnie.com/', label: 'myAuntMinnie' },
+  { href: WPICLE_API_HOSTNAME, label: 'myAuntMinnie' },
   { href: 'https://www.auntminniecme.com/', label: 'CME' },
   { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
-  { href: 'https://my.auntminnie.com/cases', label: 'Cases' },
-  { href: 'https://my.auntminnie.com/forums', label: 'Forums' },
+  { href: `${WPICLE_API_HOSTNAME}/cases`, label: 'Cases' },
+  { href: `${WPICLE_API_HOSTNAME}/forums`, label: 'Forums' },
   { href: '/resources/conference', label: 'Conferences' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },

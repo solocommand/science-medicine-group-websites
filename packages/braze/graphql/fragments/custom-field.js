@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 fragment BrazeCustomFieldFragment on FieldInterface {
   id
+  name
   active
   label
   externalId {
@@ -14,6 +15,12 @@ fragment BrazeCustomFieldFragment on FieldInterface {
     }
     identifier {
       value
+    }
+  }
+  ...on SelectField {
+    options {
+      id
+      externalIdentifier
     }
   }
 }

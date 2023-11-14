@@ -4,6 +4,10 @@ const debug = require('debug')('braze');
 const identityXCustomQuestions = require('./graphql/queries/idx-app-custom-questions');
 const { filterByExternalId } = require('./utils');
 
+/**
+ * @typedef {import('@parameter1/base-cms-marko-web-identity-x/service')} IdentityXService
+ */
+
 class Braze {
   constructor({
     apiHost,
@@ -111,16 +115,49 @@ class Braze {
 
   /**
    * Used to retrieve IdentityX custom boolean questions for subscriptions
-   * @param {*} identityX The IdentityX service instance
+   * @param {IdentityXService} identityX The IdentityX service instance
+   * @typedef CustomBooleanQuestion
+   * @prop {String} id
+   * @prop {String} description
+   * @prop {String} groupId
+   * @returns {Promise<CustomBooleanQuestion[]>}
    */
   async getSubscriptionGroupQuestions(identityX) {
     const { data } = await identityX.client.query({ query: identityXCustomQuestions });
     const nodes = getAsArray(data, 'fields.edges').map(({ node }) => ({ field: node })).filter((n) => n.field.active);
-    const questions = filterByExternalId(nodes, 'subscriptionGroup', this.tenant);
+    // 63038e5dd15c7c4b2e8b458a is the site ID for Aunt Minnie (Non-Europe)
+    const isAuntMinnie = String(identityX.res.app.locals.config.website('id')) === '63038e5dd15c7c4b2e8b458a';
+    const additionalFilter = isAuntMinnie ? (n) => n.field.name.match(/^AM - /) : (n) => n.field.name.match(/^AME - /);
+    const nodesFinal = identityX.config.appId === '62a20ac739347c1810862985' ? nodes.filter(additionalFilter) : nodes;
+    const questions = filterByExternalId(nodesFinal, 'subscriptionGroup', this.tenant);
     return questions.map(({ field }) => ({
       id: field.id,
       description: field.label,
       groupId: get(field, 'externalId.identifier.value'),
+    }));
+  }
+
+  /**
+   * Used to retrieve IdentityX custom boolean questions for subscriptions
+   * @param {IdentityXService} identityX The IdentityX service instance
+   * @typedef CustomSelectQuestion
+   * @prop {String} id
+   * @prop {Boolean} active
+   * @prop {String} label
+   * @prop {String} externalId
+   * @prop {SelectFieldOptionChoice[]} options
+   * @typedef SelectFieldOptionChoice
+   * @prop {String} id
+   * @prop {String} externalIdentifier
+   * @returns {Promise<CustomSelectQuestion[]>}
+   */
+  async getDemographicQuestions(identityX) {
+    const { data } = await identityX.client.query({ query: identityXCustomQuestions });
+    const nodes = getAsArray(data, 'fields.edges').map(({ node }) => ({ field: node }));
+    const questions = filterByExternalId(nodes, 'attribute', this.tenant);
+    return questions.map(({ field }) => ({
+      ...field,
+      externalId: get(field, 'externalId.identifier.value'),
     }));
   }
 
