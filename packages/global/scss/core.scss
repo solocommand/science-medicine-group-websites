@@ -847,6 +847,13 @@ body .ad-container--template-reskin-mobile {
       opacity: 1;
     }
   }
+  &__form-wrapper {
+    form {
+      .btn {
+        padding: 14px;
+      }
+    }
+  }
 }
 .newsletter-signup-banner {
   &__right-col {
