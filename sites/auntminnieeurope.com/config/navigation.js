@@ -74,8 +74,8 @@ const resources = [
   { href: `${WPICLE_API_HOSTNAME}/forums`, label: 'Forums' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
-  { href: 'https://www.auntminnie.com/', label: 'AuntMinnie' },
   { href: '/resources/vendors', label: 'Vendors' },
+  { href: 'https://www.auntminnie.com/', label: 'AuntMinnie' },
 ];
 
 const more = [
