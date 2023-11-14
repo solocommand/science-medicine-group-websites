@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/package-maxmind-geoip",
-  "version": "2.1.0",
+  "version": "2.10.6",
   "description": "MaxMind GeoIP service integration",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/maxmind-geoip",
   "author": "Josh Worden <josh@parameter1.com>",
