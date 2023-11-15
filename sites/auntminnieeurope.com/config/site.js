@@ -53,6 +53,17 @@ module.exports = {
     { provider: 'twitter', href: 'https://twitter.com/auntminnieeurope', target: '_blank' },
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/auntminnieeurope.com/', target: '_blank' },
   ],
+  wufoo: {
+    userName: 'labpulse',
+    'contact-us': {
+      title: 'Drop us a line!',
+      hash: 'z1wrw9ja180cyrs',
+    },
+    'resources/conferences': {
+      title: 'Submit A Conference!',
+      hash: 'z1ee88eb04co25j',
+    },
+  },
   podcastLinks: [],
   gtm: {
     containerId: 'GTM-5RJ8D63',
