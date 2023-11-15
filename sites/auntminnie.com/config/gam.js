@@ -33,6 +33,7 @@ const aliases = [
   { alias: 'clinical-news/ultrasound', prefix: 'ultrasound' },
   { alias: 'clinical-news/womens-imaging', prefix: 'womens-imaging' },
   { alias: 'senl' },
+  { alias: 'leveraging-vnas', prefix: 'senl' },
   { alias: 'imaging-informatics' },
   { alias: 'imaging-informatics/advanced-visualization', prefix: 'advanced-visualization' },
   { alias: 'imaging-informatics/enterprise-imaging', prefix: 'enterprise-imaging' },

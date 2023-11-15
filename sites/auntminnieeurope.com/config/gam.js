@@ -1,6 +1,6 @@
 const configureGAM = require('@science-medicine-group/package-global/config/gam');
 
-const config = configureGAM({ basePath: 'am' });
+const config = configureGAM({ basePath: 'ame' });
 
 config.enableRevealAd = true;
 
@@ -17,12 +17,62 @@ config.setAliasAdUnits('default', [
   { name: 'rotation', templateName: 'ROTATION', path: 'rotation' },
   { name: 'inline-content-mobile', templateName: 'INLINE-CONTENT-MOBILE', path: 'rotation' },
   { name: 'inline-content-desktop', templateName: 'INLINE-CONTENT-DESKTOP', path: 'rotation' },
+  // Below based on enableRevealAd
   { name: 'reskin', path: 'reskin' },
   { name: 'reskin-mobile', templateName: 'RESKIN-MOBILE', path: 'reskin' },
 ]);
 
 const aliases = [
+  { alias: 'clinical-news' },
+  { alias: 'clinical-news/ct', prefix: 'ct' },
+  { alias: 'clinical-news/digital-x-ray', prefix: 'digital-x-ray' },
+  { alias: 'clinical-news/interventional', prefix: 'interventional' },
+  { alias: 'clinical-news/molecular-imaging', prefix: 'molecular-imaging' },
+  { alias: 'clinical-news/mri', prefix: 'mri' },
+  { alias: 'clinical-news/radiation-oncology', prefix: 'radiation-oncology-therapy' },
+  { alias: 'clinical-news/ultrasound', prefix: 'ultrasound' },
+  { alias: 'clinical-news/womens-imaging', prefix: 'womens-imaging' },
+  { alias: 'senl' },
   { alias: 'imaging-informatics' },
+  { alias: 'imaging-informatics/enterprise-imaging', prefix: 'enterprise-imaging' },
+  { alias: 'imaging-informatics/artificial-intelligence', prefix: 'artificial-intelligence' },
+  { alias: 'imaging-informatics/cybersecurity', prefix: 'cybersecurity' },
+  { alias: 'imaging-informatics/advanced-visualization', prefix: 'advanced-visualization' },
+  { alias: 'industry-news' },
+  { alias: 'industry-news/product-news', prefix: 'product-news' },
+  { alias: 'industry-news/regulatory', prefix: 'regulatory' },
+  { alias: 'industry-news/ma', prefix: 'ma' },
+  { alias: 'industry-news/market-analysis', prefix: 'market-analysis' },
+  { alias: 'industry-news/installations', prefix: 'installations' },
+  { alias: 'medical-legal-and-practice' },
+  { alias: 'medical-legal-and-practice/health-equity', prefix: 'health-equity' },
+  { alias: 'medical-legal-and-practice/socioeconomic', prefix: 'socioeconomic' },
+  { alias: 'medical-legal-and-practice/medicolegal-issues', prefix: 'medicolegal-issues' },
+  { alias: 'medical-legal-and-practice/organized-radiology-issues', prefix: 'organized-radiology-issues' },
+  { alias: 'medical-legal-and-practice/patient-safety', prefix: 'patient-safety' },
+  { alias: 'medical-legal-and-practice/service', prefix: 'service' },
+  { alias: 'medical-legal-and-practice/tributes-obits', prefix: 'tributes-obits' },
+  { alias: 'editorial-advisory-board' },
+  { alias: 'radiographers' },
+  { alias: 'radiographers/sonographer', prefix: 'sonographer' },
+  { alias: 'radiology-education' },
+  { alias: 'radiology-education/medical-students', prefix: 'medical-students' },
+  { alias: 'radiology-education/residents-fellows', prefix: 'residents/fellows' },
+  { alias: 'subspecialties' },
+  { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
+  { alias: 'subspecialties/cardiovascular-radiology', prefix: 'cardiovascular-radiology' },
+  { alias: 'subspecialties/chest-radiology', prefix: 'chest-radiology' },
+  { alias: 'subspecialties/emergency-radiology', prefix: 'emergency-radiology' },
+  { alias: 'subspecialties/gastrointestinal-radiology', prefix: 'gastrointestinal-radiology' },
+  { alias: 'subspecialties/genitourinary-radiology', prefix: 'genitourinary-radiology' },
+  { alias: 'subspecialties/head-and-neck-radiology', prefix: 'head-and-neck-radiology' },
+  { alias: 'subspecialties/interventional-radiology', prefix: 'interventional-radiology' },
+  { alias: 'subspecialties/medical-physics', prefix: 'medical-physics' },
+  { alias: 'subspecialties/musculoskeletal-radiology', prefix: 'musculoskeletal-radiology' },
+  { alias: 'subspecialties/neuroradiology', prefix: 'neuroradiology' },
+  { alias: 'subspecialties/nuclear-radiology', prefix: 'nuclear-radiology' },
+  { alias: 'subspecialties/pediatric-radiology', prefix: 'pediatric-radiology' },
+  { alias: 'subspecialties/radiation-radiology', prefix: 'radiation-radiology' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
