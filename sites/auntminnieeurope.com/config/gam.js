@@ -1,6 +1,6 @@
 const configureGAM = require('@science-medicine-group/package-global/config/gam');
 
-const config = configureGAM({ basePath: 'am' });
+const config = configureGAM({ basePath: 'ame' });
 
 config.enableRevealAd = true;
 
