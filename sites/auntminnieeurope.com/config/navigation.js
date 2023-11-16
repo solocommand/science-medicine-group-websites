@@ -4,7 +4,6 @@ const privacyPolicy = require('./privacy-policy');
 const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
 
 const clinicalNews = [
-  { href: '/clinical-news/advanced-visualization', label: 'Advanced Visualization' },
   { href: '/clinical-news/ct', label: 'CT' },
   { href: '/clinical-news/digital-x-ray', label: 'Digital X-Ray' },
   { href: '/clinical-news/interventional', label: 'Interventional' },
@@ -15,8 +14,9 @@ const clinicalNews = [
   { href: '/clinical-news/womens-imaging', label: 'Womens Imaging' },
 ];
 const imagingInformatics = [
+  { href: '/imaging-informatics/advanced-visualization', label: 'Advanced Visualization' },
   { href: '/imaging-informatics/enterprise-imaging', label: 'Enterprise Imaging' },
-  { href: '/imaging-informatics/artifical-intelligence', label: 'Artificial Intelligence' },
+  { href: '/imaging-informatics/artificial-intelligence', label: 'Artificial Intelligence' },
   { href: '/imaging-informatics/cybersecurity', label: 'Cybersecurity' },
 ];
 const industryNews = [
