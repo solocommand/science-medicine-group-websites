@@ -68,6 +68,7 @@ const topics = [
 ];
 
 const resources = [
+  { href: WPICLE_API_HOSTNAME, label: 'myAuntMinnieEurope' },
   { href: 'https://auntminnie.careerwebsite.com/home/index.cfm', label: 'Careers' },
   { href: `${WPICLE_API_HOSTNAME}/cases`, label: 'Cases' },
   { href: '/resources/conference', label: 'Conferences' },
