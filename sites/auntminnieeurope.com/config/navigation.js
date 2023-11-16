@@ -27,13 +27,13 @@ const industryNews = [
   { href: '/industry-news/installations', label: 'Installations' },
 ];
 const practiceManagement = [
-  { href: '/medical-legal-and-practice/health-equity', label: 'Health Equity' },
+  // { href: '/medical-legal-and-practice/health-equity', label: 'Health Equity' },
   { href: '/medical-legal-and-practice/socioeconomic', label: 'Socioeconomic' },
-  { href: '/medical-legal-and-practice/medicolegal-issues', label: 'Medicolegal Issues' },
+  // { href: '/medical-legal-and-practice/medicolegal-issues', label: 'Medicolegal Issues' },
   { href: '/medical-legal-and-practice/organized-radiology-issues', label: 'Organized Radiology Issues' },
-  { href: '/medical-legal-and-practice/patient-safety', label: 'Patient Safety' },
+  // { href: '/medical-legal-and-practice/patient-safety', label: 'Patient Safety' },
   { href: '/medical-legal-and-practice/service', label: 'Service' },
-  { href: '/medical-legal-and-practice/tributes-obits', label: 'Tributes & Obits' },
+  // { href: '/medical-legal-and-practice/tributes-obits', label: 'Tributes & Obits' },
 ];
 const radiologyEducation = [
   { href: '/radiology-education/medical-students', label: 'Medical Students' },
