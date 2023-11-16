@@ -57,7 +57,7 @@ const aliases = [
   { alias: 'radiographers/sonographer', prefix: 'sonographer' },
   { alias: 'radiology-education' },
   { alias: 'radiology-education/medical-students', prefix: 'medical-students' },
-  { alias: 'radiology-education/residents-fellows', prefix: 'residents/fellows' },
+  { alias: 'radiology-education/residents-fellows', prefix: 'residents-fellows' },
   { alias: 'subspecialties' },
   { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
   { alias: 'subspecialties/interventional-radiology', prefix: 'interventional-radiology' },
