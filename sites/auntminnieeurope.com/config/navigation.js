@@ -4,27 +4,27 @@ const privacyPolicy = require('./privacy-policy');
 const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
 
 const clinicalNews = [
-  { href: '/clinical-news/advanced-visualization', label: 'Advanced Visualization' },
   { href: '/clinical-news/ct', label: 'CT' },
   { href: '/clinical-news/digital-x-ray', label: 'Digital X-Ray' },
-  { href: '/clinical-news/interventional-radiology', label: 'Interventional Radiology' },
+  { href: '/clinical-news/interventional', label: 'Interventional' },
   { href: '/clinical-news/molecular-imaging', label: 'Molecular Imaging' },
   { href: '/clinical-news/mri', label: 'MRI' },
-  { href: '/clinical-news/radiation-oncolgy', label: 'Radiation Oncology' },
+  { href: '/clinical-news/radiation-oncology-therapy', label: 'Radiation Oncology/Therapy' },
   { href: '/clinical-news/ultrasound', label: 'Ultrasound' },
   { href: '/clinical-news/womens-imaging', label: 'Womens Imaging' },
 ];
 const imagingInformatics = [
+  { href: '/imaging-informatics/advanced-visualization', label: 'Advanced Visualization' },
   { href: '/imaging-informatics/enterprise-imaging', label: 'Enterprise Imaging' },
-  { href: '/imaging-informatics/artifical-intelligence', label: 'Artificial Intelligence' },
+  { href: '/imaging-informatics/artificial-intelligence', label: 'Artificial Intelligence' },
   { href: '/imaging-informatics/cybersecurity', label: 'Cybersecurity' },
 ];
 const industryNews = [
   { href: '/industry-news/product-news', label: 'Product News' },
-  { href: '/industry-news/regulatory-clearances', label: 'Regulatory Clearances' },
-  { href: '/industry-news/mergers-and-acquisitions', label: 'Mergers and Acquisitions' },
-  { href: '/industry-news/market-overviews-and-analysis', label: 'Market Overviews and Analysis' },
-  { href: '/industry-news/new-installations', label: 'New Installations' },
+  { href: '/industry-news/regulatory', label: 'Regulatory' },
+  { href: '/industry-news/ma', label: 'M&A' },
+  { href: '/industry-news/market-analysis', label: 'Market Analysis' },
+  { href: '/industry-news/installations', label: 'Installations' },
 ];
 const practiceManagement = [
   { href: '/medical-legal-and-practice/health-equity', label: 'Health Equity' },
