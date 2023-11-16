@@ -37,7 +37,7 @@ config
   .setAliasPlacements('clinical-news/interventional', [
     { name: 'related-content', id: '65525b4321b7580001b9e3f3' },
   ])
-  .setAliasPlacements('clinical-news/radiation-oncology', [
+  .setAliasPlacements('clinical-news/radiation-oncology-therapy', [
     { name: 'related-content', id: '65525bbf21b7580001b9e454' },
   ])
 
@@ -117,43 +117,43 @@ config
   .setAliasPlacements('subspecialties/breast-imaging', [
     { name: 'related-content', id: '65525ee521b7580001b9e634' },
   ])
-  .setAliasPlacements('subspecialties/cardiovascular-radiology', [
-    { name: 'related-content', id: '65525f2321b7580001b9e682' },
-  ])
-  .setAliasPlacements('subspecialties/chest-radiology', [
-    { name: 'related-content', id: '655260e621b7580001b9e71f' },
-  ])
-  .setAliasPlacements('subspecialties/emergency-radiology', [
-    { name: 'related-content', id: '6552610821b7580001b9e75e' },
-  ])
-  .setAliasPlacements('subspecialties/gastrointestinal-radiology', [
-    { name: 'related-content', id: '65527508ce30e70001a8846c' },
-  ])
-  .setAliasPlacements('subspecialties/genitourinary-radiology', [
-    { name: 'related-content', id: '6552752bce30e70001a884b2' },
-  ])
-  .setAliasPlacements('subspecialties/head-and-neck-radiology', [
-    { name: 'related-content', id: '65527548ce30e70001a884ec' },
-  ])
+  // .setAliasPlacements('subspecialties/cardiovascular-radiology', [
+  //   { name: 'related-content', id: '65525f2321b7580001b9e682' },
+  // ])
+  // .setAliasPlacements('subspecialties/chest-radiology', [
+  //   { name: 'related-content', id: '655260e621b7580001b9e71f' },
+  // ])
+  // .setAliasPlacements('subspecialties/emergency-radiology', [
+  //   { name: 'related-content', id: '6552610821b7580001b9e75e' },
+  // ])
+  // .setAliasPlacements('subspecialties/gastrointestinal-radiology', [
+  //   { name: 'related-content', id: '65527508ce30e70001a8846c' },
+  // ])
+  // .setAliasPlacements('subspecialties/genitourinary-radiology', [
+  //   { name: 'related-content', id: '6552752bce30e70001a884b2' },
+  // ])
+  // .setAliasPlacements('subspecialties/head-and-neck-radiology', [
+  //   { name: 'related-content', id: '65527548ce30e70001a884ec' },
+  // ])
   .setAliasPlacements('subspecialties/interventional-radiology', [
     { name: 'related-content', id: '65527569ce30e70001a8851f' },
   ])
-  .setAliasPlacements('subspecialties/medical-physics', [
-    { name: 'related-content', id: '6552758321b7580001b9ece3' },
-  ])
-  .setAliasPlacements('subspecialties/musculoskeletal-radiology', [
-    { name: 'related-content', id: '655275a0ce30e70001a88578' },
-  ])
-  .setAliasPlacements('subspecialties/neuroradiology', [
-    { name: 'related-content', id: '655275c2ce30e70001a885a7' },
-  ])
+  // .setAliasPlacements('subspecialties/medical-physics', [
+  //   { name: 'related-content', id: '6552758321b7580001b9ece3' },
+  // ])
+  // .setAliasPlacements('subspecialties/musculoskeletal-radiology', [
+  //   { name: 'related-content', id: '655275a0ce30e70001a88578' },
+  // ])
+  // .setAliasPlacements('subspecialties/neuroradiology', [
+  //   { name: 'related-content', id: '655275c2ce30e70001a885a7' },
+  // ])
   .setAliasPlacements('subspecialties/nuclear-radiology', [
     { name: 'related-content', id: '655275df21b7580001b9eda0' },
   ])
-  .setAliasPlacements('subspecialties/pediatric-radiology', [
-    { name: 'related-content', id: '655275fbce30e70001a88621' },
-  ])
-  .setAliasPlacements('subspecialties/radiation-radiology', [
+  // .setAliasPlacements('subspecialties/pediatric-radiology', [
+  //   { name: 'related-content', id: '655275fbce30e70001a88621' },
+  // ])
+  .setAliasPlacements('subspecialties/radiation-oncology', [
     { name: 'related-content', id: '65527621ce30e70001a88654' },
   ]);
 
