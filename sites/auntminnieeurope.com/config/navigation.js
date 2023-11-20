@@ -83,6 +83,7 @@ const more = [
   { href: '/page/about-us', label: 'About Us' },
   { href: '/page/advertising', label: 'Advertising' },
   { href: '/page/help', label: 'Help' },
+  { href: '/page/EAB', label: 'AMEU Editorial Advisory Board' },
 ];
 
 const mobileMenu = {
