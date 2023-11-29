@@ -2,6 +2,7 @@ const subscribe = require('./subscribe');
 const privacyPolicy = require('./privacy-policy');
 
 const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
+const AM_URL = process.env.AM_URL || 'https://www.auntminnie.com';
 
 const clinicalNews = [
   { href: '/clinical-news/ct', label: 'CT' },
@@ -76,7 +77,7 @@ const resources = [
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/vendors', label: 'Vendors' },
-  { href: 'https://www.auntminnie.com/', label: 'AuntMinnie' },
+  { href: AM_URL, label: 'AuntMinnie' },
 ];
 
 const more = [

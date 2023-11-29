@@ -152,6 +152,8 @@ services:
       EXPOSED_PORT: 9955
       LIVERELOAD_PORT: 19955
       BRAZE_API_KEY: ${BRAZE_API_KEY_AM}
+      WPICLE_API_HOSTNAME: ${WPICLE_API_HOSTNAME-https://my.auntminnie.com}
+      AM_URL: ${AM_URL-https://www.auntminnie.com}
       IDENTITYX_APP_API_KEYS: ${IDENTITYX_APP_API_KEYS_AM-[]}
     hostname: www-smg-ame.dev.parameter1.com
     ports:
