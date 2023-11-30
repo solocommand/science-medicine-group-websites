@@ -1,5 +1,25 @@
 import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
 
-$ const activeUser = defaultValue(input.activeUser, {});
+$ const { req, identityX } = out.global;
 
-<marko-web-browser-component name="Rudderstack" props={ activeUser } />
+$ const activeUser = defaultValue(input.activeUser, {});
+$ const brazeExternalId = req.query['braze_ext_id'];
+
+$ const findUserById = async (externalId) => {
+  try {
+    const userFromId = await identityX.findUserById(externalId);
+    return userFromId;
+  } catch (e) {
+    // Not throwing this since it failing just means there was an invalid lookup attempted
+    console.log(`Unable to find user for external ID, ${externalId}: `,e.message);
+  }
+}
+
+<if(brazeExternalId)>
+  <marko-web-resolve|{ resolved: userFromExternalId }| promise=findUserById(brazeExternalId)>
+    <marko-web-browser-component name="Rudderstack" props={ activeUser, userFromExternalId } />
+  </marko-web-resolve>
+</if>
+<else>
+  <marko-web-browser-component name="Rudderstack" props={ activeUser } />
+</else>

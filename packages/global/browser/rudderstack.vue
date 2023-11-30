@@ -15,6 +15,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    userFromExternalId: {
+      type: Object,
+      default: () => {},
+    },
   },
   created() {
     this.EventBus.$on('identity-x-login-link-sent', (payload) => {
@@ -25,6 +29,10 @@ export default {
     });
     if (this.activeUser && this.activeUser.email) {
       const { id, email } = this.activeUser;
+      identify(window)(id, { email });
+    }
+    if (!this.activeUser && this.userFromExternalId && this.userFromExternalId.email) {
+      const { id, email } = this.userFromExternalId;
       identify(window)(id, { email });
     }
   },
