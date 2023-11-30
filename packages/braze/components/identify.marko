@@ -1,0 +1,15 @@
+import { getResponseCookies } from "@parameter1/base-cms-utils";
+
+$ const { req, res } = out.global;
+$ const { identityX } = req;
+$ const cookies = { ...req.cookies, ...getResponseCookies(res) };
+$ const brazeIntId = cookies.braze_int_id;
+$ const brazeExtId = cookies.braze_ext_id;
+
+<if(Boolean(identityX))>
+  <marko-web-resolve|{ resolved: user }| promise=identityX.getIdentityData()>
+    <if(user || brazeIntId || brazeExtId)>
+      <marko-web-identity-x-identify provider-data={ braze_int_id: brazeIntId, braze_ext_id: brazeExtId } />
+    </if>
+  </marko-web-resolve>
+</if>
