@@ -69,16 +69,16 @@ module.exports = (options = {}) => {
       const nativeXConfig = get(options, 'siteConfig.nativeX');
       set(app.locals, 'nativeX', nativeXConfig);
 
-      // Load braze
-      const brazeConfig = getAsObject(options, 'siteConfig.braze');
-      braze(app, brazeConfig);
-
       // Load ZeroBounce (must be loaded before IdX!)
       zeroBounce(app);
 
       // Load IdentityX
       const idxConfig = get(options, 'siteConfig.identityX');
       identityX(app, idxConfig, { templates: idxRouteTemplates });
+
+      // Load braze
+      const brazeConfig = getAsObject(options, 'siteConfig.braze');
+      braze(app, brazeConfig);
 
       // Add hooks
       brazeHooks(idxConfig, brazeConfig);
