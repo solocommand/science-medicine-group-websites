@@ -35,10 +35,7 @@
     "template": "./site-footer.marko"
   },
   "<global-rudderstack>": {
-    "template": "./rudderstack.marko",
-    "@active-user": {
-      "type": "object"
-    }
+    "template": "./rudderstack.marko"
   },
   "<global-reveal-ad-handler>": {
     "template": "./reveal-ad-handler.marko",
