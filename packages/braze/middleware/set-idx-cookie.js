@@ -9,7 +9,7 @@ module.exports = asyncRoute(async (req, res, next) => {
   }; // overwrite request cookies with response cookies
   const identityId = cookies[COOKIE_NAME];
 
-  if (identityX.getIdentity()) return next(); // don't overwrite an existing identity
+  if (identityX.getIdentity(res)) return next(); // don't overwrite an existing identity
   if (!identityId) return next(); // no identity to set
 
   // verify that the user exists
