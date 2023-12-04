@@ -1,0 +1,6 @@
+{
+  "taglib-imports": [],
+  "<braze-identity-x-identify>": {
+    "template": "./identify.marko"
+  }
+}
