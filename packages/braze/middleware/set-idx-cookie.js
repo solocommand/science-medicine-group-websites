@@ -13,7 +13,8 @@ module.exports = asyncRoute(async (req, res, next) => {
   if (!identityId) return next(); // no identity to set
 
   // verify that the user exists
-  const identity = await identityX.findUserById(identityId);
+  // This utilizes the same logic for determining a MongoDB ID as base-cms-db's BaseDB.coerceID
+  const identity = /^[a-f0-9]{24}$/.test(identityId) ? await identityX.findUserById(identityId) : null;
   if (!identity) return next(); // invalid or deleted user, don't set an identity
 
   identityX.setIdentityCookie(identity.id);
