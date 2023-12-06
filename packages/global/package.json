@@ -20,6 +20,7 @@
     "@parameter1/base-cms-marko-web": "^4.40.3",
     "@parameter1/base-cms-marko-web-deferred-script-loader": "^4.40.3",
     "@parameter1/base-cms-marko-web-gam": "^4.40.3",
+    "@parameter1/base-cms-marko-web-gcse": "^4.40.3",
     "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
     "@parameter1/base-cms-marko-web-html-sitemap": "^4.40.3",
     "@parameter1/base-cms-marko-web-icons": "^4.36.8",
