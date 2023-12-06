@@ -9,6 +9,7 @@ const printContent = require('./print-content');
 const publicFiles = require('./public-files');
 const redirects = require('./redirects');
 const staticPage = require('./static-page');
+const googleSearch = require('./google-search');
 
 module.exports = (app, siteConfig) => {
   // braze
@@ -43,4 +44,7 @@ module.exports = (app, siteConfig) => {
 
   // HTML Sitemap
   htmlSitemap(app);
+
+  // Google Search
+  googleSearch(app);
 };
