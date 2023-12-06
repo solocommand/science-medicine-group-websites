@@ -1,0 +1,40 @@
+import { warn } from "@parameter1/base-cms-utils";
+
+$ const { config, site, GAM } = out.global;
+
+$ const type = "search";
+$ const title = "Search";
+$ const description = `Search ${config.siteName()}`;
+$ const apiKey = site.get("gcse.id");
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+    <meta name="robots" content="noindex">
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <h1 class="page-wrapper__title">${description}</h1>
+          </div>
+        </div>
+      </@section>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <if(apiKey)>
+              <marko-web-gcse-simple-search-box api-key=apiKey />
+            </if>
+            <else>
+              $ warn("Unable to load GCSE search: no `gcse.id` value was configured.");
+            </else>
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>
