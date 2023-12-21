@@ -39,7 +39,7 @@ const resources = [
   // { href: '/resources/vendors', label: 'Vendors' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
-  { href: '/resources/media-press', label: 'Media & Press' },
+  { href: '/page/press-releases', label: 'Press Releases' },
   { href: '/resources/whitepapers', label: 'Whitepapers' },
   { href: '/page/advertising', label: 'Advertising' },
 ];
