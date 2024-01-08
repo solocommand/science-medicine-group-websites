@@ -147,6 +147,8 @@
 // 6. selectively import theme _block_ items. mark as critical when necessary
 // @todo VERIFY ALL OF THESE - were all being included by monorail
 /*! critical:start|home */
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/callout-cards";
+@import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/latest-podcast";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/content-card-deck";
 @import "@parameter1/base-cms-marko-web-theme-monorail/scss/components/blocks/most-popular";
 /*! critical:end */

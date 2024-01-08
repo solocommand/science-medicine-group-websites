@@ -29,5 +29,8 @@
     "template": "./icle-top-posts.marko",
     "@api-url": "string",
     "@title": "string"
+  },
+  "<global-promo-cards-block>": {
+    "template": "./promo-cards.marko"
   }
 }

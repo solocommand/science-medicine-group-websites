@@ -1,0 +1,28 @@
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+import { defaultValue } from "@parameter1/base-cms-marko-web/utils";
+import convertAdToNode from "@parameter1/base-cms-marko-web-native-x/utils/convert-ad-to-node";
+
+$ const { nativeX: nxConfig } = out.global;
+$ const placementName = defaultValue(input.placementName, "default");
+$ const aliases = defaultValue(input.aliases, []);
+$ const blockName = "callout-cards";
+$ const uri = nxConfig.getUri();
+$ const placement = nxConfig.getPlacement({ name: placementName, aliases });
+
+<marko-web-block name=blockName>
+  <marko-web-element block-name=blockName name="row">
+    <marko-web-element block-name=blockName name="col">
+      <theme-latest-podcast-block alias="podcasts" />
+    </marko-web-element>
+    <marko-web-native-x-fetch-elements|{ ads }| uri=uri id=placement.id>
+      $ const hasAd = ads && ads.length && ads[0] && ads[0].hasCampaign;
+      <if(hasAd)>
+        <marko-web-element block-name=blockName name="col" modifiers=["last"]>
+          <if(ads[0] && ads[0].hasCampaign)>
+            <theme-standard-promo-node ...convertAdToNode(ads[0]) />
+          </if>
+        </marko-web-element>
+      </if>
+    </marko-web-native-x-fetch-elements>
+  </marko-web-element>
+</marko-web-block>
