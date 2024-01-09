@@ -164,8 +164,6 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                   preventHTMLInjection=!shouldInjectAds
                 />
 
-                <theme-content-attribution obj=content elements=["company"] />
-
                 $ const transcriptId = `content-transcript-${content.id}`;
 
                 <!-- Add Transcripts and allow for the ad injection -->
@@ -239,6 +237,8 @@ $ const shouldInjectAds = ["article", "video", "news", "podcast"].includes(type)
                     published=content.published
                   />
                 </if>
+
+                <theme-content-attribution obj=content elements=["company"] />
 
                 <if(displaySocialShare)>
                   <marko-web-social-sharing
