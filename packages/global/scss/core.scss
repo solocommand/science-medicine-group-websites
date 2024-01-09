@@ -530,6 +530,11 @@ label {
 }
 
 /*! critical:start|content */
+.page-attribution {
+  &__content-company-name::before {
+    content: "Tags"
+  }
+}
 @import "./components/collapsible-sidebar";
 // Begin right rail content layout CSS
 .content-page-body {
