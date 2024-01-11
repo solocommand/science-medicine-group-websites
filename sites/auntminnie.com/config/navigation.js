@@ -81,7 +81,7 @@ const resources = [
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/page/advertising', label: 'Advertising' },
-  { href: 'https://issuu.com/auntminnie/docs/230206_2023ambuyersguide_nobleed', label: 'Buyer\'s Guide', target: '_blank' },
+  { href: 'https://issuu.com/auntminnie/docs/2024_auntminnie_buyer_s_guide_01112024', label: 'Buyer\'s Guide', target: '_blank' },
   { href: '/resources/vendors', label: 'Vendors' },
 ];
 
