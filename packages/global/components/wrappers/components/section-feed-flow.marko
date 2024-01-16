@@ -5,7 +5,7 @@ $ const adName = input.adName || "rotation";
 <if(nodes && nodes.length)>
   <theme-section-feed-flow ...input.flow nodes=nodes header=input.header modifiers=input.modifiers>
     <@node-list inner-justified=false ...input.nodeList />
-    <@node with-dates=true with-section=false ...input.node />
+    <@node with-dates=true with-section=false with-company=false with-authors=true ...input.node />
   </theme-section-feed-flow>
   <if(input.withAds)>
     <theme-gam-define-display-ad
