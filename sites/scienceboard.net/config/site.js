@@ -18,6 +18,7 @@ module.exports = {
   newsletter,
   search,
   // Site configs
+  useLinkInjectedBody: process.env.USE_LINK_INJECTED_BODY === 'true',
   company: 'Science and Medicine Group',
   p1events: {
     tenant: 'smg',
