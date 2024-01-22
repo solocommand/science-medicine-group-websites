@@ -31,11 +31,11 @@
     "win32"
   ],
   "dependencies": {
-    "@parameter1/base-cms-marko-core": "^4.40.3",
-    "@parameter1/base-cms-marko-web": "^4.40.3",
+    "@parameter1/base-cms-marko-core": "^4.42.0",
+    "@parameter1/base-cms-marko-web": "^4.42.0",
     "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
     "@parameter1/base-cms-marko-web-identity-x": "^4.40.7",
-    "@parameter1/base-cms-marko-web-theme-monorail": "^4.40.7",
+    "@parameter1/base-cms-marko-web-theme-monorail": "^4.42.0",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
     "@parameter1/base-cms-web-cli": "^4.40.3",
