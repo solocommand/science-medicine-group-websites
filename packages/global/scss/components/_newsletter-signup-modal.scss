@@ -1,0 +1,26 @@
+.popup-modal-wrapper {
+  $self: &;
+  &--display-overlay {
+    ~ .site-footer {
+      display: none;
+      margin-bottom: 0;
+    }
+    ~ .document-container {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+  &__overlay {
+    z-index: 1499;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    visibility: visible;
+    transition: visibility 0s, opacity 0.5s linear;
+    .newsletter-signup-modal-button {
+      align-self: flex-end;
+    }
+  }
+}
