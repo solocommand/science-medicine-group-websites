@@ -34,6 +34,7 @@ const aliases = [
   { alias: 'clinical-news/womens-imaging', prefix: 'womens-imaging' },
   { alias: 'senl' },
   { alias: 'leveraging-vnas', prefix: 'senl' },
+  { alias: 'improving-radiology-efficiency-and-outcomes', prefix: 'senl' },
   { alias: 'imaging-informatics' },
   { alias: 'imaging-informatics/advanced-visualization', prefix: 'advanced-visualization' },
   { alias: 'imaging-informatics/enterprise-imaging', prefix: 'enterprise-imaging' },
