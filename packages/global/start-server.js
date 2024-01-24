@@ -19,6 +19,7 @@ const sharedRoutes = require('./routes');
 const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 const gamTracker = require('./middleware/gam-tracker');
+const newsletterModalState = require('./middleware/newsletter-modal-state');
 const oembedHandler = require('./oembed-handler');
 const redirectHandler = require('./redirect-handler');
 
@@ -61,6 +62,9 @@ module.exports = (options = {}) => {
 
       // Use paginated middleware
       app.use(htmlSitemapPagination());
+
+      // Use newsletterModalState middleware
+      app.use(newsletterModalState());
 
       // Setup GAM.
       const gamConfig = get(options, 'siteConfig.gam');
