@@ -1,23 +1,27 @@
-<div class="popup-modal-wrapper--display-overlay" id="newsletter-signup-modal">
-  <div class="popup-modal-wrapper__overlay row align-items-center">
-    <div class="col">
+<marko-web-identity-x-context|{ hasUser }|>
+  <if(!hasUser)>
+    <div class="popup-modal-wrapper--display-overlay" id="newsletter-signup-modal">
+      <div class="popup-modal-wrapper__overlay row align-items-center">
+        <div class="col">
+        </div>
+        <div class="col newsletter-signup-modal-center-column-outer">
+              <div id="newsletter-signup-modal-center-column-inner">
+                <div class="d-flex flex-column">
+                <button
+                  class="btn newsletter-signup-modal-button"
+                  onclick="(function() {
+                    document.getElementById('newsletter-signup-modal').remove();
+                  })()"
+                >
+                  <marko-web-icon name="x"/></button>
+                </div>
+              </div>
+              $ // @todo Allow an additional type for this positioning for the form
+              <identity-x-newsletter-form-inline type="inlineContent" with-image=false />
+        </div>
+        <div class="col">
+        </div>
+      </div>
     </div>
-    <div class="col" style="background-color: #81c1fd;">
-      <marko-web-identity-x-context|{ hasUser }|>
-        <if(!hasUser)>
-          <div class="d-flex flex-column newsletter-signup-modal-center-column">
-          <button
-            class="btn newsletter-signup-modal-button"
-            onclick="(function() { document.getElementById('newsletter-signup-modal').remove() })()"
-          >
-            <marko-web-icon name="x"/></button>
-          </div>
-          $ // @todo Allow an additional type for this positioning for the form
-          <identity-x-newsletter-form-inline type="inlineContent" with-image=false />
-        </if>
-      </marko-web-identity-x-context>
-    </div>
-    <div class="col">
-    </div>
-  </div>
-</div>
+  </if>
+</marko-web-identity-x-context>
