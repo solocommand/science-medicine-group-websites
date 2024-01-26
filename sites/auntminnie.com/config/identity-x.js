@@ -1,7 +1,7 @@
 const configureIdentityX = require('@science-medicine-group/package-global/config/identity-x');
 const formDefault = require('@science-medicine-group/package-global/config/identity-x/default');
 
-formDefault.anonymousCta = 'Register on AuntMinnie.com to download this document, gain access to premium content, and more.';
+formDefault.anonymousCta = 'Register on AuntMinnie.com to access this content.';
 
 // append custom demos row of questions to the end of general questions
 formDefault.fieldRows.push(
