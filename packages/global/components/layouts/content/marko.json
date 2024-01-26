@@ -66,6 +66,8 @@
     "@sections <section>[]": {},
     "@id": "number",
     "@type": "string",
-    "@page-node": "object"
+    "@page-node": "object",
+    "@load-more": "boolean",
+    "@with-ads": "boolean"
   }
 }
