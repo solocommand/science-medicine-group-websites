@@ -236,6 +236,22 @@
 /*! purgecss end ignore */
 /*! critical:end */
 
+
+/*! critical:start|content */
+/*! purgecss start ignore */
+#access-idx-form {
+  div.col.col-md-6:has(label[for="email"]) {
+    & ~ div.col.col-md-6 {
+      @include media-breakpoint-up(sm) {
+        @include make-col(12);
+      }
+    }
+    display: none;
+  }
+}
+/*! purgecss end ignore */
+/*! critical:end */
+
 /*! critical:start */
 body {
   margin: 0;
