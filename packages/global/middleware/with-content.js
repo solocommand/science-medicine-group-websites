@@ -9,6 +9,10 @@ module.exports = (params = {}) => withContent({
         id
         alias
       }
+      gating {
+        surveyId
+        surveyType
+      }
     }
   `,
 });

@@ -2,7 +2,9 @@ const withContent = require('@science-medicine-group/package-global/middleware/w
 const contentMetering = require('@parameter1/base-cms-marko-web-theme-monorail/middleware/content-metering');
 const qf = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/content-page');
 const contact = require('@science-medicine-group/package-global/templates/content/contact');
-const { newsletterState, formatContentResponse } = require('@science-medicine-group/package-global/middleware/newsletter-state');
+const { newsletterState } = require('@science-medicine-group/package-global/middleware/newsletter-state');
+// update formatContentResponse to handle idx content access & newsletter state.
+const { formatContentResponse } = require('@science-medicine-group/package-global/middleware/format-content-response');
 const company = require('../templates/content/company');
 const product = require('../templates/content/product');
 const whitepaper = require('../templates/content/whitepaper');
