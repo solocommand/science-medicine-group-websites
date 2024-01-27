@@ -8,7 +8,6 @@ const formatContentResponse = ({ res, content }) => {
   const { surveyType, surveyId } = getAsObject(content, 'gating');
   res.locals.contentIdxFormState = {
     displayForm: false,
-    formId: 'default',
   };
   if (surveyType === 'idx') {
     const cookieName = `${cookieNamePrefix}_${surveyId}_${content.id}`;
