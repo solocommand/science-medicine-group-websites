@@ -17,7 +17,7 @@ module.exports = ({
   ],
   defaultFieldLabels = {
     phoneNumber: 'Mobile Phone',
-    organization: 'Organization',
+    organization: 'Company',
   },
   ...rest
 } = {}) => {
