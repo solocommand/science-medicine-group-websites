@@ -70,7 +70,7 @@ module.exports = {
     },
   },
   inquiry: {
-    enabled: true,
+    enabled: false,
     directSend: false,
     sendTo: 'support@auntminnie.com',
     sendFrom: 'auntminnie.com <noreply@parameter1.com>',

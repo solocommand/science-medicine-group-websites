@@ -74,7 +74,7 @@ module.exports = {
     },
   },
   inquiry: {
-    enabled: true,
+    enabled: false,
     directSend: false,
     sendTo: 'support@drbicuspid.com',
     sendFrom: 'drbicuspid.com <noreply@parameter1.com>',

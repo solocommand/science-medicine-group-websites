@@ -70,7 +70,7 @@ module.exports = {
     containerId: 'GTM-MB4KPVCP',
   },
   inquiry: {
-    enabled: true,
+    enabled: false,
     directSend: false,
     sendTo: 'support@auntminnie.com',
     sendFrom: 'auntminnieeurope.com <noreply@parameter1.com>',
