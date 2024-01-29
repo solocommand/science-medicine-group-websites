@@ -32,19 +32,19 @@ module.exports = {
     // Row 2
     [
       {
-        label: 'Organization',
+        label: 'Company',
         key: 'organization',
         type: 'built-in',
         required: true,
-        width: 0.5,
+        width: 1.0,
       },
-      {
-        label: 'Title',
-        key: 'organizationTitle',
-        type: 'built-in',
-        required: true,
-        width: 0.5,
-      },
+      // {
+      //   label: 'Title',
+      //   key: 'organizationTitle',
+      //   type: 'built-in',
+      //   required: true,
+      //   width: 0.5,
+      // },
     ],
     // Row 3
     [
