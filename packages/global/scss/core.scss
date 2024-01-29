@@ -240,7 +240,7 @@
 /*! critical:start|content */
 /*! purgecss start ignore */
 #access-idx-form {
-  div.col.col-md-6:has(label[for="email"]) {
+  div.col:has(label[for="email"]) {
     & ~ div.col.col-md-6 {
       @include media-breakpoint-up(sm) {
         @include make-col(12);
