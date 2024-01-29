@@ -33,6 +33,7 @@ const diseases = [
 
 const resources = [
   { href: '/page/about-us', label: 'About Us' },
+  { href: 'https://labpulse.careerwebsite.com/', label: 'Careers' },
   // { href: '/resources/cases', label: 'Cases' },
   { href: '/resources/conferences', label: 'Conferences' },
   // { href: '/showcasts', label: 'Showcasts' },
