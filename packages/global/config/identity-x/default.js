@@ -2,7 +2,17 @@ module.exports = {
   title: 'Content Download',
   anonymousCta: 'Register to download this document, gain access to premium content, and more.',
   authenticatedCta: 'Fill out the form below to download this document.',
+  emailConsentRequest: 'I agree to share this information with the sponsor.',
   fieldRows: [
+    [
+      {
+        label: 'Email Address',
+        key: 'email',
+        type: 'built-in',
+        required: true,
+        width: 1.0,
+      },
+    ],
     [
       {
         label: 'First Name',
@@ -22,15 +32,15 @@ module.exports = {
     // Row 2
     [
       {
-        label: 'Email Address',
-        key: 'email',
+        label: 'Organization',
+        key: 'organization',
         type: 'built-in',
         required: true,
         width: 0.5,
       },
       {
-        label: 'Organization',
-        key: 'organization',
+        label: 'Title',
+        key: 'organizationTitle',
         type: 'built-in',
         required: true,
         width: 0.5,
@@ -42,7 +52,7 @@ module.exports = {
         label: 'Mobile Phone',
         key: 'phoneNumber',
         type: 'built-in',
-        required: true,
+        required: false,
         width: 0.5,
       },
       {
