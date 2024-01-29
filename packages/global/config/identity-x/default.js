@@ -65,46 +65,46 @@ module.exports = {
 
     ],
     // Row 4
-    // [
-    //   {
-    //     label: 'Street',
-    //     key: 'street',
-    //     className: 'col-6',
-    //     type: 'built-in',
-    //     required: true,
-    //     width: 0.50,
-    //   },
-    //   {
-    //     label: 'Extra (Apt, Suite, etc.)',
-    //     key: 'addressExtra',
-    //     type: 'built-in',
-    //     required: false,
-    //     width: 0.50,
-    //   },
-    // ],
+    [
+      {
+        label: 'Street',
+        key: 'street',
+        className: 'col-6',
+        type: 'built-in',
+        required: false,
+        width: 0.50,
+      },
+      {
+        label: 'Extra (Apt, Suite, etc.)',
+        key: 'addressExtra',
+        type: 'built-in',
+        required: false,
+        width: 0.50,
+      },
+    ],
     // Row 5
-    // [
-    //   {
-    //     label: 'City',
-    //     key: 'city',
-    //     type: 'built-in',
-    //     required: true,
-    //     width: 0.33,
-    //   },
-    //   {
-    //     label: 'State/Province',
-    //     key: 'regionCode',
-    //     type: 'built-in',
-    //     required: true,
-    //     width: 0.33,
-    //   },
-    //   {
-    //     label: 'ZIP Code',
-    //     key: 'postalCode',
-    //     type: 'built-in',
-    //     required: true,
-    //     width: 0.33,
-    //   },
-    // ],
+    [
+      {
+        label: 'City',
+        key: 'city',
+        type: 'built-in',
+        required: false,
+        width: 0.33,
+      },
+      {
+        label: 'State/Province',
+        key: 'regionCode',
+        type: 'built-in',
+        required: false,
+        width: 0.33,
+      },
+      {
+        label: 'ZIP Code',
+        key: 'postalCode',
+        type: 'built-in',
+        required: false,
+        width: 0.33,
+      },
+    ],
   ],
 };
