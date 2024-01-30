@@ -1,7 +1,7 @@
 const { get, getAsObject } = require('@parameter1/base-cms-object-path');
 
 const cookieNamePrefix = '__idx_form';
-const days = 14;
+const days = 1;
 
 const formatContentResponse = ({ res, content }) => {
   // Handle setting of contentIdxFormState Object
