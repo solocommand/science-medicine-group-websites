@@ -75,7 +75,7 @@ module.exports = {
     },
   },
   inquiry: {
-    enabled: true,
+    enabled: false,
     directSend: false,
     sendTo: 'support@labpulse.com',
     sendFrom: 'LabPulse.com <noreply@parameter1.com>',
