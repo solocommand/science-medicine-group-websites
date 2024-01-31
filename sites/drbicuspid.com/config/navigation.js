@@ -56,6 +56,7 @@ const topics = [
 const resources = [
   { href: '/page/about-us', label: 'About Us' },
   { href: '/resources/conferences', label: 'Conferences' },
+  { href: '/podcasts', label: 'Podcasts' },
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/page/press-releases', label: 'Press Releases' },
