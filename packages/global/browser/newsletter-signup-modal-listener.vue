@@ -23,12 +23,11 @@ export default {
   created() {
     setTimeout(() => {
       const newsletterSignupModalElement = document.getElementById('newsletter-signup-modal');
-      // @todo Correct newsletterSignupType to a specific type for this signup position
       if (
         this.hasCookie
         && this.cookieValue === '0'
         && window.dataLayer.find((dataEvent) => dataEvent['identity-x']
-        && dataEvent['identity-x'].newsletterSignupType === 'inlineContent')
+        && dataEvent['identity-x'].newsletterSignupType === 'modal')
       ) {
         newsletterSignupModalElement.classList.add('newsletter-signup-modal-fade-in');
         // Set cookie, expires is in days so we have to divide by 24 for hours
