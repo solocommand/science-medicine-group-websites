@@ -1,6 +1,5 @@
 const htmlSitemap = require('@parameter1/base-cms-marko-web-html-sitemap/routes');
 const renderBlock = require('@parameter1/base-cms-marko-web-theme-monorail/routes/render-block');
-const search = require('@parameter1/base-cms-marko-web-theme-monorail/routes/search');
 const taxonomy = require('@parameter1/base-cms-marko-web-theme-monorail/routes/taxonomy');
 const braze = require('@science-medicine-group/package-braze/routes');
 const feed = require('./feed');
@@ -10,6 +9,7 @@ const publicFiles = require('./public-files');
 const redirects = require('./redirects');
 const staticPage = require('./static-page');
 const googleSearch = require('./google-search');
+const search = require('./search');
 
 module.exports = (app, siteConfig) => {
   // braze

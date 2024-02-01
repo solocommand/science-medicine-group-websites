@@ -29,7 +29,7 @@ $ const { id, type, pageNode, ...rest } = input;
         </@header>
         <@nodes nodes=nodes>
           <@slot|{ node }|>
-            <theme-section-feed-content-node node=node />
+            <theme-section-feed-content-node node=node with-company=false with-authors=true />
           </@slot>
         </@nodes>
       </marko-web-node-list>
