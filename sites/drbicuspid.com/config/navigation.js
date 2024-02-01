@@ -62,6 +62,7 @@ const resources = [
   { href: '/page/press-releases', label: 'Press Releases' },
   { href: '/page/advertising', label: 'Advertising' },
   { href: '/page/help', label: 'Help' },
+  { href: '/pets-who-make-us-smile', label: 'Pets' },
 ];
 
 const mobileMenu = {
