@@ -87,9 +87,14 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
       </marko-web-page-container>
     </if>
   </@below-page>
-  <if(fixedAdBottom && withAds)>
+  <@foot>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       <theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
     </marko-web-resolve-page>
-  </if>
+  </@foot>
+  <!-- <if(fixedAdBottom && withAds)>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      <theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
+    </marko-web-resolve-page>
+  </if> -->
 </theme-content-page>
