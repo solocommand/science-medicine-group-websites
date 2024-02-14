@@ -1,8 +1,5 @@
 const ecrSiblingRoutes = [
   { title: 2024, href: 'resources/conferences/ecr/2024', alt: '2024 European Congress of Radiology (ECR) News Coverage' },
-  { title: 2023, href: 'resources/conferences/ecr/2023', alt: '2023 European Congress of Radiology (ECR) News Coverage' },
-  { title: 2019, href: 'resources/conferences/ecr/2019', alt: '2019 European Congress of Radiology (ECR) News Coverage' },
-  { title: 2018, href: 'resources/conferences/ecr/2018', alt: '2018 European Congress of Radiology (ECR) News Coverage' },
 ];
 
 module.exports = {
@@ -27,18 +24,6 @@ module.exports = {
   },
   'resources/conferences/ecr/2024': {
     name: '2024 European Congress of Radiology (ECR) News Coverage',
-    siblingRoutes: ecrSiblingRoutes,
-  },
-  'resources/conferences/ecr/2023': {
-    name: '2023 European Congress of Radiology (ECR) News Coverage',
-    siblingRoutes: ecrSiblingRoutes,
-  },
-  'resources/conferences/ecr/2019': {
-    name: '2019 European Congress of Radiology (ECR) News Coverage',
-    siblingRoutes: ecrSiblingRoutes,
-  },
-  'resources/conferences/ecr/2018': {
-    name: '2018 European Congress of Radiology (ECR) News Coverage',
     siblingRoutes: ecrSiblingRoutes,
   },
 };
