@@ -6,6 +6,7 @@ const nativeX = require('./native-x');
 const navigation = require('./navigation');
 const newsletter = require('./newsletter');
 const search = require('./search');
+const pageDetails = require('./page-details');
 
 const WPICLE_API_HOSTNAME = process.env.WPICLE_API_HOSTNAME || 'https://my.auntminnie.com';
 
@@ -78,4 +79,5 @@ module.exports = {
     bgColor: '#000000',
   },
   wpIcleHostname: WPICLE_API_HOSTNAME,
+  pageDetails,
 };

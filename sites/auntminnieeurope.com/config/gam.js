@@ -64,7 +64,7 @@ const aliases = [
   { alias: 'subspecialties/nuclear-radiology', prefix: 'nuclear-radiology' },
   { alias: 'subspecialties/radiation-oncology', prefix: 'radiation-oncology' },
   { alias: 'resources/webinars' },
-  { alias: 'resources/vendors' },
+  { alias: 'resources/conferences/ecr/2024', prefix: '2024' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
