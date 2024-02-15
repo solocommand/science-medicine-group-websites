@@ -57,6 +57,7 @@ module.exports = {
     description: 'Description',
   },
   modal: {
+    enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
   },
 

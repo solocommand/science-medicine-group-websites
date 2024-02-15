@@ -13,6 +13,7 @@ module.exports = {
     imagePath: 'files/base/p1/sandbox/image/static/newsletter-phone-half.png',
   },
   modal: {
+    enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
   },
   signupFooter: {

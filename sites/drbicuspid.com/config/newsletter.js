@@ -12,6 +12,7 @@ module.exports = {
     ...defaults,
   },
   modal: {
+    enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
   },
   signupFooter: {
