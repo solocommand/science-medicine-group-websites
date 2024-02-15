@@ -12,6 +12,9 @@ module.exports = {
     ...defaults,
     imagePath: 'files/base/smg/all/image/static/lab/newsletter-phone-full.png',
   },
+  modal: {
+    ...defaults,
+  },
   signupFooter: {
     ...defaults,
     colspan: 5,

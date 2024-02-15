@@ -11,6 +11,9 @@ module.exports = {
   signupBanner: {
     ...defaults,
   },
+  modal: {
+    ...defaults,
+  },
   signupFooter: {
     ...defaults,
     colspan: 5,

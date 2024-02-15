@@ -12,6 +12,9 @@ module.exports = {
     ...defaults,
     imagePath: 'files/base/p1/sandbox/image/static/newsletter-phone-half.png',
   },
+  modal: {
+    ...defaults,
+  },
   signupFooter: {
     ...defaults,
     name: 'Stay Connected',
