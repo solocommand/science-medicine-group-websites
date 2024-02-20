@@ -3,6 +3,7 @@ const configureGAM = require('@science-medicine-group/package-global/config/gam'
 const config = configureGAM({ basePath: 'am' });
 
 config.enableRevealAd = true;
+config.fixedAdBottom = true;
 
 config.lazyLoad = {
   enabled: true, // set to true to enable lazy loading
