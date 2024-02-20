@@ -124,4 +124,38 @@ module.exports = (app) => {
       });
     }
   }));
+  app.get('/api/identity-x', json(), asyncRoute(async (req, res) => {
+    try {
+      validateAuth(req);
+      /** @type {RequestContext} */
+      const { identityX } = req;
+      const { email, id } = req.query;
+      if (email && id) throw Error('email XOR (exclusive or) id is permitted!');
+      if (!email && !id) throw Error('email XOR (exclusive or) id is required!');
+      const userFromEmail = email ? await identityX.loadAppUserByEmail(email) : null;
+      const userById = id ? await identityX.findUserById(id) : null;
+      if (userFromEmail) {
+        res.json({
+          user: userFromEmail,
+          message: `User found for email: ${email}`,
+        });
+      }
+      if (userById) {
+        res.json({
+          user: userById,
+          message: `User found for id: ${id}`,
+        });
+      }
+      res.status(404).json({
+        user: {},
+        message: 'User not found for input',
+      });
+    } catch (error) {
+      debug('error', inspect(error, { depth: null, colors: true }));
+      const statusCode = get(error, 'details.0.context.error.statusCode') || error.statusCode || 500;
+      res.status(statusCode).json({
+        error: { message: error.message },
+      });
+    }
+  }));
 };
