@@ -9,7 +9,7 @@ $ const withAds = defaultValue(input.withAds, true);
 $ const sections = getAsArray(input, "sections");
 $ const alias = get(input, "primarySection.alias");
 $ const loadMore = defaultValue(input.loadMore, true);
-$ const fixedAdBottom = withAds ? get(GAM, 'fixedAdBottom', false) : false
+$ const fixedAdBottom = withAds ? get(GAM, 'fixedAdBottom') : false;
 
 <theme-content-page id=id type=type>
   <@head>
