@@ -7,6 +7,7 @@ module.exports = ({
   const config = new GAMConfiguration(accountId, { basePath });
 
   config.enableRevealAd = false;
+  config.fixedAdBottom = false;
 
   config
     .setTemplate('LB-STICKY-BOTTOM', {
