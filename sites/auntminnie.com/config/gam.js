@@ -66,6 +66,7 @@ const aliases = [
   { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
   { alias: 'resources/conference/rsna/2023', prefix: '2023' },
   { alias: 'resources/webinars' },
+  { alias: 'resources/vendors' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [

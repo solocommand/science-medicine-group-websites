@@ -1,8 +1,8 @@
 const { withWebsiteSection } = require('@parameter1/base-cms-marko-web/middleware');
 const queryFragment = require('@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/website-section-page');
 
-const withPinned = require('../templates/website-section/conference-with-pinned');
-const conference = require('../templates/website-section/conference');
+const withPinned = require('@science-medicine-group/package-global/templates/website-section/conference-with-pinned');
+const conference = require('@science-medicine-group/package-global/templates/website-section/conference');
 
 const rsnaAliases = [
   '2023',

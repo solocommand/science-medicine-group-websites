@@ -42,6 +42,7 @@ const aliases = [
   { alias: 'digital-dentistry/imaging-cad-cam', prefix: 'imaging-cad-cam' },
   { alias: 'dental-hygiene', prefix: 'dental-hygiene' },
   { alias: 'resources/webinars' },
+  { alias: 'resources/vendors' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
