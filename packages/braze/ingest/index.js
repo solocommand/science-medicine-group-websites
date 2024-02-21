@@ -129,11 +129,11 @@ module.exports = (app) => {
       validateAuth(req);
       /** @type {RequestContext} */
       const { identityX } = req;
-      const { email, id } = req.query;
-      if (email && id) throw Error('email XOR (exclusive or) id is permitted!');
-      if (!email && !id) throw Error('email XOR (exclusive or) id is required!');
+      const { email, userId } = req.query;
+      if (email && userId) throw Error('email XOR (exclusive or) userId is permitted!');
+      if (!email && !userId) throw Error('email XOR (exclusive or) userId is required!');
       const userFromEmail = email ? await identityX.loadAppUserByEmail(email) : null;
-      const userById = id ? await identityX.findUserById(id) : null;
+      const userById = userId ? await identityX.findUserById(userId) : null;
       if (userFromEmail) {
         res.json({
           user: userFromEmail,
@@ -143,12 +143,48 @@ module.exports = (app) => {
       if (userById) {
         res.json({
           user: userById,
-          message: `User found for id: ${id}`,
+          message: `User found for userId: ${userId}`,
         });
       }
       res.status(404).json({
         user: {},
         message: 'User not found for input',
+      });
+    } catch (error) {
+      debug('error', inspect(error, { depth: null, colors: true }));
+      const statusCode = get(error, 'details.0.context.error.statusCode') || error.statusCode || 500;
+      res.status(statusCode).json({
+        error: { message: error.message },
+      });
+    }
+  }));
+  app.delete('/api/identity-x', json(), asyncRoute(async (req, res) => {
+    try {
+      validateAuth(req);
+      /** @type {RequestContext} */
+      const { identityX } = req;
+      const { email, userId } = req.body;
+      if (email && userId) throw Error('email XOR (exclusive or) userId is permitted!');
+      if (!email && !userId) throw Error('email XOR (exclusive or) userId is required!');
+      const userFromEmail = email ? await identityX.loadAppUserByEmail(email) : null;
+      const userById = userId ? await identityX.findUserById(userId) : null;
+      if (!userFromEmail && !userById) {
+        res.status(404).json({
+          user: {},
+          message: 'User not found for input',
+        });
+      }
+      const userWasDeleted = await identityX.deleteAppUserForCurrentApplication({
+        ...(email && { email }),
+        ...(userId && { userId }),
+      });
+      if (userWasDeleted) {
+        res.json({
+          message: 'User was deleted for provided input',
+        });
+      }
+      res.status(500).json({
+        message: 'Something went wrong with user deletion!',
       });
     } catch (error) {
       debug('error', inspect(error, { depth: null, colors: true }));
