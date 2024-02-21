@@ -64,6 +64,7 @@ const aliases = [
   { alias: 'subspecialties/radiation-oncology', prefix: 'radiation-oncology-therapy' },
   { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
   { alias: 'resources/conference/rsna/2023', prefix: '2023' },
+  { alias: 'resources/conference/ecr/2024', prefix: '2024' },
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
 ];
