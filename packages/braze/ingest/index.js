@@ -139,12 +139,14 @@ module.exports = (app) => {
           user: userFromEmail,
           message: `User found for email: ${email}`,
         });
+        return;
       }
       if (userById) {
         res.json({
           user: userById,
           message: `User found for userId: ${userId}`,
         });
+        return;
       }
       res.status(404).json({
         user: {},
@@ -173,6 +175,7 @@ module.exports = (app) => {
           user: {},
           message: 'User not found for input',
         });
+        return;
       }
       const userWasDeleted = await identityX.deleteAppUserForCurrentApplication({
         ...(email && { email }),
@@ -182,6 +185,7 @@ module.exports = (app) => {
         res.json({
           message: 'User was deleted for provided input',
         });
+        return;
       }
       res.status(500).json({
         message: 'Something went wrong with user deletion!',
