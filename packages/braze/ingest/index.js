@@ -164,7 +164,7 @@ module.exports = (app) => {
     try {
       validateAuth(req);
       /** @type {RequestContext} */
-      const { identityX } = req;
+      const { identityX, braze } = req;
       const { email, userId } = req.body;
       if (email && userId) throw Error('email XOR (exclusive or) userId is permitted!');
       if (!email && !userId) throw Error('email XOR (exclusive or) userId is required!');
@@ -182,6 +182,9 @@ module.exports = (app) => {
         ...(userId && { userId }),
       });
       if (userWasDeleted) {
+        const user = userFromEmail || userById || {};
+        const { id } = user;
+        if (id) await braze.deleteUser(id);
         res.json({
           message: 'User was deleted for provided input',
         });
