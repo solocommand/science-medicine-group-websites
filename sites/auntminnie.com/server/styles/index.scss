@@ -20,3 +20,13 @@ $primary: #01274b;
     filter: none;
   }
 }
+
+.newsletter-signup-banner {
+  &__form-wrapper {
+    &--footer {
+      a {
+        color: white;
+      }
+    }
+  }
+}
