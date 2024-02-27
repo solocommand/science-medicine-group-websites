@@ -852,6 +852,11 @@ body .ad-container--template-reskin-mobile {
   &__cta {
     width: auto;
   }
+  &__form-wrapper {
+    &--footer {
+      word-wrap: break-word;
+    }
+  }
 }
 /*! critical:end */
 
