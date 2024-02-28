@@ -13,6 +13,7 @@ const rsnaAliases = [
 ];
 
 const ecrAliases = [
+  '2024',
   '2023',
   '2019',
   '2018',
