@@ -49,6 +49,19 @@ class Braze {
   }
 
   /**
+   * Deletes a Braze user via the API.
+   * @param {String} externalId The external ID associated with the user to delete.
+   * @returns Object
+   */
+  async deleteUser(externalId) {
+    return this.request('users/delete', {
+      body: JSON.stringify({
+        external_ids: [externalId],
+      }),
+    });
+  }
+
+  /**
    * Upserts a Braze user via the API.
    * @param {String} email The email address of the user.
    * @param {String} externalId The external ID to assign to the user

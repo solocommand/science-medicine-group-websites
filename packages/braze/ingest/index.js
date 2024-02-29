@@ -124,4 +124,81 @@ module.exports = (app) => {
       });
     }
   }));
+  app.get('/api/identity-x', json(), asyncRoute(async (req, res) => {
+    try {
+      validateAuth(req);
+      /** @type {RequestContext} */
+      const { identityX } = req;
+      const { email, userId } = req.query;
+      if (email && userId) throw Error('email XOR (exclusive or) userId is permitted!');
+      if (!email && !userId) throw Error('email XOR (exclusive or) userId is required!');
+      const userFromEmail = email ? await identityX.loadAppUserByEmail(email) : null;
+      const userById = userId ? await identityX.findUserById(userId) : null;
+      if (userFromEmail) {
+        res.json({
+          user: userFromEmail,
+          message: `User found for email: ${email}`,
+        });
+        return;
+      }
+      if (userById) {
+        res.json({
+          user: userById,
+          message: `User found for userId: ${userId}`,
+        });
+        return;
+      }
+      res.status(404).json({
+        user: {},
+        message: 'User not found for input',
+      });
+    } catch (error) {
+      debug('error', inspect(error, { depth: null, colors: true }));
+      const statusCode = get(error, 'details.0.context.error.statusCode') || error.statusCode || 500;
+      res.status(statusCode).json({
+        error: { message: error.message },
+      });
+    }
+  }));
+  app.delete('/api/identity-x', json(), asyncRoute(async (req, res) => {
+    try {
+      validateAuth(req);
+      /** @type {RequestContext} */
+      const { identityX, braze } = req;
+      const { email, userId } = req.body;
+      if (email && userId) throw Error('email XOR (exclusive or) userId is permitted!');
+      if (!email && !userId) throw Error('email XOR (exclusive or) userId is required!');
+      const userFromEmail = email ? await identityX.loadAppUserByEmail(email) : null;
+      const userById = userId ? await identityX.findUserById(userId) : null;
+      if (!userFromEmail && !userById) {
+        res.status(404).json({
+          user: {},
+          message: 'User not found for input',
+        });
+        return;
+      }
+      const userWasDeleted = await identityX.deleteAppUserForCurrentApplication({
+        ...(email && { email }),
+        ...(userId && { userId }),
+      });
+      if (userWasDeleted) {
+        const user = userFromEmail || userById || {};
+        const { id } = user;
+        if (id) await braze.deleteUser(id);
+        res.json({
+          message: 'User was deleted for provided input',
+        });
+        return;
+      }
+      res.status(500).json({
+        message: 'Something went wrong with user deletion!',
+      });
+    } catch (error) {
+      debug('error', inspect(error, { depth: null, colors: true }));
+      const statusCode = get(error, 'details.0.context.error.statusCode') || error.statusCode || 500;
+      res.status(statusCode).json({
+        error: { message: error.message },
+      });
+    }
+  }));
 };
