@@ -1,4 +1,9 @@
+import { get } from "@parameter1/base-cms-object-path";
+
 $ const { config, req } = out.global;
+$ const maxmindDefault = get(out.global, "res.locals.maxmindData.data.registered_country.iso_code");
+$ const idxOpts = get(out.global, "res.locals.identityX.config.options");
+$ if (maxmindDefault && idxOpts) idxOpts.defaultCountryCode = maxmindDefault;
 
 $ const type = "authenticate";
 $ const title = "Authenticate";

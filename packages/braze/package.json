@@ -1,6 +1,6 @@
 {
   "name": "@science-medicine-group/package-braze",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "description": "Marko Braze integration",
   "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/packages/braze",
   "author": "Josh Worden <josh@parameter1.com>",
@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@parameter1/base-cms-env": "^4.5.12",
-    "@parameter1/base-cms-marko-core": "^4.42.0",
-    "@parameter1/base-cms-marko-web": "^4.42.0",
+    "@parameter1/base-cms-marko-core": "^4.48.1",
+    "@parameter1/base-cms-marko-web": "^4.48.1",
     "@parameter1/base-cms-marko-web-gtm": "^4.40.3",
-    "@parameter1/base-cms-marko-web-identity-x": "^4.44.1",
+    "@parameter1/base-cms-marko-web-identity-x": "^4.51.2",
     "@parameter1/base-cms-marko-web-recaptcha": "^4.5.12",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
