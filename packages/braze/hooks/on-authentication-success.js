@@ -43,8 +43,8 @@ module.exports = async ({
   });
   await braze.trackUser(user.email, user.id, payload);
 
-  // Auto-subscribe the user
-  if (loginSource === 'newsletterSignup') {
+  // Auto-subscribe the user if this is the first successful authentication
+  if (loginSource === 'newsletterSignup' && user.verifiedCount === 1) {
     await braze.updateSubscriptions(user.email, user.id, { [brazeConfig.defaultGroupId]: true });
   }
 };
