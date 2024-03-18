@@ -1,6 +1,6 @@
 const defaults = {
   name: 'Stay in the Know',
-  description: 'Delivered right to your inbox, Dr. Bicuspid’s newsletters. Subscribe to get exclusive access!',
+  description: 'Your Daily Scoop on Dental News',
 };
 
 module.exports = {
