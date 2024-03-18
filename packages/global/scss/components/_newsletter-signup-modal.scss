@@ -41,6 +41,11 @@
     display: flex;
     flex-direction: row;
     margin-top: 0;
+    padding: 3rem;
+    border: 5px solid $gray-800;
+    @include media-breakpoint-down(md) {
+      padding: 1.5rem;
+    }
   }
   .newsletter-signup-modal-center-column-outer {
     position: relative;
@@ -59,16 +64,25 @@
 }
 
 .newsletter-signup-banner {
-  &__name {
-    &--modal {
-      @include skin-typography($style: "header-1.5");
-      margin-bottom: 6px;
-    }
-  }
+  $self: &;
+  &--modal {
 
-  &__description {
-    &--modal {
+    #{ $self }__name {
+      @include skin-typography($style: "header-1");
+    }
+
+    #{ $self }__description {
       @include skin-typography($style: "teaser-text-1");
+      margin-bottom: map-get($spacers, block);
+    }
+
+    #{ $self }__left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
     }
   }
 }
