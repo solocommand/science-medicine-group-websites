@@ -35,7 +35,7 @@ export default {
       } else if (!this.hasCookie) {
         cookies.set(this.cookieName, '0', { expires: 1 });
       }
-    }, 5000);
+    }, 2500);
   },
 };
 </script>
