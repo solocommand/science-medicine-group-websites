@@ -1,6 +1,6 @@
 const defaults = {
   name: 'Stay in the Know',
-  description: 'Your Daily Scoop on Dental News',
+  description: 'Delivered right to your inbox, Dr. Bicuspid’s newsletters. Subscribe to get exclusive access!',
 };
 
 module.exports = {
@@ -14,6 +14,8 @@ module.exports = {
   modal: {
     enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
+    name: 'Sign Up. Stay Informed.',
+    description: 'Your Daily Scoop on Dental News',
   },
   signupFooter: {
     ...defaults,

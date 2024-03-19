@@ -69,6 +69,10 @@
 
     #{ $self }__name {
       @include skin-typography($style: "header-1");
+      margin-bottom: map-get($spacers, 2);
+      @include media-breakpoint-down(md) {
+        line-height: 1.25;
+      }
     }
 
     #{ $self }__description {
@@ -83,6 +87,9 @@
       @include media-breakpoint-down(md) {
         display: none;
       }
+    }
+    label[for="sign-on-email"] {
+      display: none;
     }
   }
 }

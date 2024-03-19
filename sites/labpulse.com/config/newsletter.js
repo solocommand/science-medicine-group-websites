@@ -15,7 +15,7 @@ module.exports = {
   modal: {
     enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
-    imagePath: 'files/base/smg/all/image/static/lab/newsletter-phone-full.png',
+    name: 'Sign Up. Stay Informed.',
     description: 'Get exclusive insights, trends, and innovations in clinical lab excellence!',
   },
   signupFooter: {
