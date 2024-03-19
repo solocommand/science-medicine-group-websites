@@ -56,6 +56,10 @@ module.exports = {
     imagePath: 'files/base/smg/all/image/static/newsletter-pushdown/sab-half.png',
     description: 'Description',
   },
+  modal: {
+    enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
+    ...defaults,
+  },
 
   // links off to seperate omeda dragonform
   signupBannerLarge: {

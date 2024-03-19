@@ -32,5 +32,8 @@
   },
   "<global-promo-cards-block>": {
     "template": "./promo-cards.marko"
+  },
+  "<global-newsletter-signup-modal-block>": {
+    "template": "./newsletter-signup-modal.marko"
   }
 }

@@ -229,6 +229,9 @@
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
 @import "./components/user";
+/*! purgecss start ignore */
+@import "./components/newsletter-signup-modal";
+/*! purgecss end ignore */
 /*! critical:end */
 /*! critical:start|home */
 /*! purgecss start ignore */
