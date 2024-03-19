@@ -15,7 +15,7 @@ module.exports = {
   modal: {
     enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
-    name: 'Sign Up. Stay Informed.',
+    name: 'Stay Informed.',
     description: 'Get exclusive insights, trends, and innovations in clinical lab excellence!',
   },
   signupFooter: {
