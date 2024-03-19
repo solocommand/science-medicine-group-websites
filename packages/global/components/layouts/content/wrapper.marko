@@ -9,7 +9,6 @@ $ const withAds = defaultValue(input.withAds, true);
 $ const sections = getAsArray(input, "sections");
 $ const alias = get(input, "primarySection.alias");
 $ const loadMore = defaultValue(input.loadMore, true);
-$ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
 
 <theme-content-page id=id type=type>
   <@head>
@@ -86,10 +85,10 @@ $ const fixedAdBottom = defaultValue(input.fixedAdBottom, true);
         </marko-web-resolve-page>
       </marko-web-page-container>
     </if>
-  </@below-page>
-  <if(fixedAdBottom && withAds)>
+    <if(withAds)>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       <theme-fixed-ad-bottom aliases=hierarchyAliases(content.primarySection) />
     </marko-web-resolve-page>
   </if>
+  </@below-page>
 </theme-content-page>

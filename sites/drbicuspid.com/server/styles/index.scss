@@ -36,6 +36,13 @@ $red: #e31c3d;
       background-color: $red;
     }
   }
+  &__form-wrapper {
+    &--footer {
+      a {
+        color: white;
+      }
+    }
+  }
 }
 .site-newsletter-menu {
   &__form-button {

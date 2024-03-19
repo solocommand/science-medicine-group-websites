@@ -11,6 +11,12 @@ module.exports = {
   signupBanner: {
     ...defaults,
   },
+  modal: {
+    enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
+    ...defaults,
+    name: 'Stay Informed.',
+    description: 'Your Daily Scoop on Dental News',
+  },
   signupFooter: {
     ...defaults,
     colspan: 5,

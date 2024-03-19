@@ -229,10 +229,14 @@
 @import "./components/site-navbar";
 @import "./components/site-navbar-c";
 @import "./components/user";
+/*! purgecss start ignore */
+@import "./components/newsletter-signup-modal";
+/*! purgecss end ignore */
 /*! critical:end */
 /*! critical:start|home */
 /*! purgecss start ignore */
 @import "./components/external-api";
+@import "./components/company-search";
 /*! purgecss end ignore */
 /*! critical:end */
 
@@ -850,6 +854,11 @@ body .ad-container--template-reskin-mobile {
   }
   &__cta {
     width: auto;
+  }
+  &__form-wrapper {
+    &--footer {
+      word-wrap: break-word;
+    }
   }
 }
 /*! critical:end */

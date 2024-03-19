@@ -10,6 +10,8 @@ $ const {
   contentMeterState
 } = out.global;
 
+$ const { cookieName, cookieValue, hasCookie } = getAsObject(out.global, "newsletterModalState");
+
 $ const { gamDefer, gtmDefer, initOnly } = req.query;
 
 <marko-web-document ...input>
@@ -86,6 +88,10 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
       <global-rudderstack />
       <!-- <theme-site-menu has-user=hasUser reg-enabled=isEnabled /> -->
     </marko-web-identity-x-context>
+    $ const { enabled: modalEnabled } =  site.getAsObject("newsletter.modal");
+    <if(hasCookie && cookieValue === "0" && modalEnabled)>
+      <global-newsletter-signup-modal-block />
+    </if>
     <${input.aboveContainer} />
   </@above-container>
   <@below-container>
@@ -103,5 +109,9 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
         display-gate=contentMeterState.displayGate
       />
     </if>
+    <marko-web-browser-component
+      name="NewsletterSignupModalListener"
+      props={ cookieName, cookieValue, hasCookie }
+    />
   </@below-wrapper>
 </marko-web-document>
