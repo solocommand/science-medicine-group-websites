@@ -1109,10 +1109,10 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.6"
 
-"@parameter1/base-cms-marko-web-native-x@^4.53.0":
-  version "4.53.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-native-x/-/base-cms-marko-web-native-x-4.53.0.tgz#8ccb17a2a87de4e9a374b30ea54aa49936ccfae8"
-  integrity sha512-poMOwUjV4bnsI4HvrfyNgLlgA5aAunBJkk95f2VXjTqVdRJK+6gCE8yoKBFRz6chmTMK2FpAvc8lQ+SMf0nAHA==
+"@parameter1/base-cms-marko-web-native-x@^4.54.0":
+  version "4.54.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-native-x/-/base-cms-marko-web-native-x-4.54.0.tgz#280f7c3e4e00b60c81e7562b79a0ff8c4f3976bc"
+  integrity sha512-UH3/7fCPDcugf/qUmrqNkjUobvgoORW+cGA0gl7MM1cKqsdttWLjoRmxI3JWZWgchdcXdmmqI8wVynW6w6Z1aQ==
   dependencies:
     "@parameter1/base-cms-marko-web-deferred-script-loader" "^4.40.3"
     "@parameter1/base-cms-marko-web-gtm" "^4.40.3"
@@ -1221,10 +1221,10 @@
     graphql "^14.7.0"
     graphql-tag "^2.12.6"
 
-"@parameter1/base-cms-marko-web-theme-monorail@^4.53.0":
-  version "4.53.0"
-  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.53.0.tgz#e45fc73577fb5b07a60a0fc1de041fc1ef8f4972"
-  integrity sha512-IIgNzAYcZUfak4uQHPSU8ZbkEvtcsd+MqXeTeKXD6WrSX80/Z9SLUN6lr3qveOFTxMSOksPEijkL36qUe32lJA==
+"@parameter1/base-cms-marko-web-theme-monorail@^4.54.0":
+  version "4.54.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/base-cms-marko-web-theme-monorail/-/base-cms-marko-web-theme-monorail-4.54.0.tgz#35dbd9af8627adf94e5923019b1d853052986dad"
+  integrity sha512-pSuh529mTig196oCAILP152TZQ0fLLBXIAH+FIX7pETy+BccpGcBTYSXRBKtdyOUZSCdLbgpfwJHOY37FkxR3w==
   dependencies:
     "@parameter1/base-cms-dayjs" "^4.5.12"
     "@parameter1/base-cms-image" "^4.47.1"
@@ -1236,7 +1236,7 @@
     "@parameter1/base-cms-marko-web-icons" "^4.36.8"
     "@parameter1/base-cms-marko-web-identity-x" "^4.51.2"
     "@parameter1/base-cms-marko-web-inquiry" "^4.40.3"
-    "@parameter1/base-cms-marko-web-native-x" "^4.53.0"
+    "@parameter1/base-cms-marko-web-native-x" "^4.54.0"
     "@parameter1/base-cms-marko-web-omeda" "^4.51.0"
     "@parameter1/base-cms-marko-web-omeda-identity-x" "^4.51.2"
     "@parameter1/base-cms-marko-web-p1-events" "^4.52.1"
