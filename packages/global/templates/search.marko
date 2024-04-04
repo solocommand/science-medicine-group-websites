@@ -1,7 +1,6 @@
 import queryFragment from "@parameter1/base-cms-marko-web-theme-monorail/graphql/fragments/section-feed-block";
 import { get } from '@parameter1/base-cms-object-path';
 import { isFunction } from '@parameter1/base-cms-utils';
-import { warn } from "@parameter1/base-cms-utils";
 
 $ const {
   config,
@@ -9,18 +8,16 @@ $ const {
   $markoWebSearch: search,
   site,
   i18n,
-  GAM
 } = out.global;
 
 $ const type = "search";
 $ const i18nIsFunction = isFunction(i18n);
 $ const title = i18nIsFunction ? i18n("Search") : "Search";
 $ const description = i18nIsFunction ? `${i18n("Search")} ${config.siteName()}` : `Search ${config.siteName()}`;
-$ const gcse = site.get("gcse");
+
 $ const currentPage = search.getCurrentPage();
 
 $ const sponsorLogo = site.get('search.sponsorLogos.page');
-$ const apiKey = site.get("gcse.id");
 
 <marko-web-default-page-layout type=type title=title description=description>
   <@head>
@@ -29,138 +26,111 @@ $ const apiKey = site.get("gcse.id");
     </marko-web-gtm-default-context>
     <meta name="robots" content="noindex">
   </@head>
-  <if(gcse)>
-    <@page>
-      <marko-web-page-wrapper>
-        <@section>
-          <div class="row">
-            <div class="col">
-              <h1 class="page-wrapper__title">${description}</h1>
-            </div>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section modifiers=["first"]>
+        <theme-gam-define-display-ad
+          name="leaderboard"
+          position="static_page"
+          modifiers=["inter-block"]
+        />
+      </@section>
+      <@section|{ blockName }|>
+        <div class="row">
+          <div class="col-lg-3">
+            <marko-web-search-filter-container modifiers=["sticky"] title={ value: `${i18n("Filters")}`}>
+                <@before-title|{ blockName }|>
+                  <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj={ name: title }>
+                    <if(currentPage > 1)>${value}: ${i18n("Page")} ${currentPage}</if>
+                    <else>${value}</else>
+                  </marko-web-website-section-name>
+                </@before-title>
+              <marko-web-search-content-types-filter />
+              <marko-web-search-website-sections-filter />
+            </marko-web-search-filter-container>
           </div>
-        </@section>
-        <@section>
-          <div class="row">
-            <div class="col">
-              <if(apiKey)>
-                <marko-web-gcse-simple-search-box api-key=apiKey />
-              </if>
-              <else>
-                $ warn("Unable to load GCSE search: no `gcse.id` value was configured.");
-              </else>
-            </div>
-          </div>
-        </@section>
-      </marko-web-page-wrapper>
-    </@page>
-  </if>
-  <else>
-    <@page>
-      <marko-web-page-wrapper>
-        <@section modifiers=["first"]>
-          <theme-gam-define-display-ad
-            name="leaderboard"
-            position="static_page"
-            modifiers=["inter-block"]
-          />
-        </@section>
-        <@section|{ blockName }|>
-          <div class="row">
-            <div class="col-lg-3">
-              <marko-web-search-filter-container modifiers=["sticky"] title={ value: `${i18n("Filters")}`}>
-                  <@before-title|{ blockName }|>
-                    <marko-web-website-section-name|{ value }| tag="h1" block-name=blockName obj={ name: title }>
-                      <if(currentPage > 1)>${value}: ${i18n("Page")} ${currentPage}</if>
-                      <else>${value}</else>
-                    </marko-web-website-section-name>
-                  </@before-title>
-                <marko-web-search-content-types-filter />
-                <marko-web-search-website-sections-filter />
-              </marko-web-search-filter-container>
-            </div>
 
-            <div class="col-lg-9">
-              <div class="row">
-                <div class="col-xl-9">
-                  <marko-web-search-form>
-                    <@block class="search-form" />
-                    <div class="form-group search-form__group">
-                      <label for="search-phrase" class="sr-only">${i18n("Enter search phrase")}</label>
-                      <marko-web-search-input
-                        id="search-phrase"
-                        class="form-control"
-                        placeholder=`${i18n("Enter search phrase")}...`
+          <div class="col-lg-9">
+            <div class="row">
+              <div class="col-xl-9">
+                <marko-web-search-form>
+                  <@block class="search-form" />
+                  <div class="form-group search-form__group">
+                    <label for="search-phrase" class="sr-only">${i18n("Enter search phrase")}</label>
+                    <marko-web-search-input
+                      id="search-phrase"
+                      class="form-control"
+                      placeholder=`${i18n("Enter search phrase")}...`
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary search-form__btn">
+                    ${i18n("Search")}
+                  </button>
+                </marko-web-search-form>
+                </div>
+                <div class="col-xl-3">
+                  <marko-web-search-sort-by />
+                  <if(sponsorLogo)>
+                    <div class="search-sponsor">
+                      <span class="search-sponsor__label">Sponsored by</span>
+                      <marko-web-img
+                        alt=sponsorLogo.alt
+                        src=sponsorLogo.src
+                        srcset=sponsorLogo.srcset
+                        class="search-sponsor__logo"
                       />
                     </div>
-                    <button type="submit" class="btn btn-primary search-form__btn">
-                      ${i18n("Search")}
-                    </button>
-                  </marko-web-search-form>
-                  </div>
-                  <div class="col-xl-3">
-                    <marko-web-search-sort-by />
-                    <if(sponsorLogo)>
-                      <div class="search-sponsor">
-                        <span class="search-sponsor__label">Sponsored by</span>
-                        <marko-web-img
-                          alt=sponsorLogo.alt
-                          src=sponsorLogo.src
-                          srcset=sponsorLogo.srcset
-                          class="search-sponsor__logo"
-                        />
-                      </div>
-                    </if>
-                  </div>
-                </div>
-              <!-- Enforce it this way to not mess with the config, changing at the config level will auto apply sort -->
-              $ const sortField = (search.input.sortField === "SCORE" && search.input.searchQuery === '') ? "PUBLISHED" : search.input.sortField;
-              <marko-web-search-query|{ nodes, totalCount }|
-                limit=search.getLimit()
-                skip=search.getSkip()
-                sort-field=sortField
-                sort-order=search.input.sortOrder
-                content-types=search.input.contentTypes
-                search-query=search.input.searchQuery
-                assigned-to-website-section-ids=search.input.assignedToWebsiteSectionIds
-                query-fragment=queryFragment
-              >
-                <marko-web-page-wrapper modifiers=["no-padding-x"]>
-                  <@section modifiers=["search-results"]>
-                    <div>${new Intl.NumberFormat().format(totalCount)} ${i18n("Results")}</div>
-                    <marko-web-search-selected-filters />
-                  </@section>
-                  <if(nodes.length)>
-                    <@section>
-                      <marko-web-node-list
-                        inner-justified=true
-                        flush-x=true
-                        flush-y=false
-                        modifiers=["section-feed"]
-                      >
-                        <@nodes nodes=nodes>
-                          <@slot|{ node }|>
-                            <theme-section-feed-content-node node=node with-company=false with-authors=true />
-                          </@slot>
-                        </@nodes>
-                      </marko-web-node-list>
-                      <marko-web-search-pagination-controls total-count=totalCount>
-                        <@link class="btn btn-primary" />
-                      </marko-web-search-pagination-controls>
-                    </@section>
                   </if>
-                </marko-web-page-wrapper>
-              </marko-web-search-query>
-            </div>
+                </div>
+              </div>
+            <!-- Enforce it this way to not mess with the config, changing at the config level will auto apply sort -->
+            $ const sortField = (search.input.sortField === "SCORE" && search.input.searchQuery === '') ? "PUBLISHED" : search.input.sortField;
+            <marko-web-search-query|{ nodes, totalCount }|
+              limit=search.getLimit()
+              skip=search.getSkip()
+              sort-field=sortField
+              sort-order=search.input.sortOrder
+              content-types=search.input.contentTypes
+              search-query=search.input.searchQuery
+              assigned-to-website-section-ids=search.input.assignedToWebsiteSectionIds
+              query-fragment=queryFragment
+            >
+              <marko-web-page-wrapper modifiers=["no-padding-x"]>
+                <@section modifiers=["search-results"]>
+                  <div>${new Intl.NumberFormat().format(totalCount)} ${i18n("Results")}</div>
+                  <marko-web-search-selected-filters />
+                </@section>
+                <if(nodes.length)>
+                  <@section>
+                    <marko-web-node-list
+                      inner-justified=true
+                      flush-x=true
+                      flush-y=false
+                      modifiers=["section-feed"]
+                    >
+                      <@nodes nodes=nodes>
+                        <@slot|{ node }|>
+                          <theme-section-feed-content-node node=node with-company=false with-authors=true />
+                        </@slot>
+                      </@nodes>
+                    </marko-web-node-list>
+                    <marko-web-search-pagination-controls total-count=totalCount>
+                      <@link class="btn btn-primary" />
+                    </marko-web-search-pagination-controls>
+                  </@section>
+                </if>
+              </marko-web-page-wrapper>
+            </marko-web-search-query>
           </div>
-        </@section>
-        <@section>
-          <theme-gam-define-display-ad
-            name="rotation"
-            position="static_page"
-            modifiers=["inter-block"]
-          />
-        </@section>
-      </marko-web-page-wrapper>
-    </@page>
-  </else>
+        </div>
+      </@section>
+      <@section>
+        <theme-gam-define-display-ad
+          name="rotation"
+          position="static_page"
+          modifiers=["inter-block"]
+        />
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
 </marko-web-default-page-layout>
