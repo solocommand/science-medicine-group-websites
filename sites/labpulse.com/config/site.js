@@ -57,9 +57,6 @@ module.exports = {
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/labpulse/', target: '_blank' },
   ],
   podcastLinks: [],
-  gcse: {
-    id: 'NOT_SET',
-  },
   gtm: {
     containerId: 'GTM-W5TZ4SS',
   },
