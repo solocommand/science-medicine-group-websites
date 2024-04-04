@@ -59,9 +59,9 @@ module.exports = {
   gtm: {
     containerId: 'GTM-WJZZSMD4',
   },
-  gcse: {
-    id: '01601ed862b144ef4',
-  },
+  // gcse: {
+  //   id: '01601ed862b144ef4',
+  // },
   wufoo: {
     userName: 'labpulse',
     'contact-us': {
