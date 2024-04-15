@@ -55,8 +55,8 @@ module.exports = (req) => {
     subspecialties: Joi.array().items(customQuestionSchema),
 
     brazeCustomAttributes: Joi.object({
-      last_email_activity_legacy: Joi.string.allow(''),
-      outside_source: Joi.string.allow(''),
+      last_email_activity_legacy: Joi.string().allow(''),
+      outside_source: Joi.string().allow(''),
     }).default({}),
 
     subscriptions: Joi.object().pattern(
