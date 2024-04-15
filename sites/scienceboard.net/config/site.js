@@ -53,9 +53,6 @@ module.exports = {
     { provider: 'linkedin', href: 'https://www.linkedin.com/company/the-science-advisory-board/', target: '_blank' },
   ],
   podcastLinks: [],
-  gcse: {
-    id: 'NOT_SET',
-  },
   gtm: {
     containerId: 'GTM-5TVG2PC',
   },
