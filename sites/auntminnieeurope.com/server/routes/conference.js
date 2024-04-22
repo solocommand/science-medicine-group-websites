@@ -30,11 +30,11 @@ module.exports = (app) => {
   });
 
   // ISMRM
-  app.get('/:alias(resources/conference/ismrm)', (req, res) => {
-    res.redirect(301, `/resources/conference/ismrm/${ismrmAliases[0]}`);
+  app.get('/:alias(resources/conferences/ismrm)', (req, res) => {
+    res.redirect(301, `/resources/conferences/ismrm/${ismrmAliases[0]}`);
   });
   ismrmAliases.forEach((year) => {
-    app.get(`/:alias(resources/conference/ismrm/${year})`, withWebsiteSection({
+    app.get(`/:alias(resources/conferences/ismrm/${year})`, withWebsiteSection({
       template: withPinned,
       queryFragment,
     }));
