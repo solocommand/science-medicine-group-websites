@@ -3,7 +3,7 @@ const ecrSiblingRoutes = [
 ];
 
 const ismrmSiblingRoutes = [
-  { title: 2024, href: 'resources/conference/ismrm/2024', alt: '2024 Radiological Society of North America (ISMRM) News Coverage' },
+  { title: 2024, href: 'resources/conferences/ismrm/2024', alt: '2024 Radiological Society of North America (ISMRM) News Coverage' },
 ];
 
 module.exports = {
@@ -32,19 +32,19 @@ module.exports = {
     siblingRoutes: ecrSiblingRoutes,
   },
   // International Society for Magnetic Resonance in Medicine (ISMRM) News Coverage
-  'resources/conference/ismrm': {
+  'resources/conferences/ismrm': {
     name: 'International Society for Magnetic Resonance in Medicine',
     teaser: 'The International Society of Magnetic Resonance (ISMAR) is the unique worldwide scientiﬁc organization that represents the entire range of the important research ﬁeld of magnetic resonance (MR), in particular nuclear magnetic resonance (NMR), electron paramagnetic resonance (EPR), and magnetic resonance imaging (MRI). These and further MR methods are used as main research tools in a very wide range of ﬁelds including Physics, Chemistry, Life Sciences, Materials Research and Medicine.',
     siteContext: {
-      path: '/resources/conference/ismrm',
+      path: '/resources/conferences/ismrm',
     },
     primaryImage: {
-      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/ISMRM.png',
+      src: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/conference/ISMRM.png',
       alt: 'ISMRM News Coverage',
     },
     teaserCTA: 'View Latest Coverage',
   },
-  'resources/conference/ismrm/2024': {
+  'resources/conferences/ismrm/2024': {
     name: '2024 International Society of Magnetic Resonance (ISMRM) News Coverage',
     siblingRoutes: ismrmSiblingRoutes,
   },
