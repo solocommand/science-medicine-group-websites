@@ -50,9 +50,17 @@ module.exports = (options = {}) => {
     sitemapsHeaders: {
       'x-google-news-input': JSON.stringify(googleNewsInput),
     },
+    /** @param {import("express").Application} app */
     onStart: async (app) => {
       if (typeof onStart === 'function') await onStart(app);
       app.set('trust proxy', 'loopback, linklocal, uniquelocal');
+
+      // Set CSP to allow iframing only from BASE.
+      app.use((req, res, next) => {
+        res.setHeader('X-Frame-Options', 'ALLOW-FROM https://manage.scienceandmedicinegroup.com/');
+        res.setHeader('Content-Security-Policy', 'frame-ancestors https://manage.scienceandmedicinegroup.com/');
+        next();
+      });
 
       // MaxMind GeoIP setup
       app.use(maxmindGeoIP);
