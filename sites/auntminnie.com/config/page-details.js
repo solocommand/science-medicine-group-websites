@@ -14,7 +14,8 @@ const ecrSiblingRoutes = [
 ];
 
 const ismrmSiblingRoutes = [
-  { title: 2023, href: 'resources/conference/ismrm/2023', alr: '2023 Radiological Society of North America (ISMRM) News Coverage' },
+  { title: 2024, href: 'resources/conference/ismrm/2024', alt: '2024 Radiological Society of North America (ISMRM) News Coverage' },
+  { title: 2023, href: 'resources/conference/ismrm/2023', alt: '2023 Radiological Society of North America (ISMRM) News Coverage' },
   { title: 2022, href: 'resources/conference/ismrm/2022', alt: '2022 Radiological Society of North America (ISMRM) News Coverage' },
   { title: 2021, href: 'resources/conference/ismrm/2021', alt: '2021 Radiological Society of North America (ISMRM) News Coverage' },
   { title: 2020, href: 'resources/conference/ismrm/2020', alt: '2020 Radiological Society of North America (ISMRM) News Coverage' },
@@ -110,6 +111,10 @@ module.exports = {
       alt: 'ISMRM News Coverage',
     },
     teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conference/ismrm/2024': {
+    name: '2024 International Society of Magnetic Resonance (ISMRM) News Coverage',
+    siblingRoutes: ismrmSiblingRoutes,
   },
   'resources/conference/ismrm/2023': {
     name: '2023 International Society of Magnetic Resonance (ISMRM) News Coverage',
