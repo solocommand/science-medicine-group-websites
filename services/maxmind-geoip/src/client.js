@@ -32,7 +32,7 @@ const request = async (endpoint, opts = {}) => {
   const response = await r.json();
   if (!r.ok) {
     if (response.message) throw new Error(response.message);
-    throw new Error(`API request was unsuccessful: ${r.status} ${r.statusText}`);
+    throw new Error(`API request(${key}) was unsuccessful: ${r.status} ${r.statusText}`);
   }
   redis.setex(key, 60 * 60 * 24, JSON.stringify(response));
   return response;
