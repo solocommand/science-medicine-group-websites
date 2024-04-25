@@ -1,6 +1,8 @@
 const { asyncRoute } = require('@parameter1/base-cms-utils');
 const newrelic = require('newrelic');
 const fetch = require('node-fetch');
+const debug = require('debug')('maxmind');
+
 const { MAXMIND_GEOIP_SERVICE_URL } = require('./env');
 
 const { log } = console;
@@ -8,6 +10,8 @@ const { log } = console;
 module.exports = asyncRoute(async (req, res, next) => {
   if (res.locals.maxmindData) return;
   let data = {};
+  // add debug to headers
+  debug(`Maxmind Lookup with client IP: ${req.ip} ERR`, { headers: req.headers });
   try {
     const response = await fetch(MAXMIND_GEOIP_SERVICE_URL, {
       method: 'post',
