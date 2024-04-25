@@ -10,18 +10,19 @@ const { log } = console;
 module.exports = asyncRoute(async (req, res, next) => {
   if (res.locals.maxmindData) return;
   let data = {};
-  // add debug to headers
-  debug(`Maxmind Lookup with client IP: ${req.ip} ERR`, { headers: req.headers });
+  const ip = req.get('headers.cf-connecting-ip') || req.ip;
+  debug(`Maxmind Lookup with client IP: ${ip} ERR`, { headers: req.headers });
   try {
     const response = await fetch(MAXMIND_GEOIP_SERVICE_URL, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         action: 'country',
-        params: { ip: req.ip },
+        params: { ip },
       }),
     });
     data = await response.json();
+    debug('Maxmind Lookup data:', { data });
   } catch (e) {
     log('Error in Maxmind GeoIP lookup!', e);
     newrelic.noticeError(e);
