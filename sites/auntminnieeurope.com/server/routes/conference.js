@@ -8,6 +8,10 @@ const ecrAliases = [
   '2024',
 ];
 
+const ismrmAliases = [
+  '2024',
+];
+
 module.exports = (app) => {
   app.get('/:alias(resources/conferences)', withWebsiteSection({
     template: conference,
@@ -20,6 +24,17 @@ module.exports = (app) => {
   });
   ecrAliases.forEach((year) => {
     app.get(`/:alias(resources/conferences/ecr/${year})`, withWebsiteSection({
+      template: withPinned,
+      queryFragment,
+    }));
+  });
+
+  // ISMRM
+  app.get('/:alias(resources/conferences/ismrm)', (req, res) => {
+    res.redirect(301, `/resources/conferences/ismrm/${ismrmAliases[0]}`);
+  });
+  ismrmAliases.forEach((year) => {
+    app.get(`/:alias(resources/conferences/ismrm/${year})`, withWebsiteSection({
       template: withPinned,
       queryFragment,
     }));
