@@ -28,6 +28,9 @@ It accepts the following keyed custom selects:
 It accepts a list of subscription group opt-in/out preferences, keyed by the group id:
 - `subscriptions: { 'xxx-yyy-zzz': false }`
 
+It accepts the following Braze custom attributes (`last_email_activity_legacy` and `outside_source`) via the following:
+- `brazeCustomAttributes: { 'last_email_activity_legacy': 'mm/dd/yyyy', 'outside_source': String }`
+
 And finally, it supports the following feature flags:
 - `automaticOptIn` Bool (default `false`) If enabled, the user will be automatically added to the default subscription group. Overrides preference for group in `subscriptionGroups` if present.
 - `automaticConfirm` Bool (default `false`) If enabled, the user will be marked as verified and opted out of the unconfirmed subscription group.
@@ -63,6 +66,11 @@ POST https://auntminnie.com/api/identity-x
     "29j28h2-l2k2dk2j2-2dj28dj2d": true,
     "92h229dj0-d2jd20d2hdh2-d22d": false
   },
+
+	"brazeCustomAttributes": {
+		"last_email_activity_legacy": "05/13/2024",
+		"outside_source": "Parameter1"
+	},
 
 	"automaticConfirm": false,
 	"automaticOptIn": false,
