@@ -46,6 +46,9 @@ module.exports = (app) => {
         technologies,
         subspecialties,
 
+        // Braze custom attributes
+        brazeCustomAttributes,
+
         //
         subscriptions,
 
@@ -109,7 +112,7 @@ module.exports = (app) => {
       // Auto confirm
       if (automaticConfirm) await braze.confirmUser(user.email, user.id, 'identity-x');
 
-      if (updateBraze) setBrazeUserData(braze, { user });
+      if (updateBraze) setBrazeUserData(braze, { user, brazeCustomAttributes });
 
       res.json({
         user,
