@@ -68,7 +68,7 @@ POST https://auntminnie.com/api/identity-x
   },
 
 	"brazeCustomAttributes": {
-		"last_email_activity_legacy": "5/13/2024",
+		"last_email_activity_legacy": "05/13/2024",
 		"outside_source": "Parameter1"
 	},
 
