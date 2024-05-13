@@ -94,7 +94,7 @@ $ const loadMore = !showOverlay && !idxFormId;
         <global-content-contact-details obj=content />
         <div class="content-page-body">
           <default-theme-page-contents|{ blockName }| attrs={ "data-gallery-id": id }>
-            <if(content.embedCode)>
+            <if(content.embedCode && !displayIdxForm)>
               $ const iframeContent = contentIframe(content);
               <marko-web-content-embed-code block-name=blockName obj=iframeContent />
             </if>
@@ -116,7 +116,6 @@ $ const loadMore = !showOverlay && !idxFormId;
                 <marko-web-icon name="file" modifiers=["lg"] /> Transcript
               </marko-web-link>
             </if>
-
             $ const requiresRegistration = contentGatingHandler({ content }) || restrictContentByReg(contentMeterState, contentGatingHandler, content);
             $ const accessLevels = getAsArray(content, "userRegistration.accessLevels");
             <marko-web-identity-x-access|context|
