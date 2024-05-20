@@ -32,6 +32,7 @@ x-env-defaults: &env
   ENABLE_NATIVE_X: ${ENABLE_NATIVE_X-true}
   NATIVEX_SERVE_URI: ${NATIVEX_SERVE_URI-}
   USE_LINK_INJECTED_BODY: ${USE_LINK_INJECTED_BODY-false}
+  USE_ASSET_CDN: ${USE_ASSET_CDN-0}
 
 x-env-local-dev: &env-local-dev
   GRAPHQL_URI: ${GRAPHQL_URI-http://host.docker.internal:10103}
