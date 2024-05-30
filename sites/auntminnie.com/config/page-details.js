@@ -27,6 +27,10 @@ const ahraSiblingRoutes = [
   { title: 2021, href: 'resources/conference/ahra/2021', alt: '2021 Radiological Society of North America (AHRA) News Coverage' },
 ];
 
+const snmmiSiblingRoutes = [
+  { title: 2024, href: 'resources/conference/snmmi/2024', alt: '2024 Society of Nuclear Medicine & Molecular Imaging (SNMMI) News Coverage' },
+];
+
 module.exports = {
   'resources/conference': {
     name: 'Conference',
@@ -156,5 +160,22 @@ module.exports = {
   'resources/conference/ahra/2021': {
     name: '2021 American Healthcare Radiology Administrators (AHRA) News Coverage',
     siblingRoutes: ahraSiblingRoutes,
+  },
+  // Society of Nuclear Medicine & Molecular Imaging (SNMMI) New Coverage
+  'resources/conference/snmmi': {
+    name: 'Society of Nuclear Medicine & Molecular Imaging',
+    teaser: '',
+    siteContext: {
+      path: '/resources/conference/snmmi',
+    },
+    primaryImage: {
+      src: '',
+      alt: 'SNMMI News Coverage',
+    },
+    teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conference/snmmi/2024': {
+    name: '2024 Society of Nuclear Medicine & Molecular Imaging',
+    siblingRoutes: snmmiSiblingRoutes,
   },
 };
