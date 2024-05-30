@@ -68,6 +68,7 @@ const aliases = [
   { alias: 'resources/conference/ismrm/2024', prefix: 'ismrm-2024' },
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
+  { alias: 'resources/conference/snmmi/2024', prefix: 'snmmi-2024' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
