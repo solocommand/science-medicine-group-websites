@@ -11,10 +11,12 @@ module.exports = {
     brazeConfig,
     user = {},
     payload = {},
+    brazeCustomAttributes = {},
   }) => ({
     external_id: user.id,
     site_membership: { add: brazeConfig.siteName },
     ...payload,
+    ...brazeCustomAttributes,
   }),
   /**
    * Creates a user if not present, and sets the `receiveEmail` flag.

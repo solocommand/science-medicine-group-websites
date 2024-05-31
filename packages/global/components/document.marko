@@ -4,22 +4,23 @@ import createIdentityBuilder from '../utils/create-identity-builder.js';
 $ const {
   site,
   req,
+  res,
   nativeX,
   identityX,
   GAM,
   contentMeterState
 } = out.global;
 
+$ const { cdn } = res.locals;
 $ const { cookieName, cookieValue, hasCookie } = getAsObject(out.global, "newsletterModalState");
-
 $ const { gamDefer, gtmDefer, initOnly } = req.query;
 
 <marko-web-document ...input>
   <@head>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href=cdn.public("/apple-touch-icon.png")>
+    <link rel="icon" type="image/png" sizes="32x32" href=cdn.public("/favicon-32x32.png")>
+    <link rel="icon" type="image/png" sizes="16x16" href=cdn.public("/favicon-16x16.png")>
+    <link rel="manifest" href=cdn.public("/site.webmanifest")>
 
     <marko-web-google-font family="Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" />
 

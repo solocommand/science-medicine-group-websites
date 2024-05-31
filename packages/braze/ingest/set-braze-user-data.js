@@ -1,7 +1,7 @@
 const { get, getAsArray } = require('@parameter1/base-cms-object-path');
 const { buildPayload, filterByExternalId } = require('../utils');
 
-module.exports = async (braze, { user }) => {
+module.exports = async (braze, { user, brazeCustomAttributes = {} }) => {
   // Build payload
   const { tenant, fieldMap } = braze;
   const payload = buildPayload({
@@ -12,6 +12,7 @@ module.exports = async (braze, { user }) => {
       const val = get(user, k);
       return { ...obj, ...(val && { [key]: val }) };
     }, {}),
+    brazeCustomAttributes,
   });
 
   // External ID tagged questions
