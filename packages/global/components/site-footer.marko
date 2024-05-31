@@ -133,9 +133,23 @@ $ const tagline = site.get("tagline");
       <theme-breadcrumbs modifiers=["site-footer"]>
         <for|item| of=getNavItems({ items: footerItems, hasUser: input.hasUser, regEnabled: input.regEnabled })>
           <@item>
-            $ const obj = asObject(item);
-            <marko-web-link href=obj.href title=obj.title target=obj.target>
-              $!{obj.label}
+            $ const {
+              href,
+              label = '',
+              title,
+              target,
+              attrs,
+              classNames,
+            } = asObject(item);
+            $ console.log(item)
+            <marko-web-link
+              href=href
+              title=title
+              target=target
+              attrs=attrs
+              class=classNames
+            >
+              $!{label}
             </marko-web-link>
           </@item>
         </for>
