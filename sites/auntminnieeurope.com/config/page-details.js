@@ -55,12 +55,12 @@ module.exports = {
   // Society of Nuclear Medicine & Molecular Imaging (SNMMI) New Coverage
   'resources/conferences/snmmi': {
     name: 'Society of Nuclear Medicine & Molecular Imaging',
-    teaser: '',
+    teaser: 'The premier educational, scientific, research, and networking event in nuclear medicine and molecular imaging, the SNMMI Annual Meeting provides physicians, technologists, pharmacists, laboratory professionals, and scientists with an in-depth view of the latest research and development in the field as well as providing insights into practical applications for the clinic.',
     siteContext: {
       path: '/resources/conferences/snmmi',
     },
     primaryImage: {
-      src: '',
+      src: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/conference/snmmi.png',
       alt: 'SNMMI News Coverage',
     },
     teaserCTA: 'View Latest Coverage',
