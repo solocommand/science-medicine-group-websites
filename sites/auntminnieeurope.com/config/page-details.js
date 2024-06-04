@@ -6,6 +6,10 @@ const ismrmSiblingRoutes = [
   { title: 2024, href: 'resources/conferences/ismrm/2024', alt: '2024 Radiological Society of North America (ISMRM) News Coverage' },
 ];
 
+const snmmiSiblingRoutes = [
+  { title: 2024, href: 'resources/conferences/snmmi/2024', alt: '2024 Society of Nuclear Medicine & Molecular Imaging (SNMMI) News Coverage' },
+];
+
 module.exports = {
   'resources/conferences': {
     name: 'Conference',
@@ -47,5 +51,22 @@ module.exports = {
   'resources/conferences/ismrm/2024': {
     name: '2024 International Society of Magnetic Resonance (ISMRM) News Coverage',
     siblingRoutes: ismrmSiblingRoutes,
+  },
+  // Society of Nuclear Medicine & Molecular Imaging (SNMMI) New Coverage
+  'resources/conferences/snmmi': {
+    name: 'Society of Nuclear Medicine & Molecular Imaging',
+    teaser: 'The premier educational, scientific, research, and networking event in nuclear medicine and molecular imaging, the SNMMI Annual Meeting provides physicians, technologists, pharmacists, laboratory professionals, and scientists with an in-depth view of the latest research and development in the field as well as providing insights into practical applications for the clinic.',
+    siteContext: {
+      path: '/resources/conferences/snmmi',
+    },
+    primaryImage: {
+      src: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/conference/snmmi.png',
+      alt: 'SNMMI News Coverage',
+    },
+    teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conferences/snmmi/2024': {
+    name: '2024 Society of Nuclear Medicine & Molecular Imaging',
+    siblingRoutes: snmmiSiblingRoutes,
   },
 };
