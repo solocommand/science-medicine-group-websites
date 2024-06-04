@@ -49,7 +49,7 @@ module.exports = (app) => {
     res.redirect(301, `/resources/conferences/snmmi/${snmmiAliases[0]}`);
   });
   snmmiAliases.forEach((year) => {
-    app.get(`/:aliases(resources/conferences/snmmi/${year})`, withWebsiteSection({
+    app.get(`/:alias(resources/conferences/snmmi/${year})`, withWebsiteSection({
       template: withPinned,
       queryFragment,
     }));
