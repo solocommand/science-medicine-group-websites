@@ -4,7 +4,7 @@ const upcoming = require('@science-medicine-group/package-global/templates/websi
 const section = require('../templates/website-section');
 
 module.exports = (app) => {
-  app.get('/:alias(resources/conferences)', withWebsiteSection({
+  app.get('/:alias(resources/conference)', withWebsiteSection({
     template: upcoming,
     queryFragment,
   }));
