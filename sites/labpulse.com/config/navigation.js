@@ -201,7 +201,7 @@ module.exports = {
       {
         label: 'Privacy Settings',
         attrs: {
-          onClick: 'illow-widget()',
+          onclick: '{() => window.illow.showWidget()}',
         },
         classNames: 'bannerLink',
         // eslint-disable-next-line no-script-url
