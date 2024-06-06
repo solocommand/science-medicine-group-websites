@@ -237,6 +237,15 @@ module.exports = {
     },
     items: [
       privacyPolicy,
+      {
+        label: 'Privacy Settings',
+        attrs: {
+          onclick: '(function() { window.illow.showWidget();})()',
+        },
+        classNames: 'bannerLink',
+        // eslint-disable-next-line no-script-url
+        href: 'javascript:void(0)',
+      },
       { href: '/page/terms-conditions', label: 'Terms & Conditions' },
       { href: '/page/contact-us', label: 'Contact Us' },
       { href: '/site-map', label: 'Site Map' },
