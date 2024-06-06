@@ -84,6 +84,7 @@ const resources = [
   { href: '/page/advertising', label: 'Advertising' },
   { href: 'https://issuu.com/auntminnie/docs/2024_auntminnie_buyer_s_guide_01112024', label: 'Buyer\'s Guide', target: '_blank' },
   { href: '/resources/vendors', label: 'Vendors' },
+  { href: '/25-for-25', label: '25 for 25' },
 ];
 
 const more = [
