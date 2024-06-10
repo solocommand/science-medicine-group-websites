@@ -16,6 +16,7 @@ module.exports = {
     childrenAliases: [
       'resources/conferences/ecr',
       'resources/conferences/ismrm',
+      'resources/conferences/snmmi',
     ],
   },
   // European Congress of Radiology (ECR) News Coverage
