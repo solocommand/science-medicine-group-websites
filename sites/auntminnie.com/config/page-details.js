@@ -39,6 +39,7 @@ module.exports = {
       'resources/conference/ecr',
       'resources/conference/ismrm',
       'resources/conference/ahra',
+      'resources/conference/snmmi',
     ],
   },
   // Radiological Society of North America (RSNA) News Coverage'
