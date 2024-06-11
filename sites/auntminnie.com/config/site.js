@@ -30,9 +30,9 @@ module.exports = {
   },
   logos: {
     navbar: {
-      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/AM_logo-purple-full_25_anniversary.png?h=45&auto=format,compress',
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/AM_logo-purple-full_25_anniversary.png?h=60&auto=format,compress',
       srcset: [
-        'https://img.auntminnie.com/files/base/smg/all/image/static/am/AM_logo-purple-full_25_anniversary.png?h=90&auto=format,compress 2x',
+        'https://img.auntminnie.com/files/base/smg/all/image/static/am/AM_logo-purple-full_25_anniversary.png?h=120&auto=format,compress 2x',
       ],
     },
     footer: {
