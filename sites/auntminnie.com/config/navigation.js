@@ -60,7 +60,7 @@ const subspecialties = [
 ];
 
 const topics = [
-  { href: 'https://www.auntminnieeurope.com/index.aspx?sec=def', label: 'Europe' },
+  { href: 'https://www.auntminnieeurope.com', label: 'Europe' },
   { href: '/clinical-news', label: 'Clinical News', children: clinicalNews },
   { href: '/imaging-informatics', label: 'Informatics', children: imagingInformatics },
   { href: '/industry-news', label: 'Industry News', children: industryNews },
