@@ -18,6 +18,13 @@ $primary: #01274b;
 .site-footer {
   &__logo {
     filter: none;
+    height: 60px;
+  }
+}
+
+.site-navbar {
+  &__logo {
+    height: 40px;
   }
 }
 
