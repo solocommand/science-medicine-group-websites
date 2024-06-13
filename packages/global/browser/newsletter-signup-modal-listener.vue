@@ -25,14 +25,16 @@ export default {
       const newsletterSignupModalElement = document.getElementById('newsletter-signup-modal');
       if (
         this.hasCookie
-        && this.cookieValue === '0'
+        && this.cookieValue === '1'
         && window.dataLayer.find((dataEvent) => dataEvent['identity-x']
         && dataEvent['identity-x'].newsletterSignupType === 'modal')
         && !window.location.pathname.match(/^\/user/)
       ) {
         newsletterSignupModalElement.classList.add('newsletter-signup-modal-fade-in');
         // Set cookie, expires is in days so we have to divide by 24 for hours
-        cookies.set(this.cookieName, '1', { expires: 1 / 24 });
+        cookies.set(this.cookieName, '2', { expires: 1 / 24 });
+      } else if (this.hasCookie && this.cookieValue === '0') {
+        cookies.set(this.cookieName, '1', { expires: 1 });
       } else if (!this.hasCookie) {
         cookies.set(this.cookieName, '0', { expires: 1 });
       }
