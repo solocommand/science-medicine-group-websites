@@ -90,7 +90,7 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
       <!-- <theme-site-menu has-user=hasUser reg-enabled=isEnabled /> -->
     </marko-web-identity-x-context>
     $ const { enabled: modalEnabled } =  site.getAsObject("newsletter.modal");
-    <if(hasCookie && cookieValue === "0" && modalEnabled)>
+    <if(hasCookie && cookieValue === "1" && modalEnabled)>
       <global-newsletter-signup-modal-block />
     </if>
     <${input.aboveContainer} />
