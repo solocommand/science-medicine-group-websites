@@ -39,22 +39,9 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
         request-frame=true
         target-tag="body"
         on="load"
-        identity-query-builder=createIdentityBuilder(context)
+        identity-query-builder=createIdentityBuilder(context, identityX.getIdentity(res))
         enable-gam-plugin=true
       />
-      <!-- Appropriately set __p1e_idt cookie value based on incoming value -->
-      $ const cookies = { ...req.cookies, ...getResponseCookies(res) };
-      <if(cookies.__idx_idt && context.application && context.application.id)>
-        $ const existingP1ECookieValue = cookies.__p1e_idt ? JSON.parse(cookies.__p1e_idt) : {};
-        $ const existingAppUserValue = get(existingP1ECookieValue, 'identifier.value');
-        <if(cookies.__idx_idt !== existingAppUserValue)>
-          $ const identifier = `identity-x.${context.application.id}.app-user*${cookies.__idx_idt}`;
-          <marko-web-browser-component
-            name="BrazeP1EventsIdentify"
-            props={ identifier }
-          />
-        </if>
-      </if>
     </marko-web-identity-x-context>
 
     <!-- init gam -->
