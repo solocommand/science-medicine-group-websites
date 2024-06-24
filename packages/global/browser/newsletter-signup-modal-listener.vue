@@ -28,7 +28,7 @@ export default {
         && this.cookieValue === '1'
         && window.dataLayer.find((dataEvent) => dataEvent['identity-x']
         && dataEvent['identity-x'].newsletterSignupType === 'modal')
-        && !window.location.pathname.match(/^\/user/)
+        && !window.location.pathname.match(/^\/user|\/page/)
       ) {
         newsletterSignupModalElement.classList.add('newsletter-signup-modal-fade-in');
         // Set cookie, expires is in days so we have to divide by 24 for hours
