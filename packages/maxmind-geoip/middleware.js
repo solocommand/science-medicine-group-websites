@@ -11,7 +11,7 @@ module.exports = asyncRoute(async (req, res, next) => {
   if (res.locals.maxmindData) return;
   let data = {};
   const ip = req.get('cf-connecting-ip') || req.ip;
-  debug(`Maxmind Lookup with client IP: ${ip} ERR`, { headers: req.headers });
+  debug(`Maxmind Lookup with client IP ${ip} & request headers:`, { headers: req.headers });
   try {
     const response = await fetch(MAXMIND_GEOIP_SERVICE_URL, {
       method: 'post',
