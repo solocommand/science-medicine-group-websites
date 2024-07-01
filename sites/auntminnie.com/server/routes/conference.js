@@ -12,13 +12,6 @@ const rsnaAliases = [
   '2019',
 ];
 
-const ecrAliases = [
-  '2024',
-  '2023',
-  '2019',
-  '2018',
-];
-
 const ismrmAliases = [
   '2024',
   '2023',
@@ -56,13 +49,7 @@ module.exports = (app) => {
 
   // ECR
   app.get('/:alias(resources/conference/ecr)', (req, res) => {
-    res.redirect(301, `/resources/conference/ecr/${ecrAliases[0]}`);
-  });
-  ecrAliases.forEach((year) => {
-    app.get(`/:alias(resources/conference/ecr/${year})`, withWebsiteSection({
-      template: withPinned,
-      queryFragment,
-    }));
+    res.redirect(301, 'https://www.auntminnieeurope.com/resources/conferences/ecr/2024');
   });
 
   // ISMRM
