@@ -1,9 +1,9 @@
 IdentityX+Braze User API
 ===
 
-This API supports creating/updating IdentityX user data, questions, and braze integration features.
+This API supports creating/updating (via POST request), retrieving (via GET request), deleting (via DELETE request) IdentityX user data, questions, and braze integration features.
 
-It accepts a JSON post request at the endpoint `/api/identity-x`. The `email` field is the only required value.
+It accepts a JSON POST request at the endpoint `/api/identity-x`. The `email` field is the only required value.
 
 It accepts the following core IdentityX fields:
 - `email` String (required)
@@ -93,4 +93,26 @@ POST https://staging.labpulse.com/api/identity-x
   "givenName": "Lisa",
   "sendVerificationEmail": false,
 }
+```
+
+GET requests must contain a query parameter of `userId` or `email` (One or the other, not both):
+
+```
+GET https://auntminnie.com/api/identity-x?email=email@email.com
+```
+
+```
+GET https://auntminnie.com/api/identity-x?userId=65e09b514c0157c4845edaca"
+```
+
+DELETE requests must contain a body value for `userId` or `email` (One or the other, not both):
+
+```
+DELETE https://auntminnie.com/api/identity-x
+{ "email": "email@email.com" }
+```
+
+```
+DELETE https://auntminnie.com/api/identity-x
+{ "userId": "65e09b514c0157c4845edaca" }
 ```
