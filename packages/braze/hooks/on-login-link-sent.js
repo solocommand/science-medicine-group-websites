@@ -19,6 +19,10 @@ module.exports = async ({
   /** @type {IdentityXRequest} */
   const { braze } = service.req;
 
+  if (user) {
+    await braze.trackUser(user.email, user.id);
+  }
+
   if (user && !user.verified) {
     await braze.unconfirmUser(user.email, user.id);
     await braze.updateSubscriptions(user.email, user.id, { [brazeConfig.defaultGroupId]: true });
