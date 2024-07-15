@@ -69,9 +69,13 @@ class Braze {
    * @returns Object
    */
   async trackUser(email, externalId, payload = {}) {
+    const now = new Date();
+    const nowISOString = now.toISOString();
+    const [nowAsYYYYMMDD] = nowISOString && nowISOString.split('T').length ? nowISOString.split('T') : [];
     return this.request('users/track', {
       body: JSON.stringify({
         attributes: [{
+          ...(nowAsYYYYMMDD && { last_email_activity_legacy: nowAsYYYYMMDD }),
           ...payload,
           email,
           external_id: externalId,
