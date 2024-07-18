@@ -35,7 +35,7 @@ const resources = [
   { href: '/page/about-us', label: 'About Us' },
   { href: 'https://labpulse.careerwebsite.com/', label: 'Careers' },
   // { href: '/resources/cases', label: 'Cases' },
-  { href: '/resources/conferences', label: 'Conferences' },
+  // { href: '/resources/conferences', label: 'Conferences' },
   // { href: '/showcasts', label: 'Showcasts' },
   // { href: '/resources/vendors', label: 'Vendors' },
   { href: '/resources/videos', label: 'Videos' },
