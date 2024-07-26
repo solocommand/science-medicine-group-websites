@@ -9,9 +9,8 @@ module.exports = asyncRoute(async (req, _, next) => {
   // verify that the user exists
   // This utilizes the same logic for determining a MongoDB ID as base-cms-db's BaseDB.coerceID
   const identity = /^[a-f0-9]{24}$/.test(brazeExternalId) ? await identityX.findUserById(brazeExternalId) : null;
-  if (!identity || identity.verified) return next(); // invalid or deleted user, don't confirm user
   // If the user is not verified confirm them within Braze
-  if (!identity.verified) {
+  if (identity && !identity.verified) {
     await braze.confirmUser(identity.email, identity.id, 'identity-x');
   }
   return next();
