@@ -77,6 +77,7 @@ const resources = [
   { href: '/resources/videos', label: 'Videos' },
   { href: '/resources/webinars', label: 'Webinars' },
   { href: '/resources/vendors', label: 'Vendors' },
+  { href: '/page/advertising', label: 'Advertising' },
   { href: AM_URL, label: 'AuntMinnie' },
 ];
 
