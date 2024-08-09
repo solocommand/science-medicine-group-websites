@@ -1,4 +1,5 @@
 const rsnaSiblingRoutes = [
+  { title: 2024, href: 'resources/conference/rsna/2024', alt: '2024 Radiological Society of North America (RSNA News Coverage' },
   { title: 2023, href: 'resources/conference/rsna/2023', alt: '2023 Radiological Society of North America (RSNA News Coverage' },
   { title: 2022, href: 'resources/conference/rsna/2022', alt: '2022 Radiological Society of North America (RSNA) News Coverage' },
   { title: 2021, href: 'resources/conference/rsna/2021', alt: '2021 Radiological Society of North America (RSNA) News Coverage' },
@@ -31,6 +32,10 @@ const snmmiSiblingRoutes = [
   { title: 2024, href: 'resources/conference/snmmi/2024', alt: '2024 Society of Nuclear Medicine & Molecular Imaging (SNMMI) News Coverage' },
 ];
 
+const cmimiSiblingRoutes = [
+  { title: 2024, href: 'resources/conference/cmimi/2024', alt: '2024 Conference on Machine Intelligence in Medial Imaging' },
+];
+
 module.exports = {
   'resources/conference': {
     name: 'Conference',
@@ -40,6 +45,7 @@ module.exports = {
       'resources/conference/ismrm',
       'resources/conference/ahra',
       'resources/conference/snmmi',
+      'resources/conference/cmimi',
     ],
   },
   // Radiological Society of North America (RSNA) News Coverage'
@@ -54,6 +60,10 @@ module.exports = {
       alt: 'RSNA News Coverage',
     },
     teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conference/rsna/2024': {
+    name: '2024 Radiological Society of North America (RSNA) News Coverage',
+    siblingRoutes: rsnaSiblingRoutes,
   },
   'resources/conference/rsna/2023': {
     name: '2023 Radiological Society of North America (RSNA) News Coverage',
@@ -178,5 +188,22 @@ module.exports = {
   'resources/conference/snmmi/2024': {
     name: '2024 Society of Nuclear Medicine & Molecular Imaging',
     siblingRoutes: snmmiSiblingRoutes,
+  },
+  // Conference on Machine Intelligence in Medial Imaging
+  'resources/conference/cmimi': {
+    name: 'Conference on Machine Intelligence in Medial Imaging',
+    teaser: '',
+    siteContext: {
+      path: '/resources/conference/cmimi',
+    },
+    primaryImage: {
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/cmimi.png',
+      alit: 'CMIMI New Coverage',
+    },
+    teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conference/cmimi/2024': {
+    name: '2024 Conference of Machine Intelligence in Medial Imaging',
+    siblingRoutes: cmimiSiblingRoutes,
   },
 };

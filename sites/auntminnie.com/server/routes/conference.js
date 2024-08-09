@@ -5,6 +5,7 @@ const withPinned = require('@science-medicine-group/package-global/templates/web
 const conference = require('@science-medicine-group/package-global/templates/website-section/conference');
 
 const rsnaAliases = [
+  '2024',
   '2023',
   '2022',
   '2021',
@@ -27,6 +28,10 @@ const ahraAliases = [
 ];
 
 const snmmiAliases = [
+  '2024',
+];
+
+const cmimiAliases = [
   '2024',
 ];
 
@@ -80,6 +85,17 @@ module.exports = (app) => {
   });
   snmmiAliases.forEach((year) => {
     app.get(`/:alias(resources/conference/snmmi/${year})`, withWebsiteSection({
+      template: withPinned,
+      queryFragment,
+    }));
+  });
+
+  // CMIMI
+  app.get('/:alias(resources/conference/cmimi)', (req, res) => {
+    res.redirect(302, `/resources/conference/cmimi/${cmimiAliases[0]}`);
+  });
+  cmimiAliases.forEach((year) => {
+    app.get(`/:alias(resources/conference/cmimi/${year})`, withWebsiteSection({
       template: withPinned,
       queryFragment,
     }));
