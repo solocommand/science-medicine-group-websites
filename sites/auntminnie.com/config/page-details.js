@@ -32,6 +32,10 @@ const snmmiSiblingRoutes = [
   { title: 2024, href: 'resources/conference/snmmi/2024', alt: '2024 Society of Nuclear Medicine & Molecular Imaging (SNMMI) News Coverage' },
 ];
 
+const cmimiSiblingRoutes = [
+  { title: 2024, href: 'resources/conference/smimi/2024', alt: '2024 Conference on Machine Intelligence in Medial Imaging' },
+];
+
 module.exports = {
   'resources/conference': {
     name: 'Conference',
@@ -41,6 +45,7 @@ module.exports = {
       'resources/conference/ismrm',
       'resources/conference/ahra',
       'resources/conference/snmmi',
+      'resources/conference/cmimi',
     ],
   },
   // Radiological Society of North America (RSNA) News Coverage'
@@ -183,5 +188,22 @@ module.exports = {
   'resources/conference/snmmi/2024': {
     name: '2024 Society of Nuclear Medicine & Molecular Imaging',
     siblingRoutes: snmmiSiblingRoutes,
+  },
+  // Conference on Machine Intelligence in Medial Imaging
+  'resources/conference/cmimi': {
+    name: 'Conference on Machine Intelligence in Medial Imaging',
+    teaser: '',
+    siteContext: {
+      path: '/resources/conference/cmimi'
+    },
+    primaryImage: {
+      src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/cmimi.png',
+      alit: 'CMIMI New Coverage',
+    },
+    teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conference/cmimi/2024': {
+    name: '2024 Conference of Machine Intelligence in Medial Imaging',
+    siblingRoutes: cmimiSiblingRoutes,
   },
 };
