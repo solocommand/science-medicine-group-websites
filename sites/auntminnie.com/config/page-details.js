@@ -33,7 +33,7 @@ const snmmiSiblingRoutes = [
 ];
 
 const cmimiSiblingRoutes = [
-  { title: 2024, href: 'resources/conference/smimi/2024', alt: '2024 Conference on Machine Intelligence in Medial Imaging' },
+  { title: 2024, href: 'resources/conference/cmimi/2024', alt: '2024 Conference on Machine Intelligence in Medial Imaging' },
 ];
 
 module.exports = {
