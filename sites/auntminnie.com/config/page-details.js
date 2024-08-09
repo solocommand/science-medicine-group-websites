@@ -194,7 +194,7 @@ module.exports = {
     name: 'Conference on Machine Intelligence in Medial Imaging',
     teaser: '',
     siteContext: {
-      path: '/resources/conference/cmimi'
+      path: '/resources/conference/cmimi',
     },
     primaryImage: {
       src: 'https://img.auntminnie.com/files/base/smg/all/image/static/am/conference/cmimi.png',
