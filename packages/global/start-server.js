@@ -10,6 +10,7 @@ const brazeHooks = require('@science-medicine-group/package-braze/hooks');
 const maxmindGeoIP = require('@science-medicine-group/package-maxmind-geoip');
 const zeroBounce = require('@science-medicine-group/package-zero-bounce');
 const setIdxCookie = require('@science-medicine-group/package-braze/middleware/set-idx-cookie');
+const confirmUserViaQueryString = require('@science-medicine-group/package-braze/middleware/confirm-user-via-query-string');
 
 const document = require('./components/document');
 const components = require('./components');
@@ -92,6 +93,9 @@ module.exports = (options = {}) => {
       // Load IdentityX
       const idxConfig = get(options, 'siteConfig.identityX');
       identityX(app, idxConfig, { templates: idxRouteTemplates });
+
+      // Confirm an incoming braze_ext_id if present in the URL.
+      app.use(confirmUserViaQueryString);
 
       // Set the idx_idt cookie if a user can be identified
       app.use(setIdxCookie);
