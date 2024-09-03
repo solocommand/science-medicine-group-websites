@@ -32,6 +32,9 @@ config
   ])
   .setAliasPlacements('digital-dentistry/implants', [
     { name: 'related-content', id: '66d72fd8b7c9ff459c804dca' },
+  ])
+  .setAliasPlacements('demo', [
+    { name: 'related-content', id: '66d72e96b7c9ff459c804dc6' },
   ]);
 
 module.exports = config;
