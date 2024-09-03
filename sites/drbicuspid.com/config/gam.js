@@ -39,6 +39,7 @@ const aliases = [
   { alias: 'how-technology-changed-the-game-for-this-endodontist' },
   { alias: 'digital-dentistry/imaging', prefix: 'imaging' },
   { alias: 'digital-dentistry/imaging-cad-cam', prefix: 'imaging-cad-cam' },
+  { alias: 'digital-dentistry/implants', prefix: 'implants' },
   { alias: 'dental-hygiene', prefix: 'dental-hygiene' },
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
