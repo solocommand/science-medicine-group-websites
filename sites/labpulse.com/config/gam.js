@@ -32,6 +32,7 @@ const aliases = [
   { alias: 'resources/whitepapers' },
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
+  { alias: 'demo' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
