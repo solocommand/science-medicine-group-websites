@@ -41,6 +41,7 @@ const aliases = [
   { alias: 'digital-dentistry/imaging-cad-cam', prefix: 'imaging-cad-cam' },
   { alias: 'digital-dentistry/implants', prefix: 'implants' },
   { alias: 'dental-hygiene', prefix: 'dental-hygiene' },
+  { alias: 'dental-hygiene/infection-control', prefix: 'infection-control' },
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
   { alias: 'demo' },
