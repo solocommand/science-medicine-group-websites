@@ -78,13 +78,13 @@ module.exports = {
   // Journées Francophones de Radiologie
   'resources/conferences/jfr': {
     name: 'Journées Francophones de Radiologie',
-    teaser: '',
+    teaser: 'JFR is an international congress focused on medical imaging.',
     siteContext: {
       path: '/resources/conferences/jfr',
     },
     primaryImage: {
-      src: '',
-      alt: '',
+      src: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/conference/JFR.png',
+      alt: 'JFR News Coverage',
     },
     teaserCTA: 'View Latest Coverage',
   },
