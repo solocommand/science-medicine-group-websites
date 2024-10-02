@@ -16,6 +16,10 @@ const snmmiAliases = [
   '2024',
 ];
 
+const jfrAliases = [
+  '2024',
+];
+
 module.exports = (app) => {
   app.get('/:alias(resources/conferences)', withWebsiteSection({
     template: conference,
@@ -50,6 +54,17 @@ module.exports = (app) => {
   });
   snmmiAliases.forEach((year) => {
     app.get(`/:alias(resources/conferences/snmmi/${year})`, withWebsiteSection({
+      template: withPinned,
+      queryFragment,
+    }));
+  });
+
+  // JFR
+  app.get('/:alias(resources/conferences/jfr)', (req, res) => {
+    res.redirect(301, `/resources/conferences/jfr/${jfrAliases[0]}`);
+  });
+  jfrAliases.forEach((year) => {
+    app.get(`/:alias(resources/conferences/jfr/${year})`, withWebsiteSection({
       template: withPinned,
       queryFragment,
     }));
