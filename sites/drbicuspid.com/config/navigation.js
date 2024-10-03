@@ -28,7 +28,7 @@ const dentalHygiene = [
   { href: '/dental-hygiene/oral-systemic-link', label: 'Oral-Systemic Link' },
   { href: '/dental-hygiene/scope-of-practice', label: 'Scope of Practice' },
 ];
-const digitalDentistry = [
+const clinical = [
   { href: '/clinical/ai', label: 'AI' },
   { href: '/clinical/treatment-software', label: 'Treatment Software' },
   { href: '/clinical/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
@@ -47,7 +47,7 @@ const topics = [
   { href: '/dental-practice', label: 'Practice', children: dentalPractice },
   { href: '/dental-specialties', label: 'Specialties', children: dentalSpecialties },
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
-  { href: '/clinical', label: 'Digital Dentistry', children: digitalDentistry },
+  { href: '/clinical', label: 'Clinical', children: clinical },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
   { href: `${WPICLE_API_HOSTNAME}/cases`, label: 'Cases' },
   { href: 'https://drbicuspid.careerwebsite.com', label: 'Careers' },
@@ -158,7 +158,7 @@ module.exports = {
       secondary: { items: topics },
       tertiary: { items: [] },
       primary: {
-        items: digitalDentistry,
+        items: clinical,
       },
     },
     {
@@ -180,8 +180,8 @@ module.exports = {
       items: dentalSpecialties,
     },
     col3: {
-      label: 'Digital Dentistry',
-      items: digitalDentistry,
+      label: 'Clinical',
+      items: clinical,
     },
     col4: {
       label: 'Hygiene',
@@ -200,7 +200,7 @@ module.exports = {
         { href: '/dental-practice', label: 'Practice' },
         { href: '/dental-specialties', label: 'Specialties' },
         { href: '/dental-hygiene', label: 'Hygiene' },
-        { href: '/clinical', label: 'Digital Dentistry' },
+        { href: '/clinical', label: 'Clinical' },
         { href: '/dental-business', label: 'Business' },
       ],
     },
