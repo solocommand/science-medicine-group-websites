@@ -29,7 +29,7 @@ const dentalHygiene = [
   { href: '/dental-hygiene/scope-of-practice', label: 'Scope of Practice' },
 ];
 const clinical = [
-  { href: '/clinical/ai', label: 'AI' },
+  { href: '/clinical/treatment-software/ai', label: 'AI' },
   { href: '/clinical/treatment-software', label: 'Treatment Software' },
   { href: '/clinical/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
   { href: '/clinical/implants', label: 'Implants' },
