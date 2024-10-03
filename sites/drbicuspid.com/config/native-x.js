@@ -21,7 +21,7 @@ config
   .setAliasPlacements('dental-specialties/orofacial-pain', [
     { name: 'related-content', id: '645e89589545ae0001f7ffc9' },
   ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam', [
+  .setAliasPlacements('clinical/imaging-cad-cam', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ])
   .setAliasPlacements('dental-hygiene', [
