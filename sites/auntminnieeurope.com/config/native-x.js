@@ -155,6 +155,9 @@ config
   // ])
   .setAliasPlacements('subspecialties/radiation-oncology', [
     { name: 'related-content', id: '65527621ce30e70001a88654' },
+  ])
+  .setAliasPlacements('demo', [
+    { name: 'related-content', id: '66d72ebafeb239558f0e8eb1' },
   ]);
 
 module.exports = config;

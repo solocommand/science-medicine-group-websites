@@ -29,6 +29,12 @@ config
   ])
   .setAliasPlacements('dental-specialties/senl', [
     { name: 'related-content', id: '6516d0ecb497bc00017060c2' },
+  ])
+  .setAliasPlacements('digital-dentistry/implants', [
+    { name: 'related-content', id: '66d72fd8b7c9ff459c804dca' },
+  ])
+  .setAliasPlacements('demo', [
+    { name: 'related-content', id: '66d72e96b7c9ff459c804dc6' },
   ]);
 
 module.exports = config;
