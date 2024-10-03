@@ -29,11 +29,11 @@ const dentalHygiene = [
   { href: '/dental-hygiene/scope-of-practice', label: 'Scope of Practice' },
 ];
 const digitalDentistry = [
-  { href: '/digital-dentistry/ai', label: 'AI' },
-  { href: '/digital-dentistry/treatment-software', label: 'Treatment Software' },
-  { href: '/digital-dentistry/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
-  { href: '/digital-dentistry/implants', label: 'Implants' },
-  { href: '/digital-dentistry/sleep-dentistry', label: 'Sleep Dentistry' },
+  { href: '/clinical/ai', label: 'AI' },
+  { href: '/clinical/treatment-software', label: 'Treatment Software' },
+  { href: '/clinical/imaging-cad-cam', label: 'Imaging & CAD/CAM' },
+  { href: '/clinical/implants', label: 'Implants' },
+  { href: '/clinical/sleep-dentistry', label: 'Sleep Dentistry' },
 ];
 const dentalBusiness = [
   { href: '/dental-business/dental-education', label: 'Dental Education' },
@@ -47,7 +47,7 @@ const topics = [
   { href: '/dental-practice', label: 'Practice', children: dentalPractice },
   { href: '/dental-specialties', label: 'Specialties', children: dentalSpecialties },
   { href: '/dental-hygiene', label: 'Hygiene', children: dentalHygiene },
-  { href: '/digital-dentistry', label: 'Digital Dentistry', children: digitalDentistry },
+  { href: '/clinical', label: 'Digital Dentistry', children: digitalDentistry },
   { href: '/dental-business', label: 'Business', children: dentalBusiness },
   { href: `${WPICLE_API_HOSTNAME}/cases`, label: 'Cases' },
   { href: 'https://drbicuspid.careerwebsite.com', label: 'Careers' },
@@ -154,7 +154,7 @@ module.exports = {
       },
     },
     {
-      when: ['/digital-dentistry'],
+      when: ['/clinical'],
       secondary: { items: topics },
       tertiary: { items: [] },
       primary: {
@@ -200,7 +200,7 @@ module.exports = {
         { href: '/dental-practice', label: 'Practice' },
         { href: '/dental-specialties', label: 'Specialties' },
         { href: '/dental-hygiene', label: 'Hygiene' },
-        { href: '/digital-dentistry', label: 'Digital Dentistry' },
+        { href: '/clinical', label: 'Digital Dentistry' },
         { href: '/dental-business', label: 'Business' },
       ],
     },
