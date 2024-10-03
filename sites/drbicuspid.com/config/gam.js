@@ -39,9 +39,12 @@ const aliases = [
   { alias: 'how-technology-changed-the-game-for-this-endodontist' },
   { alias: 'clinical/imaging', prefix: 'imaging' },
   { alias: 'clinical/imaging-cad-cam', prefix: 'imaging-cad-cam' },
+  { alias: 'clinical/implants', prefix: 'implants' },
   { alias: 'dental-hygiene', prefix: 'dental-hygiene' },
+  { alias: 'dental-hygiene/infection-control', prefix: 'infection-control' },
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
+  { alias: 'demo' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
