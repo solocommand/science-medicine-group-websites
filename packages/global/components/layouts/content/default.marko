@@ -10,15 +10,14 @@ $ const {
   site,
   contentGatingHandler,
   contentMeterState,
-  contentIdxFormState,
+  contentAccessState,
   req,
   config,
 } = out.global;
 
-<!-- update contentIdxFormStateDisplayBase on the req cookies being present -->
-<!-- @todo figure out how to do this ahead of time within the content route if possible -->
-$ contentIdxFormState.displayForm = !Boolean(get(req, `cookies.${get(contentIdxFormState, 'cookie.name')}`));
-$ const { formId: idxFormId, displayForm: displayIdxForm, cookie: idxSuveyCookie } = contentIdxFormState;
+
+$ contentAccessState.setDisplayFrom({ req });
+$ const { formId: idxFormId, displayForm: displayIdxForm, cookie: idxSuveyCookie } = contentAccessState;
 
 $ const showOverlay = shouldOverlay(contentMeterState);
 
