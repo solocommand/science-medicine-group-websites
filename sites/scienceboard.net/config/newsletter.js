@@ -59,6 +59,7 @@ module.exports = {
   modal: {
     enabled: process.env.SIGNUP_MODAL_ENABLED === 'true',
     ...defaults,
+    cookieValueToMatch: 2,
   },
 
   // links off to seperate omeda dragonform

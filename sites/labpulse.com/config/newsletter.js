@@ -17,6 +17,7 @@ module.exports = {
     ...defaults,
     name: 'Stay Informed.',
     description: 'Get exclusive insights, trends, and innovations in clinical lab excellence!',
+    cookieValueToMatch: 2,
   },
   signupFooter: {
     ...defaults,

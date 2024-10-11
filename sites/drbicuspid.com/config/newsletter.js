@@ -16,6 +16,7 @@ module.exports = {
     ...defaults,
     name: 'Stay Informed.',
     description: 'Your Daily Scoop on Dental News',
+    cookieValueToMatch: 2,
   },
   signupFooter: {
     ...defaults,
