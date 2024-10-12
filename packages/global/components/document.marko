@@ -40,7 +40,7 @@ $ const { gamDefer, gtmDefer, initOnly } = req.query;
         request-frame=true
         target-tag="body"
         on="load"
-        identity-query-builder=createIdentityBuilder(context)
+        identity-query-builder=createIdentityBuilder(context, identityX.getIdentity(res))
         enable-gam-plugin=true
       />
     </marko-web-identity-x-context>

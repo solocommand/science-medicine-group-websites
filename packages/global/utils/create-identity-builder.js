@@ -20,10 +20,14 @@
  * @prop {String} email
  *
  * @param {IdentityXContext} context
+ * @param {String|null} identity
  */
-module.exports = (context = {}) => {
+module.exports = (context = {}, identity = null) => {
   if (context.hasUser) {
     return `return 'identity-x.${context.application.id}.app-user*' + '${context.user.id}';`;
+  }
+  if (identity) {
+    return `return 'identity-x.${context.application.id}.app-user*' + '${identity};'`;
   }
   return '';
 };
