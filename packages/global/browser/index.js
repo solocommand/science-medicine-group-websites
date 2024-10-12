@@ -4,7 +4,6 @@ import Braze from '@science-medicine-group/package-braze/browser';
 import GCSE from '@parameter1/base-cms-marko-web-gcse/browser';
 import Rudderstack from './rudderstack.vue';
 import CollapsibleSidebar from './collapsible-sidebar.vue';
-import NewsletterSignupModalListener from './newsletter-signup-modal-listener.vue';
 
 const ContentMeterTrack = () => import(/* webpackChunkName: "content-meter-tracker" */ './track-content-meter.vue');
 const GlobalRevealAdHandler = () => import(/* webpackChunkName: "reveal-ad-handler" */ './reveal-ad-handler.vue');
@@ -18,8 +17,6 @@ export default (Browser) => {
   PhotoSwipe(Browser);
   Braze(Browser);
   Browser.register('CollapsibleSidebar', CollapsibleSidebar);
-
-  Browser.register('NewsletterSignupModalListener', NewsletterSignupModalListener);
 
   // Rudderstack identification
   Browser.register('Rudderstack', Rudderstack, { provide: { EventBus } });

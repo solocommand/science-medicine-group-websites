@@ -17,6 +17,7 @@ module.exports = {
     ...defaults,
     name: 'Stay Informed.',
     description: 'Don\'t miss the latest medical imaging news and analysis',
+    cookieValueToMatch: 2,
   },
   signupFooter: {
     ...defaults,

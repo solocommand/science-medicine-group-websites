@@ -3,6 +3,7 @@ const { startServer } = require('@parameter1/base-cms-marko-web');
 const { set, get, getAsObject } = require('@parameter1/base-cms-object-path');
 const loadInquiry = require('@parameter1/base-cms-marko-web-inquiry');
 const htmlSitemapPagination = require('@parameter1/base-cms-marko-web-html-sitemap/middleware/paginated');
+const newsletterModalState = require('@parameter1/base-cms-marko-web-theme-monorail/middleware/newsletter-modal-state');
 const companySearchHandler = require('@parameter1/base-cms-marko-web-theme-monorail/routes/company-search');
 const identityX = require('@parameter1/base-cms-marko-web-identity-x');
 const braze = require('@science-medicine-group/package-braze');
@@ -20,7 +21,6 @@ const sharedRoutes = require('./routes');
 const contentGating = require('./middleware/content-gating');
 const paginated = require('./middleware/paginated');
 const gamTracker = require('./middleware/gam-tracker');
-const newsletterModalState = require('./middleware/newsletter-modal-state');
 const oembedHandler = require('./oembed-handler');
 const redirectHandler = require('./redirect-handler');
 
