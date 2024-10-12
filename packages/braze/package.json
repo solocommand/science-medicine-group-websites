@@ -19,7 +19,7 @@
     "@parameter1/base-cms-marko-core": "^4.55.4",
     "@parameter1/base-cms-marko-web": "^4.65.2",
     "@parameter1/base-cms-marko-web-gtm": "^4.60.2",
-    "@parameter1/base-cms-marko-web-identity-x": "^4.67.4",
+    "@parameter1/base-cms-marko-web-identity-x": "^4.70.0",
     "@parameter1/base-cms-marko-web-recaptcha": "^4.5.12",
     "@parameter1/base-cms-object-path": "^4.40.3",
     "@parameter1/base-cms-utils": "^4.40.3",
