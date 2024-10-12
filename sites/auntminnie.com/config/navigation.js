@@ -35,7 +35,7 @@ const practiceManagement = [
   { href: '/practice-management/patient-safety', label: 'Patient Safety' },
   { href: '/practice-management/radiologic-technologist', label: 'Radiologic Technologist' },
   { href: '/practice-management/service', label: 'Service' },
-  { href: `${WPICLE_API_HOSTNAME}/salary-scan`, label: 'Salary Scan' },
+  { href: 'https://selfserve.decipherinc.com/survey/selfserve/2260/240613#?', label: 'Salary Scan', target: '_blank' },
 ];
 const radiologyEducation = [
   { href: '/radiology-education/medical-students', label: 'Medical Students' },

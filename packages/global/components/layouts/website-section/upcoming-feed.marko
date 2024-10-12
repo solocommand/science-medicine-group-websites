@@ -70,20 +70,6 @@ $ const perPage = 12;
         section=section
       />
     </if>
-
-    <global-section-feed-wrapper aliases=aliases alias=alias modifiers=["upcoming"] with-ads=withAds>
-      <@query-params ...queryParams />
-      <@rail>
-        <div class="text-center"><a href="/page/submit-a-conference" class="btn btn-primary">Submit a Conference</a></div>
-        <theme-gam-define-display-ad
-          name="rotation"
-          position="section_page"
-          aliases=aliases
-          modifiers=["max-width-300", "center", "margin-auto-x"]
-          class="mb-block mt-3"
-        />
-      </@rail>
-    </global-section-feed-wrapper>
   </@section>
 
   <for|s| of=sections>

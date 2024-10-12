@@ -28,14 +28,18 @@ export default {
         && this.cookieValue === '1'
         && window.dataLayer.find((dataEvent) => dataEvent['identity-x']
         && dataEvent['identity-x'].newsletterSignupType === 'modal')
-        && !window.location.pathname.match(/^\/user/)
+        && !window.location.pathname.match(/^\/user|\/page/)
       ) {
         newsletterSignupModalElement.classList.add('newsletter-signup-modal-fade-in');
         // Set cookie, expires is in days so we have to divide by 24 for hours
         cookies.set(this.cookieName, '2', { expires: 1 / 24 });
-      } else if (this.hasCookie && this.cookieValue === '0') {
+      } else if (
+        this.hasCookie
+        && this.cookieValue === '0'
+        && !window.location.pathname.match(/^\/user|\/page/)
+      ) {
         cookies.set(this.cookieName, '1', { expires: 1 });
-      } else if (!this.hasCookie) {
+      } else if (!this.hasCookie && !window.location.pathname.match(/^\/user|\/page/)) {
         cookies.set(this.cookieName, '0', { expires: 1 });
       }
     }, 2500);

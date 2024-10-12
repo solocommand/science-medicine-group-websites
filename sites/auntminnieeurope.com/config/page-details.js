@@ -10,6 +10,10 @@ const snmmiSiblingRoutes = [
   { title: 2024, href: 'resources/conferences/snmmi/2024', alt: '2024 Society of Nuclear Medicine & Molecular Imaging (SNMMI) News Coverage' },
 ];
 
+const jfrSiblingRoutes = [
+  { title: 2024, href: 'resources/conferences/jfr/2024', alt: '2024 Journées Francophones de Radiologie (JFR) News Coverage' },
+];
+
 module.exports = {
   'resources/conferences': {
     name: 'Conference',
@@ -17,6 +21,7 @@ module.exports = {
       'resources/conferences/ecr',
       'resources/conferences/ismrm',
       'resources/conferences/snmmi',
+      'resources/conferences/jfr',
     ],
   },
   // European Congress of Radiology (ECR) News Coverage
@@ -69,5 +74,22 @@ module.exports = {
   'resources/conferences/snmmi/2024': {
     name: '2024 Society of Nuclear Medicine & Molecular Imaging',
     siblingRoutes: snmmiSiblingRoutes,
+  },
+  // Journées Francophones de Radiologie
+  'resources/conferences/jfr': {
+    name: 'Journées Francophones de Radiologie',
+    teaser: 'JFR is an international congress focused on medical imaging.',
+    siteContext: {
+      path: '/resources/conferences/jfr',
+    },
+    primaryImage: {
+      src: 'https://img.auntminnieeurope.com/files/base/smg/all/image/static/ame/conference/JFR.png',
+      alt: 'JFR News Coverage',
+    },
+    teaserCTA: 'View Latest Coverage',
+  },
+  'resources/conferences/jfr/2024': {
+    name: '2024 Journées Francophones de Radiologie',
+    siblingRoutes: jfrSiblingRoutes,
   },
 };

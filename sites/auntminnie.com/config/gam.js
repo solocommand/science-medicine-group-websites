@@ -63,12 +63,18 @@ const aliases = [
   { alias: 'subspecialties/nuclear-radiology', prefix: 'molecular-imaging' },
   { alias: 'subspecialties/radiation-oncology', prefix: 'radiation-oncology-therapy' },
   { alias: 'subspecialties/breast-imaging', prefix: 'womens-imaging' },
+  { alias: 'resources/webinars' },
+  { alias: 'resources/vendors' },
+  // Conferences
   { alias: 'resources/conference/rsna/2023', prefix: '2023' },
   { alias: 'resources/conference/ecr/2024', prefix: '2024' },
   { alias: 'resources/conference/ismrm/2024', prefix: 'ismrm-2024' },
-  { alias: 'resources/webinars' },
-  { alias: 'resources/vendors' },
   { alias: 'resources/conference/snmmi/2024', prefix: 'snmmi-2024' },
+  { alias: 'resources/conference/cmimi/2024', prefix: 'cmimi-2024' },
+  { alias: 'resources/conference/rnsa/2024', prefix: 'rsna-2024' },
+  // Sections
+  { alias: 'demo' },
+  { alias: 'resources' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [

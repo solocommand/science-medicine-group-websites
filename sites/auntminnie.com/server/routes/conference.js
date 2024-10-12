@@ -5,18 +5,12 @@ const withPinned = require('@science-medicine-group/package-global/templates/web
 const conference = require('@science-medicine-group/package-global/templates/website-section/conference');
 
 const rsnaAliases = [
+  '2024',
   '2023',
   '2022',
   '2021',
   '2020',
   '2019',
-];
-
-const ecrAliases = [
-  '2024',
-  '2023',
-  '2019',
-  '2018',
 ];
 
 const ismrmAliases = [
@@ -37,6 +31,10 @@ const snmmiAliases = [
   '2024',
 ];
 
+const cmimiAliases = [
+  '2024',
+];
+
 module.exports = (app) => {
   app.get('/:alias(resources/conference)', withWebsiteSection({
     template: conference,
@@ -45,7 +43,7 @@ module.exports = (app) => {
 
   // RSNA
   app.get('/:alias(resources/conference/rsna)', (req, res) => {
-    res.redirect(301, `/resources/conference/rsna/${rsnaAliases[0]}`);
+    res.redirect(301, '/resources/conference/rsna/2023');
   });
   rsnaAliases.forEach((year) => {
     app.get(`/:alias(resources/conference/rsna/${year})`, withWebsiteSection({
@@ -56,13 +54,7 @@ module.exports = (app) => {
 
   // ECR
   app.get('/:alias(resources/conference/ecr)', (req, res) => {
-    res.redirect(301, `/resources/conference/ecr/${ecrAliases[0]}`);
-  });
-  ecrAliases.forEach((year) => {
-    app.get(`/:alias(resources/conference/ecr/${year})`, withWebsiteSection({
-      template: withPinned,
-      queryFragment,
-    }));
+    res.redirect(301, 'https://www.auntminnieeurope.com/resources/conferences/ecr/2024');
   });
 
   // ISMRM
@@ -93,6 +85,17 @@ module.exports = (app) => {
   });
   snmmiAliases.forEach((year) => {
     app.get(`/:alias(resources/conference/snmmi/${year})`, withWebsiteSection({
+      template: withPinned,
+      queryFragment,
+    }));
+  });
+
+  // CMIMI
+  app.get('/:alias(resources/conference/cmimi)', (req, res) => {
+    res.redirect(302, `/resources/conference/cmimi/${cmimiAliases[0]}`);
+  });
+  cmimiAliases.forEach((year) => {
+    app.get(`/:alias(resources/conference/cmimi/${year})`, withWebsiteSection({
       template: withPinned,
       queryFragment,
     }));

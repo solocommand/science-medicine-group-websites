@@ -21,7 +21,7 @@ config
   .setAliasPlacements('dental-specialties/orofacial-pain', [
     { name: 'related-content', id: '645e89589545ae0001f7ffc9' },
   ])
-  .setAliasPlacements('digital-dentistry/imaging-cad-cam', [
+  .setAliasPlacements('clinical/imaging-cad-cam', [
     { name: 'related-content', id: '644ffa6a9eb164000117db0c' },
   ])
   .setAliasPlacements('dental-hygiene', [
@@ -29,6 +29,12 @@ config
   ])
   .setAliasPlacements('dental-specialties/senl', [
     { name: 'related-content', id: '6516d0ecb497bc00017060c2' },
+  ])
+  .setAliasPlacements('digital-dentistry/implants', [
+    { name: 'related-content', id: '66d72fd8b7c9ff459c804dca' },
+  ])
+  .setAliasPlacements('demo', [
+    { name: 'related-content', id: '66d72e96b7c9ff459c804dc6' },
   ]);
 
 module.exports = config;

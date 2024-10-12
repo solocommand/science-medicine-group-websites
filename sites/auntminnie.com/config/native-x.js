@@ -121,6 +121,14 @@ config
   ])
   .setAliasPlacements('subspecialties/breast-imaging', [
     { name: 'related-content', id: '64f9fd46fd16dd00014870a3' },
+  ])
+
+  // SECTION PAGES
+  .setAliasPlacements('25-for-25', [
+    { name: 'related-content', id: '667c3a46f0716b0001d7381a' },
+  ])
+  .setAliasPlacements('demo', [
+    { name: 'related-content', id: '66d72e7e6356c2f4275d6a55' },
   ]);
 
 module.exports = config;
