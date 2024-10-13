@@ -139,6 +139,7 @@ $ const loadMore = !showOverlay && !idxFormId;
                     <else>
                       <marko-web-identity-x-non-auth-identify|{ user: identifiedUser }|>
                         <marko-web-identity-x-form-access
+                          updateProfileOnSubmit=false
                           content=content
                           user=identifiedUser
                           formId=idxFormId
