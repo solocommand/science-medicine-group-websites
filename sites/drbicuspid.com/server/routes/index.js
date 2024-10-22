@@ -3,6 +3,7 @@ const directory = require('@science-medicine-group/package-global/routes/directo
 const home = require('./home');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
+const conference = require('./conference');
 const websiteSections = require('./website-section');
 
 module.exports = (app) => {
@@ -19,6 +20,8 @@ module.exports = (app) => {
 
   // Directory Pages have to happen after content or they wont match
   directory(app, 'resources/vendors');
+
+  conference(app);
 
   // Website Sections
   websiteSections(app);
