@@ -39,11 +39,10 @@ $ const { id, type, pageNode, ...rest } = input;
       </div>
       <div class="col-lg-5">
         <default-theme-page-contents|{ blockName }| modifiers=['download-form'] attrs={ "data-gallery-id": id }>
-          <default-theme-content-download obj=content>
+          <theme-content-download obj=content>
             <@wufoo user-name=site.get("wufoo.userName") />
             <@link class="btn btn-primary" />
-          </default-theme-content-download>
-
+          </theme-content-download>
         </default-theme-page-contents>
       </div>
     </div>
