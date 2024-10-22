@@ -45,6 +45,8 @@ const aliases = [
   { alias: 'resources/webinars' },
   { alias: 'resources/vendors' },
   { alias: 'demo' },
+  { alias: 'resources/conferences/ids' },
+  { alias: 'resources/conferences/cds-midwinter' },
 ];
 
 aliases.forEach(({ alias, prefix = alias }) => config.setAliasAdUnits(alias, [
