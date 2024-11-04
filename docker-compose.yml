@@ -203,3 +203,15 @@ services:
       - "9958:80"
     depends_on:
       - redis
+
+  user-import:
+    <<: *node
+    working_dir: /root/services/user-import
+    entrypoint: ["/root/node_modules/.bin/gulp"]
+    environment:
+      NODE_ENV: development
+    ports:
+      - "9958:80"
+    depends_on:
+      - am
+      - drb
