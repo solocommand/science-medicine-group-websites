@@ -1,13 +1,8 @@
+const inquirer = require('inquirer');
 const batch = require('./batch');
-const { diffIdx, diffList } = require('./diff');
-const { fetchIdxMembers, fetchListMembership } = require('./fetch');
 const readCsv = require('./read-csv');
 
 const { log } = console;
-
-const upsertResults = async ({ results }) => {
-  log('upserting', { results });
-};
 
 /**
  * @param {object} o
@@ -17,31 +12,33 @@ const upsertResults = async ({ results }) => {
  */
 module.exports = async ({ list, file, site }) => {
   const toUpsert = await readCsv(`./data/${file}`);
+  const newSet = new Set(toUpsert.map(({ email }) => `${email}`.toLocaleLowerCase()));
+  log(`${site}: Loaded ${toUpsert.length} records (${newSet.size} unique) from data file data/${file}.`);
 
-  const listMembers = await fetchListMembership({
-    list,
-    overwrite: false,
-    site,
-    suffix: 'pre',
-  });
-  const idxMembers = await fetchIdxMembers({
-    list,
-    overwrite: false,
-    site,
-    suffix: 'pre',
-  });
+  const listMembers = await readCsv(`./data/segments/${list.segmentId}.csv`);
+  const oldSet = new Set(listMembers.map(({ email }) => `${email}`.toLocaleLowerCase()));
+  log(`${site}: Loaded ${listMembers.length} records (${oldSet.size} unique) from reference file segments/${list.segmentId}.csv.`);
+
+  const difference = new Set([...newSet].filter((v) => !oldSet.has(v)));
+  log(`${site}: Found ${difference.size} unique emails to process for ${list.name}!`);
+
+  const { continue: go } = await inquirer.prompt([{
+    name: 'continue',
+    type: 'confirm',
+    message: 'Would you like to continue?',
+  }]);
+
+  if (!go) return process.exit(1);
 
   await batch({
     name: 'upsert',
     limit: 2,
-    handler: upsertResults,
+    handler: async ({ results }) => {
+      log('upserting', { results });
+    },
     retriever: ({ limit, skip }) => toUpsert.slice(skip, skip + limit),
     totalCount: toUpsert.length,
   });
 
-  const listMembers2 = await fetchListMembership({ site, list, suffix: 'post' });
-  const idxMembers2 = await fetchIdxMembers({ site, list, suffix: 'post' });
-
-  await diffList({ old: listMembers, new: listMembers2, list });
-  await diffIdx({ old: idxMembers, new: idxMembers2, site });
+  return log('Done!');
 };

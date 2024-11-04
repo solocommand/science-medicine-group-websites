@@ -17,7 +17,8 @@
     "csv-reader": "^1.0.12",
     "envalid": "^6.0.2",
     "inquirer": "^7.3.3",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "p-retry": "^4.6.2"
   },
   "devDependencies": {
     "@parameter1/gulp": "^1.1.6"
