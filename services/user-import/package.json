@@ -1,0 +1,25 @@
+{
+  "name": "@science-medicine-group/user-import",
+  "version": "2.19.5",
+  "author": "Josh Worden <josh@parameter1.com>",
+  "repository": "https://github.com/parameter1/science-medicine-group-websites/tree/master/services/user-import",
+  "license": "MIT",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "eslint --ext .js ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "yarn lint && yarn compile --no-clean"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "csv-reader": "^1.0.12",
+    "envalid": "^6.0.2",
+    "inquirer": "^7.3.3",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "@parameter1/gulp": "^1.1.6"
+  }
+}
