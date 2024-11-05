@@ -1,9 +1,10 @@
 const inquirer = require('inquirer');
+
 const batch = require('./batch');
-const readCsv = require('./read-csv');
+const { readCsv, writeCsv } = require('./csv');
+const isEmailValid = require('./validate');
 
 const { log } = console;
-
 /**
  * @param {object} o
  * @param {string} o.file
@@ -12,15 +13,28 @@ const { log } = console;
  */
 module.exports = async ({ list, file, site }) => {
   const toUpsert = await readCsv(`./data/${file}`);
-  const newSet = new Set(toUpsert.map(({ email }) => `${email}`.toLocaleLowerCase()));
-  log(`${site}: Loaded ${toUpsert.length} records (${newSet.size} unique) from data file data/${file}.`);
+  const newSet = new Set(toUpsert.map(({ email }) => `${email}`.trim().toLowerCase()));
+  log(`${site}: Loaded ${toUpsert.length} records (${newSet.size} unique) from data file "data/${file}".`);
 
   const listMembers = await readCsv(`./data/segments/${list.segmentId}.csv`);
-  const oldSet = new Set(listMembers.map(({ email }) => `${email}`.toLocaleLowerCase()));
-  log(`${site}: Loaded ${listMembers.length} records (${oldSet.size} unique) from reference file segments/${list.segmentId}.csv.`);
+  const oldSet = new Set(listMembers.map(({ email }) => `${email}`.toLowerCase()));
+  log(`${site}: Loaded ${listMembers.length} records (${oldSet.size} unique) from reference file "segments/${list.segmentId}.csv".`);
 
-  const difference = new Set([...newSet].filter((v) => !oldSet.has(v)));
-  log(`${site}: Found ${difference.size} unique emails to process for ${list.name}!`);
+  const [invalid, valid] = [...newSet].reduce(([inv, val], email) => {
+    const target = isEmailValid(email) ? val : inv;
+    target.add(email);
+    return [inv, val];
+  }, [new Set(), new Set()]);
+
+  log(`${site}: Found ${invalid.size} invalid emails in data file!`);
+  const difference = new Set([...valid].filter((v) => !oldSet.has(v)));
+  log(`${site}: Found ${difference.size} unique new emails to process for "${list.name}".`);
+  const union = new Set([...valid].filter((v) => oldSet.has(v)));
+  log(`${site}: Found ${union.size} unique existing emails to process for "${list.name}".`);
+
+  await writeCsv(`./data/reports/${list.segmentId}.insert.csv`, [{ id: 'email', title: 'email' }], [...difference].map((email) => ({ email })));
+  await writeCsv(`./data/reports/${list.segmentId}.invalid.csv`, [{ id: 'email', title: 'email' }], [...invalid].map((email) => ({ email })));
+  await writeCsv(`./data/reports/${list.segmentId}.update.csv`, [{ id: 'email', title: 'email' }], [...union].map((email) => ({ email })));
 
   const { continue: go } = await inquirer.prompt([{
     name: 'continue',
