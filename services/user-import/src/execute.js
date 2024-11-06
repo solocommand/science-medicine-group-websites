@@ -1,10 +1,21 @@
 const inquirer = require('inquirer');
+const { eachLimit } = require('async');
+const fetch = require('node-fetch');
 
 const batch = require('./batch');
 const { readCsv, writeCsv } = require('./csv');
+const { isDev } = require('./env');
 const isEmailValid = require('./validate');
 
 const { log } = console;
+const limit = 2;
+
+const getApiUrl = (site) => {
+  if (isDev) return `http://www-smg-${site.toLowerCase()}.dev.parameter1.com/api/identity-x`;
+  const host = site.toLowerCase() === 'am' ? 'auntminnie' : 'drbicuspid';
+  return `https://www.${host}.com/api/identity-x`;
+};
+
 /**
  * @param {object} o
  * @param {string} o.file
@@ -44,14 +55,40 @@ module.exports = async ({ list, file, site }) => {
 
   if (!go) return process.exit(1);
 
+  const toProcess = toUpsert.map((doc) => ({ ...doc, email: `${doc.email}`.trim().toLowerCase() })).filter(({ email }) => valid.has(email));
+
   await batch({
     name: 'upsert',
-    limit: 2,
-    handler: async ({ results }) => {
-      log('upserting', { results });
-    },
-    retriever: ({ limit, skip }) => toUpsert.slice(skip, skip + limit),
-    totalCount: toUpsert.length,
+    limit,
+    handler: async ({ results }) => new Promise((resolve, reject) => {
+      eachLimit(results, Math.floor(limit / 2), async (doc) => {
+        const payload = {
+          email: doc.email,
+          givenName: doc['first name'],
+          familyName: doc['last name'],
+          organization: doc.company,
+          organizationTitle: doc['job title'],
+          subscriptions: { [list.subscriptionGroupId]: true },
+          brazeCustomAttributes: { outside_source: file },
+        };
+        const res = await fetch(getApiUrl(site), {
+          body: JSON.stringify(payload),
+          headers: { 'content-type': 'application/json' },
+          method: 'POST',
+        });
+        if (!res.ok) {
+          log(await res.json());
+          throw new Error(`Invalid API response, ${res.status} ${res.statusText}`);
+        }
+        console.log(res);
+        // log('handle', doc);
+      }, (err) => {
+        if (err) reject(err);
+        resolve();
+      });
+    }),
+    retriever: ({ skip }) => toProcess.slice(skip, skip + limit),
+    totalCount: toProcess.length,
   });
 
   return log('Done!');

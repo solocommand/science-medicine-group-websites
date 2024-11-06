@@ -17,6 +17,7 @@ const objectify = (rows = []) => {
     ...(headers[3] && { [headers[3]]: `${row[3]}`.trim() }),
     ...(headers[4] && { [headers[4]]: `${row[4]}`.trim() }),
     ...(headers[5] && { [headers[5]]: `${row[5]}`.trim() }),
+    ...(headers[6] && { [headers[6]]: `${row[6]}`.trim() }),
   }));
 };
 
