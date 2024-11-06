@@ -210,8 +210,6 @@ services:
     entrypoint: ["/root/node_modules/.bin/gulp"]
     environment:
       NODE_ENV: development
-    ports:
-      - "9958:80"
     depends_on:
       - am
       - drb
