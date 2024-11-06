@@ -2529,6 +2529,11 @@ builtins@^5.0.0:
   dependencies:
     semver "^7.0.0"
 
+burner-email-providers@^1.0.13:
+  version "1.0.67"
+  resolved "https://registry.yarnpkg.com/burner-email-providers/-/burner-email-providers-1.0.67.tgz#6759dbd1bef2eea6c093bd111d72687e4194c42a"
+  integrity sha512-w3aWPwragdi/fyGvPFl3Ll4jlbsVecdiC/vsApzyTMReylKBl8w+nN0Oh4fGJanu7Mcn13Xgnrl1OyQk7XEiug==
+
 byte-size@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/byte-size/-/byte-size-7.0.0.tgz#36528cd1ca87d39bd9abd51f5715dc93b6ceb032"
@@ -3372,6 +3377,11 @@ csv-reader@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/csv-reader/-/csv-reader-1.0.12.tgz#3b1d3d87c69ef08579ba052bb6e2395d52b0acf6"
   integrity sha512-0AAgazKJUywtjvZbclNuovIiQY/WyvojWw15Y2k3kPixE+pDiOFnfg5FcH3CfDqqnrB2f3p5oPAc446EXD01Tw==
+
+csv-writer@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/csv-writer/-/csv-writer-1.6.0.tgz#d0cea44b6b4d7d3baa2ecc6f3f7209233514bcf9"
+  integrity sha512-NOx7YDFWEsM/fTRAJjRpPp8t+MKRVvniAg9wQlUKx20MFrPs73WLJhFf5iteqrxNYnsy924K3Iroh3yNHeYd2g==
 
 csvtojson@^2.0.10:
   version "2.0.10"
@@ -10164,6 +10174,11 @@ validate-npm-package-name@^3.0.0:
   integrity sha512-M6w37eVCMMouJ9V/sdPGnC5H4uDr73/+xdq0FBLO3TFFX1+7wiUY6Es328NN+y43tmY+doUdN9g9J21vqB7iLw==
   dependencies:
     builtins "^1.0.3"
+
+validator@^11.0.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-11.1.0.tgz#ac18cac42e0aa5902b603d7a5d9b7827e2346ac4"
+  integrity sha512-qiQ5ktdO7CD6C/5/mYV4jku/7qnqzjrxb3C/Q5wR3vGGinHTgJZN/TdFT3ZX4vXhX2R1PXx42fB1cn5W+uJ4lg==
 
 validator@^13.0.0, validator@^13.9.0:
   version "13.9.0"
