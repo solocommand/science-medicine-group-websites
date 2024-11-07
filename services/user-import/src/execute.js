@@ -1,14 +1,19 @@
 const inquirer = require('inquirer');
 const { eachLimit } = require('async');
 const fetch = require('node-fetch');
+const pRetry = require('p-retry');
 
 const batch = require('./batch');
 const { readCsv, writeCsv } = require('./csv');
-const { isDev } = require('./env');
+const {
+  isDev,
+  IDENTITYX_API_KEY_AM,
+  IDENTITYX_API_KEY_DRB,
+} = require('./env');
 const isEmailValid = require('./validate');
 
 const { log } = console;
-const limit = 2;
+const limit = 25;
 
 const getApiUrl = (site) => {
   if (isDev) return `http://www-smg-${site.toLowerCase()}.dev.parameter1.com/api/identity-x`;
@@ -47,6 +52,7 @@ module.exports = async ({ list, file, site }) => {
   await writeCsv(`./data/reports/${list.segmentId}.invalid.csv`, [{ id: 'email', title: 'email' }], [...invalid].map((email) => ({ email })));
   await writeCsv(`./data/reports/${list.segmentId}.update.csv`, [{ id: 'email', title: 'email' }], [...union].map((email) => ({ email })));
 
+  log(`Import mode: ${isDev ? 'development' : 'production'}`);
   const { continue: go } = await inquirer.prompt([{
     name: 'continue',
     type: 'confirm',
@@ -55,13 +61,15 @@ module.exports = async ({ list, file, site }) => {
 
   if (!go) return process.exit(1);
 
+  const apiKey = site === 'AM' ? IDENTITYX_API_KEY_AM : IDENTITYX_API_KEY_DRB;
+
   const toProcess = toUpsert.map((doc) => ({ ...doc, email: `${doc.email}`.trim().toLowerCase() })).filter(({ email }) => valid.has(email));
 
   await batch({
     name: 'upsert',
     limit,
     handler: async ({ results }) => new Promise((resolve, reject) => {
-      eachLimit(results, Math.floor(limit / 2), async (doc) => {
+      eachLimit(results, 5, async (doc) => {
         const payload = {
           email: doc.email,
           givenName: doc['first name'],
@@ -71,17 +79,36 @@ module.exports = async ({ list, file, site }) => {
           subscriptions: { [list.subscriptionGroupId]: true },
           brazeCustomAttributes: { outside_source: file },
         };
-        const res = await fetch(getApiUrl(site), {
-          body: JSON.stringify(payload),
-          headers: { 'content-type': 'application/json' },
-          method: 'POST',
-        });
-        if (!res.ok) {
-          log(await res.json());
-          throw new Error(`Invalid API response, ${res.status} ${res.statusText}`);
+
+        try {
+          await pRetry(async () => {
+            const res = await fetch(getApiUrl(site), {
+              body: JSON.stringify(payload),
+              headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${apiKey}`,
+              },
+              method: 'POST',
+            });
+            if (!res.ok) {
+              let msg = `${res.status} ${res.statusText}`;
+              try {
+                const { error: { message } } = await res.json();
+                msg = `${msg}: ${message}`;
+              } catch (e) {
+                // noop
+              }
+              throw new Error(`Invalid API response, ${msg}`);
+            }
+            log(`Upsert ${doc.email} complete.`);
+          }, {
+            retries: 3,
+            // onFailedAttempt: (err) => log(`Upsert ${doc.email} #${er
+            // r.attemptNumber}/3 failed: ${err.message}, retrying!`),
+          });
+        } catch (e) {
+          log(`Upsert ${doc.email} failed: ${e.message}, ignoring!`);
         }
-        console.log(res);
-        // log('handle', doc);
       }, (err) => {
         if (err) reject(err);
         resolve();

@@ -209,7 +209,9 @@ services:
     working_dir: /root/services/user-import
     entrypoint: ["/root/node_modules/.bin/gulp"]
     environment:
-      NODE_ENV: development
+      NODE_ENV: ${IMPORT_MODE-development}
+      IDENTITYX_API_KEY_AM: ${IDENTITYX_API_KEY_AM}
+      IDENTITYX_API_KEY_DRB: ${IDENTITYX_API_KEY_DRB}
     depends_on:
       - am
       - drb
