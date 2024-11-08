@@ -31,6 +31,7 @@ module.exports = {
       const rows = [];
       const stream = fs.createReadStream(file, 'utf8');
       stream
+        .on('error', reject)
         .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true }))
         .on('data', (row) => rows.push(row))
         .on('finish', () => resolve(objectify(rows)));
