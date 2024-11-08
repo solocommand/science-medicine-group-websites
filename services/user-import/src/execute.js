@@ -32,7 +32,7 @@ const failRecord = async (email, prefix, message) => {
   try {
     const failed = await readCsv(`${prefix}/failed.csv`);
     failed.push({ email, message });
-    await writeCsv(`${prefix}/failed.csv`, [{ id: 'email', title: 'email' }, { id: 'message', title: message }], failed, true);
+    await writeCsv(`${prefix}/failed.csv`, [{ id: 'email', title: 'email' }, { id: 'message', title: 'message' }], failed, true);
   } catch (e) {
     await writeFile(`${prefix}/failed.csv`, `email,message\n"${email}","${message}"\n`);
   }
@@ -53,15 +53,6 @@ module.exports = async ({ list, file, site }) => {
   const newSet = new Set(toUpsert.map(({ email }) => `${email}`.trim().toLowerCase()));
   log(`${site}: Loaded ${toUpsert.length} records (${newSet.size} unique) from data file "data/${file}".`);
 
-  let toSkip = [];
-  try {
-    toSkip = await readCsv(`${prefix}/processed.csv`);
-    toSkip.forEach(({ email }) => newSet.delete(email));
-    log(`${site}: Skipping ${toSkip.length} previously processed records!`);
-  } catch (e) {
-    await writeFile(`${prefix}/processed.csv`, 'email\n');
-  }
-
   const listMembers = await readCsv(`./data/segments/${list.segmentId}.csv`);
   const oldSet = new Set(listMembers.map(({ email }) => `${email}`.toLowerCase()));
   log(`${site}: Loaded ${listMembers.length} records (${oldSet.size} unique) from reference file "segments/${list.segmentId}.csv".`);
@@ -81,6 +72,15 @@ module.exports = async ({ list, file, site }) => {
   await writeCsv(`${prefix}/insert.csv`, [{ id: 'email', title: 'email' }], [...difference].map((email) => ({ email })));
   await writeCsv(`${prefix}/invalid.csv`, [{ id: 'email', title: 'email' }], [...invalid].map((email) => ({ email })));
   await writeCsv(`${prefix}/update.csv`, [{ id: 'email', title: 'email' }], [...union].map((email) => ({ email })));
+
+  let toSkip = [];
+  try {
+    toSkip = await readCsv(`${prefix}/processed.csv`);
+    toSkip.forEach(({ email }) => valid.delete(email));
+    log(`${site}: Skipping ${toSkip.length} previously processed records!`);
+  } catch (e) {
+    await writeFile(`${prefix}/processed.csv`, 'email\n');
+  }
 
   log(`Import mode: ${isDev ? 'development' : 'production'}`);
   const { continue: go } = await inquirer.prompt([{
