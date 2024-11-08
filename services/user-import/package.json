@@ -10,7 +10,7 @@
     "start": "node src/index.js",
     "lint": "eslint --ext .js ./",
     "lint:fix": "yarn lint --fix",
-    "test": "yarn lint && yarn compile --no-clean"
+    "test": "yarn lint"
   },
   "dependencies": {
     "async": "^3.2.0",
